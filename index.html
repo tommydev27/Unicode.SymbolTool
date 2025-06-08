@@ -87,44 +87,64 @@
     }
     
     
-.notes-tab textarea {
-  width: 100%;
-  height: calc(100% - 60px); /* Disesuaikan agar tidak tertutup tombol */
-  resize: none;
-  margin-top: 6px;
-  padding: 8px;
-  box-shadow: 0 0 2px #2979ff inset; /* Efek bayangan ke dalam */
-  box-sizing: border-box;
-  font-family: sans-serif;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 18px;
-  outline: none;
-}
-
+    .notes-tab textarea {
+      width: 100%;
+      height: calc(100% - 60px); /* Disesuaikan agar tidak tertutup tombol */
+      resize: none;
+      margin-top: 6px;
+      padding: 8px;
+      box-shadow: 0 0 2px #2979ff inset; /* Efek bayangan ke dalam */
+      box-sizing: border-box;
+      font-family: sans-serif;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 18px;
+      outline: none;
+    }
     
-    .close-notes {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  padding: 6px 12px;
-  background: #2979ff;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.close-notes:hover {
-  background: #1c54b2;
-}
-
-.menu-label {
-  font-size: 12px;
-  color: #333;
-  margin-top: 4px;
-}
+        .notes-buttons {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      display: flex;
+      gap: 8px;
+    }
+    
+    .notes-button {
+      padding: 6px 12px;
+      background: #2979ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    
+    .notes-button:hover {
+      background: #1c54b2;
+    }
+    
+    .menu-label {
+      font-size: 12px;
+      color: #333;
+      margin-top: 4px;
+    }
+    
+    .copied-tooltip {
+      position: absolute;
+      top: -20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #333;
+      color: white;
+      font-size: 12px;
+      padding: 2px 6px;
+      border-radius: 3px;
+      pointer-events: none;
+      opacity: 0.9;
+      white-space: nowrap;
+      z-index: 10;
+    }
 
   </style>
 </head>
@@ -145,12 +165,18 @@
 
 <div class="notes-tab" id="notesTab">
   <h2>Catatan</h2>
-  <textarea placeholder="Tulis catatan di sini..."></textarea>
-  <button class="close-notes" onclick="toggleNotes()">Tutup</button>
+  <textarea id="notesTextarea" placeholder="Tulis catatan di sini..."></textarea>
+  <div class="notes-buttons">
+    <button class="notes-button" onclick="copyNotes()">Copy</button>
+    <button class="notes-button" onclick="clearNotes()">Clear</button>
+    <button class="notes-button close-notes" onclick="toggleNotes()">Tutup</button>
+  </div>
 </div>
 
-  <script>
-    const emojis = [
+
+
+<script>
+  const emojis = [
       "😀","😃","😄","😁","😆","😅","🤣","😂","🙂","🙃",
 "🫠","😉","😊","😇","🥰","😍","🤩","😘","😗","☺️",
 "😚","😙","🥲","😋","😛","😜","🤪","😝","🤑","🤗",
@@ -360,23 +386,76 @@
 
     ];
 
-const grid = document.getElementById('emojiGrid');
-    emojis.forEach(e => {
-      const box = document.createElement('div');
-      box.className = 'emoji-box';
-      box.textContent = e;
-      box.addEventListener('click', () => {
-        navigator.clipboard.writeText(e).then(() => {
-          alert(`Emoji "${e}" disalin!`);
-        });
-      });
-      grid.appendChild(box);
-    });
 
-    function toggleNotes() {
-      const tab = document.getElementById('notesTab');
-      tab.classList.toggle('open');
+
+const grid = document.getElementById('emojiGrid');
+
+emojis.forEach(e => {
+  const box = document.createElement('div');
+  box.className = 'emoji-box';
+  box.textContent = e;
+
+  box.addEventListener('click', () => {
+    const textarea = document.getElementById('notesTextarea');
+    const tab = document.getElementById('notesTab');
+
+    // Tambahkan emoji ke textarea
+    textarea.value += e;
+
+    // Tampilkan panel catatan jika belum terbuka
+    if (!tab.classList.contains('open')) {
+      tab.classList.add('open');
     }
-  </script>
+
+    // Hapus fokus agar keyboard ponsel TIDAK muncul
+    // Jadi jangan panggil textarea.focus()
+
+    // Salin ke clipboard
+    navigator.clipboard.writeText(e).then(() => {
+      // Buat elemen teks "Copied!"
+      const copiedText = document.createElement('span');
+      copiedText.textContent = 'Copied!';
+      copiedText.className = 'copied-tooltip';
+      box.appendChild(copiedText);
+
+      // Hapus setelah 1 detik
+      setTimeout(() => {
+        box.removeChild(copiedText);
+      }, 1000);
+    });
+  });
+
+  grid.appendChild(box);
+});
+
+// Hilangkan event focus blur supaya keyboard bisa muncul saat user klik textarea
+// Kalau kamu pakai ini sebelumnya, hapus saja:
+
+// const textarea = document.getElementById('notesTextarea');
+// textarea.addEventListener('focus', () => {
+//   textarea.blur();  // ini bikin keyboard gak pernah muncul, hapus aja
+// });
+
+function toggleNotes() {
+  const tab = document.getElementById('notesTab');
+  tab.classList.toggle('open');
+}
+
+function copyNotes() {
+  const textarea = document.getElementById('notesTextarea');
+  textarea.select();
+  document.execCommand('copy');
+}
+
+function clearNotes() {
+  const textarea = document.getElementById('notesTextarea');
+  textarea.value = '';
+}
+
+  
+</script>
+
+
+
 </body>
 </html>
