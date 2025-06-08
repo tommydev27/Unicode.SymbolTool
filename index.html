@@ -61,6 +61,7 @@
       transform: scale(0.95);
     }
 
+    
     .notes-tab {
       position: fixed;
       top: 0;
@@ -145,11 +146,49 @@
       white-space: nowrap;
       z-index: 10;
     }
+      
+    .emoji-box {
+      display: inline-block;
+      font-size: 24px;
+      padding: 10px;
+      cursor: pointer;
+    }
+    
+     .copy-status {
+      margin-left: -8px;
+      font-size: 13px;
+      color: green;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+      
+    .toast {
+      position: fixed;
+      margin-top: 50px;
+      left: 40%;
+      transform: translateX(-50%);
+      background-color: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-size: 14px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      z-index: 999;
+    }
+    .toast.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(-10px);
+    }
+    
 
   </style>
 </head>
 <body>
   <header>
+    </div> <!-- penutup notes-tab -->
+<div id="toast" class="toast">Berhasil disalin!</div>
     <h1>Unicode symbols Tool</h1>
     <p>Tommy website | V0.1.0 ©</p>
 <div class="menu-button" onclick="toggleNotes()">
@@ -166,14 +205,14 @@
 <div class="notes-tab" id="notesTab">
   <h2>Catatan</h2>
   <textarea id="notesTextarea" placeholder="Tulis catatan di sini..."></textarea>
+  
   <div class="notes-buttons">
-    <button class="notes-button" onclick="copyNotes()">Copy</button>
+    <button class="notes-button" onclick="copyNotes(event)">Copy</button>
+    <span id="copyStatus" class="copy-status"></span>
     <button class="notes-button" onclick="clearNotes()">Clear</button>
     <button class="notes-button close-notes" onclick="toggleNotes()">Tutup</button>
   </div>
 </div>
-
-
 
 <script>
   const emojis = [
@@ -441,11 +480,20 @@ function toggleNotes() {
   tab.classList.toggle('open');
 }
 
-function copyNotes() {
+function copyNotes(event) {
   const textarea = document.getElementById('notesTextarea');
   textarea.select();
   document.execCommand('copy');
+
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 1500);
 }
+
+
 
 function clearNotes() {
   const textarea = document.getElementById('notesTextarea');
