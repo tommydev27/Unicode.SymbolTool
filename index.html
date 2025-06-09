@@ -250,6 +250,9 @@
 
 </head>
 <body>
+<script>
+  window.addEventListener("DOMContentLoaded", init);
+</script>
 
   <div id="loading-overlay">
     <div class="spinner"></div>
@@ -574,76 +577,71 @@
 };
 
 
-  const container = document.getElementById("container");
-  const notesTextarea = document.getElementById("notes");
-  const copyBtn = document.getElementById("copy-btn");
-  const clearBtn = document.getElementById("clear-btn");
-  const copyMsg = document.getElementById("copy-message");
-  const blockSelect = document.getElementById("block-select");
-  const charCount = document.getElementById("char-count");
-  const lineCount = document.getElementById("line-count");
-  const loadingOverlay = document.getElementById("loading-overlay");
+const container = document.getElementById("container");
+const notesTextarea = document.getElementById("notes");
+const copyBtn = document.getElementById("copy-btn");
+const clearBtn = document.getElementById("clear-btn");
+const copyMsg = document.getElementById("copy-message");
+const blockSelect = document.getElementById("block-select");
+const charCount = document.getElementById("char-count");
+const lineCount = document.getElementById("line-count");
+const loadingOverlay = document.getElementById("loading-overlay");
 
-  function updateCounter() {
-    const text = notesTextarea.value;
-    charCount.textContent = `${text.length} Karakter`;
-    lineCount.textContent = `${(text.match(/\n/g) || []).length + 1} Paragraf`;
-  }
+function updateCounter() {
+  const text = notesTextarea.value;
+  charCount.textContent = `${text.length} Karakter`;
+  lineCount.textContent = `${(text.match(/\n/g) || []).length + 1} Paragraf`;
+}
 
-  function renderAllBlocks() {
-    container.innerHTML = "";
+function renderAllBlocks() {
+  container.innerHTML = "";
 
-    for (const [blockName, [start, end]] of Object.entries(unicodeBlocks)) {
-      const blockLabel = document.createElement("div");
-      blockLabel.textContent = `Blok ${blockName}`;
-      blockLabel.style.gridColumn = "1 / -1";
-      blockLabel.style.background = "#d6eaff";
-      blockLabel.style.padding = "4px 6px";
-      blockLabel.style.fontSize = "13px";
-      blockLabel.style.fontWeight = "bold";
-      blockLabel.style.border = "1px solid #aaa";
-      blockLabel.style.borderRadius = "5px";
-      blockLabel.style.margin = "5px 0";
-      blockLabel.id = `block-${blockName}`;
+  for (const [blockName, [start, end]] of Object.entries(unicodeBlocks)) {
+    const blockLabel = document.createElement("div");
+    blockLabel.textContent = `Blok ${blockName}`;
+    blockLabel.style.gridColumn = "1 / -1";
+    blockLabel.style.background = "#d6eaff";
+    blockLabel.style.padding = "4px 6px";
+    blockLabel.style.fontSize = "13px";
+    blockLabel.style.fontWeight = "bold";
+    blockLabel.style.border = "1px solid #aaa";
+    blockLabel.style.borderRadius = "5px";
+    blockLabel.style.margin = "5px 0";
+    blockLabel.id = `block-${blockName}`;
+    container.appendChild(blockLabel);
 
-      container.appendChild(blockLabel);
-
-      for (let code = start; code <= end; code++) {
-        if (code === 0xFEFF) continue;
-        const char = String.fromCodePoint(code);
-        const span = document.createElement("span");
-        span.className = "char";
-        span.textContent = char;
-        span.title = "U+" + code.toString(16).toUpperCase().padStart(4, '0');
-
-        span.addEventListener("click", () => {
-          notesTextarea.value += char;
-          updateCounter();
-        });
-
-        container.appendChild(span);
-      }
+    for (let code = start; code <= end; code++) {
+      if (code === 0xFEFF) continue;
+      const char = String.fromCodePoint(code);
+      const span = document.createElement("span");
+      span.className = "char";
+      span.textContent = char;
+      span.title = "U+" + code.toString(16).toUpperCase().padStart(4, '0');
+      span.addEventListener("click", () => {
+        notesTextarea.value += char;
+        updateCounter();
+      });
+      container.appendChild(span);
     }
   }
+}
 
-  blockSelect.addEventListener("change", () => {
-    const selectedBlockId = `block-${blockSelect.value}`;
-    const blockElement = document.getElementById(selectedBlockId);
-    if (blockElement) {
-      blockElement.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  });
+blockSelect.addEventListener("change", () => {
+  const selectedBlockId = `block-${blockSelect.value}`;
+  const blockElement = document.getElementById(selectedBlockId);
+  if (blockElement) {
+    blockElement.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
 
 copyBtn.addEventListener("click", () => {
   if (!notesTextarea.value) return;
-
   navigator.clipboard.writeText(notesTextarea.value)
     .then(() => {
-      copyMsg.classList.remove("show"); // Reset jika sebelumnya muncul
-      void copyMsg.offsetWidth; // Force reflow (trik agar animasi bisa diulang)
+      copyMsg.classList.remove("show");
+      void copyMsg.offsetWidth;
       copyMsg.classList.add("show");
       copyMsg.style.opacity = "1";
-
       setTimeout(() => {
         copyMsg.classList.remove("show");
         copyMsg.style.opacity = "0";
@@ -652,24 +650,26 @@ copyBtn.addEventListener("click", () => {
     .catch(err => console.error("Copy gagal:", err));
 });
 
-
-async function init() {
-  loadingOverlay.style.display = "flex";  // tampilkan loading dulu
-
-  // Jalankan renderAllBlocks di siklus berikutnya supaya loading muncul dulu
-  await new Promise(resolve => setTimeout(resolve, 0));
-
-  renderAllBlocks();
+clearBtn.addEventListener("click", () => {
+  notesTextarea.value = "";
   updateCounter();
+});
 
-  loadingOverlay.style.display = "none";  // sembunyikan loading setelah selesai
-}
-
-// Saat karakter diklik, sudah ada updateCounter()
-// Tapi perlu tambahan ini agar paste / input lain juga update:
 notesTextarea.addEventListener("input", () => {
   updateCounter();
 });
+
+async function init() {
+  loadingOverlay.style.display = "flex";
+  await new Promise(resolve => requestAnimationFrame(resolve));
+  await new Promise(resolve => setTimeout(resolve, 10));
+  renderAllBlocks();
+  updateCounter();
+  loadingOverlay.style.display = "none";
+}
+
+window.addEventListener("DOMContentLoaded", init);
+
 
   init();
   
