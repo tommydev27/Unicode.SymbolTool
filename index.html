@@ -13,7 +13,14 @@
     <meta property="fb:app_id" content="1245016886587008">
     
     <title>Tommy Website</title>
-<style>
+        <link rel="stylesheet" href="https://static.xx.fbcdn.net/rsrc.php/v5/y2/l/0,cross/nC2XYYUISfm.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://static.xx.fbcdn.net/rsrc.php/v5/y8/l/0,cross/Z39OoPuXzgz.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    
+ <style>
   body {
     font-family: 'Noto Sans', sans-serif;
     margin: 8px;
@@ -27,18 +34,7 @@
     max-width: 600px;
   }
 
-  h1 {
-    font-size: 20px;
-    margin-bottom: -5px;
-    margin-top: 0px;
-  }
-
-  h2 {
-    font-size: 12px;
-    color: #7b7b7b;
-    margin-bottom: 10px;
-  }
-
+  
   #notes-container {
     width: 100%;
     font-size: 14px;
@@ -57,7 +53,7 @@
     height: 150px;
     border: 1px solid #ccc;
     border-radius: 10px;
-    font-size: 15px;
+    font-size: 18px;
     resize: none; /* kunci agar tidak bisa di-resize */
     padding: 5px;
     box-sizing: border-box;
@@ -160,15 +156,13 @@
 }
 
   
-  
-  
   #container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
     gap: 3px;
     font-family: 'Times New Roman', serif;
     margin-top: -10px;
-    max-height: 46vh;
+    max-height: 57vh;
     overflow-y: auto;
     background: #e5f4fb;
     border-radius: 8px;
@@ -260,27 +254,33 @@
   </div>
 
   <div id="main-container">
-    <h1>Global Unicode Explorer</h1>
-    <h2>Tommy Website | Developer</h2>
+       <h3 style="margin-top: 5px; margin-bottom: 10px;">
+       <div style="display: flex; gap: 12px; color: #007bff; font-size: 20px; ">
+        <span class="native-text" style="color:#575252; font-size: 16px !important; font-weight: bold;">Tommy website</span>
+  
+        <span class="native-text" style="color:#1b74e4; font-size: 14px; margin-top: 2px; vertical-align: 1px; font-weight: normal; margin-left: -9px;">󱢏</span>
 
-
-
+         <a href="https://www.facebook.com/tommyadhelyne" target="_blank" title="Buka Facebook"
+           style="text-decoration: none; color: inherit; cursor: pointer; ">
+         <i class="fab fa-facebook"></i>
+      </a>
+      </h3>
       <textarea id="notes" placeholder="Klik karakter untuk menambah ke catatan..."></textarea>
 
-<div id="notes-container">
-  <label for="block-select">Pilih Blok Teks</label>
-  
-<div class="control-row">
-    <select id="block-select">
-      <option value="1F000-1F02F">Mahjong Tiles</option>
-    <option value="1F0A0-1F0FF">Playing Cards</option>
-    <option value="1F300-1F5FF">Misc Symbols & Pictographs</option>
-    <option value="1F600-1F64F">Emoticons (Emoji)</option>
-    <option value="1F680-1F6FF">Transport & Map</option>
-    <option value="1F700-1F77F">Alchemical Symbols</option>
-    <option value="1F900-1F9FF">Supplemental Symbols & Pictographs</option>
-    <option value="1FA70-1FAFF">Symbols & Pictographs Extended-A</option>
-    <option value="FF00-FFEF">Halfwidth and Fullwidth Forms</option>
+    <div id="notes-container">
+      <label for="block-select">Pilih Blok Teks</label>
+      
+    <div class="control-row">
+        <select id="block-select">
+          <option value="1F000-1F02F">Mahjong Tiles</option>
+        <option value="1F0A0-1F0FF">Playing Cards</option>
+        <option value="1F300-1F5FF">Misc Symbols & Pictographs</option>
+        <option value="1F600-1F64F">Emoticons (Emoji)</option>
+        <option value="1F680-1F6FF">Transport & Map</option>
+        <option value="1F700-1F77F">Alchemical Symbols</option>
+        <option value="1F900-1F9FF">Supplemental Symbols & Pictographs</option>
+        <option value="1FA70-1FAFF">Symbols & Pictographs Extended-A</option>
+        <option value="FF00-FFEF">Halfwidth and Fullwidth Forms</option>
     
       <option value="0000-007F">Basic Latin</option>
       <option value="0080-00FF">Latin-1 Supplement</option>
@@ -633,6 +633,9 @@ blockSelect.addEventListener("change", () => {
     blockElement.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 });
+
+
+
 
 copyBtn.addEventListener("click", () => {
   if (!notesTextarea.value) return;
