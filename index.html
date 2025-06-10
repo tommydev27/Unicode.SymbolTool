@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -25,6 +26,7 @@
     font-family: 'Noto Sans', sans-serif;
     margin: 8px;
     display: flex;
+      background-color: #e5e5e590; 
     flex-direction: column;
     align-items: center;
   }
@@ -37,7 +39,7 @@
   
   #notes-container {
     width: 100%;
-    font-size: 14px;
+    font-size: 15px;
     margin-bottom: 15px;
   }
 
@@ -54,6 +56,9 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 18px;
+    border: 2px solid #c4c2c290;
+    box-shadow: 2px 2px 3px #b7b7b7,
+    -3px -2px 1px white;
     resize: none; /* kunci agar tidak bisa di-resize */
     padding: 5px;
     box-sizing: border-box;
@@ -69,22 +74,48 @@
     justify-content: space-between;
   }
 
-  #counter-info {
-    font-size: 14px;
-    color: #fff;
-    padding: 8px 10px;
-    border-radius: 4;
-    font-weight: bold;
-    margin-left: auto;
-    white-space: nowrap;
-    text-align: right;
-  }
+#counter-info {
+  display: flex;
+  gap: 8px; /* jarak antar kotak */
+  margin-left: auto;
+  white-space: nowrap;
+}
+
+.counter-box {
+  font-size: 14px;
+  color: #333;
+  padding: 4px 5px;
+  border-radius: 10px;
+  font-weight: bold;
+  margin-top: -4px;
+  background: white;
+  border: 2px solid #e5e5e590;
+    box-shadow: 2px 2px 3px #b7b7b7,
+    -3px -2px 1px white;
+    
+}
+
+
+#counter-info {
+  top: 10px;
+  right: 10px;
+}
+.counter-box {
+  max-width: 77px;  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;  
+}
+
 
   #copy-btn, #clear-btn {
-    padding: 5px 10px;
-    font-size: 14px;
+    padding: 7px 10px;
+    font-size: 15px;
     font-weight: bold;
     background: #4c7eea;
+    border: 2px solid #e5e5e590;
+    box-shadow: 2px 2px 2px #b7b7b7,
+    -3px -2px 1px white;
     border: none;
     color: white;
     border-radius: 5px;
@@ -161,10 +192,14 @@
     grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
     gap: 3px;
     font-family: 'Times New Roman', serif;
-    margin-top: -10px;
+    margin-top: 0px;
     max-height: 57vh;
     overflow-y: auto;
     background: #e5f4fb;
+      background: white;
+  border: 2px solid #e5e5e590;
+    box-shadow: 2px 2px 3px #b7b7b7,
+    -3px -2px 1px white;
     border-radius: 8px;
     border: 2px solid #ccc;
     padding: 5px;
@@ -233,10 +268,13 @@
   .control-row > * {
     flex: 1;
     min-width: 90px;
-    padding: 3px ;
+    padding: 5px 10px;
     background: #4c7eea;
     color: #fff;
     border-radius: 4px;
+
+    box-shadow: 2px 2px 2px #b7b7b7,
+    -3px -2px 1px white;
     font-weight: bold;
     box-sizing: border-box;
   }
@@ -257,19 +295,25 @@
        <h3 style="margin-top: 5px; margin-bottom: 10px;">
        <div style="display: flex; gap: 12px; color: #007bff; font-size: 20px; ">
         <span class="native-text" style="color:#575252; font-size: 16px !important; font-weight: bold;">Tommy website</span>
-  
-        <span class="native-text" style="color:#1b74e4; font-size: 14px; margin-top: 2px; vertical-align: 1px; font-weight: normal; margin-left: -9px;">󱢏</span>
 
-         <a href="https://www.facebook.com/tommyadhelyne" target="_blank" title="Buka Facebook"
-           style="text-decoration: none; color: inherit; cursor: pointer; ">
-         <i class="fab fa-facebook"></i>
-      </a>
+        <span class="native-text" style="color:#1b74e4; font-size: 14px; margin-top: 2px; vertical-align: 1px; font-weight: normal; margin-left: -9px;">󱢏</span>
+        <div id="counter-info">
+        <span class="counter-box" id="char-count">0 Karakter</span>
+        <span class="counter-box" id="line-count">0 Paragraf</span>
+      </div>
       </h3>
       <textarea id="notes" placeholder="Klik karakter untuk menambah ke catatan..."></textarea>
 
     <div id="notes-container">
       <label for="block-select">Pilih Blok Teks</label>
       
+      <span id="copy-message">Berhasil disalin!
+  <svg id="check-icon" viewBox="0 0 52 52" class="checkmark">
+    <path class="checkmark__circle" d="M26,1 a25,25 0 1,0 0.00001,0" />
+    <path class="checkmark__check" d="M14 27 l7 7 l17 -17" />
+  </svg>
+</span>
+
     <div class="control-row">
         <select id="block-select">
           <option value="1F000-1F02F">Mahjong Tiles</option>
@@ -281,128 +325,110 @@
         <option value="1F900-1F9FF">Supplemental Symbols & Pictographs</option>
         <option value="1FA70-1FAFF">Symbols & Pictographs Extended-A</option>
         <option value="FF00-FFEF">Halfwidth and Fullwidth Forms</option>
-    
-      <option value="0000-007F">Basic Latin</option>
-      <option value="0080-00FF">Latin-1 Supplement</option>
-      <option value="0100-017F">Latin Extended-A</option>
-      <option value="0180-024F">Latin Extended-B</option>
-      <option value="0250-02AF">IPA Extensions</option>
-      <option value="02B0-02FF">Spacing Modifier Letters</option>
-      <option value="0300-036F">Combining Diacritical Marks</option>
-      <option value="0370-03FF">Greek and Coptic</option>
-      <option value="0400-04FF">Cyrillic</option>
-      <option value="0500-052F">Cyrillic Supplement</option>
-      <option value="0530-058F">Armenian</option>
-      <option value="0590-05FF">Hebrew</option>
-      <option value="0600-06FF">Arabic</option>
-      <option value="0700-074F">Syriac</option>
-      <option value="0750-077F">Arabic Supplement</option>
-      <option value="0780-07BF">Thaana</option>
-      <option value="07C0-07FF">NKo</option>
-      <option value="0800-083F">Samaritan</option>
-      <option value="0840-085F">Mandaic</option>
-      <option value="0860-086F">Syriac Supplement</option>
-      <option value="08A0-08FF">Arabic Extended-A</option>
-      <option value="0900-097F">Devanagari</option>
-      <option value="0980-09FF">Bengali</option>
-      <option value="0A00-0A7F">Gurmukhi</option>
-      <option value="0A80-0AFF">Gujarati</option>
-      <option value="0B00-0B7F">Oriya</option>
-      <option value="0B80-0BFF">Tamil</option>
-      <option value="0C00-0C7F">Telugu</option>
-      <option value="0C80-0CFF">Kannada</option>
-      <option value="0D00-0D7F">Malayalam</option>
-      <option value="0D80-0DFF">Sinhala</option>
-      <option value="0E00-0E7F">Thai</option>
-      <option value="0E80-0EFF">Lao</option>
-      <option value="0F00-0FFF">Tibetan</option>
-      <option value="1000-109F">Myanmar</option>
-      <option value="10A0-10FF">Georgian</option>
-      <option value="1100-11FF">Hangul Jamo</option>
-      <option value="1200-137F">Ethiopic</option>
-      <option value="1380-139F">Ethiopic Supplement</option>
-      <option value="13A0-13FF">Cherokee</option>
-      <option value="1400-167F">Unified Canadian Aboriginal Syllabics</option>
-      <option value="1680-169F">Ogham</option>
-      <option value="16A0-16FF">Runic</option>
-      <option value="1700-171F">Tagalog</option>
-      <option value="1720-173F">Hanunoo</option>
-      <option value="1740-175F">Buhid</option>
-      <option value="1760-177F">Tagbanwa</option>
-      <option value="1780-17FF">Khmer</option>
-      <option value="1800-18AF">Mongolian</option>
-      <option value="18B0-18FF">Unified Canadian Aboriginal Syllabics Extended</option>
-      <option value="1900-194F">Limbu</option>
-      <option value="1950-197F">Tai Le</option>
-      <option value="1980-19DF">New Tai Lue</option>
-      <option value="19E0-19FF">Khmer Symbols</option>
-      <option value="1A00-1A1F">Buginese</option>
-      <option value="1A20-1AAF">Tai Tham</option>
-      <option value="1AB0-1AFF">Combining Diacritical Marks Extended</option>
-      <option value="1B00-1B7F">Balinese</option>
-      <option value="1B80-1BBF">Sundanese</option>
-      <option value="1BC0-1BFF">Batak</option>
-      <option value="1C00-1C4F">Lepcha</option>
-      <option value="1C50-1C7F">Ol Chiki</option>
-      <option value="1C80-1C8F">Cyrillic Extended-C</option>
-      <option value="1C90-1CBF">Georgian Extended</option>
-      <option value="1CC0-1CCF">Sundanese Supplement</option>
-      <option value="1CD0-1CFF">Vedic Extensions</option>
-      <option value="1D00-1D7F">Phonetic Extensions</option>
-      <option value="1D80-1DBF">Phonetic Extensions Supplement</option>
-      <option value="1DC0-1DFF">Combining Diacritical Marks Supplement</option>
-      <option value="1E00-1EFF">Latin Extended Additional</option>
-      <option value="1F00-1FFF">Greek Extended</option>
-      <option value="2000-206F">General Punctuation</option>
-      <option value="2070-209F">Superscripts and Subscripts</option>
-      <option value="20A0-20CF">Currency Symbols</option>
-      <option value="20D0-20FF">Combining Diacritical Marks for Symbols</option>
-      <option value="2100-214F">Letterlike Symbols</option>
-      <option value="2150-218F">Number Forms</option>
-      <option value="2190-21FF">Arrows</option>
-      <option value="2200-22FF">Mathematical Operators</option>
-      <option value="2300-23FF">Miscellaneous Technical</option>
-      <option value="2400-243F">Control Pictures</option>
-      <option value="2440-245F">Optical Character Recognition</option>
-      <option value="2460-24FF">Enclosed Alphanumerics</option>
-      <option value="2500-257F">Box Drawing</option>
-      <option value="2580-259F">Block Elements</option>
-      <option value="25A0-25FF">Geometric Shapes</option>
-      <option value="2600-26FF">Miscellaneous Symbols</option>
-      <option value="2700-27BF">Dingbats</option>
-      <option value="27C0-27EF">Miscellaneous Mathematical Symbols-A</option>
-      <option value="27F0-27FF">Supplemental Arrows-A</option>
-      <option value="2800-28FF">Braille Patterns</option>
-      <option value="2900-297F">Supplemental Arrows-B</option>
-      <option value="2980-29FF">Miscellaneous Mathematical Symbols-B</option>
-      <option value="2A00-2AFF">Supplemental Mathematical Operators</option>
-      <option value="2B00-2BFF">Miscellaneous Symbols and Arrows</option>
-      <option value="2C00-2C5F">Glagolitic</option>
-      <option value="2C60-2C7F">Latin Extended-C</option>
-      <option value="2C80-2CFF">Coptic</option>
-    </select>
-
-
-
+        <option value="0000-007F">Basic Latin</option>
+        <option value="0080-00FF">Latin-1 Supplement</option>
+        <option value="0100-017F">Latin Extended-A</option>
+        <option value="0180-024F">Latin Extended-B</option>
+        <option value="0250-02AF">IPA Extensions</option>
+        <option value="02B0-02FF">Spacing Modifier Letters</option>
+        <option value="0300-036F">Combining Diacritical Marks</option>
+        <option value="0370-03FF">Greek and Coptic</option>
+        <option value="0400-04FF">Cyrillic</option>
+        <option value="0500-052F">Cyrillic Supplement</option>
+        <option value="0530-058F">Armenian</option>
+        <option value="0590-05FF">Hebrew</option>
+        <option value="0600-06FF">Arabic</option>
+        <option value="0700-074F">Syriac</option>
+        <option value="0750-077F">Arabic Supplement</option>
+        <option value="0780-07BF">Thaana</option>
+        <option value="07C0-07FF">NKo</option>
+        <option value="0800-083F">Samaritan</option>
+        <option value="0840-085F">Mandaic</option>
+        <option value="0860-086F">Syriac Supplement</option>
+        <option value="08A0-08FF">Arabic Extended-A</option>
+        <option value="0900-097F">Devanagari</option>
+        <option value="0980-09FF">Bengali</option>
+        <option value="0A00-0A7F">Gurmukhi</option>
+        <option value="0A80-0AFF">Gujarati</option>
+        <option value="0B00-0B7F">Oriya</option>
+        <option value="0B80-0BFF">Tamil</option>
+        <option value="0C00-0C7F">Telugu</option>
+        <option value="0C80-0CFF">Kannada</option>
+        <option value="0D00-0D7F">Malayalam</option>
+        <option value="0D80-0DFF">Sinhala</option>
+        <option value="0E00-0E7F">Thai</option>
+        <option value="0E80-0EFF">Lao</option>
+        <option value="0F00-0FFF">Tibetan</option>
+        <option value="1000-109F">Myanmar</option>
+        <option value="10A0-10FF">Georgian</option>
+        <option value="1100-11FF">Hangul Jamo</option>
+        <option value="1200-137F">Ethiopic</option>
+        <option value="1380-139F">Ethiopic Supplement</option>
+        <option value="13A0-13FF">Cherokee</option>
+        <option value="1400-167F">Unified Canadian Aboriginal Syllabics</option>
+        <option value="1680-169F">Ogham</option>
+        <option value="16A0-16FF">Runic</option>
+        <option value="1700-171F">Tagalog</option>
+        <option value="1720-173F">Hanunoo</option>
+        <option value="1740-175F">Buhid</option>
+        <option value="1760-177F">Tagbanwa</option>
+        <option value="1780-17FF">Khmer</option>
+        <option value="1800-18AF">Mongolian</option>
+        <option value="18B0-18FF">Unified Canadian Aboriginal Syllabics Extended</option>
+        <option value="1900-194F">Limbu</option>
+        <option value="1950-197F">Tai Le</option>
+        <option value="1980-19DF">New Tai Lue</option>
+        <option value="19E0-19FF">Khmer Symbols</option>
+        <option value="1A00-1A1F">Buginese</option>
+        <option value="1A20-1AAF">Tai Tham</option>
+        <option value="1AB0-1AFF">Combining Diacritical Marks Extended</option>
+        <option value="1B00-1B7F">Balinese</option>
+        <option value="1B80-1BBF">Sundanese</option>
+        <option value="1BC0-1BFF">Batak</option>
+        <option value="1C00-1C4F">Lepcha</option>
+        <option value="1C50-1C7F">Ol Chiki</option>
+        <option value="1C80-1C8F">Cyrillic Extended-C</option>
+        <option value="1C90-1CBF">Georgian Extended</option>
+        <option value="1CC0-1CCF">Sundanese Supplement</option>
+        <option value="1CD0-1CFF">Vedic Extensions</option>
+        <option value="1D00-1D7F">Phonetic Extensions</option>
+        <option value="1D80-1DBF">Phonetic Extensions Supplement</option>
+        <option value="1DC0-1DFF">Combining Diacritical Marks Supplement</option>
+        <option value="1E00-1EFF">Latin Extended Additional</option>
+        <option value="1F00-1FFF">Greek Extended</option>
+        <option value="2000-206F">General Punctuation</option>
+        <option value="2070-209F">Superscripts and Subscripts</option>
+        <option value="20A0-20CF">Currency Symbols</option>
+        <option value="20D0-20FF">Combining Diacritical Marks for Symbols</option>
+        <option value="2100-214F">Letterlike Symbols</option>
+        <option value="2150-218F">Number Forms</option>
+        <option value="2190-21FF">Arrows</option>
+        <option value="2200-22FF">Mathematical Operators</option>
+        <option value="2300-23FF">Miscellaneous Technical</option>
+        <option value="2400-243F">Control Pictures</option>
+        <option value="2440-245F">Optical Character Recognition</option>
+        <option value="2460-24FF">Enclosed Alphanumerics</option>
+        <option value="2500-257F">Box Drawing</option>
+        <option value="2580-259F">Block Elements</option>
+        <option value="25A0-25FF">Geometric Shapes</option>
+        <option value="2600-26FF">Miscellaneous Symbols</option>
+        <option value="2700-27BF">Dingbats</option>
+        <option value="27C0-27EF">Miscellaneous Mathematical Symbols-A</option>
+        <option value="27F0-27FF">Supplemental Arrows-A</option>
+        <option value="2800-28FF">Braille Patterns</option>
+        <option value="2900-297F">Supplemental Arrows-B</option>
+        <option value="2980-29FF">Miscellaneous Mathematical Symbols-B</option>
+        <option value="2A00-2AFF">Supplemental Mathematical Operators</option>
+        <option value="2B00-2BFF">Miscellaneous Symbols and Arrows</option>
+        <option value="2C00-2C5F">Glagolitic</option>
+        <option value="2C60-2C7F">Latin Extended-C</option>
+        <option value="2C80-2CFF">Coptic</option>
+      </select>
 
     <button id="copy-btn">Copy Catatan</button>
     <button id="clear-btn">Clear</button>
-<span id="copy-message">Berhasil disalin!
-  <svg id="check-icon" viewBox="0 0 52 52" class="checkmark">
-    <path class="checkmark__circle" d="M26,1 a25,25 0 1,0 0.00001,0" />
-    <path class="checkmark__check" d="M14 27 l7 7 l17 -17" />
-  </svg>
-  
-</span>
 
-    <div id="counter-info">
-      <span id="char-count">0 Karakter</span> • 
-      <span id="line-count">0 Paragraf</span>
-    </div>
-  </div>
-
-
-    </div>
+        </div>
 
     <div id="container"></div>
   </div>
@@ -573,6 +599,7 @@
   "FE70-FEFF": [0xFE70, 0xFEFF],
   "FF00-FFEF": [0xFF00, 0xFFEF],
   "FFF0-FFFF": [0xFFF0, 0xFFFF]
+
 
 };
 
