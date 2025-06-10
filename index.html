@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -23,7 +22,7 @@
     
  <style>
   body {
-    font-family: 'Noto Sans', sans-serif;
+    font-family:'CustomFont','Arial','Segoe UI','Noto Sans',sans-serif;
     margin: 8px;
     display: flex;
       background-color: #e5e5e590; 
@@ -41,6 +40,7 @@
     width: 100%;
     font-size: 15px;
     margin-bottom: 15px;
+    
   }
 
   select {
@@ -52,6 +52,7 @@
 
   #notes {
     width: 100%;
+    font-family:'CustomFont','Arial','Segoe UI','Noto Sans',sans-serif;
     height: 150px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -601,6 +602,7 @@
   "FFF0-FFFF": [0xFFF0, 0xFFFF]
 
 
+
 };
 
 
@@ -644,10 +646,32 @@ function renderAllBlocks() {
       span.className = "char";
       span.textContent = char;
       span.title = "U+" + code.toString(16).toUpperCase().padStart(4, '0');
-      span.addEventListener("click", () => {
-        notesTextarea.value += char;
-        updateCounter();
-      });
+span.addEventListener("click", (e) => {
+  e.preventDefault(); // Mencegah event default yang bisa memicu fokus
+
+  // Simpan posisi scroll sebelum mengubah isi textarea
+  const scrollTop = notesTextarea.scrollTop;
+
+  const start = notesTextarea.selectionStart;
+  const end = notesTextarea.selectionEnd;
+  const text = notesTextarea.value;
+
+  const charToInsert = char; // Pastikan variabel 'char' terdefinisi di luar event listener
+
+  console.log("Karakter yang disisipkan:", charToInsert);
+
+  notesTextarea.value = text.slice(0, start) + charToInsert + text.slice(end);
+
+  // Kembalikan posisi kursor
+  notesTextarea.selectionStart = notesTextarea.selectionEnd = start + charToInsert.length;
+
+  // Kembalikan posisi scroll agar tidak lompat
+  notesTextarea.scrollTop = scrollTop;
+
+  updateCounter();
+});
+
+
       container.appendChild(span);
     }
   }
@@ -660,9 +684,6 @@ blockSelect.addEventListener("change", () => {
     blockElement.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 });
-
-
-
 
 copyBtn.addEventListener("click", () => {
   if (!notesTextarea.value) return;
@@ -700,10 +721,6 @@ async function init() {
 
 window.addEventListener("DOMContentLoaded", init);
 
-
-  init();
-  
-  
 </script>
 
 
