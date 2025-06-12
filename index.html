@@ -22,13 +22,18 @@
     
  <style>
   body {
-    font-family:'CustomFont','Arial','Segoe UI','Noto Sans',sans-serif;
-    margin: 8px;
-    display: flex;
-      background-color: #e5e5e590; 
-    flex-direction: column;
-    align-items: center;
-  }
+  font-family: sans-serif;
+      margin: 12px;
+      display: flex;
+        background-color: #ebf5f6; 
+      flex-direction: column;
+      align-items: center;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-touch-callout: none;
+      outline: none;
+      touch-action: manipulation;
+  
+    }
 
   #main-container {
     width: 100%;
@@ -83,14 +88,14 @@
 }
 
 .counter-box {
-  font-size: 14px;
-  color: #333;
+  font-size: 13px;
+  color: #fff;
   padding: 4px 5px;
   border-radius: 10px;
   font-weight: bold;
   margin-top: -4px;
-  background: white;
-  border: 2px solid #e5e5e590;
+  background: #333333;
+  border: 3px solid #d6eaff;
     box-shadow: 2px 2px 3px #b7b7b7,
     -3px -2px 1px white;
     
@@ -102,7 +107,7 @@
   right: 10px;
 }
 .counter-box {
-  max-width: 77px;  
+  max-width: 64px;  
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;  
@@ -111,23 +116,34 @@
 
   #copy-btn, #clear-btn {
     padding: 7px 10px;
-    font-size: 15px;
+    font-size: 13px;
     font-weight: bold;
-    background: #4c7eea;
-    border: 2px solid #e5e5e590;
+    background: #5a8cf8;
+    border: 4px solid #d6eaff;
     box-shadow: 2px 2px 2px #b7b7b7,
-    -3px -2px 1px white;
-    border: none;
+    -3px -2px 4px white;
+
     color: white;
-    border-radius: 5px;
+    border-radius: 20px;
     cursor: pointer;
     white-space: nowrap;
   }
 
   #clear-btn {
-    background: #e74c3c;
+    background: #f66050;
   }
-
+    #clear-btn:hover {
+    background: #2d2d2d;
+        border: 4px solid #fa6c6c;
+        color: #76eefb;
+  }
+  
+    #copy-btn:hover {
+    background: #2d2d2d;
+        border: 4px solid #fa6c6c;
+        color: #76eefb;
+  }
+  
   #copy-message {
     font-size: 16px;
     color: #333;
@@ -194,15 +210,13 @@
     gap: 3px;
     font-family: 'Times New Roman', serif;
     margin-top: 0px;
-    max-height: 57vh;
+    max-height: 47vh;
     overflow-y: auto;
-    background: #e5f4fb;
-      background: white;
-  border: 2px solid #e5e5e590;
+    background: #e5edf1;
     box-shadow: 2px 2px 3px #b7b7b7,
     -3px -2px 1px white;
-    border-radius: 8px;
-    border: 2px solid #ccc;
+    border-radius: 25px;
+    border: 5px solid #c4c2c290;
     padding: 5px;
   }
 
@@ -212,10 +226,12 @@
     justify-content: center;
     height: 35px;
     margin: 1px;
-    border-radius: 7px;
+    border-radius: 12px;
     font-size: 20px;
+    box-shadow: 2px 2px 5px #9f9e9e,
+    -1px -1px 2px white;
     background: #fff;
-    border: 1px solid #171414;
+    border: 3px solid #a3a3a3;
     cursor: pointer;
     background: ;
     transition: background 0.2s;
@@ -223,7 +239,9 @@
   }
 
   .char:hover {
-    background: #02affa;
+    background: #2d2d2d;
+        border: 3px solid #fa6c6c;
+        color: #fff267;
   }
 
   #loading-overlay {
@@ -257,7 +275,6 @@
     100% { transform: rotate(360deg);}
   }
 
-
   .control-row {
     display: flex;
     align-items: center;
@@ -268,17 +285,37 @@
 
   .control-row > * {
     flex: 1;
+    border: 4px solid #d6eaff;
     min-width: 90px;
     padding: 5px 10px;
-    background: #4c7eea;
+    background: #424242;
     color: #fff;
-    border-radius: 4px;
-
+    border-radius: 20px;
     box-shadow: 2px 2px 2px #b7b7b7,
-    -3px -2px 1px white;
+    -2px -2px 2px white;
     font-weight: bold;
     box-sizing: border-box;
   }
+  
+   .control-row :hover {
+    background: #2d2d2d;
+        border: 4px solid #fa6c6c;
+        color: #fff267;
+  }
+  
+  .block-label {
+  grid-column: 1 / -1;
+  background: #d6eaff;
+  padding: 3px 6px;
+  font-size: 12px;
+  color: #333333;
+  font-family: Orbitron;
+  font-weight: bold;
+  border: 5px solid #c4c2c290;
+  border-radius: 20px;
+  margin: 1px 0;
+}
+
 </style>
 
 </head>
@@ -295,14 +332,17 @@
   <div id="main-container">
        <h3 style="margin-top: 5px; margin-bottom: 10px;">
        <div style="display: flex; gap: 12px; color: #007bff; font-size: 20px; ">
-        <span class="native-text" style="color:#575252; font-size: 16px !important; font-weight: bold;">Tommy website</span>
+        <span class="native-text" style="color:#575252; font-size: 17px !important; font-weight: bold;">Tommy website</span>
 
-        <span class="native-text" style="color:#1b74e4; font-size: 14px; margin-top: 2px; vertical-align: 1px; font-weight: normal; margin-left: -9px;">󱢏</span>
+        <span class="native-text" style="color:#1b74e4; font-size: 16px; margin-top: 1px; vertical-align: 1px; font-weight: normal; margin-left: -9px;">󱢏</span>
         <div id="counter-info">
         <span class="counter-box" id="char-count">0 Karakter</span>
         <span class="counter-box" id="line-count">0 Paragraf</span>
       </div>
       </h3>
+       <h2 style="color:#3f5ff7; padding: 0px; margin-top: -10px; font-size: 10px !important; font-weight: bold;">Design: Tommy · v1.0.0 © 2025
+</h2>
+       
       <textarea id="notes" placeholder="Klik karakter untuk menambah ke catatan..."></textarea>
 
     <div id="notes-container">
@@ -430,12 +470,151 @@
     <button id="clear-btn">Clear</button>
 
         </div>
+        
+ 
+<style>
+.tambahan-container {
+  display: flex;
+  overflow-x: auto;
+  gap: 10px;
+  padding: 5px;
+  border: 2px solid #c4c2c290;
+  border-radius: 20px;
+  margin: 10px 0;
+  background:  #d6eaff;
+  scroll-behavior: smooth;
+      box-shadow: 2px 2px 2px #b7b7b7,
+    -3px -2px 1px white;
+  direction: ltr;
+}
 
-    <div id="container"></div>
-  </div>
+.tambahan-container button {
+  flex: 0 0 auto;
+  width: 80px;
+  color: #393838;
+  font-family: normal;
+  height: 30px;
+  background-color: white;
+  border: 3px solid #c4c2c290;
+  scroll-behavior: smooth;
+      box-shadow: 1px 1px 2px #b7b7b7,
+    -1px -1px 1px white;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
 
+.tambahan-container button:hover {
+  background-color: #434242;
+  color: #76eefb;
+    border: 3px solid #fc5c5c;
+}
+
+.tambahan-container button span {
+  line-height: 1;
+  font-size: 16px;
+}
+
+.button, a {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  outline: none;
+  touch-action: manipulation;
+}
+</style>
+
+<div id="symbol-bar" class="tambahan-container" style="font-family: normal;">
+
+  <button id="btn-block1">
+    <span>🅐🅑🅒</span>
+  </button>
+  <button id="btn-block2">
+    <span>⓵⓶⓷</span>
+  </button>
+  <button id="btn-block3">
+    <span>🅰🅱🅲</span>
+  </button>
+  <button id="btn-block4">
+    <span>🄐🄑🄒</span>
+  </button>
+  <button id="btn-block5">
+    <span>ＡＢＣ</span>
+  </button>
+  <button id="btn-block7">
+    <span>𝒜ℬ𝒞</span>
+  </button>
+  <button id="btn-block8">
+    <span>𝑨𝑩𝑪</span>
+  </button>
+  <button id="btn-block11">
+    <span>𝘼𝘽𝘾</span>
+  </button>
+  <button id="btn-block12">
+    <span>𝗔𝗕𝗖</span>
+  </button>
+  <button id="btn-block14">
+    <span>𝔄𝔅ℭ</span>
+  </button>
+  <button id="btn-block10">
+    <span>𝐀 ƛ 𝕒</span>
+  </button>
+   <button id="btn-block19">
+    <span>Ꭺ ᗩ 卂</span>
+  </button>
+  <button id="btn-block15">
+    <span>𝙰ᴀᵃ</span>
+  </button>
+
+  <button id="btn-block18">
+    <span>ᗅΛԺ</span>
+  </button>
+  <button id="btn-block21">
+    <span>ᕱꀷꋫ</span>
+  </button>
+  <button id="btn-block22">
+    <span>ムるど</span>
+  </button>
+  <button id="btn-block23">
+    <span>★ ✿ ✼</span>
+  </button>
+  <button id="btn-block24">
+    <span>▄ ▅ ▆</span>
+  </button>
+  <button id="btn-block25">
+    <span>♼ ♽ ♾</span>
+  </button>
+  <button id="btn-block26">
+    <span>㉿㊊㊋</span>
+  </button>
+  <button id="btn-block13">
+    <span>䷇䷨䷔</span>
+  </button>
+  <button id="btn-block20">
+    <span>🂱 🂲 🂳</span>
+   </button>
+  <button id="btn-block6">
+    <span>⌨ ☑ ⎙</span>
+  </button>
+    <button id="btn-block9">
+    <span>⣼⣇⡇</span>
+  </button>
+  <button id="btn-block16">
+    <span>𝇜𝅘𝅥𝅘𝅥𝅮</span>
+  </button>
+  <button id="btn-block17">
+    <span>⟫ ⟩ ❱ ❭</span>
+  </button>
+
+</div>
+<div id="container"></div>
+</div>
 <script>
- const unicodeBlocks = {
+const unicodeBlocks = {
   "1F600-1F64F": [0x1F600, 0x1F64F],
   "1F680-1F6FF": [0x1F680, 0x1F6FF],
   "1F900-1F9FF": [0x1F900, 0x1F9FF],
@@ -591,20 +770,14 @@
   "FB00-FB4F": [0xFB00, 0xFB4F],
   "FB50-FDFF": [0xFB50, 0xFDFF],
   "FE00-FE0F": [0xFE00, 0xFE0F],
-  
   "FE10-FE1F": [0xFE10, 0xFE1F],
   "FE20-FE2F": [0xFE20, 0xFE2F],
   "FE30-FE4F": [0xFE30, 0xFE4F],
-  
   "FE50-FE6F": [0xFE50, 0xFE6F],
   "FE70-FEFF": [0xFE70, 0xFEFF],
   "FF00-FFEF": [0xFF00, 0xFFEF],
   "FFF0-FFFF": [0xFFF0, 0xFFFF]
-
-
-
-};
-
+    };
 
 const container = document.getElementById("container");
 const notesTextarea = document.getElementById("notes");
@@ -616,74 +789,78 @@ const charCount = document.getElementById("char-count");
 const lineCount = document.getElementById("line-count");
 const loadingOverlay = document.getElementById("loading-overlay");
 
+
+let lastCaretPos = 0;
+
 function updateCounter() {
   const text = notesTextarea.value;
   charCount.textContent = `${text.length} Karakter`;
   lineCount.textContent = `${(text.match(/\n/g) || []).length + 1} Paragraf`;
 }
 
-function renderAllBlocks() {
+function insertCharAtCaret(char) {
+  const scrollTop = notesTextarea.scrollTop;
+  const text = notesTextarea.value;
+  const start = lastCaretPos;
+  const end = lastCaretPos;
+  notesTextarea.value = text.slice(0, start) + char + text.slice(end);
+  lastCaretPos = start + char.length;
+  notesTextarea.scrollTop = scrollTop;
+  updateCounter();
+}
+
+function renderCharsFromString(label, chars) {
   container.innerHTML = "";
 
-  for (const [blockName, [start, end]] of Object.entries(unicodeBlocks)) {
-    const blockLabel = document.createElement("div");
-    blockLabel.textContent = `Blok ${blockName}`;
-    blockLabel.style.gridColumn = "1 / -1";
-    blockLabel.style.background = "#d6eaff";
-    blockLabel.style.padding = "4px 6px";
-    blockLabel.style.fontSize = "13px";
-    blockLabel.style.fontWeight = "bold";
-    blockLabel.style.border = "1px solid #aaa";
-    blockLabel.style.borderRadius = "5px";
-    blockLabel.style.margin = "5px 0";
-    blockLabel.id = `block-${blockName}`;
-    container.appendChild(blockLabel);
+  const blockLabel = document.createElement("div");
+  blockLabel.textContent = `Blok: ${label}`;
+  blockLabel.className = "block-label";
+  container.appendChild(blockLabel);
 
-    for (let code = start; code <= end; code++) {
-      if (code === 0xFEFF) continue;
-      const char = String.fromCodePoint(code);
-      const span = document.createElement("span");
-      span.className = "char";
-      span.textContent = char;
-      span.title = "U+" + code.toString(16).toUpperCase().padStart(4, '0');
-span.addEventListener("click", (e) => {
-  e.preventDefault(); // Mencegah event default yang bisa memicu fokus
+  for (const char of chars) {
+    const span = document.createElement("span");
+    span.className = "char";
+    span.textContent = char;
+    span.title = char;
+    span.addEventListener("click", (e) => {
+      e.preventDefault();
+      insertCharAtCaret(char);
+    });
+    container.appendChild(span);
+  }
+}
 
-  // Simpan posisi scroll sebelum mengubah isi textarea
-  const scrollTop = notesTextarea.scrollTop;
+function renderBlockByKey(blockKey) {
+  const [start, end] = unicodeBlocks[blockKey] || [];
+  if (start == null || end == null) return;
 
-  const start = notesTextarea.selectionStart;
-  const end = notesTextarea.selectionEnd;
-  const text = notesTextarea.value;
+  container.innerHTML = "";
 
-  const charToInsert = char; // Pastikan variabel 'char' terdefinisi di luar event listener
+  const blockLabel = document.createElement("div");
+  blockLabel.textContent = `Blok: ${blockKey}`;
+  blockLabel.className = "block-label";
+  container.appendChild(blockLabel);
 
-  console.log("Karakter yang disisipkan:", charToInsert);
-
-  notesTextarea.value = text.slice(0, start) + charToInsert + text.slice(end);
-
-  // Kembalikan posisi kursor
-  notesTextarea.selectionStart = notesTextarea.selectionEnd = start + charToInsert.length;
-
-  // Kembalikan posisi scroll agar tidak lompat
-  notesTextarea.scrollTop = scrollTop;
-
-  updateCounter();
-});
-
-
-      container.appendChild(span);
-    }
+  for (let code = start; code <= end; code++) {
+    if (code === 0xFEFF) continue;
+    const char = String.fromCodePoint(code);
+    const span = document.createElement("span");
+    span.className = "char";
+    span.textContent = char;
+    span.title = "U+" + code.toString(16).toUpperCase().padStart(4, '0');
+    span.addEventListener("click", (e) => {
+      e.preventDefault();
+      insertCharAtCaret(char);
+    });
+    container.appendChild(span);
   }
 }
 
 blockSelect.addEventListener("change", () => {
-  const selectedBlockId = `block-${blockSelect.value}`;
-  const blockElement = document.getElementById(selectedBlockId);
-  if (blockElement) {
-    blockElement.scrollIntoView({ behavior: "smooth", block: "start" });
-  }
+  const blockKey = blockSelect.value;
+  renderBlockByKey(blockKey);
 });
+
 
 copyBtn.addEventListener("click", () => {
   if (!notesTextarea.value) return;
@@ -707,19 +884,77 @@ clearBtn.addEventListener("click", () => {
 });
 
 notesTextarea.addEventListener("input", () => {
+  lastCaretPos = notesTextarea.selectionStart;
   updateCounter();
+});
+
+notesTextarea.addEventListener("click", () => {
+  lastCaretPos = notesTextarea.selectionStart;
 });
 
 async function init() {
   loadingOverlay.style.display = "flex";
   await new Promise(resolve => requestAnimationFrame(resolve));
   await new Promise(resolve => setTimeout(resolve, 10));
-  renderAllBlocks();
+  renderAllDefault(); // load default
   updateCounter();
   loadingOverlay.style.display = "none";
+
+  // Tombol-tombol simbol khusus
+ document.getElementById("btn-block1").addEventListener("click", () => renderCharsFromString("Simbol 1", "🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ"));
+document.getElementById("btn-block2").addEventListener("click", () => renderCharsFromString("Simbol 2", "⓿❶❷❸❹❺❻❼❽❾❿⓫⓬⓭⓮⓯⓰⓱⓲⓳⓴⓪①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳⓵⓶⓷⓸⓹⓺⓻⓼⓽⓾⑴⑵⑶⑷⑸⑹⑺⑻⑼⑽⑾⑿⒀⒁⒂⒃⒄⒅⒆⒇０１２３４５６７８９⁰¹²³⁴⁵⁶⁷⁸⁹₀₁₂₃₄₅₆₇₈₉⒈⒉⒊⒋⒌⒍⒎⒏⒐⒑⒒⒓⒔⒕⒖⒗⒘⒙⒚⒛↉½⅓¼⅕⅙⅐⅛⅑⅒⅔⅖¾⅗⅜⅘⅚⅝⅞㊊㊋㊌㊍㊎㊏㊐㊑㊒㊓㊔㊕㊖㊗㊘㊜㊝㊞㊟㊠㊡㊢㊣㊤㊥㊦㊧㊨㊩㊪㊫㊬㊭㊮㊯㊰¹ᵏ⁹²ᵏ²ᵏ¹²ᵏ²²ᵏ³²ᵏ⁴²ᵏ⁵²ᵏ⁶²ᵏ⁷²ᵏ⁸²ᵏ⁹²ᵏ¹⁰²ᵏ¹¹²ᵏ¹²²ᵏ¹³²ᵏ¹³²ᵏ¹⁵²ᵏ¹⁶²ᵏ¹⁷²ᵏ¹⁸♲♳♴♵♶♷♸♹♺♺♻♼♽"));
+document.getElementById("btn-block3").addEventListener("click", () => renderCharsFromString("Simbol 3", "🅰🅱🅲🅳🅴🅵🅶🅷🅸🅹🅻🅼🅽🅾🅿🆀🆁🆂🆃🆄🆅🆆🆇🆈🆉🄰🄱🄲🄳3🄵🄶🄷🄸🄹🄺🄻🄼🄽🄾🄿🅀🅁🅂🅃🅄🅅🅆🅇🅈🅉⿰⿱⿲⿳⿴⿵⿶⿷⿸⿺⿺⿻"));
+document.getElementById("btn-block4").addEventListener("click", () => renderCharsFromString("Simbol 4", "🄐🄑🄒🄓🄔🄕🄖🄗🄘🄙🄚🄛🄜🄝🄞🄟🄠🄡🄢🄣🄤🄥🄦🄧🄨🄩🄪⒜⒝⒞⒟⒠⒡⒢⒣⒤⒥⒦⒧⒨⒩⒪⒫⒬⒭⒮⒯⒰⒱⒲⒳⒴⒵"));
+document.getElementById("btn-block5").addEventListener("click", () => renderCharsFromString("Simbol 5", "ＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚ＠＃＄％＆－＋（）＜＞［］０１２３４５６７８９"));
+document.getElementById("btn-block7").addEventListener("click", () => renderCharsFromString("Simbol 7", "𝓐𝓑𝓒𝓓𝓔𝓕𝓖𝓗𝓘𝓙𝓚𝓛𝓜𝓝𝓞𝓟𝓠𝓡𝓢𝓣𝓤𝓥𝓦𝓧𝓨𝓩𝓪𝓫𝓬𝓭𝓮𝓯𝓰𝓱𝓲𝓳𝓴𝓵𝓶𝓷𝓸𝓹𝓺𝓻𝓼𝓽𝓾𝓿𝓼𝔀𝔁𝔂𝔃𝒜ℬ𝒞𝒟ℰℱ𝒢ℋℐ𝒥𝒦ℒℳ𝒩𝒪𝒫𝒬ℛ𝒮𝒯𝒰𝒱𝒲𝒳𝒴𝒵𝒶𝒷𝒸𝒹ℯ𝒻ℊ𝒽𝒾𝒿𝓀𝓁𝓂𝓃ℴ𝓅𝓆𝓇𝓈𝓉𝓊𝓋𝓌𝓍𝓎𝓏"));
+document.getElementById("btn-block8").addEventListener("click", () => renderCharsFromString("Simbol 8", "𝑨𝑩𝑪𝑫𝑬𝑭𝑮𝑯𝑰𝑱𝑲𝑳𝑴𝑵𝑶𝑷𝑸𝑹𝑺𝑻𝑼𝑽𝑾𝑿𝒀𝒁𝒂𝒃𝒄𝒅𝒆𝒇𝒈𝒉𝒊𝒋𝒌𝒍𝒎𝒏𝒐𝒑𝒒𝒓𝒔𝒕𝒖𝒗𝒘𝒙𝒚𝒛𝐴𝐵𝐶𝐷𝐸𝐹𝐺𝐻𝐼𝐽𝐾𝐿𝑀𝑁𝑂𝑃𝑅𝑆𝑇𝑈𝑉𝑊𝑋𝑌𝑍𝑎𝑏𝑐𝑑𝑒𝑓𝑔ℎ𝑖𝑗𝑘𝑙𝑚𝑛𝑜𝑝𝑞𝑟𝑠𝑡𝑢𝑣𝑤𝑥𝑦𝑧"));
+document.getElementById("btn-block10").addEventListener("click", () => renderCharsFromString("Simbol 10", "𝐀𝐁𝐂𝐃𝐄𝐅𝐆𝐇𝐈𝐉𝐊𝐋𝐌𝐍𝐎𝐏𝐐𝐑𝐒𝐓𝐔𝐕𝐖𝐗𝐘𝐙𝐚𝐛𝐜𝐝𝐞𝐟𝐠𝐡𝐢𝐣𝐤𝐥𝐦𝐧𝐨𝐩𝐪𝐫𝐬𝐭𝐮𝐯𝐰𝐱𝐲𝐳𝔸𝔹ℂ𝔻𝔼𝔽𝔾ℍ𝕀𝕁𝕂𝕃𝕄ℕ𝕆ℙℚℝ𝕊𝕋𝕌𝕍𝕎𝕏𝕐ℤ𝕒𝕓𝕔𝕕𝕖𝕗𝕘𝕙𝕚𝕛𝕜𝕝𝕞𝕟𝕠𝕡𝕢𝕣𝕤𝕥𝕦𝕧𝕨𝕩𝕪𝕫ƛƁƇƊЄƑƓӇƖʆƘԼMƝƠƤƢƦƧƬƲƔƜҲƳȤ"));
+document.getElementById("btn-block11").addEventListener("click", () => renderCharsFromString("Simbol 11", "𝘼𝘽𝘾𝘿𝙀𝙁𝙂𝙃𝙄𝙅𝙆𝙇𝙈𝙉𝙊𝙋𝙌𝙍𝙎𝙏𝙐𝙑𝙒𝙓𝙔𝙕𝙖𝙗𝙘𝙙𝙚𝙛𝙜𝙝𝙞𝙟𝙠𝙡𝙢𝙣𝙤𝙥𝙦𝙧𝙨𝙩𝙪𝙫𝙬𝙭𝙮𝙯𝘈𝘉𝘊𝘋𝘌𝘍𝘎𝘏𝘐𝘑𝘒𝘓𝘔𝘕𝘖𝘗𝘘𝘙𝘚𝘛𝘜𝘝𝘞𝘟𝘠𝘡𝘢𝘣𝘤𝘥𝘦𝘧𝘨𝘩𝘪𝘫𝘬𝘭𝘮𝘯𝘰𝘱𝘲𝘳𝘴𝘵𝘶𝘷𝘸𝘹𝘺𝘻"));
+document.getElementById("btn-block12").addEventListener("click", () => renderCharsFromString("Simbol 12", "𝗔𝗕𝗖𝗗𝗘𝗙𝗚𝗛𝗜𝗝𝗞𝗟𝗠𝗡𝗢𝗣𝗤𝗥𝗦𝗧𝗨𝗩𝗪𝗫𝗬𝗭𝗮𝗯𝗰𝗱𝗲𝗳𝗴𝗵𝗶𝗷𝗸𝗹𝗺𝗻𝗼𝗽𝗾𝗿𝘀𝘁𝘂𝘃𝘄𝘅𝘆𝘇"));
+document.getElementById("btn-block14").addEventListener("click", () => renderCharsFromString("Simbol 14", "𝔄𝔅ℭ𝕯𝕰𝕱𝕲𝕳𝕴𝕵𝕶𝕷𝕸𝕹𝕺𝕻𝕼𝕽𝕾𝕿𝖀𝖁𝖂𝖃𝖄𝖅𝖆𝖇𝖈𝖉𝖊𝖋𝖌𝖍𝖎𝖏𝖐𝖑𝖒𝖓𝖔𝖕𝖖𝖗𝖘𝖙𝖚𝖛𝖜𝖝𝖞𝖟𝔄𝔅ℭ𝔇𝔈𝔉𝔊ℌℑ𝔍𝔎𝔏𝔐𝔑𝔒𝔓𝔔ℜ𝔖𝔗𝔘𝔙𝔚𝔛𝔜ℨ𝔞𝔟𝔠𝔡𝔢𝔣𝔤𝔥𝔦𝔧𝔨𝔩𝔪𝔫𝔬𝔭𝔮𝔯𝔰𝔱𝔲𝔳𝔴𝔵𝔶𝔷"));
+
+document.getElementById("btn-block15").addEventListener("click", () => renderCharsFromString("Simbol 15", "𝙰𝙱𝙲𝙳𝙴𝙵𝙶𝙷𝙸𝙹𝙺𝙻𝙼𝙽𝙾𝙿𝚀𝚁𝚂𝚃𝚄𝚅𝚆𝚇𝚈𝚉𝚊𝚋𝚌𝚍𝚎𝚏𝚐𝚝𝚞𝚟𝚠𝚡𝚢𝚣ᴀʙᴄᴅᴇғɢʜɪᴊᴋʟᴍɴᴏᴘǫʀsᴛᴜᴠᴡxʏᴢᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖᵠʳˢᵗᵘᵛʷˣʸᶻаәӕҕвгґғҕдԁђԃҙеєҗзԅѕӡԇиҋіјкқӄҡҟҝлӆљԉмӎнӊңӈҥњԋоөпҧҁрҏсԍуүұѹфѽѻцҵчҷӌҹҽҿџшщъыьҍѧѫѩѭѱѳѵᶏᶐȺａＡᴬᵃªᶛᵆᵄᵅₐᴭᴁᴂᴀÅẚ∆∀αΛɐɑɒáàăắằẵẳâấầẫẩǎåǻäāảȁȃạặảȁȃạặặậḁǽǣᶀᵬｂＢᴮᵇᴯᴃþßƀƁƄɓɞɮʙҍᏰℬβḃḅḇᶗȻȼｃＣᶜᵓᶝᴐᴒᴖᵔᴗᵕᴄ©¢€ƇɕʗℂČ☪ℭςÇćĉčċçḉᶑᶁᵭｄＤᴰᵈᶞᴅȡᴆǳǲǱǆǅǄ∂ɗðďḋḑḍḓḏᶒᶓᶔᶕᴲᵊᵋᵌₑₔ∊∈ᴇᴈΞ∃ƏƐƎεΣƸƺɘəξэҿཇℰℯﾐ€عέɚéèĕêếềễểěëẽėȩḝęēḗḕẻȅȇẹệḙḛᶘᶂᶋᵮｆＦᶠﬂƑƒℱʄḟᶃｇＧᴳᵍᶢƓǤǥɠɡɢʛցᎶջ❡ǵğĝǧġģḡｈＨʰʱᴴᵸᶣħƕǶɦɧʜђᏲℋℌｻҤĦℏĥȟḧḣḩḥḫẖᶖｉＩᶧᴉᵎᵎⁱϊأར¡ɩĳĲᵻƗɨɪíìĭîǐïḯĩįīỉȉȋịḭｊＪᴶʲᴊᶨᶡǰʝزჟĵǰȷᏠᶄｋＫᴷᵏᴋκƘƙʞϗҡḱǩķḳḵᶅȽｌＬᴌˡᶩᶪᶫǈȴŀĿǉǈǇ廴£ƖƪɫɭʆʟᏝℒℓŁ₤ĺľļḷḹḽḻᶆᵯｍＭᴹᵐᶬᶭᴍмƜɱʍℳɷḿṁṃᶇᵰｎＮᶰⁿᴺᴻᵑᶮᶯᴎȵǌǋǊղήиηƝƞɲɳɴϞℕϰസՈทռ♑ńǹňñṅņṇṋṉｏＯᴼᵒᶱᶲᶿₒᴏᴑᴔᴓΘᴽᴕº°ö©⊙ō◐◕✹✪☢❂❍σøѻ◯óòŏôốồỗổöȫőõṍṏȭȯȱǫȍȏơớờỡởợọộǿᶈᵽᵱｐＰᴾᵖᴘ¶ρφÞþƤƥƿբքℙ₱℘ṕṗᎮʠＱᵠǪǫʠϥℚҩҨᶉᵲᵳｒʶᴿʳᴚ®Ʀɼɽℝ℞яŘŕřṙŗȑȓṛṝṟᶊᵴȿｓＳˢᶳ§ẛﬆﬅ₷§∫ƧƨʂʃʅϛֆىᎦʂŞ$یśṥŝšṧṡşṣṩșᵵᵺᵼȾｔＴᵀᵗᶵᴛȶحՇπŧŦƫƬƭƮǂʇʈτϮϯｨէɬł♈ζեŤťẗṫţṭțṱṯᶙᵾᵤｕＵᵁᵘᵤᶶᶷᶸᶹᴜᴝᵙᴞᵫʮʯʉʊʋŭϋևúùŭûǔǖűũṹųūṻủȕȗưứừữửựụṳṷṵ๖ۣۜVᶌｖＶᵛᵥᶺᴠϑƲʋνѴѵҩҨ℣✓ѶṽṿｗＷᵂʷᵚᴟᴡψωϖƜʍѠѡཡᏊᏔϢẃẁŵẘẅẇẉᶍｘＸᵡɤ×ˣₓҲɤχℵ乂✘メẍẋｙＹʸˠϒŸƳƴγʎʏ¥ɣყýỳŷẙÿ๖ۣۜZẏȳᵶỵᶚᶎᵶᶻᶼᶽᶾɀｚＺᴢᴣᴤŉζ☡ƵƶȤȥʐʑՀℤʓحźẑⒶɐqɔpǝɟƃɥᴉɾʞlɯuodbɹsʇnʌʍxʎz"));
+
+document.getElementById("btn-block16").addEventListener("click", () => renderCharsFromString("Simbol 16", "𝀀𝀁𝀂𝀃𝀄𝀅𝀆𝀇𝀈𝀉𝀊𝀋𝀌𝀍𝀎𝀏𝀐𝀑𝀒𝀓𝀔𝀕𝀖𝀗𝀘𝀙𝀚𝀛𝀜𝀝𝀞𝀟𝀠𝀡𝀢𝀣𝀤𝀥𝀦𝀧𝀨𝀩𝀪𝀫𝀬𝀭𝀮𝀯𝀰𝀱𝀲𝀳𝀴𝀵𝀶𝀷𝀸𝀹𝀺𝀻𝀼𝀽𝀾𝀿𝁀𝁁𝁂𝁃𝁄𝁅𝁆𝁇𝁈𝁉𝁊𝁋𝁌𝁍𝁎𝁏𝁐𝁑𝁒𝁓𝁔𝁕𝁖𝁗𝁘𝁙𝁚𝁛𝁜𝁝𝁞𝁟𝁠𝁡𝁢𝁣𝁤𝁥𝁦𝁧𝁨𝁩𝁪𝁫𝁬𝁭𝁮𝁯𝁰𝁱𝁲𝁳𝁴𝁵𝁶𝁷𝁸𝁹𝁺𝁻𝁼𝁽𝁾𝁿𝂀𝂁𝂂𝂃𝂄𝂅𝂆𝂇𝂈𝂉𝂊𝂋𝂌𝂍𝂎𝂏𝂐𝂑𝂒𝂓𝂔𝂕𝂖𝂗𝂘𝂙𝂚𝂛𝂜𝂝𝂞𝂟𝂠𝂡𝂢𝂣𝂤𝂥𝂦𝂧𝂨𝂩𝂪𝂫𝂬𝂭𝂮𝂯𝂰𝂱𝂲𝂳𝂴𝂵𝂶𝂷𝂸𝂹𝂺𝂻𝂼𝂽𝂾𝂿𝃀𝃁𝃂𝃃𝃄𝃅𝃆𝃇𝃈𝃉𝃊𝃋𝃌𝃍𝃎𝃏𝃐𝃑𝃒𝃓𝃔𝃕𝃖𝃗𝃘𝃙𝃚𝃛𝃜𝃝𝃞𝃟𝃠𝃡𝃢𝃣𝃤𝃥𝃦𝃧𝃨𝃩𝃪𝃫𝃬𝃭𝃮𝃯𝃰𝃱𝃲𝃳𝃴𝃵𝄀𝄁𝄂𝄃𝄄𝄅𝄆𝄇𝄈𝄉𝄊𝄋𝄌𝄍𝄎𝄏𝄐𝄑𝄒𝄓𝄔𝄕𝄖𝄗𝄘𝄙𝄚𝄛𝄜𝄝𝄞𝄟𝄠𝄡𝄢𝄣𝄤𝄥𝄦𝄩𝄪𝄫𝄬𝄭𝄮𝄯𝄰𝄱𝄲𝄳𝄴𝄵𝄶𝄷𝄸𝄹𝄺𝄻𝄼𝄽𝄾𝄿𝅀𝅁𝅂𝅃𝅄𝅅𝅆𝅇𝅈𝅉𝅊𝅋𝅌𝅍𝅎𝅏𝅐𝅑𝅒𝅓𝅔𝅕𝅖𝅗𝅘𝅙𝅚𝅛𝅜𝅝𝅗𝅥𝅘𝅥𝅘𝅥𝅮𝅘𝅥𝅯𝅘𝅥𝅰𝅘𝅥𝅱𝅘𝅧𝅨𝅩𝅥𝅲𝅥𝅦𝅪𝅫𝅬𝅮𝅯𝅰𝅱𝅲𝅻𝅼𝅽𝅾𝅿𝆀𝆁𝆂𝅭𝆃𝆄𝆊𝆋𝆅𝆆𝆇𝆈𝆉𝆌𝆍𝆎𝆏𝆐𝆑𝆒𝆓𝆔𝆕𝆖𝆗𝆘𝆙𝆚𝆛𝆜𝆝𝆞𝆟𝆠𝆡𝆢𝆣𝆤𝆥𝆦𝆧𝆨𝆩𝆪𝆫𝆬𝆭𝆮𝆯𝆰𝆱𝆲𝆳𝆴𝆵𝆶𝆷𝆸𝆹𝆺𝆹𝅥𝆺𝅥𝆹𝅥𝅮𝆺𝅥𝅮𝆹𝅥𝅯𝆺𝅥𝅯𝇁𝇂𝇃𝇄𝇅𝇆𝇇𝇈𝇉𝇊𝇋𝇌𝇍𝇎𝇏𝇐𝇑𝇒𝇓𝇔𝇕𝇖𝇗𝇘𝇙𝇚𝇛𝇜𝇝"));
+document.getElementById("btn-block17").addEventListener("click", () => renderCharsFromString("Simbol 17", "❨❩❪❫❬❭❮❯❰❱❲❳❴❵⟦⟧⟨⟩⟪⟫⦃⦄⦅⦆⦇⦈⦉⦊⦋⦌⦍⦎⦏⦐⦑⦒⦓⦔⦕⦖⦗⦘⦙⦚⦛⦜⦝⦞⦟⦠⦡⦢⦣⦤⦥⦦⦧⦨⦩⦪⦫⦬⦭⦮⦯⦰⦱⦲⦳⦴⦵⦶⦷⦸⦹⦺⦻⦼⦽⦾⦿⧀⧁⧂⧃⧄⧅⧆⧇⧈⧉⧊⧋⧌⧍⧎⧏⧐⧑⧒⧓⧔⧕⧖⧗⧘⧙⧚⧛⧜⧝⧞⧟⧠⧡⧢⧣⧤⧥⧦⧧⧨⧩⧪⧫⧬⧭⧮⧯⧰⧱⧲⧳⧴⧵⧶⧷⧸⧹⧺⧻⧼⧽⧾⧿⨀⨁⨂⨃⨄⨅⨆⨇⨈⨉⨊⨋⨌⨍⨎⨏⨐⨑⨒⨓⨔⨕⨖⨗⨘⨙⨚⨛⨜⨝⨞⨟⨠⨡⨢⨣⨤⨥⨦⨧⨨⨩⨪⨫⨬⨭⨮⨯⨰⨱⨲⨳⨴⨵⨶⨷⨸⨹⨺⨻⨼⨽⨾⨿⩀⩁⩂⩃⩄⩅⩆⩇⩈⩉⩊⩋⩌⩍⩎⩏⩐⩑⩒⩓⩔⩕⩖⩗⩘⩙⩚⩛⩜⩝⩞⩟⩠⩡⩢⩣⩤⩥⩦⩧⩨⩩⩪⩫⩬⩭⩮⩯⩰⩱⩲⩳⩴⩵⩶⩷⩸⩹⩺⩻⩼⩽⩾⩿⪀⪁⪂⪃⪄⪅⪆⪇⪈⪉⪊⪋⪌⪍⪎⪏⪐⪑⪒⪓⪔⪕⪖⪗⪘⪙⪚⪛⪜⪝⪞⪟⪠⪡⪢⪣⪤⪥⪦⪧⪨⪩⪪⪫⪬⪭⪮⪯⪰⪱⪲⪳⪴⪵⪶⪷⪸⪹⪺⪻⪼⪽⪾⪿⫀⫁⫂⫃⫄⫅⫆⫇⫈⫉⫊⫋⫌⫍⫎⫏⫐⫑⫒⫓⫔⫕⫖⫗⫘⫙⫚⫛⫝̸⫝⫞⫟⫠⫡⫢⫣⫤⫥⫦⫧⫨⫩⫪⫫⫬⫭⫮⫯⫰⫱⫲⫳⫴⫵⫶⫷⫸⫹⫺⫻⫼⫽⫾⫿⬀⬁⬂⬃⬄⬅⬆⬇⬈⬉⬊⬋⬌⬍⬎⬏⬐⬑⬒⬓⬔⬕⬖⬗⬘⬙⬚⬛⬜⬝⬞⬟⬠⬡⬢⬣⬤⬥⬦⬧⬨⬩⬪⬫⬬⬭⬮⬯⬰⬱⬲⬳⬴⬵⬶⬷⬸⬹⬺⬻⬼⬽⬾⬿⭀⭁⭂⭃⭄⭅⭆⭇⭈⭉⭊⭋⭌⭐⭑⭒⭓⭔⭕⭖⭗⭘⭙⸀⸁⸂⸃⸄⸅⸆⸇⸈⸉⸊⸋⸌⸍⸎⸏⸐⸑⸒⸓⸔⸕⸖⸗⸘⸙⸚⸛⸜⸝⸞⸟⸠⸡⸢⸣⸤⸥⸦⸧⸨⸩⸪⸫⸬⸭⸮ⸯ⸰⸱⸲⸳⸴⸵⸶⸷⸸⸹⸺⸻〈〉⤀⤁⤂⤃⤄⤅⤆⤇⤈⤉⤊⤋⤌⤍⤎⤏⤐⤑⤒⤓⤔⤕⤖⤗⤘⤙⤚⤛⤜⤝⤞⤟⤠⤡⤢⤣⤤⤥⤦⤧⤨⤩⤪⤫⤬⤭⤮⤯⤰⤱⤲⤳⤴⤵⤶⤷⤸⤹⤺⤻⤼⤽⤾⤿⥀⥁⥂⥃⥄⥅⥆⥇⥈⥉⥊⥋⥌⥍⥎⥏⥐⥑⥒⥓⥔⥕⥖⥗⥘⥙⥚⥛⥜⥝⥞⥟⥠⥡⥢⥣⥤⥥⥦⥧⥨⥩⥪⥫⥬⥭⥮⥯⥰⥱⥲⥳⥴⥵⥶⥷⥸⥹⥺⥻⥼⥽⥾⥿⦀⦁⦂"));
+document.getElementById("btn-block19").addEventListener("click", () => renderCharsFromString("Simbol 19", "ᗩᗷᑕᗪᗴᖴᘜᕼIᒍKᒪᗰᑎOᑭᑫᖇՏTᑌᐯᗯ᙭Yᘔ卂乃匚ᗪ乇千ᘜ卄|ﾌҜㄥ爪几ㄖ卩Ҩ尺丂ㄒㄩᐯ山乂ㄚ乙ልጌርዕቿቻኗዘጎጋጕረጠሸዐየዒዪነቿሁሀሠሸሃጊᎪᏟᎠᎬᎶᎥᏦᏞᏁᎾᏢᏒᏆᏉᎳᎽᏃ"));
+document.getElementById("btn-block20").addEventListener("click", () => {
+  renderCharsFromString("Simbol 20", "🀀🀁🀂🀃🀄🀅🀆🀇🀈🀉🀊🀋🀌🀍🀎🀏🀐🀑🀒🀓🀔🀕🀖🀗🀘🀙🀚🀛🀜🀝🀞🀟🀠🀡🀢🀣🀤🀥🀦🀧🀨🀩🀪🀫🀰🀱🀲🀳🀴🀵🀶🀷🀸🀹🀺🀻🀼🀽🀾🀿🁀🁁🁂🁃🁄🁅🁆🁇🁈🁉🁊🁋🁌🁍🁎🁏🁐🁑🁒🁓🁔🁕🁖🁗🁘🁙🁚🁛🁜🁝🁞🁟🁠🁡🁢🁣🁤🁥🁦🁧🁨🁩🁪🁫🁬🁭🁮🁯🁰🁱🁲🁳🁴🁵🁶🁷🁸🁹🁺🁻🁼🁽🁾🁿🂀🂁🂂🂃🂄🂅🂆🂇🂈🂉🂊🂋🂌🂍🂎🂏🂐🂑🂒🂓🂠🂡🂢🂣🂤🂥🂦🂧🂨🂩🂪🂫🂬🂭🂮🂱🂲🂳🂴🂵🂶🂷🂸🂹🂺🂻🂼🂽🂾🃁🃂🃃🃄🃅🃆🃇🃈🃉🃊🃋🃌🃍🃎🃏🃑🃒🃓🃔🃕🃖🃗🃘🃙🃚🃛");
+});
+
+document.getElementById("btn-block21").addEventListener("click", () => renderCharsFromString("Simbol 21", "ꁲꃳꏳꀷꑀꊯꁅꁝ꒐꒑ꈵ꒒ꂵꃔꊿꉣꋠꌅꈜꋖꌈ꒦ꅐꉤꐔꑒꍏꌃꏳꀷꏂꎇꁅꀍꀤ꒻ꀘ꒒ꎭꈤꂦᖘꆰꋪꌚ꓄ꀎ꒦ꅐꉧꌩꁴꋫꃲꉓꃸꑾꄘꁅꃄ꒐꒑ꀗ꒒ꂵꁹꄱꉣꋟꋪꇘ꓅ꌇ꒦ꅏꋋꌥ꒗ᏗᏰᎴᏋጀᎶᏂᎥᏠᏦᏝᎷᏁᎧᎮᎤᏒᏕᏖᏬᏉᏇፈᎩፚ"));
+document.getElementById("btn-block22").addEventListener("click", () => renderCharsFromString("Simbol 22", "ネノハバパヒビピフブプヘ ベペホボポマミムメモャヤュユョヨラリルレロヮワヰヱヲンヴヰヱヲンヴヵヶヷヸヹヺ・ーヽヾヿ㍐㍿ぁあぃいぅうぇえぉおかがきぎくぐけげこごさざしじすずせぜそぞただちぢっつづてでとどなにぬねのはばぱひびぴふぶぷへべぺほぼぽまみむめもゃやゅゆょよらりるれをゎわゐゑをんゔゕゖ ゚゛゜ゝゞゟ゠ァアィイゥウェエォオカガキギクグケゲコゴサザシジスズセゼソゾタダチヂッツヅテデトドナニヌ⺀⺁⺂⺃⺄⺅⺆⺇⺈⺉⺊⺋⺌⺍⺎⺏⺐⺑⺒⺓⺔⺕⺖⺗⺘⺙⺛⺜⺝⺞⺟⺠⺡⺢⺣⺤⺥⺦⺧⺨⺩⺪⺫⺬⺭⺮⺯⺰⺱⺲⺳⺴⺵⺶⺷⺸⺹⺺⺻⺼⺽⺾⺿⻀⻁⻂⻃⻄⻅⻆⻇⻈⻉⻊⻋⻌⻍⻎⻏⻐⻑⻒⻓⻔⻕⻖⻗⻘⻙⻚⻛⻜⻝⻞⻟⻠⻡⻢⻣⻤⻥⻦⻧⻨⻩⻪⻫⻬⻭⻮⻯⻰⻱⻲⻳⼀⼁⼂⼃⼄⼅⼆⼇⼈⼉⼊⼋⼌⼍⼎⼏⼐⼑⼒⼓⼔⼕⼖⼗⼘⼙⼚⼛⼜⼝⼞⼟⼠⼡⼢⼣⼤⼥⼦⼧⼨⼩⼪⼫⼬⼭⼮⼯⼰⼱⼲⼳⼴⼵⼶⼷⼸⼹⼺⼻⼼⼽⼾⼿⽀⽁⽂⽃⽄⽅⽆⽇⽈⽉⽊⽋⽌⽍⽎⽏⽐⽑⽒⽓⽔⽕⽖⽗⽘⽙⽚⽛⽜⽝⽞⽟⽠⽡⽢⽣⽤⽥⽦⽧⽨⽩⽪⽫⽬⽭⽮⽯⽰⽱⽲⽳⽴⽵⽶⽷⽸⽹⽺⽻⽼⽽⽾⽿⾀⾁⾂⾃⾄⾅⾆⾇⾈⾉⾊⾋⾌⾍⾎⾏⾐⾑⾒⾓⾔⾕⾖⾗⾘⾙⾚⾛⾜⾝⾞⾟⾠⾡⾢⾣⾤⾥⾦⾧⾨⾩⾪⾫⾬⾭⾮⾯⾰⾱⾲⾳⾴⾵⾶⾷⾸⾹⾺⾻⾼⾽⾾⾿⿀⿁⿂⿃⿄⿅⿆⿇⿈⿉⿊⿋⿌⿍⿎⿏⿐⿑⿒⿓⿔⿕゛゜㆐㆑㆖㆗㆘㆙㆚㆛㆜㆝㆞㆟㇀㇁㇂㇃㇄㇅㇆㇇㇈㇉㇊㇋㇌㇍㇎㇏㇐㇑㇒㇓㇔㇕㇖㇗㇘㇙㇚㇛㇜㇝㇞㇟㇠㇡㇢㇣"));
+document.getElementById("btn-block23").addEventListener("click", () => renderCharsFromString("Simbol 23",
+"✼✠☆★✡✴✺☼☸❋✽✻❆۞☀❃❂✿❀❁✲⋆⛤⛥⛦⛧❄❅❇❖✫✪✬✮✭✯✰𖤓❉✤✧✥✱✩✳✵✶✷✸✹✾❈❊♦♤♣♢♠◊♧♡♙♟♘♞♗♝♖♜♕♛♔♚⚀⚁⚂⚃⚄⚅♭♫♬♪♩✦𝄪𝄆𝄇𝄈𝄐𝄑𝄒𝆒𝆓𝄫𝄞𝄢𝄡⇆◁❚▷↻▶☰≡Ξ㊂≣⁝⋮︙⦙⁞⋯…∷▲▼△▽⌃⌄𓃑𓏧⸬⇍⇎⇏⇐⇑⇒⇓⇔⇕⇖⇗⇘⇙⇦⇧⇪⇫➔➙➘➚«»⇨⇚⇶⇵⇴⇳⇰⇯⇮⇭⇬⇩↨↧↦↥↤↣↢↡↠↟↞↝↜↛↚↙↘↗↖↕↮⇤⇥⇲⇞⇟↩↱↫↬⇝↰↲↳↴↵↯↷↺⇜↶↼↽↾↿⇀⇁⇂⇃⇄⇅⇇⇈⇉⇊➛➜➞➟➠➡➢➣➤➥➦➶➵➳➴➲➱➯➾➽➭➬➼➻➫➪➺➹➩➨➸➷➧⃕⪡⨣◀▬☠✙✛✜✝✞✟✖✘✕✁✃✄✂웃‡ﾒ♀♂✚♱♰☩☨☦✟†☣¤€£Ұ₴$₰₪₤¥₳₲₵元₣₱฿₡₮₭₩円₢₥₫₦zł﷼₠₧₯₨Kčरƒ₹✍☚☜☟☛☞☝✌¶§‰✒✑✐✏✎x✈✇⌨☏☎☊⅍℆№℅☂☃☽☾♁♨☇☈☄°℃℉ϟ☐☑☒✓✔✗☓∨√•‣⁃❞❝∛∜✅❎〥⍢〲〴ϡ⍥⅟½⅓⅕⅙⅛⅔⅖⅚⅜¾⅗⅝⅞⅘%‱💕⌀⌂⌅⌆⌇⌈⌉⌊⌋⌌⌍⌎⌏⌐⌑⌒⌓⌔⌕⌖⌗⌘⌙⌚⌛⌜⌝⌞⌟⌠⌢⌣⌤⌥⌦⌧⌫⌬⌭⌮⌳⌯⌰⌱⌲⌴⌵⌶⌿⍀⍁⍂⍃⍄⍅⍆⍇⍈⍊⍋⍌⍍⍎⍏⍐⍑⍒⍓⍔⍕⍖⍗⍘⍙⍚⍛⍜⍝⍞⍠⍡⍢⍣⍤⍦⍧⍨⍩〶⛅☔⛄⚰☡⚠☤☥☧☪☫☬☭☱☲☳☴☵☶☷♃♄♅♇♈♉♊♋♌♍♎♏♐♑♒♓♮♯♿⚊⚋⚌⚍⚎⚏⚐⚑⚒⚓⚔⚕⚖⚗⚘⚚⚛⚜⚝⚞⚟⚡⚢⚣⚤⚥⚦⚧⚨⚩⚪⚬⚭⚮⚯⚱⚲⚳⚴⚵⚶⚷⚸⚹⚺⚻⚼⚽⚾⚿⛇⛈⛆⛉⛊⛋⛌⛍⛎⛏⛐⛑⛓⛔⛕⛖⛗⛘⛙⛚⛛⛜⛝⛞⛟⛠⛡⛢⛣⛨⛩⛪⛫⛬⛭⛮⛯⛰⛱⛲⛳⛴⛵⛶⛷⛸⛹⛺⛻⛼⛽✉✊✋✌✎✨❌❏❐❑❒❓❔❕❗❘❙❛❜❟❠❡❢❣❤➕➖➗➘➝➞➟➮➰➿⟀⟁⟂⟃⟄⟅⟆⟇⟈⟉⟊⟋⟌⟍⟎⟏⟐⟑⟒⟓⟔⟕⟖⟗⟘⟙⟚⟛⟜⟝⟞⟟⟠⟡⟢⟣⟤⟥"));
+
+document.getElementById("btn-block24").addEventListener("click", () => renderCharsFromString("Simbol 24", "▁▂▃▄▅▆▇▉▊▋▌▐▍▎▏▕░▒▓▔▀█▖▗▘▙▚▛▜▝▞▟─━│┃┄┅┆┇┈┉┊┋┌┍┎┏┐┑┒┓└┕┖┗┘┙┚┛├┝┞┟┠┡┢┣┤┥┦┧┨┩┪┫┬┭┮┯┰┱┲┳┴┵┶┷┸┹┺┻┼┽┾┿╀╁╂╃╄╅╆╇╈╉╊╋╍╎╏═║╒╓╔╕╖╗╘╙╚╛╜╝╞╟╠╡╢╣╤╥╦╧╨╩╪╫╬╭╮╯╰╱╲╳╴╵╶╷╸╹╺╻╼╽╾╿▬❘❙❚❒❑❐❏⍰◆◇◈〓⊡⊠⊟⊞□■∎◫◪◩◧▢▣▤▥▦▧▨▩▪▫▭▮▯☰☲☳▰▱◄►▲▼◀▶◣◥◤◢◂▸▾▴◁▷△▽∆∇⊲⊳⊴⊵◅▻▵▿◃▹◭◮⫷⫸⋖⋗⋪⋫⋬⋭⊿◬≜⑅◿◸◹◺◻◼◽◾◿○◌◍◎●◐◑◒◓◔◕◖◗◘◙◚◛◜◝◞◟◠◡◦◨◫◬◭◮◯◰◱◲◳◴◵◶〒⊢⊣⊤⊥╭╮╯╰⊦⊧⊨⊩⊪⊫⊬⊭⊮⊯⊺〦〧〨˦˧˨⑁⑂∟⑃﹉⑇﹊﹎︲⑆⑇⑈⑉⑊⑄⑀︴﹏﹌﹋│┃╽╿╏║╎┇︱┊︳┋┆╵〡〢╹╍╷〣━─╍┅┉┄┈╌╴╶╸╺╼╾◷"));
+document.getElementById("btn-block25").addEventListener("click", () => renderCharsFromString("Simbol 25", "♻♲♼♽☢☮☯♾⚆⚇⚈⚉⍟✪✇⚙⛾⛿✆℗⌷⌸⌹⌺⌻⌼⌽⌾◘◦⦾⍉⦿☉☹❍☺☻☿〠㋡⛒유㋛℡℠™♳♴♵♶♷♸♹♺®©⛀⛁⛂⛃⦰⦱⦲⦳⦴⦵⦶⦷⦸⦹⦺⦻⦼⦽⦾⦿⧀⧁⧂⧃⨀⨁⨂⨶⨷⨸⨭⨮🜀🜁🜂🜃🜄🜅🜆🜇🜈🜉🜊🜋🜌🜍🜎🜏🜐🜑🜒🜓🜔🜕🜖🜗🜘🜙🜚🜛🜜🜝🜞🜟🜠🜡🜢🜣🜤🜥🜦🜧🜨🜩🜪🜫🜬🜭🜮🜯🜰🜱🜲🜳🜴🜵🜶🜷🜸🜹🜺🜻🜼🜽🜾🜿🝀🝁🝂🝃🝄🝅🝆🝇🝈🝉🝊🝋🝌🝍🝎🝏🝐🝑🝒🝓🝔🝕🝖🝗🝘🝙🝚🝛🝜🝝🝞🝟🝠🝡🝢🝣🝤🝥🝦🝧🝨🝩🝪🝫🝬🝭🝮🝯🝰🝱🝲🝳"));
+document.getElementById("btn-block26").addEventListener("click", () => renderCharsFromString("Simbol 26", "㈀㈁㈂㈃㈄㈅㈆㈇㈈㈉㈊㈋㈌㈍㈎㈏㈐㈑㈒㈓㈔㈕㈖㈗㈘㈙㈚㈛㈜㈝㈞㈪㈫㈬㈭㈮㈯㈰㈱㈲㈳㈴㈵㈶㈷㈸㈹㈺㈻㈼㈽㈾㈿㉀㉁㉂㉃㉄㉅㉆㉇㉈㉉㉊㉋㉌㉍㉎㉏㉐㉠㉡㉢㉣㉤㉥㉦㉧㉨㉩㉪㉫㉬㉭㉮㉯㉰㉱㉲㉳㉴㉵㉶㉷㉸㉹㉺㉻㉼㉽㉾㉿㊊㊋㊌㊍㊎㊏㊐㊑㊒㊓㊔㊕㊖㊗㊘㊙㊚㊛㊜㊝㊞㊟㊠㊡㊢㊣㊤㊥㊦㊧㊨㊩㊪㊫㊬㊭㊮㊯㊰㋀㋁㋂㋃㋄㋅㋆㋇㋈㋉㋊㋋㋌㋍㋎㋏㋐㋑㋒㋓㋔㋕㋖㋗㋘㋙㋚㋛㋜㋝㋞㋟㋠㋡㋢㋣㋤㋥㋦㋧㋨㋩㋪㋫㋬㋭㋮㋯㋰㋱㋲㋳㋴㋵㋶㋷㋸㋹㋺㋻㋼㋽㋾㌀㌁㌂㌃㌄㌅㌆㌇㌈㌉㌊㌋㌌㌍㌎㌏㌐㌑㌒㌓㌔㌕㌖㌗㌘㌙㌚㌛㌜㌝㌞㌟㌠㌡㌢㌣㌤㌥㌦㌧㌨㌩㌪㌫㌬㌭㌮㌯㌰㌱㌲㌳㌴㌵㌶㌷㌸㌹㌺㌻㌼㌽㌾㌿㍀㍁㍂㍃㍄㍅㍆㍇㍈㍉㍊㍋㍌㍍㍎㍏㍐㍑㍒㍓㍔㍕㍖㍗㍘㍙㍚㍛㍜㍝㍞㍟㍠㍡㍢㍣㍤㍥㍦㍧㍨㍩㍪㍫㍬㍭㍮㍯㍰㍱㍲㍳㍴㍵㍶㍷㍸㍹㍺㍻㍼㍽㍾㍿㎀㎁㎂㎃㎄㎅㎆㎇㎈㎉㎊㎋㎌㎍㎎㎏㎐㎑㎒㎓㎔㎕㎖㎗㎘㎙㎚㎛㎜㎝㎞㎟㎠㎡㎢㎣㎤㎥㎦㎧㎨㎩㎪㎫㎬㎭㎮㎯㎰㎱㎲㎳㎴㎵㎶㎷㎸㎹㎺㎻㎼㎽㎾㎿㏀㏁㏂㏃㏄㏅㏆㏇㏈㏉㏊㏋㏌㏍㏎㏏㏐㏑㏒㏓㏔㏕㏖㏗㏘㏙㏚㏛㏜㏝㏞㏟㏠㏡㏢㏣㏤㏥㏦㏧㏨㏩㏪㏫㏬㏭㏮㏯㏰㏱㏲㏳㏴㏵㏶㏷㏸㏹㏺㏻㏼㏽㏾㏿⿰⿱⿲⿳⿴⿵⿶⿷⿸⿹⿺⿻〄〒〓〠〶〷〾〿🈀🈁🈂🈐🈑🈒🈓🈔🈕🈖🈗🈘🈙🈚🈛🈜🈝🈞🈟🈠🈡🈢🈣🈤🈥🈦🈧🈨🈩🈪🈫🈬🈭🈮🈯🈰🈱🈲🈳🈴🈵🈶🈷🈸🈹🈺🉀🉁🉂🉃🉄🉅🉆🉇🉈🉐🉑🄪🄫🄬🄭🄮🅊🅋🅌🅍🅎🅏🆊🆋🆌🆍🆎🆏🆐🆑🆒🆓🆔🆕🆖🆗🆘🆙🆚"));
+document.getElementById("btn-block18").addEventListener("click", () => renderCharsFromString("Simbol 18", "ɑҍϲժҽƒցհíյƘӀʍղօԹզɾՏԵմѵա×վՀค๒ς๔єŦﻮђเןкl๓ภ๏קợгรtยשฬץאzᗅᙘᑤᗫᙍᖴᘜᕼᓿᒙᖽᐸᒪᙢᘉᓎᕿᕴᖇSᖶᑗᐻᙎ᙭ᖻᙣåβçď£ƒğȟȋjķȽɱñ¤קǭȑ§țɥ√Ψ×ÿžάвςȡέғģħίјķĻмήόρqŕşţùνώxчžΛϦㄈÐƐFƓнɪﾌҚŁ௱ЛØþҨ尺らŤЦƔƜχϤẔᗩᗷᑢᕲᘿᖴᘜᕼᓰᒚᖽᐸᒪᘻᘉᓍᕵᕴᖇSᖶᑘᐺᘺ᙭ᖻᗱԹՅՇԺȝԲԳɧɿʝƙʅʍՌԾρφՐՏԵՄעաՃՎՀąცƈɖɛʄɠɧıʝƙƖɱŋơ℘զཞʂɬų۷ῳҳყʑ"));
+document.getElementById("btn-block13").addEventListener("click", () => renderCharsFromString("Simbol 13", "䷀䷁䷂䷃䷄䷅䷆䷇䷈䷉䷊䷋䷌䷍䷎䷏䷐䷑䷒䷓䷔䷕䷖䷗䷘䷙䷚䷛䷜䷝䷞䷟䷠䷡䷢䷣䷤䷥䷦䷧䷨䷩䷪䷫䷬䷭䷮䷯䷰䷱䷲䷳䷴䷵䷶䷷䷸䷹䷺䷻䷼䷽䷾䷿𝌀𝌁𝌂𝌃𝌄𝌅𝌆𝌇𝌈𝌉𝌊𝌋𝌌𝌍𝌎𝌏𝌐𝌑𝌒𝌓𝌔𝌕𝌖𝌗𝌘𝌙𝌚𝌛𝌜𝌝𝌞𝌟𝌠𝌡𝌢𝌣𝌤𝌥𝌦𝌧𝌨𝌩𝌪𝌫𝌬𝌭𝌮𝌯𝌰𝌱𝌲𝌳𝌴𝌵𝌶𝌷𝌸𝌹𝌺𝌻𝌼𝌽𝌾𝌿𝍀𝍁𝍂𝍃𝍄𝍅𝍆𝍇𝍈𝍉𝍊𝍋𝍌𝍍𝍎𝍏𝍐𝍑𝍒𝍓𝍔𝍕𝍖"));
+document.getElementById("btn-block9").addEventListener("click", () => renderCharsFromString("Simbol 9", "⠀⠁⠂⠃⠄⠅⠆⠇⠈⠉⠊⠋⠌⠍⠎⠏⠐⠑⠒⠓⠔⠕⠖⠗⠘⠙⠚⠛⠜⠝⠞⠟⠠⠡⠢⠣⠤⠥⠦⠧⠨⠩⠪⠫⠬⠭⠮⠯⠰⠱⠲⠳⠴⠵⠶⠷⠸⠹⠺⠻⠼⠽⠾⠿⡀⡁⡂⡃⡄⡅⡆⡇⡈⡉⡊⡋⡌⡍⡎⡏⡐⡑⡒⡓⡔⡕⡖⡗⡘⡙⡚⡛⡜⡝⡞⡟⡠⡡⡢⡣⡤⡥⡦⡧⡨⡩⡪⡫⡬⡭⡮⡯⡰⡱⡲⡳⡴⡵⡶⡷⡸⡹⡺⡻⡼⡽⡾⡿⢀⢁⢂⢃⢄⢅⢆⢇⢈⢉⢊⢋⢌⢍⢎⢏⢐⢑⢒⢓⢔⢕⢖⢗⢘⢙⢚⢛⢜⢝⢞⢟⢠⢡⢢⢣⢤⢥⢦⢧⢨⢩⢪⢫⢬⢭⢮⢯⢰⢱⢲⢳⢴⢵⢶⢷⢸⢹⢺⢻⢼⢽⢾⢿⣀⣁⣂⣃⣄⣅⣆⣇⣈⣉⣊⣋⣌⣍⣎⣏⣐⣑⣒⣓⣔⣕⣖⣗⣘⣙⣚⣛⣜⣝⣞⣟⣠⣡⣢⣣⣤⣥⣦⣧⣨⣩⣪⣫⣬⣭⣮⣯⣰⣱⣲⣳⣴⣵⣶⣷⣸⣹⣺⣻⣼⣽⣾⣿"));
+document.getElementById("btn-block6").addEventListener("click", () => renderCharsFromString("Simbol 6", "☰≡Ξ㊂≣⁝𓃑⇶☚☜☟☛☞✒✑✐✏✎x✈✇⌨☏☎☊⅍℆№℅☂☃☽☾♁♨☇☈☄°℃℉ϟ☐☑☒✓✔✗☓∨√⌂⌒⌓⌔⌕⌖⌦⌧⌫⌬⌭⌮⌳⌯⌰⌱⌲⌴⌵⌶⌿⍀⍁⍞⍠⍡⍢⍣⍤⍦⍧⍨⍩〶⚰☡⚠☤☥☧☪☫☬☭♃♄♅♇♮♯♿⚐⚑⚒⚘⚝⚞⚟⚡⚢⚣⚤⚥⚦⚧⚨⚩⚬⚭⚮⚯⚱⚲⚳⚴⚵⚶⚷⚸⚹⚿⛇⛈⛆⛉⛊⛋⛌⛍⛐⛑⛓⛕⛖⛗⛘⛙⛚⛛⛜⛝⛞⛟⛠⛡⛢⛣⛨⛩⛪⛫⛬⛭⛮⛯⛰⛱⛻⛼✉➮⟀⟁⟂⟃⟄⟅⟆⟇⟈⟉⟊⟋⟌⟍⟎⟏⟐⟑⟒⟓⟔⟕⟖⟗⟘⟙⟚⟛⟜⟝⟞⟟⟠⟡⟢⟣⟤⟥⍂⍃⍄⍅⍆⍇⍈⍊⍋⍌⍍⍎⍏⍐⍑⍒⍓⍔⍕⍖⍗⍘⍙⍚⍛⍜⍝⛾⛿✆℗⌷⌸⌹⌺⌻⌼"));
+document.getElementById("btn-block27").addEventListener("click", () => renderCharsFromString("Simbol 27", "name"));
+document.getElementById("btn-block28").addEventListener("click", () => renderCharsFromString("Simbol 28", "name"));
+document.getElementById("btn-block29").addEventListener("click", () => renderCharsFromString("Simbol 29", "name"));
+document.getElementById("btn-block30").addEventListener("click", () => renderCharsFromString("Simbol 30", "name"));
+document.getElementById("btn-block31").addEventListener("click", () => renderCharsFromString("Simbol 31", "name"));
+document.getElementById("btn-block32").addEventListener("click", () => renderCharsFromString("Simbol 32", "name"));
+document.getElementById("btn-block33").addEventListener("click", () => renderCharsFromString("Simbol 33", "name"));
+document.getElementById("btn-block34").addEventListener("click", () => renderCharsFromString("Simbol 34", "name"));
+document.getElementById("btn-block35").addEventListener("click", () => renderCharsFromString("Simbol 35", "name"));
+
+
+}
+
+function renderAllDefault() {
+  const firstKey = Object.keys(unicodeBlocks)[0];
+  renderBlockByKey(firstKey);
+  blockSelect.value = firstKey;
 }
 
 window.addEventListener("DOMContentLoaded", init);
+
 
 </script>
 
