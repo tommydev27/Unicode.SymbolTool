@@ -787,32 +787,29 @@ const charCount = document.getElementById("char-count");
 const lineCount = document.getElementById("line-count");
 const loadingOverlay = document.getElementById("loading-overlay");
 
-
-let lastCaretPos = 0;
-
 function updateCounter() {
   const text = notesTextarea.value;
-  const count = [...text].length;
-  charCount.textContent = `${count} Karakter`;
-  lineCount.textContent = `${(text.match(/\n/g) || []).length + 1} Paragraf`;
+  const charLength = [...text].length; // Akurat, termasuk emoji
+  const lineLength = (text.match(/\n/g) || []).length + 1;
+  charCount.textContent = `${charLength} Karakter`;
+  lineCount.textContent = `${lineLength} Paragraf`;
 }
 
-
 function insertCharAtCaret(char) {
-  const scrollTop = notesTextarea.scrollTop;
-  const start = notesTextarea.selectionStart;
-  const end = notesTextarea.selectionEnd;
-  const text = notesTextarea.value;
-  notesTextarea.value = text.slice(0, start) + char + text.slice(end);
-  notesTextarea.selectionStart = notesTextarea.selectionEnd = start + char.length;
-  notesTextarea.scrollTop = scrollTop;
+  const textarea = notesTextarea;
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const before = textarea.value.slice(0, start);
+  const after = textarea.value.slice(end);
+  textarea.value = before + char + after;
+  const newPos = before.length + char.length;
+  textarea.setSelectionRange(newPos, newPos);
+  textarea.focus();
   updateCounter();
 }
 
-
 function renderCharsFromString(label, chars) {
   container.innerHTML = "";
-
   const blockLabel = document.createElement("div");
   blockLabel.textContent = `Blok: ${label}`;
   blockLabel.className = "block-label";
@@ -836,7 +833,6 @@ function renderBlockByKey(blockKey) {
   if (start == null || end == null) return;
 
   container.innerHTML = "";
-
   const blockLabel = document.createElement("div");
   blockLabel.textContent = `Blok: ${blockKey}`;
   blockLabel.className = "block-label";
@@ -862,7 +858,6 @@ blockSelect.addEventListener("change", () => {
   renderBlockByKey(blockKey);
 });
 
-
 copyBtn.addEventListener("click", () => {
   if (!notesTextarea.value) return;
   navigator.clipboard.writeText(notesTextarea.value)
@@ -884,22 +879,17 @@ clearBtn.addEventListener("click", () => {
   updateCounter();
 });
 
-notesTextarea.addEventListener("input", () => {
-  lastCaretPos = notesTextarea.selectionStart;
-  updateCounter();
-});
-
-notesTextarea.addEventListener("click", () => {
-  lastCaretPos = notesTextarea.selectionStart;
-});
+notesTextarea.addEventListener("input", updateCounter);
 
 async function init() {
   loadingOverlay.style.display = "flex";
   await new Promise(resolve => requestAnimationFrame(resolve));
   await new Promise(resolve => setTimeout(resolve, 10));
-  renderAllDefault(); // load default
+  renderAllDefault();
   updateCounter();
   loadingOverlay.style.display = "none";
+
+
 
   // Tombol-tombol simbol khusus
  document.getElementById("btn-block1").addEventListener("click", () => renderCharsFromString("Simbol 1", "🅐🅑🅒🅓🅔🅕🅖🅗🅘🅙🅚🅛🅜🅝🅞🅟🅠🅡🅢🅣🅤🅥🅦🅧🅨🅩ⒶⒷⒸⒹⒺⒻⒼⒽⒾⒿⓀⓁⓂⓃⓄⓅⓆⓇⓈⓉⓊⓋⓌⓍⓎⓏⓐⓑⓒⓓⓔⓕⓖⓗⓘⓙⓚⓛⓜⓝⓞⓟⓠⓡⓢⓣⓤⓥⓦⓧⓨⓩ"));
@@ -956,6 +946,11 @@ function renderAllDefault() {
 
 window.addEventListener("DOMContentLoaded", init);
 
+document.addEventListener("click", function (e) {
+  if (!notesTextarea.contains(e.target)) {
+    notesTextarea.blur(); // hilangkan fokus dari textarea = keyboard menghilang
+  }
+});
 
 </script>
 
