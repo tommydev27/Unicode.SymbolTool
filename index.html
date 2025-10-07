@@ -14,10 +14,12 @@
     
     <title>Tommy Website</title>
         <link rel="stylesheet" href="https://static.xx.fbcdn.net/rsrc.php/v5/y2/l/0,cross/nC2XYYUISfm.css" crossorigin="anonymous">
-
+    <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
+    
  <style>
+ 
   body {
-  font-family: sans-serif;
+    font-family: Questrial, sans-serif;
       margin: 10px;
       display: flex;
       background-color:#f6f7f8; 
@@ -37,14 +39,7 @@
 
       #main-container {
         width: 100%;
-
       }
-
-
-    .native-text {
-  font-family: 'FBDink', Arial, sans-serif;
-  font-size: 20px;
-}
 
   #notes-container {
     width: 100%;
@@ -62,14 +57,12 @@
 
   #notes {
     width: 100%;
-    font-family:'CustomFont','Arial','Segoe UI','Noto Sans',sans-serif;
+  font-family: 'Questrial', sans-serif;
     height: 160px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    margin-bottom: -20px;
     font-size: 18px;
-    border: 2px solid #c4c2c290;
-    box-shadow: 2px 2px 3px #b7b7b7,
-    -3px -2px 1px white;
     resize: none; /* kunci agar tidak bisa di-resize */
     padding: 5px;
     box-sizing: border-box;
@@ -81,38 +74,33 @@
       z-index: 10 !important;
       position: relative !important;
     }
-    
-    
-    
-  #controls {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 10px;
-    margin-top: 5px;
-    justify-content: space-between;
-  }
 
-#counter-info {
-  display: flex;
-  gap: 8px; /* jarak antar kotak */
-  margin-left: auto;
-  white-space: nowrap;
-}
+    #controls {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 5px;
+      justify-content: space-between;
+    }
 
-.counter-box {
-  font-size: 12px;
-  color: #333;
-  padding: 10px 5px;
-  border-radius: 10px;
-  font-weight: bold;
-  margin-top: -8px;
-  background: #fff;
-  border: 2px solid #d6eaff;
-    box-shadow: 2px 2px 3px #b7b7b7,
-    -3px -2px 1px white;
+    #counter-info {
+      display: flex;
+      gap: 8px; /* jarak antar kotak */
+      margin-left: auto;
+      white-space: nowrap;
+    }
     
-}
+    .counter-box {
+      font-size: 12px;
+      color: #c60606;
+      padding: 5px 5px;
+      border-radius: 6px 0px 6px 0px;
+      font-weight: bold;
+      background: #fff;
+      border: 1px solid #ccc;
+        
+    }
 
 #counter-info {
   top: 10px;
@@ -125,218 +113,212 @@
   white-space: nowrap;  
 }
 
-#copy-btn,
-#clear-btn {
-  padding: 7px 10px;
-  font-size: 13px;
-  font-weight: bold;
-  background: #26a9a3;
-  border: 2px solid #d6eaff;
-  box-shadow: 2px 2px 2px #b7b7b7,
-              -3px -2px 4px white;
-  color: white;
-  border-radius: 10px;
-  cursor: pointer;
-  white-space: nowrap;
-}
 
-#clear-btn {
-  background: #f66050;
-}
 
-#clear-btn:hover {
-  background: #2d2d2d;
-  border: 2px solid #ff3232;
-  color: #76eefb;
-}
+/* Semua tombol menggunakan gaya yang sama */
 
-#copy-btn:hover {
-  background: #2d2d2d;
-  border: 2px solid #ff3232;
-  color: #76eefb;
-}
-
-/* Tambahan dark mode: tombol jadi hijau */
-.dark-mode #copy-btn,
-.dark-mode #clear-btn {
-  background: #333;
-  color: #eaffea;
-}
-
-#copy-message {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 16px;
-  color: #787777;
-  padding: 7px;
-  white-space: nowrap;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.checkmark {
-  width: 16px;
-  height: 16px;
-  stroke: white;
-  stroke-width: 3;
-  fill: none;
-  stroke-linecap: round;
-  background-color: green;
-  border-radius: 50%;
-  border: 1px solid #565656;
-}
-
-.checkmark__circle {
-  stroke-dasharray: 157;
-  stroke-dashoffset: 157;
-}
-
-.checkmark__check {
-  stroke-dasharray: 36;
-  stroke-dashoffset: 36;
-}
-
-#copy-message.show {
-  opacity: 1;
-}
-
-#copy-message.show .checkmark__circle {
-  animation: dash 0.6s ease-out forwards;
-}
-
-#copy-message.show .checkmark__check {
-  animation: dash-check 0.4s 0.6s ease forwards;
-}
-
-@keyframes dash {
-  to {
-    stroke-dashoffset: 0;
+.control-row {
+   box-shadow: 2px 2px 2px #dad7d7,
+        -3px -2px 1px white;
+    border-radius: 6px 0px 6px 0px;
+    display: flex;
+    align-items: center;
+    gap: 0px;
   }
-}
 
-@keyframes dash-check {
-  to {
-    stroke-dashoffset: 0;
+  .control-row > * {
+    flex: 1;
   }
-}
 
-  
-  #container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-    gap: 3px;
-    font-family: 'Times New Roman', serif;
-    margin-top: 10px;
-    max-height: 35.5vh;
-    overflow-y: auto;
-    background: #e5edf1;
-    box-shadow: 2px 2px 3px #b7b7b7,
+    button#copy-btn,
+    button#clear-btn,
+    button.key-btn, #block-select {
+      padding: 4px 1px;
+      font-size: 15px;
+      font-weight: bold;
+      border-radius: 6px 0px 6px 0px;
+      cursor: pointer;
+      background: #555;
+    box-shadow: 2px 2px 2px #b7b7b7,
     -3px -2px 1px white;
-    border-radius: 10px;
-    border: 5px solid #c4c2c290;
-    padding: 5px;
-  }
-.dark-mode #container {
-  background: #333 !important;
-}
+      white-space: nowrap;
+      margin: 2px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 35px;
+      color: #fff;
+      height: 28px;
+      user-select: none;
+      transition: background 0.2s, transform 0.1s;
+   }
 
+    #notes {
+      position: relative; 
+    }
+    
+    #copy-message,
+    #copy-message.show {
+      opacity: 1;
+    }
+  
+    #copy-message {
+      align-items: center;
+      gap: 10px;
+      font-size: 20px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    #copy-message svg {
+      vertical-align: middle; /* biar sejajar tengah dengan teks */
+      width: 16px;
+      height: 16px;
+        top: -2px;
+      margin-left: 5px; /* beri jarak sedikit dari teks */
+    }
+    
+    
+    #copy-message {
+      position: absolute;
+      bottom: 50px;
+      left: 20px;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    
+    
+    .checkmark {
+      width: 16px;
+      height: 16px;
+      stroke: white;
+      stroke-width: 3;
+      fill: none;
+      stroke-linecap: round;
+      background-color: green;
+      border-radius: 50%;
+      border: 1px solid #565656;
+    }
+    
+    .checkmark__circle {
+      stroke-dasharray: 157;
+      stroke-dashoffset: 157;
+    }
+    
+    .checkmark__check {
+      stroke-dasharray: 36;
+      stroke-dashoffset: 36;
+    }
+    
+    #copy-message.show {
+      opacity: 1;
+    }
+    
+    #copy-message.show .checkmark__circle {
+      animation: dash 0.6s ease-out forwards;
+    }
+    
+    #copy-message.show .checkmark__check {
+      animation: dash-check 0.4s 0.6s ease forwards;
+    }
+    
+    @keyframes dash {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    
+    @keyframes dash-check {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    
+    #container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
+      gap: 3px;
+      margin-top: 10px;
+      height: 282px;
+      overflow-y: auto;
+      background:#eff7ff;
+      box-shadow: 2px 2px 3px #b7b7b7,
+      -3px -2px 1px white;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+      padding: 5px;
+    }
+    
+    .dark-mode #container {
+      background: #333 !important;
+    }
+  
+    .char {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 40px;
+      margin: 0px;
+      border-radius: 4px;
+      color: #fff;
+      font-size: 25px;
+      box-shadow: 2px 2px 5px #9f9e9e,
+      -1px -1px 2px white;
 
-  .char {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 35px;
-    margin: 3px;
-    border-radius: 8px;
-    font-size: 20px;
-    box-shadow: 2px 2px 5px #9f9e9e,
-    -1px -1px 2px white;
-    background: #fff;
-    border: 2px solid #a3a3a3;
-    cursor: pointer;
-    transition: background 0.2s;
-    user-select: none;
-  }
-.dark-mode .char {
-  background: black !important;
-}
-
-.char:hover {
-  background: #2d2d2d;
-  border: 2px solid #fa6c6c;
-  color: #fff267;
-  animation: flashRedThenBlack 0.2s ease-in-out;
-}
-
-@keyframes flashRedThenBlack {
-  0% {
-    background: red;
-    transform: scale(1.1);
-  }
-  50% {
-    background: #267fdd;
-    transform: scale(1.1);
-  }
-  100% {
-    background: #2d2d2d;
-    transform: scale(1.1);
-  }
-}
-
-
-  .control-row {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
-  }
-
-.control-row > * {
-  flex: 1;
-  border: 2px solid #d6eaff;
-  min-width: 90px;
-  padding: 5px 10px;
-  background: #6e6e6e;
-  color: #fff;
-  border-radius: 10px;
-  box-shadow: 2px 2px 2px #b7b7b7,
-              -2px -2px 2px white;
-  font-weight: bold;
-  box-sizing: border-box;
-}
-
-/* Dark mode override */
-.dark-mode .control-row > * {
-  background: #333; 
-  color: #00ff00; 
-}
-
-   .control-row :hover {
-    background: #2d2d2d;
-        border: 2px solid #fa6c6c;
-        color: #fff267;
+        background: #444;
+      cursor: pointer;
+      transition: background 0.2s;
+      user-select: none;
+    }
+  
+  
+    #clear-btn:hover,
+    #copy-btn:hover,
+    .key-btn:hover, .char:hover,     .tambahan-container button:hover {
+      background: #333;
+      color: #fff;
+      animation: flashRedThenBlack 0.1s ease-in-out;
   }
   
-.block-label {
-  grid-column: 1 / -1;
-  background: #d6eaff;
-  padding: 1px 6px;
-  font-size: 10px;
-  color: #333333;
-  font-family: Orbitron;
-  font-weight: bold;
-  border: 1px solid #c4c2c290;
-  border-radius: 5px;
-  margin: 1px 0;
-  user-select: none;
-  pointer-events: none; 
-}
+  @keyframes flashRedThenBlack {
+    0% {
+      background: #ab0101;
+      transform: scale(1.1);
+    }
+    50% {
+      background: #267fdd;
+      transform: scale(1.1);
+    }
+    100% {
+      background: #333;
+      transform: scale(1.1);
+    }
+  }
 
-</style>
-
-      <style>
+    .block-label {
+      grid-column: 1 / -1;
+      background: green;
+      padding: 1px 6px;
+      font-size: 10px;
+      color: #fff;
+      font-family: 'Questrial', sans-serif;
+      font-weight: bold;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin: 1px 0;
+      user-select: none;
+      pointer-events: none; 
+    }
+          
+    .dark-mode .char {
+      background: black !important;
+      border: solid 1px green ;
+    }
+    
+    .dark-mode .control-row {
+      border: 1px solid #7c7c7c;
+    }
     #darkModeToggle {
       position: fixed;
       display: flex;
@@ -344,7 +326,7 @@
       border-radius: 30px;
       height: 10px;
       border: none;
-      background: #cccccc;
+      background: #788;
       align-items: center;
       justify-content: start;
     }
@@ -357,7 +339,6 @@
       margin-left: -5px;
     }
 
-  
     body.dark-mode {
       background-color: #121212;
       color: #e4e4e4;
@@ -381,238 +362,146 @@
       background: white;
     }
     
-  /* Loader full screen */
-  #loading-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-    transition: opacity 1s ease; /* Biar memudar saat hilang */
-  }
-
-  /* Spinner animasi */
-  .spinner {
-    width: 10px;
-    height: 10px;
-    border: 4px solid #ccc;
-    border-top-color: #8e8484;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }
-
-  @keyframes spin {
-    to {
-      transform: rotate(360deg);
+    /* Loader full screen */
+    #loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 1s ease; /* Biar memudar saat hilang */
     }
-  }
 
-  #content {
-    display: none;
-  }
-</style>
-
-</head>
-<body>
-  <!-- Loader -->
-<div id="loading-overlay">
-  <div class="spinner"></div>
-</div>
-
-    <div id="main-container">
-       <h3 style="margin-top: 0px; margin-bottom: 10px;">
-       <div style="display: flex; gap: 12px;  font-size: 20px; ">
-        <span class="native-text" style=" font-size: 17px !important; font-weight: bold;"> Character Teks</span>
-
-
-        
-        <div id="counter-info">
-        <span class="counter-box" id="char-count">0 Karakter</span>
-        <span class="counter-box" id="line-count">0 Paragraf</span>
+  /* Style default (louder awal) */
+    .spinner {
+      width: 10px;
+      height: 10px;
+      border: 4px solid #ccc;
+      border-top-color: #8e8484;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  
+    #content {
+        display: none;
+    }
       
-         <div style=" top: -5px; right: 0px; text-align: center;">
-            <button id="darkModeToggle" title="Toggle Mode Gelap"></button>
-            <div style="font-size: 10px; color: gray; margin-top: 0px;">mode●</div>
-          </div>
-          
-      </h3>
-       <h2 style="color: #767676; padding: 0px; margin-top: -12px; font-size: 10px !important; font-weight: bold;">Character Arrangement
-    </h2>
-       
-      <textarea id="notes" placeholder="Klik karakter untuk menambah ke catatan..."></textarea>
+      .slider-container {
+        width: 100%;
+        margin-top: 0px;
+        margin-right: 0px; 
+      }
+    
+      .styled-slider {
+        width: 100%;
+        height: 9px;
+        -webkit-appearance: none;
+        background: transparent;
+      }
+    
+    .styled-slider::-webkit-slider-runnable-track {
+      height: 10px;
+      border-radius: 34px;
+      background: #8f0000;
+      border: 1px solid #ccc;
+      box-shadow: 2px 2px 3px #b7b7b7,
+                  -3px -2px 1px white;
+    }
+    
+    .dark-mode .styled-slider::-webkit-slider-runnable-track {
+      box-shadow: none !important;
+    }
 
-    <div id="notes-container">
-      <label for="block-select" style=" font-weight: bold;">Pilih Blok Teks</label>
+   .styled-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 14px;
+      height: 14px;
+      background: #fff;
+      border-radius: 50%;
+      margin-left: 0px;
+      margin-top: -3.5px;
+      border: 3px solid #003e57;
+    }
+  
+    .line {
+      flex-grow: 1;
+      height: 1px;
+      background-color: #ccc;
+      margin: 0 6px;
+    }
+    
+    #percent-value,
+     #strike-value {
+      text-align: left;
+        font-size: 11px;
+        user-select: none;
+        pointer-events: none; 
+        padding: 0px 5px;
+        color: #333;
+      }
       
-    <span id="copy-message">Berhasil disalin!
-      <svg viewBox="0 0 52 52" class="checkmark">
-        <circle class="checkmark__circle" cx="26" cy="26" r="25" />
-        <path class="checkmark__check" d="M14 27 l7 7 l17 -17" />
-      </svg>
-    </span>
+      
+     .dark-mode #percent-value,
+     .dark-mode #strike-value {
+          color: #00ff00;
+      }
 
-    <div class="control-row">
-        <select id="block-select">
-          <option value="1F000-1F02F">Mahjong Tiles</option>
-        <option value="1F0A0-1F0FF">Playing Cards</option>
-        <option value="1F300-1F5FF">Misc Symbols & Pictographs</option>
-        <option value="1F600-1F64F">Emoticons (Emoji)</option>
-        <option value="1F680-1F6FF">Transport & Map</option>
-        <option value="1F700-1F77F">Alchemical Symbols</option>
-        <option value="1F900-1F9FF">Supplemental Symbols & Pictographs</option>
-        <option value="1FA70-1FAFF">Symbols & Pictographs Extended-A</option>
-        <option value="FF00-FFEF">Halfwidth and Fullwidth Forms</option>
-        <option value="0000-007F">Basic Latin</option>
-        <option value="0080-00FF">Latin-1 Supplement</option>
-        <option value="0100-017F">Latin Extended-A</option>
-        <option value="0180-024F">Latin Extended-B</option>
-        <option value="0250-02AF">IPA Extensions</option>
-        <option value="02B0-02FF">Spacing Modifier Letters</option>
-        <option value="0300-036F">Combining Diacritical Marks</option>
-        <option value="0370-03FF">Greek and Coptic</option>
-        <option value="0400-04FF">Cyrillic</option>
-        <option value="0500-052F">Cyrillic Supplement</option>
-        <option value="0530-058F">Armenian</option>
-        <option value="0590-05FF">Hebrew</option>
-        <option value="0600-06FF">Arabic</option>
-        <option value="0700-074F">Syriac</option>
-        <option value="0750-077F">Arabic Supplement</option>
-        <option value="0780-07BF">Thaana</option>
-        <option value="07C0-07FF">NKo</option>
-        <option value="0800-083F">Samaritan</option>
-        <option value="0840-085F">Mandaic</option>
-        <option value="0860-086F">Syriac Supplement</option>
-        <option value="08A0-08FF">Arabic Extended-A</option>
-        <option value="0900-097F">Devanagari</option>
-        <option value="0980-09FF">Bengali</option>
-        <option value="0A00-0A7F">Gurmukhi</option>
-        <option value="0A80-0AFF">Gujarati</option>
-        <option value="0B00-0B7F">Oriya</option>
-        <option value="0B80-0BFF">Tamil</option>
-        <option value="0C00-0C7F">Telugu</option>
-        <option value="0C80-0CFF">Kannada</option>
-        <option value="0D00-0D7F">Malayalam</option>
-        <option value="0D80-0DFF">Sinhala</option>
-        <option value="0E00-0E7F">Thai</option>
-        <option value="0E80-0EFF">Lao</option>
-        <option value="0F00-0FFF">Tibetan</option>
-        <option value="1000-109F">Myanmar</option>
-        <option value="10A0-10FF">Georgian</option>
-        <option value="1100-11FF">Hangul Jamo</option>
-        <option value="1200-137F">Ethiopic</option>
-        <option value="1380-139F">Ethiopic Supplement</option>
-        <option value="13A0-13FF">Cherokee</option>
-        <option value="1400-167F">Unified Canadian Aboriginal Syllabics</option>
-        <option value="1680-169F">Ogham</option>
-        <option value="16A0-16FF">Runic</option>
-        <option value="1700-171F">Tagalog</option>
-        <option value="1720-173F">Hanunoo</option>
-        <option value="1740-175F">Buhid</option>
-        <option value="1760-177F">Tagbanwa</option>
-        <option value="1780-17FF">Khmer</option>
-        <option value="1800-18AF">Mongolian</option>
-        <option value="18B0-18FF">Unified Canadian Aboriginal Syllabics Extended</option>
-        <option value="1900-194F">Limbu</option>
-        <option value="1950-197F">Tai Le</option>
-        <option value="1980-19DF">New Tai Lue</option>
-        <option value="19E0-19FF">Khmer Symbols</option>
-        <option value="1A00-1A1F">Buginese</option>
-        <option value="1A20-1AAF">Tai Tham</option>
-        <option value="1AB0-1AFF">Combining Diacritical Marks Extended</option>
-        <option value="1B00-1B7F">Balinese</option>
-        <option value="1B80-1BBF">Sundanese</option>
-        <option value="1BC0-1BFF">Batak</option>
-        <option value="1C00-1C4F">Lepcha</option>
-        <option value="1C50-1C7F">Ol Chiki</option>
-        <option value="1C80-1C8F">Cyrillic Extended-C</option>
-        <option value="1C90-1CBF">Georgian Extended</option>
-        <option value="1CC0-1CCF">Sundanese Supplement</option>
-        <option value="1CD0-1CFF">Vedic Extensions</option>
-        <option value="1D00-1D7F">Phonetic Extensions</option>
-        <option value="1D80-1DBF">Phonetic Extensions Supplement</option>
-        <option value="1DC0-1DFF">Combining Diacritical Marks Supplement</option>
-        <option value="1E00-1EFF">Latin Extended Additional</option>
-        <option value="1F00-1FFF">Greek Extended</option>
-        <option value="2000-206F">General Punctuation</option>
-        <option value="2070-209F">Superscripts and Subscripts</option>
-        <option value="20A0-20CF">Currency Symbols</option>
-        <option value="20D0-20FF">Combining Diacritical Marks for Symbols</option>
-        <option value="2100-214F">Letterlike Symbols</option>
-        <option value="2150-218F">Number Forms</option>
-        <option value="2190-21FF">Arrows</option>
-        <option value="2200-22FF">Mathematical Operators</option>
-        <option value="2300-23FF">Miscellaneous Technical</option>
-        <option value="2400-243F">Control Pictures</option>
-        <option value="2440-245F">Optical Character Recognition</option>
-        <option value="2460-24FF">Enclosed Alphanumerics</option>
-        <option value="2500-257F">Box Drawing</option>
-        <option value="2580-259F">Block Elements</option>
-        <option value="25A0-25FF">Geometric Shapes</option>
-        <option value="2600-26FF">Miscellaneous Symbols</option>
-        <option value="2700-27BF">Dingbats</option>
-        <option value="27C0-27EF">Miscellaneous Mathematical Symbols-A</option>
-        <option value="27F0-27FF">Supplemental Arrows-A</option>
-        <option value="2800-28FF">Braille Patterns</option>
-        <option value="2900-297F">Supplemental Arrows-B</option>
-        <option value="2980-29FF">Miscellaneous Mathematical Symbols-B</option>
-        <option value="2A00-2AFF">Supplemental Mathematical Operators</option>
-        <option value="2B00-2BFF">Miscellaneous Symbols and Arrows</option>
-        <option value="2C00-2C5F">Glagolitic</option>
-        <option value="2C60-2C7F">Latin Extended-C</option>
-        <option value="2C80-2CFF">Coptic</option>
-      </select>
-
-    <button id="copy-btn">Copy Catatan</button>
-    <button id="clear-btn">Clear</button>
-
-        </div>
-        
-    <style>
+     .keyboard-extra {
+        display: flex;
+        width: 100%;
+        padding: 0px;
+        justify-content: center;
+        margin-top: 5px;
+        gap: 6px;
+     }
+    
     .tambahan-container {
       display: flex;
       overflow-x: auto;
-      gap: 10px;
+      gap: 6px;
       padding: 2px;
-      border: 2px solid #c4c2c290;
-      border-radius: 10px;
-      margin: 10px 0;
-      background:  #d6eaff;
+      border-radius: 6px 0px 6px 0px;
+      margin: 5px 0;
       scroll-behavior: smooth;
-          box-shadow: 2px 2px 2px #b7b7b7,
-        -3px -2px 1px white;
+    box-shadow: 2px 2px 3px #b7b7b7,
+    -3px -2px 1px white;
       direction: ltr;
+      
     }
     
     .tambahan-container button {
       flex: 0 0 auto;
       width: 80px;
-      color: #393838;
+      color: #fff;
+      background: #555;
       font-family: normal;
-      height: 30px;
-      background-color: white;
-      border: 2px solid #c4c2c290;
+      height: 25px;
       scroll-behavior: smooth;
-          box-shadow: 1px 1px 2px #b7b7b7,
-        -1px -1px 1px white;
-      border-radius: 8px;
-      font-size: 14px;
-      font-weight: bold;
+    box-shadow: 2px 2px 3px #b7b7b7,
+    -3px -2px 1px white;
+      border-radius: 6px 0px 6px 0px;
+
       display: flex;
       justify-content: center;
       align-items: center;
       cursor: pointer;
-      transition: background-color 0.3s;
+      transition: background-color 0.2s;
     }
     
     .tambahan-container button:hover {
-      background-color: #434242;
-      color: #76eefb;
-        border: 3px solid #fc5c5c;
+      background-color: #444;
+      color: #fff;
     }
     
     .tambahan-container button span {
@@ -636,17 +525,148 @@
       position: relative !important;
     }
     
-    /* Khusus untuk textarea tetap bisa salin */
+     body * {
+       position: relative !important;
+     }
+
+      #symbol-bar {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+      }
+      
+      #symbol-bar button {
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+        margin: 0 0px;
+      }
+
+#content-container {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.scroll-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  overflow-x: auto;
+  white-space: nowrap;
+  padding: 8px;
+  scroll-behavior: smooth;
+}
+
+#container {
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+
+     </style>
+    
+</head>
+<body>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <div id="main-container">
+       <h3 style="margin-top: 0px; margin-bottom: 10px;">
+       <div style="display: flex; gap: 12px;  font-size: 20px; ">
+        <span class="native-text" style=" font-size: 17px !important; font-weight: bold;"> Seni Teks Gent</span>
+        
+        <div id="counter-info">
+        <span class="counter-box" id="char-count">0 Karakter</span>
+        <span class="counter-box" id="line-count">0 Paragraf</span>
+      
+         <div>
+            <button id="darkModeToggle" title="Toggle Mode Gelap"></button>
+            <div style="font-size: 10px; color: gray; margin-top: 0px;">mode●</div>
+          </div>
+          
+      </h3>
+       <h2 style="color: #2298ff; padding: 0px; margin-top: -12px; font-size: 11px !important; font-weight: bold;">Tommy website app v0.1.0
+       
+    </h2>
+       
+<div id="notes-wrapper">
+  <textarea id="notes" placeholder="Tulis ..."></textarea>
+  <span id="copy-message">
+    Berhasil disalin!
+    <svg viewBox="0 0 52 52" class="checkmark">
+      <circle class="checkmark__circle" cx="26" cy="26" r="25" />
+      <path class="checkmark__check" d="M14 27 l7 7 l17 -17" />
+    </svg>
+  </span>
+</div>
+
+ <div class="control-row">
+    <button id="copy-btn">⧉</button>
+    <button id="clear-btn">🄫</button>
+
+   <button class="key-btn" id="btn-block119">
+   <span class="native-text">Aa</span>
+   </button>
+   <button class="key-btn" id="btn-block118">
+     <span class="native-text">😃</span>
+   </button>
+  <button class="key-btn" onclick="insertText(' ')">⎵</button>
+  <button class="key-btn" onclick="backspace()">
+  <span class="backspace-icon">⌫</span>
+  </button>
+  <button class="key-btn" onclick="insertText('\n')">
+    <span class="enter-icon">↲</span>
+  </button>
+</div>
 
     
-        body * {
-          position: relative !important;
-        }
-    </style>
+
+<div class="control-row">
+  <select id="block-select" style="font-size: 11px; height: 22px;">
     
+
+    <option value="btn-block5">Simbol</option>
+    
+
+  <option value="btn-block27">☆ ★ ✡</option>
+  <option value="btn-block25">♼ ♽ ♾</option>
+  <option value="btn-block26">㉿ ㊊ ㊋</option>
+  <option value="btn-block13">䷇䷨䷔</option>
+  <option value="btn-block24">▄ ▅ ▆</option>
+  <option value="btn-block20">🂱 🂲 🂳</option>
+  <option value="btn-block6">⌨ ☑ ⎙</option>
+  <option value="btn-block9">⣼⣇⡇</option>
+  <option value="btn-block16">𝇜𝅘𝅥𝅘𝅥𝅮</option>
+  <option value="btn-block17">⟫ ⟩ ❱ ❭</option>
+  <option value="btn-block1">🅐🅑🅒</option>
+  <option value="btn-block2">⓵⓶⓷</option>
+  <option value="btn-block3">🅰🅱🅲</option>
+  <option value="btn-block4">🄐🄑🄒</option>
+  <option value="btn-block5">ＡＢＣ</option>
+  <option value="btn-block7">𝒜ℬ𝒞</option>
+  <option value="btn-block8">𝑨𝑩𝑪</option>
+  <option value="btn-block11">𝘼𝘽𝘾</option>
+  <option value="btn-block12">𝗔𝗕𝗖</option>
+  <option value="btn-block14">𝔄𝔅ℭ</option>
+  <option value="btn-block10">𝐀 ƛ 𝕒</option>
+  <option value="btn-block19">Ꭺ ᗩ 卂</option>
+  <option value="btn-block22">ムるど</option>
+  <option value="btn-block15">𝙰ᴀᵃ</option>
+  <option value="btn-block18">ᗅΛԺ</option>
+  <option value="btn-block21">ᕱꀷꋫ</option>
+
+        <option value="1F600-1F64F">UNICODE</option>
+
+      </select>
+     </div>
+        
+
+
+
     <div id="symbol-bar" class="tambahan-container">
-
-         <button id="btn-block27"><span class="native-text">☆ ★ ✡</span></button>
+       <button id="btn-block27"><span class="native-text">☆ ★ ✡</span></button>
         <button id="btn-block25">
           <span>♼ ♽ ♾</span>
         </button>
@@ -724,140 +744,14 @@
             <span>ᕱꀷꋫ</span>
           </button>
         </div>
-<style>
-  .slider-container {
-    width: 100%;
-    margin-top: -1px;
-    margin-right: 8px; 
-  }
 
-  .styled-slider {
-    width: 100%;
-    height: 9px;
-    -webkit-appearance: none;
-    background: transparent;
-  }
-
-/* Style default (mode terang) */
-.styled-slider::-webkit-slider-runnable-track {
-  height: 11px;
-  border-radius: 34px;
-  background: #6e6e6e;
-  border: 2px solid #d6eaff;
-  box-shadow: 2px 2px 3px #b7b7b7,
-              -3px -2px 1px white;
-}
-
-.dark-mode .styled-slider::-webkit-slider-runnable-track {
-  box-shadow: none !important;
-}
-
-
-
-  .styled-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    width: 14px;
-    height: 14px;
-    background: #fff;
-    border-radius: 50%;
-    margin-left: -1.1px;
-    margin-top: -3.5px;
-    border: 4px solid #003e57;
-    
-  }
-
-  .line {
-    flex-grow: 1;
-    height: 1px;
-    background-color: #ccc;
-    margin: 0 6px;
-  }
   
-    #percent-value,
-    #strike-value {
-      text-align: left;
-      font-size: 11px;
-      user-select: none;
-      pointer-events: none; 
-      margin-top: 3px;
-      color: #333;
-    }
-    
-    .dark-mode #percent-value,
-    .dark-mode #strike-value {
-      color: #00ff00;
-    }
-
-    .keyboard-extra {
-      display: flex;
-      width: 100%;
-      padding: 0px;
-      justify-content: center;
-      margin-top: 5px;
-      gap: 6px;
-    }
-    
-    .key-btn {
-      text-align: justify;
-      text-justify: inter-word;
-      color: white;
-      font-weight: bold;
-      border: 3px solid #c1e8fc;
-      background: #6e6e6e;
-      border: 2px solid #d6eaff;
-        box-shadow: 2px 2px 3px #b7b7b7,
-        -3px -2px 1px white;
-      
-      border-radius: 10px;
-      cursor: pointer;
-      height: 35px;
-      width: 100%;
-      text-align: center;
-    }
-    
-    .key-btn:hover {
-      background: #333;
-      color: #fff267;
-    }
-    @keyframes blink-red-blue {
-      0% { background: red; color: white; }
-      50% { background: #a1cffd; color: white; }
-      100% { background: red; color: white; }
-    }
-    
-    .key-btn.blink {
-      animation: blink-red-blue 0.4s ease-in-out 2;
-    }
-
-  </style>
-
-
-<div class="keyboard-extra">
-      <button class="key-btn" id="btn-block119">
-        <span class="native-text">Aa</span>
-      </button>
-      <button class="key-btn" id="btn-block118">
-        <span class="native-text">😃</span>
-      </button>
-  <button class="key-btn" onclick="moveCaretToEnd()">↓</button>
-  <button class="key-btn" onclick="moveCaretToStart()">↑</button>
-  <button class="key-btn" onclick="moveCaretLeft()">←</button>
-  <button class="key-btn" onclick="moveCaretRight()">→</button>
-  <button class="key-btn" onclick="backspace()">
-    <span class="backspace-icon">⌫</span>
-  </button>
-</div>
-
-
-
-<!-- Preview garis tengah -->
-
-<div class="keyboard-extra">
-  <div class="slider-container">
-    <input type="range" id="caret-slider" class="styled-slider" min="0" max="100" value="0"
-      oninput="updateStrikeByPercentage()">
-    <div id="percent-value">Digaris: 0%</div>
-  </div>
+  <div class="keyboard-extra">
+    <div class="slider-container">
+      <input type="range" id="caret-slider" class="styled-slider" min="0" max="100" value="0"
+        oninput="updateStrikeByPercentage()">
+      <div id="percent-value">Digaris: 0%</div>
+    </div>
 
   <div class="slider-container">
     <input type="range" id="strike-slider" class="styled-slider" min="0" max="100" value="0"
@@ -865,14 +759,409 @@
     <div id="strike-value">Tengah: 0%</div>
   </div>
 
-  <button class="key-btn" onclick="insertText(' ')">⎵</button>
-  <button class="key-btn" onclick="insertText('\n')">
-    <span class="enter-icon">↲ Enter</span>
-  </button>
 </div>
 
 <div id="container"></div>
-</div>
+
+<script>
+const unicodeBlocks = {
+  "1F600-1F64F": [0x1F600, 0x1F64F],
+    };
+const content = document.getElementById("content-container");
+const container = document.getElementById("container");
+const notesTextarea = document.getElementById("notes");
+const copyBtn = document.getElementById("copy-btn");
+const clearBtn = document.getElementById("clear-btn");
+const copyMsg = document.getElementById("copy-message");
+const blockSelect = document.getElementById("block-select");
+const charCount = document.getElementById("char-count");
+const lineCount = document.getElementById("line-count");
+const loadingOverlay = document.getElementById("loading-overlay");
+const toggleBtn = document.getElementById('darkModeToggle');
+  toggleBtn.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+  });
+  
+function updateCounter() {
+  const text = notesTextarea.value;
+  const charLength = [...text].length; // Akurat, termasuk emoji
+  const lineLength = (text.match(/\n/g) || []).length + 1;
+  charCount.textContent = `${charLength} Karakter`;
+  lineCount.textContent = `${lineLength} Paragraf`;
+}
+
+function insertCharAtCaret(char) {
+  const textarea = notesTextarea;
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+
+  const chars = Array.from(textarea.value);
+  const before = chars.slice(0, [...Array.from(textarea.value.slice(0, start))].length);
+  const after = chars.slice([...Array.from(textarea.value.slice(0, end))].length);
+
+
+
+  const newChars = [...before, char, ...after];
+  const newValue = newChars.join('');
+  textarea.value = newValue;
+
+  const newPos = before.length + 1;
+  textarea.setSelectionRange(
+    [...newValue].slice(0, newPos).join('').length,
+    [...newValue].slice(0, newPos).join('').length
+  );
+
+  textarea.focus();
+  updateCounter();
+}
+
+
+function renderCharsFromString(label, chars) {
+  container.innerHTML = "";
+  const blockLabel = document.createElement("div");
+  blockLabel.textContent = `Blok: ${label}`;
+  blockLabel.className = "block-label";
+  container.appendChild(blockLabel);
+
+  for (const char of chars.split(" ")) {
+    const span = document.createElement("span");
+    span.className = "char key native-text";
+    span.textContent = char;
+    span.title = char;
+    span.addEventListener("click", (e) => {
+      e.preventDefault();
+      insertCharAtCaret(char);
+    });
+    container.appendChild(span);
+  }
+}
+
+// Sinkronisasi scroll konten
+container.addEventListener("scroll", () => {
+  const scrollWrapper = container.querySelector(".scroll-wrapper");
+  if (scrollWrapper) scrollWrapper.scrollLeft = container.scrollLeft;
+});
+
+container.addEventListener("wheel", (e) => {
+  const scrollWrapper = container.querySelector(".scroll-wrapper");
+  if (scrollWrapper && e.deltaY !== 0) {
+    e.preventDefault();
+    scrollWrapper.scrollLeft += e.deltaY;
+  }
+}, { passive: false });
+
+
+function renderBlockByKey(blockKey) {
+  const [start, end] = unicodeBlocks[blockKey] || [];
+  if (start == null || end == null) return;
+
+  container.innerHTML = "";
+  const blockLabel = document.createElement("div");
+  blockLabel.textContent = `Blok: ${blockKey}`;
+  blockLabel.className = "block-label";
+  container.appendChild(blockLabel);
+
+  for (let code = start; code <= end; code++) {
+    if (code === 0x1F64F) continue;
+    const char = String.fromCodePoint(code);
+    const span = document.createElement("span");
+    span.className = "char";
+    span.textContent = char;
+    span.title = "U+" + code.toString(16).toUpperCase().padStart(4, '0');
+    span.addEventListener("click", (e) => {
+      e.preventDefault();
+      insertCharAtCaret(char);
+    });
+    container.appendChild(span);
+  }
+}
+
+blockSelect.addEventListener("change", () => {
+  const blockKey = blockSelect.value;
+  renderBlockByKey(blockKey);
+});
+
+copyBtn.addEventListener("click", () => {
+  if (!notesTextarea.value) return;
+  navigator.clipboard.writeText(notesTextarea.value)
+    .then(() => {
+      copyMsg.classList.remove("show");
+      void copyMsg.offsetWidth;
+      copyMsg.classList.add("show");
+      copyMsg.style.opacity = "1";
+      setTimeout(() => {
+        copyMsg.classList.remove("show");
+        copyMsg.style.opacity = "0";
+      }, 2000);
+    })
+    .catch(err => console.error("Copy gagal:", err));
+});
+
+clearBtn.addEventListener("click", () => {
+  notesTextarea.value = "";
+  updateCounter();
+});
+
+notesTextarea.addEventListener("input", updateCounter);
+
+async function init() {
+  loadingOverlay.style.display = "flex";
+  await new Promise(resolve => requestAnimationFrame(resolve));
+  await new Promise(resolve => setTimeout(resolve, 10));
+  renderAllDefault();
+  updateCounter();
+  loadingOverlay.style.display = "none";
+
+// Sinkronisasi dua arah antara isi konten dan wrapper
+function syncScroll() {
+  const scrollWrapper = container.querySelector(".scroll-wrapper");
+  if (!scrollWrapper) return;
+
+  let isSyncingContainer = false;
+  let isSyncingWrapper = false;
+
+  // Scroll container → scroll wrapper
+  container.addEventListener("scroll", () => {
+    if (!isSyncingWrapper) {
+      isSyncingContainer = true;
+      scrollWrapper.scrollLeft = container.scrollLeft;
+    }
+    isSyncingWrapper = false;
+  });
+
+  // Scroll wrapper → scroll container
+  scrollWrapper.addEventListener("scroll", () => {
+    if (!isSyncingContainer) {
+      isSyncingWrapper = true;
+      container.scrollLeft = scrollWrapper.scrollLeft;
+    }
+    isSyncingContainer = false;
+  });
+}
+
+// Jalankan sinkronisasi setiap kali render konten baru
+const originalRender = renderCharsFromString;
+renderCharsFromString = function(label, chars) {
+  originalRender(label, chars);
+  syncScroll();
+};
+
+
+document.getElementById("btn-block25").addEventListener("click", () => {
+  renderCharsFromString("Simbol 25", "♻ ♲ ♼ ♽ ☢ ☮ ☯ ♾ ⚆ ⚇ ⚈ ⚉ ⍟ ✪ ✇ ⚙ ⛾ ⛿ ✆ ℗ ⌷ ⌸ ⌹ ⌺ ⌻ ⌼ ⌽ ⌾ ◘ ◦ ⦾ ⍉ ⦿ ☉ ☹ ❍ ☺ ☻ ☿ 〠 ㋡ ⛒ 유 ㋛ ℡ ℠ ™ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ® © ⛀ ⛁ ⛂ ⛃ ⦰ ⦱ ⦲ ⦳ ⦴ ⦵ ⦶ ⦷ ⦸ ⦹ ⦺ ⦻ ⦼ ⦽ ⦾ ⦿ ⧀ ⧁ ⧂ ⧃ ⨀ ⨁ ⨂ ⨶ ⨷ ⨸ ⨭ ⨮ 🜀 🜁 🜂 🜃 🜄 🜅 🜆 🜇 🜈 🜉 🜊 🜋 🜌 🜍 🜎 🜏 🜐 🜑 🜒 🜓 🜔 🜕 🜖 🜗 🜘 🜙 🜚 🜛 🜜 🜝 🜞 🜟 🜠 🜡 🜢 🜣 🜤 🜥 🜦 🜧 🜨 🜩 🜪 🜫 🜬 🜭 🜮 🜯 🜰 🜱 🜲 🜳 🜴 🜵 🜶 🜷 🜸 🜹 🜺 🜻 🜼 🜽 🜾 🜿 🝀 🝁 🝂 🝃 🝄 🝅 🝆 🝇 🝈 🝉 🝊 🝋 🝌 🝍 🝎 🝏 🝐 🝑 🝒 🝓 🝔 🝕 🝖 🝗 🝘 🝙 🝚 🝛 🝜 🝝 🝞 🝟 🝠 🝡 🝢 🝣 🝤 🝥 🝦 🝧 🝨 🝩 🝪 🝫 🝬 🝭 🝮 🝯 🝰 🝱 🝲")
+})
+
+
+document.getElementById("btn-block26").addEventListener("click", () => {
+  renderCharsFromString("Simbol 26", "㈀ ㈁ ㈂ ㈃ ㈄ ㈅ ㈆ ㈇ ㈈ ㈉ ㈊ ㈋ ㈌ ㈍ ㈎ ㈏ ㈐ ㈑ ㈒ ㈓ ㈔ ㈕ ㈖ ㈗ ㈘ ㈙ ㈚ ㈛ ㈜ ㈝ ㈞ ㈪ ㈫ ㈬ ㈭ ㈮ ㈯ ㈰ ㈱ ㈲ ㈳ ㈴ ㈵ ㈶ ㈷ ㈸ ㈹ ㈺ ㈻ ㈼ ㈽ ㈾ ㈿ ㉀ ㉁ ㉂ ㉃ ㉄ ㉅ ㉆ ㉇ ㉈ ㉉ ㉊ ㉋ ㉌ ㉍ ㉎ ㉏ ㉐ ㉠ ㉡ ㉢ ㉣ ㉤ ㉥ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭ ㉮ ㉯ ㉰ ㉱ ㉲ ㉳ ㉴ ㉵ ㉶ ㉷ ㉸ ㉹ ㉺ ㉻ ㉼ ㉽ ㉾ ㉿ ㊊ ㊋ ㊌ ㊍ ㊎ ㊏ ㊐ ㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊙ ㊚ ㊛ ㊜ ㊝ ㊞ ㊟ ㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯ ㊰ ㋀ ㋁ ㋂ ㋃ ㋄ ㋅ ㋆ ㋇ ㋈ ㋉ ㋊ ㋋ ㋌ ㋍ ㋎ ㋏ ㋐ ㋑ ㋒ ㋓ ㋔ ㋕ ㋖ ㋗ ㋘ ㋙ ㋚ ㋛ ㋜ ㋝ ㋞ ㋟ ㋠ ㋡ ㋢ ㋣ ㋤ ㋥ ㋦ ㋧ ㋨ ㋩ ㋪ ㋫ ㋬ ㋭ ㋮ ㋯ ㋰ ㋱ ㋲ ㋳ ㋴ ㋵ ㋶ ㋷ ㋸ ㋹ ㋺ ㋻ ㋼ ㋽ ㋾ ㌀ ㌁ ㌂ ㌃ ㌄ ㌅ ㌆ ㌇ ㌈ ㌉ ㌊ ㌋ ㌌ ㌍ ㌎ ㌏ ㌐ ㌑ ㌒ ㌓ ㌔ ㌕ ㌖ ㌗ ㌘ ㌙ ㌚ ㌛ ㌜ ㌝ ㌞ ㌟ ㌠ ㌡ ㌢ ㌣ ㌤ ㌥ ㌦ ㌧ ㌨ ㌩ ㌪ ㌫ ㌬ ㌭ ㌮ ㌯ ㌰ ㌱ ㌲ ㌳ ㌴ ㌵ ㌶ ㌷ ㌸ ㌹ ㌺ ㌻ ㌼ ㌽ ㌾ ㌿ ㍀ ㍁ ㍂ ㍃ ㍄ ㍅ ㍆ ㍇ ㍈ ㍉ ㍊ ㍋ ㍌ ㍍ ㍎ ㍏ ㍐ ㍑ ㍒ ㍓ ㍔ ㍕ ㍖ ㍗ ㍘ ㍙ ㍚ ㍛ ㍜ ㍝ ㍞ ㍟ ㍠ ㍡ ㍢ ㍣ ㍤ ㍥ ㍦ ㍧ ㍨ ㍩ ㍪ ㍫ ㍬ ㍭ ㍮ ㍯ ㍰ ㍱ ㍲ ㍳ ㍴ ㍵ ㍶ ㍷ ㍸ ㍹ ㍺ ㍻ ㍼ ㍽ ㍾ ㍿ ㎀ ㎁ ㎂ ㎃ ㎄ ㎅ ㎆ ㎇ ㎈ ㎉ ㎊ ㎋ ㎌ ㎍ ㎎ ㎏ ㎐ ㎑ ㎒ ㎓ ㎔ ㎕ ㎖ ㎗ ㎘ ㎙ ㎚ ㎛ ㎜ ㎝ ㎞ ㎟ ㎠ ㎡ ㎢ ㎣ ㎤ ㎥ ㎦ ㎧ ㎨ ㎩ ㎪ ㎫ ㎬ ㎭ ㎮ ㎯ ㎰ ㎱ ㎲ ㎳ ㎴ ㎵ ㎶ ㎷ ㎸ ㎹ ㎺ ㎻ ㎼ ㎽ ㎾ ㎿ ㏀ ㏁ ㏂ ㏃ ㏄ ㏅ ㏆ ㏇ ㏈ ㏉ ㏊ ㏋ ㏌ ㏍ ㏎ ㏏ ㏐ ㏑ ㏒ ㏓ ㏔ ㏕ ㏖ ㏗ ㏘ ㏙ ㏚ ㏛ ㏜ ㏝ ㏞ ㏟ ㏠ ㏡ ㏢ ㏣ ㏤ ㏥ ㏦ ㏧ ㏨ ㏩ ㏪ ㏫ ㏬ ㏭ ㏮ ㏯ ㏰ ㏱ ㏲ ㏳ ㏴ ㏵ ㏶ ㏷ ㏸ ㏹ ㏺ ㏻ ㏼ ㏽ ㏾ ㏿ ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻ 〄 〒 〓 〠 〶 〷 〾 〿 🈀 🈁 🈂 🈐 🈑 🈒 🈓 🈔 🈕 🈖 🈗 🈘 🈙 🈚 🈛 🈜 🈝 🈞 🈟 🈠 🈡 🈢 🈣 🈤 🈥 🈦 🈧 🈨 🈩 🈪 🈫 🈬 🈭 🈮 🈯 🈰 🈱 🈲 🈳 🈴 🈵 🈶 🈷 🈸 🈹 🈺 🉀 🉁 🉂 🉃 🉄 🉅 🉆 🉇 🉈 🉐 🉑 🄪 🄫 🄬 🄭 🄮 🅊 🅋 🅌 🅍 🅎 🅏 🆊 🆋 🆌 🆍 🆎 🆏 🆐 🆑 🆒 🆓 🆔 🆕 🆖 🆗 🆘 🆙")
+})
+
+document.getElementById("btn-block27").addEventListener("click", () => {
+  renderCharsFromString("Simbol 27", "✼ ✠ ☆ ★ ✡ ✴ ✺ ☼ ☸ ❋ ✽ ✻ ❆ ۞ ☀ ❃ ❂ ✿ ❀ ❁ ✲ ⋆ ⛤ ⛥ ⛦ ⛧ ❄ ❅ ❇ ❖ ✫ ✪ ✬ ✮ ✭ ✯ ✰ 𖤓 ❉ ✤ ✧ ✥ ✱ ✩ ✳ ✵ ✶ ✷ ✸ ✹ ✾ ❈ ❊ ♦ ♤ ♣ ♢ ♠ ◊ ♧ ♡ ♙ ♟ ♘ ♞ ♗ ♝ ♖ ♜ ♕ ♛ ♔ ♚ ⚀ ⚁ ⚂ ⚃ ⚄ ⚅ ♭ ♫ ♬ ♪ ♩ ✦ 𝄪 𝄆 𝄇 𝄈 𝄐 𝄑 𝄒 𝆒 𝆓 𝄫 𝄞 𝄢 𝄡 ⇆ ◁ ❚ ▷ ↻ ▶ ☰ ≡ Ξ ㊂ ≣ ⁝ ⋮ ︙ ⦙ ⁞ ⋯ … ∷ ▲ ▼ △ ▽ ⌃ ⌄ 𓃑 𓏧 ⸬ ⇍ ⇎ ⇏ ⇐ ⇑ ⇒ ⇓ ⇔ ⇕ ⇖ ⇗ ⇘ ⇙ ⇦ ⇧ ⇪ ⇫ ➔ ➙ ➘ ➚ « » ⇨ ⇚ ⇶ ⇵ ⇴ ⇳ ⇰ ⇯ ⇮ ⇭ ⇬ ⇩ ↨ ↧ ↦ ↥ ↤ ↣ ↢ ↡ ↠ ↟ ↞ ↝ ↜ ↛ ↚ ↙ ↘ ↗ ↖ ↕ ↮ ⇤ ⇥ ⇲ ⇞ ⇟ ↩ ↱ ↫ ↬ ⇝ ↰ ↲ ↳ ↴ ↵ ↯ ↷ ↺ ⇜ ↶ ↼ ↽ ↾ ↿ ⇀ ⇁ ⇂ ⇃ ⇄ ⇅ ⇇ ⇈ ⇉ ⇊ ➛ ➜ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ➶ ➵ ➳ ➴ ➲ ➱ ➯ ➾ ➽ ➭ ➬ ➼ ➻ ➫ ➪ ➺ ➹ ➩ ➨ ➸ ➷ ➧ ⃕ ⪡ ⨣ ◀ ▬ ☠ ✙ ✛ ✜ ✝ ✞ ✟ ✖ ✘ ✕ ✁ ✃ ✄ ✂ 웃 ‡ ﾒ ♀ ♂ ✚ ♱ ♰ ☩ ☨ ☦ ✟ † ☣ ¤ € £ Ұ ₴ $ ₰ ₪ ₤ ¥ ₳ ₲ ₵ 元 ₣ ₱ ฿ ₡ ₮ ₭ ₩ 円 ₢ ₥ ₫ ₦ zł ﷼ ₠ ₧ ₯ ₨ Kč र ƒ ₹ ✍ ☚ ☜ ☟ ☛ ☞ ☝ ✌ ¶ § ‰ ✒ ✑ ✐ ✏ ✎ x ✈ ✇ ⌨ ☏ ☎ ☊ ⅍ ℆ № ℅ ☂ ☃ ☽ ☾ ♁ ♨ ☇ ☈ ☄ ° ℃ ℉ ϟ ☐ ☑ ☒ ✓ ✔ ✗ ☓ ∨ √ • ‣ ⁃ ❞ ❝ ∛ ∜ ✅ ❎ 〥 ⍢ 〲 〴 ϡ ⍥ ⅟ ½ ⅓ ⅕ ⅙ ⅛ ⅔ ⅖ ⅚ ⅜ ¾ ⅗ ⅝ ⅞ ⅘ % ‱ 💕 ⌀ ⌂ ⌅ ⌆ ⌇ ⌈ ⌉ ⌊ ⌋ ⌌ ⌍ ⌎ ⌏ ⌐ ⌑ ⌒ ⌓ ⌔ ⌕ ⌖ ⌗ ⌘ ⌙ ⌚ ⌛ ⌜ ⌝ ⌞ ⌟ ⌠ ⌢ ⌣ ⌤ ⌥ ⌦ ⌧ ⌫ ⌬ ⌭ ⌮ ⌳ ⌯ ⌰ ⌱ ⌲ ⌴ ⌵ ⌶ ⌿ ⍀ ⍁ ⍂ ⍃ ⍄ ⍅ ⍆ ⍇ ⍈ ⍊ ⍋ ⍌ ⍍ ⍎ ⍏ ⍐ ⍑ ⍒ ⍓ ⍔ ⍕ ⍖ ⍗ ⍘ ⍙ ⍚ ⍛ ⍜ ⍝ ⍞ ⍠ ⍡ ⍢ ⍣ ⍤ ⍦ ⍧ ⍨ ⍩ 〶 ⛅ ☔ ⛄ ⚰ ☡ ⚠ ☤ ☥ ☧ ☪ ☫ ☬ ☭ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ♃ ♄ ♅ ♇ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ♮ ♯ ♿ ⚊ ⚋ ⚌ ⚍ ⚎ ⚏ ⚐ ⚑ ⚒ ⚓ ⚔ ⚕ ⚖ ⚗ ⚘ ⚚ ⚛ ⚜ ⚝ ⚞ ⚟ ⚡ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚪ ⚬ ⚭ ⚮ ⚯ ⚱ ⚲ ⚳ ⚴ ⚵ ⚶ ⚷ ⚸ ⚹ ⚺ ⚻ ⚼ ⚽ ⚾ ⚿ ⛇ ⛈ ⛆ ⛉ ⛊ ⛋ ⛌ ⛍ ⛎ ⛏ ⛐ ⛑ ⛓ ⛔ ⛕ ⛖ ⛗ ⛘ ⛙ ⛚ ⛛ ⛜ ⛝ ⛞ ⛟ ⛠ ⛡ ⛢ ⛣ ⛨ ⛩ ⛪ ⛫ ⛬ ⛭ ⛮ ⛯ ⛰ ⛱ ⛲ ⛳ ⛴ ⛵ ⛶ ⛷ ⛸ ⛹ ⛺ ⛻ ⛼ ⛽ ✉ ✊ ✋ ✌ ✎ ✨ ❌ ❏ ❐ ❑ ❒ ❓ ❔ ❕ ❗ ❘ ❙ ❛ ❜ ❟ ❠ ❡ ❢ ❣ ❤ ➕ ➖ ➗ ➘ ➝ ➞ ➟ ➮ ➰ ➿ ⟀ ⟁ ⟂ ⟃ ⟄ ⟅ ⟆ ⟇ ⟈ ⟉ ⟊ ⟋ ⟌ ⟍ ⟎ ⟏ ⟐ ⟑ ⟒ ⟓ ⟔ ⟕ ⟖ ⟗ ⟘ ⟙ ⟚ ⟛ ⟜ ⟝ ⟞ ⟟ ⟠ ⟡ ⟢ ⟣ ⟤ ⟥")
+})
+
+document.getElementById("btn-block13").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "䷀ ䷁ ䷂ ䷃ ䷄ ䷅ ䷆ ䷇ ䷈ ䷉ ䷊ ䷋ ䷌ ䷍ ䷎ ䷏ ䷐ ䷑ ䷒ ䷓ ䷔ ䷕ ䷖ ䷗ ䷘ ䷙ ䷚ ䷛ ䷜ ䷝ ䷞ ䷟ ䷠ ䷡ ䷢ ䷣ ䷤ ䷥ ䷦ ䷧ ䷨ ䷩ ䷪ ䷫ ䷬ ䷭ ䷮ ䷯ ䷰ ䷱ ䷲ ䷳ ䷴ ䷵ ䷶ ䷷ ䷸ ䷹ ䷺ ䷻ ䷼ ䷽ ䷾ ䷿ 𝌀 𝌁 𝌂 𝌃 𝌄 𝌅 𝌆 𝌇 𝌈 𝌉 𝌊 𝌋 𝌌 𝌍 𝌎 𝌏 𝌐 𝌑 𝌒 𝌓 𝌔 𝌕 𝌖 𝌗 𝌘 𝌙 𝌚 𝌛 𝌜 𝌝 𝌞 𝌟 𝌠 𝌡 𝌢 𝌣 𝌤 𝌥 𝌦 𝌧 𝌨 𝌩 𝌪 𝌫 𝌬 𝌭 𝌮 𝌯 𝌰 𝌱 𝌲 𝌳 𝌴 𝌵 𝌶 𝌷 𝌸 𝌹 𝌺 𝌻 𝌼 𝌽 𝌾 𝌿 𝍀 𝍁 𝍂 𝍃 𝍄 𝍅 𝍆 𝍇 𝍈 𝍉 𝍊 𝍋 𝍌 𝍍 𝍎 𝍏 𝍐 𝍑 𝍒 𝍓 𝍔 𝍖");
+});
+document.getElementById("btn-block24").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "▁ ▂ ▃ ▄ ▅ ▆ ▇ ▉ ▊ ▋ ▌ ▐ ▍ ▎ ▏ ▕ ░ ▒ ▓ ▔ ▀ █ ▖ ▗ ▘ ▙ ▚ ▛ ▜ ▝ ▞ ▟ ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏ ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟ ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯ ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿ ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╍ ╎ ╏ ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟ ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ ╭ ╮ ╯ ╰ ╱ ╲ ╳ ╴ ╵ ╶ ╷ ╸ ╹ ╺ ╻ ╼ ╽ ╾ ╿ ▬ ❘ ❙ ❚ ❒ ❑ ❐ ❏ ⍰ ◆ ◇ ◈ 〓 ⊡ ⊠ ⊟ ⊞ □ ■ ∎ ◫ ◪ ◩ ◧ ▢ ▣ ▤ ▥ ▦ ▧ ▨ ▩ ▪ ▫ ▭ ▮ ▯ ☰ ☲ ☳ ▰ ▱ ◄ ► ▲ ▼ ◀ ▶ ◣ ◥ ◤ ◢ ◂ ▸ ▾ ▴ ◁ ▷ △ ▽ ∆ ∇ ⊲ ⊳ ⊴ ⊵ ◅ ▻ ▵ ▿ ◃ ▹ ◭ ◮ ⫷ ⫸ ⋖ ⋗ ⋪ ⋫ ⋬ ⋭ ⊿ ◬ ≜ ⑅ ◿ ◸ ◹ ◺ ◻ ◼ ◽ ◾ ◿ ○ ◌ ◍ ◎ ● ◐ ◑ ◒ ◓ ◔ ◕ ◖ ◗ ◘ ◙ ◚ ◛ ◜ ◝ ◞ ◟ ◠ ◡ ◦ ◨ ◫ ◬ ◭ ◮ ◯ ◰ ◱ ◲ ◳ ◴ ◵ ◶ 〒 ⊢ ⊣ ⊤ ⊥ ╭ ╮ ╯ ╰ ⊦ ⊧ ⊨ ⊩ ⊪ ⊫ ⊬ ⊭ ⊮ ⊯ ⊺ 〦 〧 〨 ˦ ˧ ˨ ⑁ ⑂ ∟ ⑃ ﹉ ⑇ ﹊ ﹎ ︲ ⑆ ⑇ ⑈ ⑉ ⑊ ⑄ ⑀ ︴ ﹏ ﹌ ﹋ │ ┃ ╽ ╿ ╏ ║ ╎ ┇ ︱ ┊ ︳ ┋ ┆ ╵ 〡 〢 ╹ ╍ ╷ 〣 ━ ─ ╍ ┅ ┉ ┄ ┈ ╌ ╴ ╶ ╸ ╺ ╼ ╾ ◷");
+});
+document.getElementById("btn-block20").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "🀀 🀁 🀂 🀃 🀄 🀅 🀆 🀇 🀈 🀉 🀊 🀋 🀌 🀍 🀎 🀏 🀐 🀑 🀒 🀓 🀔 🀕 🀖 🀗 🀘 🀙 🀚 🀛 🀜 🀝 🀞 🀟 🀠 🀡 🀢 🀣 🀤 🀥 🀦 🀧 🀨 🀩 🀪 🀫 🀰 🀱 🀲 🀳 🀴 🀵 🀶 🀷 🀸 🀹 🀺 🀻 🀼 🀽 🀾 🀿 🁀 🁁 🁂 🁃 🁄 🁅 🁆 🁇 🁈 🁉 🁊 🁋 🁌 🁍 🁎 🁏 🁐 🁑 🁒 🁓 🁔 🁕 🁖 🁗 🁘 🁙 🁚 🁛 🁜 🁝 🁞 🁟 🁠 🁡 🁢 🁣 🁤 🁥 🁦 🁧 🁨 🁩 🁪 🁫 🁬 🁭 🁮 🁯 🁰 🁱 🁲 🁳 🁴 🁵 🁶 🁷 🁸 🁹 🁺 🁻 🁼 🁽 🁾 🁿 🂀 🂁 🂂 🂃 🂄 🂅 🂆 🂇 🂈 🂉 🂊 🂋 🂌 🂍 🂎 🂏 🂐 🂑 🂒 🂓 🂠 🂡 🂢 🂣 🂤 🂥 🂦 🂧 🂨 🂩 🂪 🂫 🂬 🂭 🂮 🂱 🂲 🂳 🂴 🂵 🂶 🂷 🂸 🂹 🂺 🂻 🂼 🂽 🂾 🃁 🃂 🃃 🃄 🃅 🃆 🃇 🃈 🃉 🃊 🃋 🃌 🃍 🃎 🃑 🃒 🃓 🃔 🃕 🃖 🃗 🃘 🃙 🃚 🃛");
+});
+document.getElementById("btn-block6").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "☰ ≡ Ξ ㊂ ≣ ⁝ 𓃑 ⇶ ☚ ☜ ☟ ☛ ☞ ✒ ✑ ✐ ✏ ✎ x ✈ ✇ ⌨ ☏ ☎ ☊ ⅍ ℆ № ℅ ☂ ☃ ☽ ☾ ♁ ♨ ☇ ☈ ☄ ° ℃ ℉ ϟ ☐ ☑ ☒ ✓ ✔ ✗ ☓ ∨ √ ⌂ ⌒ ⌓ ⌔ ⌕ ⌖ ⌦ ⌧ ⌫ ⌬ ⌭ ⌮ ⌳ ⌯ ⌰ ⌱ ⌲ ⌴ ⌵ ⌶ ⌿ ⍀ ⍁ ⍞ ⍠ ⍡ ⍢ ⍣ ⍤ ⍦ ⍧ ⍨ ⍩ 〶 ⚰ ☡ ⚠ ☤ ☥ ☧ ☪ ☫ ☬ ☭ ♃ ♄ ♅ ♇ ♮ ♯ ♿ ⚐ ⚑ ⚒ ⚘ ⚝ ⚞ ⚟ ⚡ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚬ ⚭ ⚮ ⚯ ⚱ ⚲ ⚳ ⚴ ⚵ ⚶ ⚷ ⚸ ⚹ ⚿ ⛇ ⛈ ⛆ ⛉ ⛊ ⛋ ⛌ ⛍ ⛐ ⛑ ⛓ ⛕ ⛖ ⛗ ⛘ ⛙ ⛚ ⛛ ⛜ ⛝ ⛞ ⛟ ⛠ ⛡ ⛢ ⛣ ⛨ ⛩ ⛪ ⛫ ⛬ ⛭ ⛮ ⛯ ⛰ ⛱ ⛻ ⛼ ✉ ➮ ⟀ ⟁ ⟂ ⟃ ⟄ ⟅ ⟆ ⟇ ⟈ ⟉ ⟊ ⟋ ⟌ ⟍ ⟎ ⟏ ⟐ ⟑ ⟒ ⟓ ⟔ ⟕ ⟖ ⟗ ⟘ ⟙ ⟚ ⟛ ⟜ ⟝ ⟞ ⟟ ⟠ ⟡ ⟢ ⟣ ⟤ ⟥ ⍂ ⍃ ⍄ ⍅ ⍆ ⍇ ⍈ ⍊ ⍋ ⍌ ⍍ ⍎ ⍏ ⍐ ⍑ ⍒ ⍓ ⍔ ⍕ ⍖ ⍗ ⍘ ⍙ ⍚ ⍛ ⍜ ⍝ ⛾ ⛿ ✆ ℗ ⌷ ⌸ ⌹ ⌺ ⌻ ⌼");
+});
+document.getElementById("btn-block9").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "⠀ ⠁ ⠂ ⠃ ⠄ ⠅ ⠆ ⠇ ⠈ ⠉ ⠊ ⠋ ⠌ ⠍ ⠎ ⠏ ⠐ ⠑ ⠒ ⠓ ⠔ ⠕ ⠖ ⠗ ⠘ ⠙ ⠚ ⠛ ⠜ ⠝ ⠞ ⠟ ⠠ ⠡ ⠢ ⠣ ⠤ ⠥ ⠦ ⠧ ⠨ ⠩ ⠪ ⠫ ⠬ ⠭ ⠮ ⠯ ⠰ ⠱ ⠲ ⠳ ⠴ ⠵ ⠶ ⠷ ⠸ ⠹ ⠺ ⠻ ⠼ ⠽ ⠾ ⠿ ⡀ ⡁ ⡂ ⡃ ⡄ ⡅ ⡆ ⡇ ⡈ ⡉ ⡊ ⡋ ⡌ ⡍ ⡎ ⡏ ⡐ ⡑ ⡒ ⡓ ⡔ ⡕ ⡖ ⡗ ⡘ ⡙ ⡚ ⡛ ⡜ ⡝ ⡞ ⡟ ⡠ ⡡ ⡢ ⡣ ⡤ ⡥ ⡦ ⡧ ⡨ ⡩ ⡪ ⡫ ⡬ ⡭ ⡮ ⡯ ⡰ ⡱ ⡲ ⡳ ⡴ ⡵ ⡶ ⡷ ⡸ ⡹ ⡺ ⡻ ⡼ ⡽ ⡾ ⡿ ⢀ ⢁ ⢂ ⢃ ⢄ ⢅ ⢆ ⢇ ⢈ ⢉ ⢊ ⢋ ⢌ ⢍ ⢎ ⢏ ⢐ ⢑ ⢒ ⢓ ⢔ ⢕ ⢖ ⢗ ⢘ ⢙ ⢚ ⢛ ⢜ ⢝ ⢞ ⢟ ⢠ ⢡ ⢢ ⢣ ⢤ ⢥ ⢦ ⢧ ⢨ ⢩ ⢪ ⢫ ⢬ ⢭ ⢮ ⢯ ⢰ ⢱ ⢲ ⢳ ⢴ ⢵ ⢶ ⢷ ⢸ ⢹ ⢺ ⢻ ⢼ ⢽ ⢾ ⢿ ⣀ ⣁ ⣂ ⣃ ⣄ ⣅ ⣆ ⣇ ⣈ ⣉ ⣊ ⣋ ⣌ ⣍ ⣎ ⣏ ⣐ ⣑ ⣒ ⣓ ⣔ ⣕ ⣖ ⣗ ⣘ ⣙ ⣚ ⣛ ⣜ ⣝ ⣞ ⣟ ⣠ ⣡ ⣢ ⣣ ⣤ ⣥ ⣦ ⣧ ⣨ ⣩ ⣪ ⣫ ⣬ ⣭ ⣮ ⣯ ⣰ ⣱ ⣲ ⣳ ⣴ ⣵ ⣶ ⣷ ⣸ ⣹ ⣺ ⣻ ⣼ ⣽ ⣾ ⣿");
+});
+
+document.getElementById("btn-block119").addEventListener("click", () => {
+  renderCharsFromString("Simbol", `A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i k j l m n o p q r s t u v w x y z 1 2 3 4 5 6 7 8 9 0 @ # $ _ & - + ( ) / * " ' : ; ! ? ~ \` | • √ π ÷ × ¶ ∆ £ ¢ € ¥ ^ ° = { } \\ % © ® ™ ✓ [ ]`);
+});
+
+document.getElementById("btn-block16").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𝀀 𝀁 𝀂 𝀃 𝀄 𝀅 𝀆 𝀇 𝀈 𝀉 𝀊 𝀋 𝀌 𝀍 𝀎 𝀏 𝀐 𝀑 𝀒 𝀓 𝀔 𝀕 𝀖 𝀗 𝀘 𝀙 𝀚 𝀛 𝀜 𝀝 𝀞 𝀟 𝀠 𝀡 𝀢 𝀣 𝀤 𝀥 𝀦 𝀧 𝀨 𝀩 𝀪 𝀫 𝀬 𝀭 𝀮 𝀯 𝀰 𝀱 𝀲 𝀳 𝀴 𝀵 𝀶 𝀷 𝀸 𝀹 𝀺 𝀻 𝀼 𝀽 𝀾 𝀿 𝁀 𝁁 𝁂 𝁃 𝁄 𝁅 𝁆 𝁇 𝁈 𝁉 𝁊 𝁋 𝁌 𝁍 𝁎 𝁏 𝁐 𝁑 𝁒 𝁓 𝁔 𝁕 𝁖 𝁗 𝁘 𝁙 𝁚 𝁛 𝁜 𝁝 𝁞 𝁟 𝁠 𝁡 𝁢 𝁣 𝁤 𝁥 𝁦 𝁧 𝁨 𝁩 𝁪 𝁫 𝁬 𝁭 𝁮 𝁯 𝁰 𝁱 𝁲 𝁳 𝁴 𝁵 𝁶 𝁷 𝁸 𝁹 𝁺 𝁻 𝁼 𝁽 𝁾 𝁿 𝂀 𝂁 𝂂 𝂃 𝂄 𝂅 𝂆 𝂇 𝂈 𝂉 𝂊 𝂋 𝂌 𝂍 𝂎 𝂏 𝂐 𝂑 𝂒 𝂓 𝂔 𝂕 𝂖 𝂗 𝂘 𝂙 𝂚 𝂛 𝂜 𝂝 𝂞 𝂟 𝂠 𝂡 𝂢 𝂣 𝂤 𝂥 𝂦 𝂧 𝂨 𝂩 𝂪 𝂫 𝂬 𝂭 𝂮 𝂯 𝂰 𝂱 𝂲 𝂳 𝂴 𝂵 𝂶 𝂷 𝂸 𝂹 𝂺 𝂻 𝂼 𝂽 𝂾 𝂿 𝃀 𝃁 𝃂 𝃃 𝃄 𝃅 𝃆 𝃇 𝃈 𝃉 𝃊 𝃋 𝃌 𝃍 𝃎 𝃏 𝃐 𝃑 𝃒 𝃓 𝃔 𝃕 𝃖 𝃗 𝃘 𝃙 𝃚 𝃛 𝃜 𝃝 𝃞 𝃟 𝃠 𝃡 𝃢 𝃣 𝃤 𝃥 𝃦 𝃧 𝃨 𝃩 𝃪 𝃫 𝃬 𝃭 𝃮 𝃯 𝃰 𝃱 𝃲 𝃳 𝃴 𝃵 𝄀 𝄁 𝄂 𝄃 𝄄 𝄅 𝄆 𝄇 𝄈 𝄉 𝄊 𝄋 𝄌 𝄍 𝄎 𝄏 𝄐 𝄑 𝄒 𝄓 𝄔 𝄕 𝄖 𝄗 𝄘 𝄙 𝄚 𝄛 𝄜 𝄝 𝄞 𝄟 𝄠 𝄡 𝄢 𝄣 𝄤 𝄥 𝄦 𝄩 𝄪 𝄫 𝄬 𝄭 𝄮 𝄯 𝄰 𝄱 𝄲 𝄳 𝄴 𝄵 𝄶 𝄷 𝄸 𝄹 𝄺 𝄻 𝄼 𝄽 𝄾 𝄿 𝅀 𝅁 𝅂 𝅃 𝅄 𝅅 𝅆 𝅇 𝅈 𝅉 𝅊 𝅋 𝅌 𝅍 𝅎 𝅏 𝅐 𝅑 𝅒 𝅓 𝅔 𝅕 𝅖 𝅗 𝅘 𝅙 𝅚 𝅛 𝅜 𝅝 𝅗𝅥 𝅘𝅥 𝅘𝅥𝅮 𝅘𝅥𝅯 𝅘𝅥𝅰 𝅘𝅥𝅱 𝅘𝅥𝅲 𝅥 𝅦 𝅧 𝅨 𝅩 𝅪 𝅫 𝅬 𝅭 𝅮 𝅯 𝅰 𝅱 𝅲 𝅻 𝅼 𝅽 𝅾 𝅿 𝆀 𝆁 𝆂 𝆃 𝆄 𝆅 𝆆 𝆇 𝆈 𝆉 𝆊 𝆋 𝆌 𝆍 𝆎 𝆏 𝆐 𝆑 𝆒 𝆓 𝆔 𝆕 𝆖 𝆗 𝆘 𝆙 𝆚 𝆛 𝆜 𝆝 𝆞 𝆟 𝆠 𝆡 𝆢 𝆣 𝆤 𝆥 𝆦 𝆧 𝆨 𝆩 𝆪 𝆫 𝆬 𝆭 𝆮 𝆯 𝆰 𝆱 𝆲 𝆳 𝆴 𝆵 𝆶 𝆷 𝆸 𝆹 𝆺 𝆹𝅥 𝆺𝅥 𝆹𝅥𝅮 𝆺𝅥𝅮 𝆹𝅥𝅯 𝆺𝅥𝅯 𝇁 𝇂 𝇃 𝇄 𝇅 𝇆 𝇇 𝇈 𝇉 𝇊 𝇋 𝇌 𝇍 𝇎 𝇏 𝇐 𝇑 𝇒 𝇓 𝇔 𝇕 𝇖 𝇗 𝇘 𝇙 𝇚 𝇛 𝇜 𝇝");
+});
+document.getElementById("btn-block17").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "❨ ❩ ❪ ❫ ❬ ❭ ❮ ❯ ❰ ❱ ❲ ❳ ❴ ❵ ⟦ ⟧ ⟨ ⟩ ⟪ ⟫ ⦃ ⦄ ⦅ ⦆ ⦇ ⦈ ⦉ ⦊ ⦋ ⦌ ⦍ ⦎ ⦏ ⦐ ⦑ ⦒ ⦓ ⦔ ⦕ ⦖ ⦗ ⦘ ⦙ ⦚ ⦛ ⦜ ⦝ ⥏ ⥑ ⦞ ⦟ ⦠ ⦡ ⦢ ⦣ ⦤ ⦥ ⦦ ⦧ ⦨ ⦩ ⦪ ⦫ ⦬ ⦭ ⦮ ⦯ ⦰ ⦱ ⦲ ⦳ ⦴ ⦵ ⦶ ⦷ ⦸ ⦹ ⦺ ⦻ ⦼ ⦽ ⦾ ⦿ ⧀ ⧁ ⧂ ⧃ ⧄ ⧅ ⧆ ⧇ ⧈ ⧉ ⧊ ⧋ ⧌ ⧍ ⧎ ⧏ ⧐ ⧑ ⧒ ⧓ ⧔ ⧕ ⧖ ⧗ ⧘ ⧙ ⧚ ⧛ ⧜ ⧝ ⧞ ⧟ ⧠ ⧡ ⧢ ⧣ ⧤ ⧥ ⧦ ⧧ ⧨ ⧩ ⧪ ⧫ ⧬ ⧭ ⧮ ⧯ ⧰ ⧱ ⧲ ⧳ ⧴ ⧵ ⧶ ⧷ ⧸ ⧹ ⧺ ⧻ ⧼ ⧽ ⧾ ⧿ ⨀ ⨁ ⨂ ⨃ ⨄ ⨅ ⨆ ⨇ ⨈ ⨉ ⨊ ⨋ ⨌ ⨍ ⨎ ⨏ ⨐ ⨑ ⨒ ⨓ ⨔ ⨕ ⨖ ⨗ ⨘ ⨙ ⨚ ⨛ ⨜ ⨝ ⨞ ⨟ ⨠ ⨡ ⨢ ⨣ ⨤ ⨥ ⨦ ⨧ ⨨ ⨩ ⨪ ⨫ ⨬ ⨭ ⨮ ⨯ ⨰ ⨱ ⨲ ⨳ ⨴ ⨵ ⨶ ⨷ ⨸ ⨹ ⨺ ⨻ ⨼ ⨽ ⨾ ⨿ ⩀ ⩁ ⩂ ⩃ ⩄ ⩅ ⩆ ⩇ ⩈ ⩉ ⩊ ⩋ ⩌ ⩍ ⩎ ⩏ ⩐ ⩑ ⩒ ⩓ ⩔ ⩕ ⩖ ⩗ ⩘ ⩙ ⩚ ⩛ ⩜ ⩝ ⩞ ⩟ ⩠ ⩡ ⩢ ⩣ ⩤ ⩥ ⩦ ⩧ ⩨ ⩩ ⩪ ⩫ ⩬ ⩭ ⩮ ⩯ ⩰ ⩱ ⩲ ⩳ ⩴ ⩵ ⩶ ⩷ ⩸ ⩹ ⩺ ⩻ ⩼ ⩽ ⩾ ⩿ ⪀ ⪁ ⪂ ⪃ ⪄ ⪅ ⪆ ⪇ ⪈ ⪉ ⪊ ⪋ ⪌ ⪍ ⪎ ⪏ ⪐ ⪑ ⪒ ⪓ ⪔ ⪕ ⪖ ⪗ ⪘ ⪙ ⪚ ⪛ ⪜ ⪝ ⪞ ⪟ ⪠ ⪡ ⪢ ⪣ ⪤ ⪥ ⪦ ⪧ ⪨ ⪩ ⪪ ⪫ ⪬ ⪭ ⪮ ⪯ ⪰ ⪱ ⪲ ⪳ ⪴ ⪵ ⪶ ⪷ ⪸ ⪹ ⪺ ⪻ ⪼ ⪽ ⪾ ⪿ ⫀ ⫁ ⫂ ⫃ ⫄ ⫅ ⫆ ⫇ ⫈ ⫉ ⫊ ⫋ ⫌ ⫍ ⫎ ⫏ ⫐ ⫑ ⫒ ⫓ ⫔ ⫕ ⫖ ⫗ ⫘ ⫙ ⫚ ⫛ ⫝̸ ⫝ ⫞ ⫟ ⫠ ⫡ ⫢ ⫣ ⫤ ⫥ ⫦ ⫧ ⫨ ⫩ ⫪ ⫫ ⫬ ⫭ ⫮ ⫯ ⫰ ⫱ ⫲ ⫳ ⫴ ⫵ ⫶ ⫷ ⫸ ⫹ ⫺ ⫻ ⫼ ⫽ ⫾ ⫿ ⬀ ⬁ ⬂ ⬃ ⬄ ⬅ ⬆ ⬇ ⬈ ⬉ ⬊ ⬋ ⬌ ⬍ ⬎ ⬏ ⬐ ⬑ ⬒ ⬓ ⬔ ⬕ ⬖ ⬗ ⬘ ⬙ ⬚ ⬛ ⬜ ⬝ ⬞ ⬟ ⬠ ⬡ ⬢ ⬣ ⬤ ⬥ ⬦ ⬧ ⬨ ⬩ ⬪ ⬫ ⬬ ⬭ ⬮ ⬯ ⬰ ⬱ ⬲ ⬳ ⬴ ⬵ ⬶ ⬷ ⬸ ⬹ ⬺ ⬻ ⬼ ⬽ ⬾ ⬿ ⭀ ⭁ ⭂ ⭃ ⭄ ⭅ ⭆ ⭇ ⭈ ⭉ ⭊ ⭋ ⭌ ⭐ ⭑ ⭒ ⭓ ⭔ ⭕ ⭖ ⭗ ⭘ ⭙ ⸀ ⸁ ⸂ ⸃ ⸄ ⸅ ⸆ ⸇ ⸈ ⸉ ⸊ ⸋ ⸌ ⸍ ⸎ ⸏ ⸐ ⸑ ⸒ ⸓ ⸔ ⸕ ⸖ ⸗ ⸘ ⸙ ⸚ ⸛ ⸜ ⸝ ⸞ ⸟ ⸠ ⸡ ⸢ ⸣ ⸤ ⸥ ⸦ ⸧ ⸨ ⸩ ⸪ ⸫ ⸬ ⸭ ⸮ ⸯ ⸰ ⸱ ⸲ ⸳ ⸴ ⸵ ⸶ ⸷ ⸸ ⸹ ⸺ ⸻ 〈 〉 ⤀ ⤁ ⤂ ⤃ ⤄ ⤅ ⤆ ⤇ ⤈ ⤉ ⤊ ⤋ ⤌ ⤍ ⤎ ⤏ ⤐ ⤑ ⤒ ⤓ ⤔ ⤕ ⤖ ⤗ ⤘ ⤙ ⤚ ⤛ ⤜ ⤝ ⤞ ⤟ ⤠ ⤡ ⤢ ⤣ ⤤ ⤥ ⤦ ⤧ ⤨ ⤩ ⤪ ⤫ ⤬ ⤭ ⤮ ⤯ ⤰ ⤱ ⤲ ⤳ ⤴ ⤵ ⤶ ⤷ ⤸ ⤹ ⤺ ⤻ ⤼ ⤽ ⤾ ⤿ ⥀ ⥁ ⥂ ⥃ ⥄ ⥅ ⥆ ⥇ ⥈ ⥉ ⥊ ⥋ ⥌ ⥍ ⥎ ⥏ ⥐ ⥑ ⥒ ⥓ ⥔ ⥕ ⥖ ⥗ ⥘ ⥙ ⥚ ⥛ ⥜ ⥝ ⥞ ⥟ ⥠ ⥡ ⥢ ⥣ ⥤ ⥥ ⥦ ⥧ ⥨ ⥩ ⥪ ⥫ ⥬ ⥭ ⥮ ⥯ ⥰ ⥱ ⥲ ⥳ ⥴ ⥵ ⥶ ⥷ ⥸ ⥹ ⥺ ⥻ ⥼ ⥽ ⥾ ⥿ ⦀ ⦁ ⦂");
+});
+document.getElementById("btn-block1").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "🅐 🅑 🅒 🅓 🅔 🅕 🅖 🅗 🅘 🅙 🅚 🅛 🅜 🅝 🅞 🅟 🅠 🅡 🅢 🅣 🅤 🅥 🅦 🅧 🅨 🅩 Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ");
+});
+document.getElementById("btn-block2").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "⓿ ❶ ❷ ❸ ❹ ❺ ❻ ❼ ❽ ❾ ❿ ⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓴ ⓪ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ ⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾ ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇ ０ １ ２ ３ ４ ５ ６ ７ ８ ９ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛ ↉ ½ ⅓ ¼ ⅕ ⅙ ⅐ ⅛ ⅑ ⅒ ⅔ ⅖ ¾ ⅗ ⅜ ⅘ ⅚ ⅝ ⅞ ㊊ ㊋ ㊌ ㊍ ㊎ ㊏ ㊐ ㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊜ ㊝ ㊞ ㊟ ㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯ ㊰ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ♺ ♻ ♼ ♽");
+});
+document.getElementById("btn-block3").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "🅰 🅱 🅲 🅳 🅴 🅵 🅶 🅷 🅸 🅹 🅻 🅼 🅽 🅾 🅿 🆀 🆁 🆂 🆃 🆄 🆅 🆆 🆇 🆈 🆉 🄰 🄱 🄲 🄳 🄴 🄵 🄶 🄷 🄸 🄹 🄺 🄻 🄼 🄽 🄾 🄿 🅀 🅁 🅂 🅃 🅄 🅅 🅆 🅇 🅈 🅉 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿺ ⿺ ⿻");
+});
+document.getElementById("btn-block4").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "🄐 🄑 🄒 🄓 🄔 🄕 🄖 🄗 🄘 🄙 🄚 🄛 🄜 🄝 🄞 🄟 🄠 🄡 🄢 🄣 🄤 🄥 🄦 🄧 🄨 🄩 🄪 ⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵");
+});
+document.getElementById("btn-block5").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "Ａ Ｂ Ｃ Ｄ Ｅ Ｆ Ｇ Ｈ Ｉ Ｊ Ｋ Ｌ Ｍ Ｎ Ｏ Ｐ Ｑ Ｒ Ｓ Ｔ Ｕ Ｖ Ｗ Ｘ Ｙ Ｚ ａ ｂ ｃ ｄ ｅ ｆ ｇ ｈ ｉ ｊ ｋ ｌ ｍ ｎ ｏ ｐ ｑ ｒ ｓ ｔ ｕ ｖ ｗ ｘ ｙ ｚ ＠ ＃ ＄ ％ ＆ － ⏤ ￣ ＿ ﹏ ﹋ ︵ ︶ ＼ ／ ＋ （ ） ＜ ＞ ⧹ ⧸ ［ ］ ０ １ ２ ３ ４ ５ ６ ７ ８ ９");
+});
+
+
+document.getElementById("btn-block7").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𝓐 𝓑 𝓒 𝓓 𝓔 𝓕 𝓖 𝓗 𝓘 𝓙 𝓚 𝓛 𝓜 𝓝 𝓞 𝓟 𝓠 𝓡 𝓢 𝓣 𝓤 𝓥 𝓦 𝓧 𝓨 𝓩 𝓪 𝓫 𝓬 𝓭 𝓮 𝓯 𝓰 𝓱 𝓲 𝓳 𝓴 𝓵 𝓶 𝓷 𝓸 𝓹 𝓺 𝓻 𝓼 𝓽 𝓾 𝓿 𝓼 𝔀 𝔁 𝔂 𝔃 𝒜 ℬ 𝒞 𝒟 ℰ ℱ 𝒢 ℋ ℐ 𝒥 𝒦 ℒ ℳ 𝒩 𝒪 𝒫 𝒬 ℛ 𝒮 𝒯 𝒰 𝒱 𝒲 𝒳 𝒴 𝒵 𝒶 𝒷 𝒸 𝒹 ℯ 𝒻 ℊ 𝒽 𝒾 𝒿 𝓀 𝓁 𝓂 𝓃 ℴ 𝓅 𝓆 𝓇 𝓈 𝓉 𝓊 𝓋 𝓌 𝓍 𝓎 𝓏");
+});
+document.getElementById("btn-block8").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𝑨 𝑩 𝑪 𝑫 𝑬 𝑭 𝑮 𝑯 𝑰 𝑱 𝑲 𝑳 𝑴 𝑵 𝑶 𝑷 𝑸 𝑹 𝑺 𝑻 𝑼 𝑽 𝑾 𝑿 𝒀 𝒁 𝒂 𝒃 𝒄 𝒅 𝒆 𝒇 𝒈 𝒉 𝒊 𝒋 𝒌 𝒍 𝒎 𝒏 𝒐 𝒑 𝒒 𝒓 𝒔 𝒕 𝒖 𝒗 𝒘 𝒙 𝒚 𝒛 𝐴 𝐵 𝐶 𝐷 𝐸 𝐹 𝐺 𝐻 𝐼 𝐽 𝐾 𝐿 𝑀 𝑁 𝑂 𝑃 𝑅 𝑆 𝑇 𝑈 𝑉 𝑊 𝑋 𝑌 𝑍 𝑎 𝑏 𝑐 𝑑 𝑒 𝑓 𝑔 ℎ 𝑖 𝑗 𝑘 𝑙 𝑚 𝑛 𝑜 𝑝 𝑞 𝑟 𝑠 𝑡 𝑢 𝑣 𝑤 𝑥 𝑦 𝑧");
+});
+document.getElementById("btn-block11").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𝘼 𝘽 𝘾 𝘿 𝙀 𝙁 𝙂 𝙃 𝙄 𝙅 𝙆 𝙇 𝙈 𝙉 𝙊 𝙋 𝙌 𝙍 𝙎 𝙏 𝙐 𝙑 𝙒 𝙓 𝙔 𝙕 𝙖 𝙗 𝙘 𝙙 𝙚 𝙛 𝙜 𝙝 𝙞 𝙟 𝙠 𝙡 𝙢 𝙣 𝙤 𝙥 𝙦 𝙧 𝙨 𝙩 𝙪 𝙫 𝙬 𝙭 𝙮 𝙯 𝘈 𝘉 𝘊 𝘋 𝘌 𝘍 𝘎 𝘏 𝘐 𝘑 𝘒 𝘓 𝘔 𝘕 𝘖 𝘗 𝘘 𝘙 𝘚 𝘛 𝘜 𝘝 𝘞 𝘟 𝘠 𝘡 𝘢 𝘣 𝘤 𝘥 𝘦 𝘧 𝘨 𝘩 𝘪 𝘫 𝘬 𝘭 𝘮 𝘯 𝘰 𝘱 𝘲 𝘳 𝘴 𝘵 𝘶 𝘷 𝘸 𝘹 𝘺 𝘻");
+});
+document.getElementById("btn-block12").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𝗔 𝗕 𝗖 𝗗 𝗘 𝗙 𝗚 𝗛 𝗜 𝗝 𝗞 𝗟 𝗠 𝗡 𝗢 𝗣 𝗤 𝗥 𝗦 𝗧 𝗨 𝗩 𝗪 𝗫 𝗬 𝗭 𝗮 𝗯 𝗰 𝗱 𝗲 𝗳 𝗴 𝗵 𝗶 𝗷 𝗸 𝗹 𝗺 𝗻 𝗼 𝗽 𝗾 𝗿 𝘀 𝘁 𝘂 𝘃 𝘄 𝘅 𝘆 𝘇");
+});
+document.getElementById("btn-block14").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𝕬 𝖁 𝕮 𝕯 𝕰 𝕱 𝕲 𝕳 𝕴 𝕵 𝕶 𝕷 𝕸 𝕹 𝕺 𝕻 𝕼 𝕽 𝕾 𝕿 𝖀 𝖁 𝖂 𝖃 𝖄 𝖅 𝖆 𝖇 𝖈 𝖉 𝖊 𝖋 𝖌 𝖍 𝖎 𝖏 𝖐 𝖑 𝖒 𝖓 𝖔 𝖕 𝖖 𝖗 𝖘 𝖙 𝖚 𝖛 𝖜 𝖝 𝖞 𝖟 𝔄 𝔅 ℭ 𝔇 𝔈 𝔉 𝔊 ℌ ℑ 𝔍 𝔎 𝔏 𝔐 𝔑 𝔒 𝔓 𝔔 ℜ 𝔖 𝔗 𝔘 𝔙 𝔚 𝔛 𝔜 ℨ 𝔞 𝔟 𝔠 𝔡 𝔢 𝔣 𝔤 𝔥 𝔦 𝔧 𝔨 𝔩 𝔪 𝔫 𝔬 𝔭 𝔮 𝔯 𝔰 𝔱 𝔲 𝔳 𝔴 𝔵 𝔶 𝔷");
+});
+document.getElementById("btn-block10").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𝐀 𝐁 𝐂 𝐃 𝐄 𝐅 𝐆 𝐇 𝐈 𝐉 𝐊 𝐋 𝐌 𝐍 𝐎 𝐏 𝐐 𝐑 𝐒 𝐓 𝐔 𝐕 𝐖 𝐗 𝐘 𝐙 𝐚 𝐛 𝐜 𝐝 𝐞 𝐟 𝐠 𝐡 𝐢 𝐣 𝐤 𝐥 𝐦 𝐧 𝐨 𝐩 𝐪 𝐫 𝐬 𝐭 𝐮 𝐯 𝐰 𝐱 𝐲 𝐳 𝔸 𝔹 ℂ 𝔻 𝔼 𝔽 𝔾 ℍ 𝕀 𝕁 𝕂 𝕃 𝕄 ℕ 𝕆 ℙ ℚ ℝ 𝕊 𝕋 𝕌 𝕍 𝕎 𝕏 𝕐 ℤ 𝕒 𝕓 𝕔 𝕕 𝕖 𝕗 𝕘 𝕙 𝕚 𝕛 𝕜 𝕝 𝕞 𝕟 𝕠 𝕡 𝕢 𝕣 𝕤 𝕥 𝕦 𝕧 𝕨 𝕩 𝕪 𝕫 ƛ Ɓ Ƈ Ɗ Є Ƒ Ɠ Ӈ Ɩ ʆ Ƙ Լ M Ɲ Ơ Ƥ Ƣ Ʀ Ƨ Ƭ Ʋ Ɣ Ɯ Ҳ Ƴ Ȥ");
+});
+document.getElementById("btn-block19").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "ᗩ ᗷ ᑕ ᗪ ᗴ ᖴ ᘜ ᕼ I ᒍ K ᒪ ᗰ ᑎ O ᑭ ᑫ ᖇ Տ T ᑌ ᐯ ᗯ ᙭ Y ᘔ 卂 丨 乃 匚 ᗪ 乇 千 ᘜ 卄 | ﾌ Ҝ ㄥ 爪 几 ㄖ 卩 Ҩ 尺 丂 ㄒ ㄩ ᐯ 山 乂 ㄚ 乙 ል ጌ ር ዕ ቿ ቻ ኗ ዘ ጎ ጋ ጕ ረ ጠ ሸ ዐ የ ዒ ዪ ነ ቿ ሁ ሀ ሠ ሸ ሃ ጊ Ꭺ Ꮯ Ꭰ Ꭼ Ꮆ Ꭵ Ꮶ Ꮮ Ꮑ Ꮎ Ꮲ Ꮢ Ꮖ Ꮙ Ꮃ Ꮍ Ꮓ");
+});
+document.getElementById("btn-block22").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "卝 ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ ㍐ ㍿ ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ を ゎ わ ゐ ゑ を ん ゔ ゕ ゖ ゚ ゛ ゜ ゝ ゞ ゟ ゠ ァ ア ィ イ ゥ ウェ エ ォ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ⺀ ⺁ ⺂ ⺃ ⺄ ⺅ ⺆ ⺇ ⺈ ⺉ ⺊ ⺋ ⺌ ⺍ ⺎ ⺏ ⺐ ⺑ ⺒ ⺓ ⺔ ⺕ ⺖ ⺗ ⺘ ⺙ ⺛ ⺜ ⺝ ⺞ ⺟ ⺠ ⺡ ⺢ ⺣ ⺤ ⺥ ⺦ ⺧ ⺨ ⺩ ⺪ ⺫ ⺬ ⺭ ⺮ ⺯ ⺰ ⺱ ⺲ ⺳ ⺴ ⺵ ⺶ ⺷ ⺸ ⺹ ⺺ ⺻ ⺼ ⺽ ⺾ ⺿ ⻀ ⻁ ⻂ ⻃ ⻄ ⻅ ⻆ ⻇ ⻈ ⻉ ⻊ ⻋ ⻌ ⻍ ⻎ ⻏ ⻐ ⻑ ⻒ ⻓ ⻔ ⻕ ⻖ ⻗ ⻘ ⻙ ⻚ ⻛ ⻜ ⻝ ⻞ ⻟ ⻠ ⻡ ⻢ ⻣ ⻤ ⻥ ⻦ ⻧ ⻨ ⻩ ⻪ ⻫ ⻬ ⻭ ⻮ ⻯ ⻰ ⻱ ⻲ ⻳ ⼀ ⼁ ⼂ ⼃ ⼄ ⼅ ⼆ ⼇ ⼈ ⼉ ⼊ ⼋ ⼌ ⼍ ⼎ ⼏ ⼐ ⼑ ⼒ ⼓ ⼔ ⼕ ⼖ ⼗ ⼘ ⼙ ⼚ ⼛ ⼜ ⼝ ⼞ ⼟ ⼠ ⼡ ⼢ ⼣ ⼤ ⼥ ⼦ ⼧ ⼨ ⼩ ⼪ ⼫ ⼬ ⼭ ⼮ ⼯ ⼰ ⼱ ⼲ ⼳ ⼴ ⼵ ⼶ ⼷ ⼸ ⼹ ⼺ ⼻ ⼼ ⼽ ⼾ ⼿ ⽀ ⽁ ⽂ ⽃ ⽄ ⽅ ⽆ ⽇ ⽈ ⽉ ⽊ ⽋ ⽌ ⽍ ⽎ ⽏ ⽐ ⽑ ⽒ ⽓ ⽔ ⽕ ⽖ ⽗ ⽘ ⽙ ⽚ ⽛ ⽜ ⽝ ⽞ ⽟ ⽠ ⽡ ⽢ ⽣ ⽤ ⽥ ⽦ ⽧ ⽨ ⽩ ⽪ ⽫ ⽬ ⽭ ⽮ ⽯ ⽰ ⽱ ⽲ ⽳ ⽴ ⽵ ⽶ ⽷ ⽸ ⽹ ⽺ ⽻ ⽼ ⽽ ⽾ ⽿ ⾀ ⾁ ⾂ ⾃ ⾄ ⾅ ⾆ ⾇ ⾈ ⾉ ⾊ ⾋ ⾌ ⾍ ⾎ ⾏ ⾐ ⾑ ⾒ ⾓ ⾔ ⾕ ⾖ ⾗ ⾘ ⾙ ⾚ ⾛ ⾜ ⾝ ⾞ ⾟ ⾠ ⾡ ⾢ ⾣ ⾤ ⾥ ⾦ ⾧ ⾨ ⾩ ⾪ ⾫ ⾬ ⾭ ⾮ ⾯ ⾰ ⾱ ⾲ ⾳ ⾴ ⾵ ⾶ ⾷ ⾸ ⾹ ⾺ ⾻ ⾼ ⾽ ⾾ ⾿ ⿀ ⿁ ⿂ ⿃ ⿄ ⿅ ⿆ ⿇ ⿈ ⿉ ⿊ ⿋ ⿌ ⿍ ⿎ ⿏ ⿐ ⿑ ⿒ ⿓ ⿔ ⿕ ゛ ゜ ㆐ ㆑ ㆖ ㆗ ㆘ ㆙ ㆚ ㆛ ㆜ ㆝ ㆞ ㆟ ㇀ ㇁ ㇂ ㇃ ㇄ ㇅ ㇆ ㇇ ㇈ ㇉ ㇊ ㇋ ㇌ ㇍ ㇎ ㇏ ㇐ ㇑ ㇒ ㇓ ㇔ ㇕ ㇖ ㇗ ㇘ ㇙ ㇚ ㇛ ㇜ ㇝ ㇞ ㇟ ㇠ ㇡ ㇢ ㇣");
+});
+document.getElementById("btn-block15").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𝙰 𝙱 𝙲 𝙳 𝙴 𝙵 𝙶 𝙷 𝙸 𝙹 𝙺 𝙻 𝙼 𝙽 𝙾 𝙿 𝚀 𝚁 𝚂 𝚃 𝚄 𝚅 𝚆 𝚇 𝚈 𝚉 𝚊 𝚋 𝚌 𝚍 𝚎 𝚏 𝚐 𝚝 𝚞 𝚟 𝚠 𝚡 𝚢 𝚣 ͣ ͤ ͥ ͦ ͧ ͨ ͩ ͪ ͫ ͬ ͭ ͮ ͯ ᴀ ʙ ᴄ ᴅ ᴇ ғ ɢ ʜ ɪ ᴊ ᴋ ʟ ᴍ ɴ ᴏ ᴘ ǫ ʀ s ᴛ ᴜ ᴠ ᴡ x ʏ ᴢ ᵃ ᵇ ᶜ ᵈ ᵉ ᶠ ᵍ ʰ ⁱ ʲ ᵏ ˡ ᵐ ⁿ ᵒ ᵖ ᵠ ʳ ˢ ᵗ ᵘ ᵛ ʷ ˣ ʸ ᶻ а ә ӕ ҕ в г ґ ғ ҕ д ԁ ђ ԃ ҙ е є җ з ԅ ѕ ӡ ԇ и ҋ і ј к қ ӄ ҡ ҟ ҝ л ӆ љ ԉ м ӎ н ӊ ң ӈ ҥ њ ԋ о ө п ҧ ҁ р ҏ с ԍ у ү ұ ѹ ф ѽ ѻ ц ҵ ч ҷ ӌ ҹ ҽ ҿ џ ш щ ъ ы ь ҍ ѧ ѫ ѩ ѭ ѱ ѳ ѵ ᶏ ᶐ Ⱥ ａ Ａ ᴬ ᵃ ª ᶛ ᵆ ᵄ ᵅ ₐ ᴭ ᴁ ᴂ ᴀ Å ẚ ∆ ∀ α Λ ɐ ɑ ɒ á à ă ắ ằ ẵ ẳ â ấ ầ ẫ ẩ ǎ å ǻ ä ā ả ȁ ȃ ạ ặ ả ȁ ȃ ạ ặ ặ ậ ḁ ǽ ǣ ᶀ ᵬ ｂ Ｂ ᴮ ᵇ ᴯ ᴃ þ ß ƀ Ɓ Ƅ ɓ ɞ ɮ ʙ ҍ Ᏸ ℬ β ḃ ḅ ḇ ᶗ Ȼ ȼ ｃ Ｃ ᶜ ᵓ ᶝ ᴐ ᴒ ᴖ ᵔ ᴗ ᵕ ᴄ © ¢ € Ƈ ɕ ʗ ℂ Č ☪ ℭ ς Ç ć ĉ č ċ ç ḉ ᶑ ᶁ ᵭ ｄ Ｄ ᴰ ᵈ ᶞ ᴅ ȡ ᴆ ǳ ǲ Ǳ ǆ ǅ Ǆ ∂ ɗ ð ď ḋ ḑ ḍ ḓ ḏ ᶒ ᶓ ᶔ ᶕ ᴲ ᵊ ᵋ ᵌ ₑ ₔ ∊ ∈ ᴇ ᴈ Ξ ∃ Ə Ɛ Ǝ ε Σ Ƹ ƺ ɘ ə ξ э ҿ ཇ ℰ ℯ ﾐ € ع έ ɚ é è ĕ ê ế ề ễ ể ě ë ẽ ė ȩ ḝ ę ē ḗ ḕ ẻ ȅ ȇ ẹ ệ ḙ ḛ ᶘ ᶂ ᶋ ᵮ ｆ Ｆ ᶠ ﬂ Ƒ ƒ ℱ ʄ ḟ ᶃ ｇ Ｇ ᴳ ᵍ ᶢ Ɠ Ǥ ǥ ɠ ɡ ɢ ʛ ց Ꮆ ջ ❡ ǵ ğ ĝ ǧ ġ ģ ḡ ｈ Ｈ ʰ ʱ ᴴ ᵸ ᶣ ħ ƕ Ƕ ɦ ɧ ʜ ђ Ᏺ ℋ ℌ ｻ Ҥ Ħ ℏ ĥ ȟ ḧ ḣ ḩ ḥ ḫ ẖ ᶖ ｉ Ｉ ᶧ ᴉ ᵎ ᵎ ⁱ ϊ أ ར ¡ ɩ ĳ Ĳ ᵻ Ɨ ɨ ɪ í ì ĭ î ǐ ï ḯ ĩ į ī ỉ ȉ ȋ ị ḭ ｊ Ｊ ᴶ ʲ ᴊ ᶨ ᶡ ǰ ʝ ز ჟ ĵ ǰ ȷ Ꮰ ᶄ ｋ Ｋ ᴷ ᵏ ᴋ κ Ƙ ƙ ʞ ϗ ҡ ḱ ǩ ķ ḳ ḵ ᶅ Ƚ ｌ Ｌ ᴌ ˡ ᶩ ᶪ ᶫ ǈ ȴ ŀ Ŀ ǉ ǈ Ǉ 廴 £ Ɩ ƪ ɫ ɭ ʆ ʟ Ꮭ ℒ ℓ Ł ₤ ĺ ľ ļ ḷ ḹ ḽ ḻ ᶆ ᵯ ｍ Ｍ ᴹ ᵐ ᶬ ᶭ ᴍ м Ɯ ɱ ʍ ℳ ɷ ḿ ṁ ṃ ᶇ ᵰ ｎ Ｎ ᶰ ⁿ ᴺ ᴻ ᵑ ᶮ ᶯ ᴎ ȵ ǌ ǋ Ǌ ղ ή и η Ɲ ƞ ɲ ɳ ɴ Ϟ ℕ ϰ സ Ո ท ռ ♑ ń ǹ ň ñ ṅ ņ ṇ ṋ ṉ ｏ Ｏ ᴼ ᵒ ᶱ ᶲ ᶿ ₒ ᴏ ᴑ ᴔ ᴓ Θ ᴽ ᴕ º ° ö © ⊙ ō ◐ ◕ ✹ ✪ ☢ ❂ ❍ σ ø ѻ ◯ ó ò ŏ ô ố ồ ỗ ổ ö ȫ ő õ ṍ ṏ ȭ ȯ ȱ ǫ ȍ ȏ ơ ớ ờ ỡ ở ợ ọ ộ ǿ ᶈ ᵽ ᵱ ｐ Ｐ ᴾ ᵖ ᴘ ¶ ρ φ Þ þ Ƥ ƥ ƿ բ ք ℙ ₱ ℘ ṕ ṗ Ꭾ ʠ Ｑ ᵠ Ǫ ǫ ʠ ϥ ℚ ҩ Ҩ ᶉ ᵲ ᵳ ｒ ʶ ᴿ ʳ ᴚ ® Ʀ ɼ ɽ ℝ ℞ я Ř ŕ ř ṙ ŗ ȑ ȓ ṛ ṝ ṟ ᶊ ᵴ ȿ ｓ Ｓ ˢ ᶳ § ẛ ﬆ ﬅ ₷ § ∫ Ƨ ƨ ʂ ʃ ʅ ϛ ֆ ى Ꭶ ʂ Ş $ ی ś ṥ ŝ š ṧ ṡ ş ṣ ṩ ș ᵵ ᵺ ᵼ Ⱦ ｔ Ｔ ᵀ ᵗ ᶵ ᴛ ȶ ح Շ π ŧ Ŧ ƫ Ƭ ƭ Ʈ ǂ ʇ ʈ τ Ϯ ϯ ｨ է ɬ ł ♈ ζ ե Ť ť ẗ ṫ ţ ṭ ț ṱ ṯ ᶙ ᵾ ᵤ ｕ Ｕ ᵁ ᵘ ᵤ ᶶ ᶷ ᶸ ᶹ ᴜ ᴝ ᵙ ᴞ ᵫ ʮ ʯ ʉ ʊ ʋ ŭ ϋ և ú ù ŭ û ǔ ǖ ű ũ ṹ ų ū ṻ ủ ȕ ȗ ư ứ ừ ữ ử ự ụ ṳ ṷ ṵ ๖ ۣ ۜ V ᶌ ｖ Ｖ ᵛ ᵥ ᶺ ᴠ ϑ Ʋ ʋ ν Ѵ ѵ ҩ Ҩ ℣ ✓ Ѷ ṽ ṿ ｗ Ｗ ᵂ ʷ ᵚ ᴟ ᴡ ψ ω ϖ Ɯ ʍ Ѡ ѡ ཡ Ꮚ Ꮤ Ϣ ẃ ẁ ŵ ẘ ẅ ẇ ẉ ᶍ ｘ Ｘ ᵡ ɤ × ˣ ₓ Ҳ ɤ χ ℵ 乂 ✘ メ ẍ ẋ ｙ Ｙ ʸ ˠ ϒ Ÿ Ƴ ƴ γ ʎ ʏ ¥ უ ყ ý ỳ ŷ ẙ ÿ ๖ ۣ ۜ Z ẏ ȳ ᵶ ỵ ᶚ ᶎ ᵶ ᶻ ᶼ ᶽ ᶾ ɀ ｚ Ｚ ᴢ ᴣ ᴤ ŉ ζ ☡ Ƶ ƶ Ȥ ȥ ʐ ʑ Հ ℤ ʓ ح ź ẑ Ⓐ ɐ q ɔ p ǝ ɟ ƃ ɥ ᴉ ɾ ʞ l ɯ u o d b ɹ s ʇ n ʌ ʍ x ʎ z");
+});
+document.getElementById("btn-block18").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "ɑ ҍ ϲ ժ ҽ ƒ ց հ í յ Ƙ Ӏ ʍ ղ օ Թ զ ɾ Տ Ե ւ ѵ ա × վ Հ ค ๒ ς ๔ є Ŧ ﻮ ђ เ ן к l ๓ ภ ๏ ק ợ г ร t ย ש ฬ ץ א z ᗅ ᙘ ᑤ ᗫ ᙍ ᖴ ᘜ ᕼ ᓿ ᒙ ᖽ ᐸ ᒪ ᙢ ᘉ ᓎ ᕿ ᕴ ᖇ S ᖶ ᑗ ᐻ ᙎ ᙭ ᖻ ᙣ å β ç ď £ ƒ ğ ȟ ȋ j ķ Ƚ ɱ ñ ¤ ק ǭ ȑ § ț ɥ √ Ψ × ÿ ž ά в ς ȡ έ ғ ģ ħ ί ј ķ Ļ м ή ό ρ q ŕ ş ţ ù ν ώ x ч ž Λ Ϧ ㄈ Ð Ɛ F Ɠ н ɪ ﾌ Қ Ł ௱ Л Ø þ Ҩ 尺 ら Ť Ц Ɣ Ɯ χ Ϥ Ẕ ᗩ ᗷ ᑢ ᕲ ᘿ ᖴ ᘜ ᕼ ᓰ ᒚ ᖽ ᐸ ᒪ ᘻ ᘉ ᓍ ᕵ ᕴ ᖇ S ᖶ ᑘ ᐺ ᘺ ᙭ ᖻ ᗱ Թ Յ Շ Ժ ȝ Բ Գ ɧ ɿ ʝ ƙ ʅ ʍ Ռ Ծ ρ φ Ր Տ Ե Մ ע ա Ճ Վ Հ ą ც ƈ ɖ ɛ ʄ ɠ ɧ ı ʝ ƙ Ɩ ɱ ŋ ɔ ℘ զ ཞ ʂ ɬ ų ۷ ῳ ҳ ყ ʑ");
+});
+
+document.getElementById("btn-block118").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "😀 😃 😄 😁 😆 😅 🤣 😂 🙂 🙃 🫠 😉 😊 😇 🥰 😍 🤩 😘 😗 ☺️ 😚 😙 🥲 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🫢 🫣 🤫 🤔 🫡 🤐 🤨 😐 😑 😶 🫥 😶‍🌫️ 😏 😒 🙄 😬 😮‍💨 🤥 😌 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 🥵 🥶 🥴 😵 😵‍💫 🤯 🤠 🥳 🥸 😎 🤓 🧐 😕 🫤 😟 🙁 ☹️ 😮 😯 😲 😳 🥺 🥹 😦 😧 😨 😰 😥 😢 😭 😱 😖 😣 😞 😓 😩 😫 🥱 😡 😡 😠 🤬 😈 👿 💀 ☠️ 💩 🤡 👹 👺 👻 👽 👾 🤖 😺 😸 😹 😻 😼 😽 🙀 😾 😿 🙈 🙉 🙊 💋 💌 💘 💝 💖 💗 💓 💞 💕 💟 ❣️ 💔 ❤️‍🔥 ❤️‍🩹 ❤️ 🧡 💛 💚 💙 💜 🤎 🖤 🤍 💯 💢 💥 💫 💦 💨 🕳️ 💣 💬 👁️‍🗨️ 🗨️ 🗯️ 💭 💤 🐵 🐒 🦍 🦧 🐶 🐕 🦮 🐕‍🦺 🐩 🐺 🦊 🦝 🐱 🐈 🐈‍⬛ 🦁 🐯 🐅 🐆 🐴 🐎 🦄 🦓 🦌 🦬 🐮 🐂 🐃 🐄 🐷 🐖 🐗 🐽 🐏 🐑 🐐 🐪 🐫 🦙 🦒 🐘 🦣 🦏 🦛 🐭 🐁 🐀 🐹 🐰 🐇 🐿️ 🦫 🦔 🦇 🐻 🐻‍❄️ 🐨 🐼 🦥 🦦 🦨 🦘 🦡 🐾 🦃 🐔 🐓 🐣 🐤 🐥 🐦 🐧 🕊️ 🦅 🦆 🦢 🦉 🦤 🪶 🦩 🦚 🦜 🐸 🐊 🐢 🦎 🐍 🐲 🐉 🦕 🦖 🐳 🐋 🐬 🦭 🐟 🐠 🐡 🦈 🐙 🐚 🪸 🐌 🦋 🐛 🐜 🐝 🪲 🐞 🦗 🪳 🕷️ 🕸️ 🦂 🦟 🪰 🪱 🦠 💐 🌸 💮 🪷 🏵️ 🌹 🥀 🌺 🌻 🌼 🌷 🌱 🪴 🌲 🌳 🌴 🌵 🌾 🌿 ☘️ 🍀 🍁 🍂 🍃 🪹 🪺 👋 🤚 🖐️ ✋ 🖖 🫱 🫲 🫳 🫴 👌 🤌 🤏 ✌️ 🤞 🫰 🤟 🤘 🤙 👈 👉 👆 🖕 👇 ☝️ 🫵 👍 👎 ✊ 👊 🤛 🤜 👏 🙌 🫶 👐 🤲 🤝 🙏 ✍️ 💅 🤳 💪 🦾 🦿 🦵 🦶 👂 🦻 👃 🧠 🫀 🫁 🦷 🦴 👀 👁️ 👅 👄 🫦 👶 🧒 👦 👧 🧑 👱 👨 🧔 🧔‍♂️ 🧔‍♀️ 👨‍🦰 👨‍🦱 👨‍🦳 👨‍🦲 👩 👩‍🦰 🧑‍🦰 👩‍🦱 🧑‍🦱 👩‍🦳 🧑‍🦳 👩‍🦲 🧑‍🦲 👱‍♀️ 👱‍♂️ 🧓 👴 👵 🙍 🙍‍♂️ 🙍‍♀️ 🙎 🙎‍♂️ 🙎‍♀️ 🙅 🙅‍♂️ 🙅‍♀️ 🙆 🙆‍♂️ 🙆‍♀️ 💁 💁‍♂️ 💁‍♀️ 🙋 🙋‍♂️ 🙋‍♀️ 🧏 🧏‍♂️ 🧏‍♀️ 🙇 🙇‍♂️ 🙇‍♀️ 🤦 🤦‍♂️ 🤦‍♀️ 🤷 🤷‍♂️ 🤷‍♀️ 🧑‍⚕️ 👨‍⚕️ 👩‍⚕️ 🧑‍🎓 👨‍🎓 👩‍🎓 🧑‍🏫 👨‍🏫 👩‍🏫 🧑‍⚖️ 👨‍⚖️ 👩‍⚖️ 🧑‍🌾 👨‍🌾 👩‍🌾 🧑‍🍳 👨‍🍳 👩‍🍳 🧑‍🔧 👨‍🔧 👩‍🔧 🧑‍🏭 👨‍🏭 👩‍🏭 🧑‍💼 👨‍💼 👩‍💼 🧑‍🔬 👨‍🔬 👩‍🔬 🧑‍💻 👨‍💻 👩‍💻 🧑‍🎤 👨‍🎤 👩‍🎤 🧑‍🎨 👨‍🎨 👩‍🎨 🧑‍✈️ 👨‍✈️ 👩‍✈️ 🧑‍🚀 👨‍🚀 👩‍🚀 🧑‍🚒 👨‍🚒 👩‍🚒 👮 👮‍♂️ 👮‍♀️ 🕵️ 🕵️‍♂️ 🕵️‍♀️ 💂 💂‍♂️ 💂‍♀️ 🥷 👷 👷‍♂️ 👷‍♀️ 🫅 🤴 👸 👳 👳‍♂️ 👳‍♀️ 👲 🧕 🤵 🤵‍♂️ 🤵‍♀️ 👰 👰‍♂️ 👰‍♀️ 🤰 🫃 🫄 🤱 👩‍🍼 👨‍🍼 🧑‍🍼 👼 🎅 🤶 🧑‍🎄 🦸 🦸‍♂️ 🦸‍♀️ 🦹 🦹‍♂️ 🦹‍♀️ 🧙 🧙‍♂️ 🧙‍♀️ 🧚 🧚‍♂️ 🧚‍♀️ 🧛 🧛‍♂️ 🧛‍♀️ 🧜 🧜‍♂️ 🧜‍♀️ 🧝 🧝‍♂️ 🧝‍♀️ 🧞 🧞‍♂️ 🧞‍♀️ 🧟 🧟‍♂️ 🧟‍♀️ 🧌 💆 💆‍♂️ 💆‍♀️ 💇 💇‍♂️ 💇‍♀️ 🚶 🚶‍♂️ 🚶‍♀️ 🧍 🧍‍♂️ 🧍‍♀️ 🧎 🧎‍♂️ 🧎‍♀️ 🧑‍🦯 👨‍🦯 👩‍🦯 🧑‍🦼 👨‍🦼 👩‍🦼 🧑‍🦽 👨‍🦽 👩‍🦽 🏃 🏃‍♂️ 🏃‍♀️ 💃 🕺 🕴️ 👯 👯‍♂️ 👯‍♀️ 🧖 🧖‍♂️ 🧖‍♀️ 🧗 🧗‍♂️ 🧗‍♀️ 🤺 🏇 ⛷️ 🏂 🏌️ 🏌️‍♂️ 🏌️‍♀️ 🏄 🏄‍♂️ 🏄‍♀️ 🚣 🚣‍♂️ 🚣‍♀️ 🏊 🏊‍♂️ 🏊‍♀️ ⛹️ ⛹️‍♂️ ⛹️‍♀️ 🏋️ 🏋️‍♂️ 🏋️‍♀️ 🚴 🚴‍♂️ 🚴‍♀️ 🚵 🚵‍♂️ 🚵‍♀️ 🤸 🤸‍♂️ 🤸‍♀️ 🤼 🤼‍♂️ 🤼‍♀️ 🤽 🤽‍♂️ 🤽‍♀️ 🤾 🤾‍♂️ 🤾‍♀️ 🤹 🤹‍♂️ 🤹‍♀️ 🧘 🧘‍♂️ 🧘‍♀️ 🛀 🛌 🧑‍🤝‍🧑 👭 👫 👬 💏 👩‍❤️‍💋‍👨 👨‍❤️‍💋‍👨 👩‍❤️‍💋‍👩 💑 👩‍❤️‍👨 👨‍❤️‍👨 👩‍❤️‍👩 👪 👨‍👩‍👦 👨‍👩‍👧 👨‍👩‍👧‍👦 👨‍👩‍👦‍👦 👨‍👩‍👧‍👧 👨‍👨‍👦 👨‍👨‍👧 👨‍👨‍👧‍👦 👨‍👨‍👦‍👦 👨‍👨‍👧‍👧 👩‍👩‍👦 👩‍👩‍👧 👩‍👩‍👧‍👦 👩‍👩‍👦‍👦 👩‍👩‍👧‍👧 👨‍👦 👨‍👦‍👦 👨‍👧 👨‍👧‍👦 👨‍👧‍👧 👩‍👦 👩‍👦‍👦 👩‍👧 👩‍👧‍👦 👩‍👧‍👧 🗣️ 👤 👥 🫂 👣 🦰 🦱 🦳 🦲 🍇 🍈 🍉 🍊 🍋 🍌 🍍 🥭 🍎 🍏 🍐 🍑 🍒 🍓 🫐 🥝 🍅 🫒 🥥 🥑 🍆 🥔 🥕 🌽 🌶️ 🫑 🥒 🥬 🥦 🧄 🧅 🍄 🥜 🫘 🌰 🍞 🥐 🥖 🫓 🥨 🥯 🥞 🧇 🧀 🍖 🍗 🥩 🥓 🍔 🍟 🍕 🌭 🥪 🌮 🌯 🫔 🥙 🧆 🥚 🍳 🥘 🍲 🫕 🥣 🥗 🍿 🧈 🧂 🥫 🍱 🍘 🍙 🍚 🍛 🍜 🍝 🍠 🍢 🍣 🍤 🍥 🥮 🍡 🥟 🥠 🥡 🦀 🦞 🦐 🦑 🦪 🍦 🍧 🍨 🍩 🍪 🎂 🍰 🧁 🥧 🍫 🍬 🍭 🍮 🍯 🍼 🥛 ☕ 🫖 🍵 🍶 🍾 🍷 🍸 🍹 🍺 🍻 🥂 🥃 🫗 🥤 🧋 🧃 🧉 🧊 🥢 🍽️ 🍴 🥄 🔪 🫙 🏺 🌍 🌎 🌏 🌐 🗺️ 🗾 🧭 🏔️ ⛰️ 🌋 🗻 🏕️ 🏖️ 🏜️ 🏝️ 🏞️ 🏟️ 🏛️ 🏗️ 🧱 🪨 🪵 🛖 🏘️ 🏚️ 🏠 🏡 🏢 🏣 🏤 🏥 🏦 🏨 🏩 🏪 🏫 🏬 🏭 🏯 🏰 💒 🗼 🗽 ⛪ 🕌 🛕 🕍 ⛩️ 🕋 ⛲ ⛺ 🌁 🌃 🏙️ 🌄 🌅 🌆 🌇 🌉 ♨️ 🎠 🛝 🎡 🎢 💈 🎪 🚂 🚃 🚄 🚅 🚆 🚇 🚈 🚉 🚊 🚝 🚞 🚋 🚌 🚍 🚎 🚐 🚑 🚒 🚓 🚔 🚕 🚖 🚗 🚘 🚙 🛻 🚚 🚛 🚜 🏎️ 🏍️ 🛵 🦽 🦼 🛺 🚲 🛴 🛹 🛼 🚏 🛣️ 🛤️ 🛢️ ⛽ 🛞 🚨 🚥 🚦 🛑 🚧 ⚓ 🛟 ⛵ 🛶 🚤 🛳️ ⛴️ 🛥️ 🚢 ✈️ 🛩️ 🛫 🛬 🪂 💺 🚁 🚟 🚠 🚡 🛰️ 🚀 🛸 🛎️ 🧳 ⌛ ⏳ ⌚ ⏰ ⏱️ ⏲️ 🕰️ 🕛 🕧 🕐 🕑 🕜 🕝 🕒 🕞 🕓 🕟 🕔 🕠 🕕 🕡 🕖 🕢 🕗 🕣 🕘 🕤 🕙 🕥 🕚 🕦 🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌙 🌚 🌛 🌜 🌡️ ☀️ 🌝 🌞 🪐 ⭐ 🌟 🌠 🌌 ☁️ ⛅ ⛈️ 🌤️ 🌥️ 🌦️ 🌧️ 🌨️ 🌩️ 🌪️ 🌫️ 🌬️ 🌀 🌈 🌂 ☂️ ☔ ⛱️ ⚡ ❄️ ☃️ ⛄ ☄️ 🔥 💧 🌊 🎃 🎄 🎆 🎇 🧨 ✨ 🎈 🎉 🎊 🎋 🎍 🎎 🎏 🎐 🎑 🧧 🎀 🎁 🎗️ 🎟️ 🎫 🎖️ 🏆 🏅 🥇 🥈 🥉 ⚽ ⚾ 🥎 🏀 🏐 🏈 🏉 🎾 🥏 🎳 🏏 🏑 🏒 🥍 🏓 🏸 🥊 🥋 🥅 ⛳ ⛸️ 🎣 🤿 🎽 🎿 🛷 🥌 🎯 🪀 🪁 🎱 🔮 🪄 🧿 🪬 🎮 🕹️ 🎰 🎲 🧩 🧸 🪅 🪩 🪆 ♠️ ♥️ ♦️ ♣️ ♟️ 🃏 🀄 🎴 🎭 🖼️ 🎨 🧵 🪡 🧶 🪢 👓 🕶️ 🥽 🥼 🦺 👔 👕 👖 🧣 🧤 🧥 🧦 👗 👘 🥻 🩱 🩲 🩳 👙 👚 👛 👜 👝 🛍️ 🎒 🩴 👞 👟 🥾 🥿 👠 👡 🩰 👢 👑 👒 🎩 🎓 🧢 🪖 ⛑️ 📿 💄 💍 💎 🔇 🔈 🔉 🔊 📢 📣 📯 🔔 🔕 🎼 🎵 🎶 🎙️ 🎚️ 🎛️ 🎤 🎧 📻 🎷 🪗 🎸 🎹 🎺 🎻 🪕 🥁 🪘 📱 📲 ☎️ 📞 📟 📠 🔋 🪫 🔌 💻 🖥️ 🖨️ ⌨️ 🖱️ 🖲️ 💽 💾 💿 📀 🧮 🎥 🎞️ 📽️ 🎬 📺 📷 📸 📹 📼 🔍 🔎 🕯️ 💡 🔦 🏮 🪔 📔 📕 📖 📗 📘 📙 📚 📓 📒 📃 📜 📄 📰 🗞️ 📑 🔖 🏷️ 💰 🪙 💴 💵 💶 💷 💸 💳 🧾 💹 ✉️ 📧 📨 📩 📤 📥 📦 📫 📪 📬 📭 📮 🗳️ ✏️ ✒️ 🖋️ 🖊️ 🖌️ 🖍️ 📝 💼 📁 📂 🗂️ 📅 📆 🗒️ 🗓️ 📇 📉 📈 📊 📋 📌 📍 📎 🖇️ 📏 📐 ✂️ 🗃️ 🗄️ 🗑️ 🔒 🔓 🔏 🔐 🔑 🗝️ 🔨 🪓 ⛏️ ⚒️ 🛠️ 🗡️ ⚔️ 🔫 🪃 🏹 🛡️ 🪚 🔧 🪛 🔩 ⚙️ 🗜️ ⚖️ 🦯 🔗 ⛓️ 🪝 🧰 🧲 🪜 ⚗️ 🧪 🧫 🧬 🔬 🔭 📡 💉 🩸 💊 🩹 🩼 🩺 🩻 🚪 🛗 🪞 🪟 🛏️ 🛋️ 🪑 🚽 🪠 🚿 🛁 🪤 🪒 🧴 🧷 🧹 🧺 🧻 🪣 🧼 🫧 🪥 🧽 🧯 🛒 🚬 ⚰️ 🪦 ⚱️ 🗿 🪧 🪪 🏧 🚮 🚰 ♿ 🚹 🚺 🚻 🚼 🚾 🛂 🛃 🛄 🛅 ⚠️ 🚸 ⛔ 🚫 🚳 🚭 🚯 🚱 🚷 📵 🔞 ☢️ ☣️ ⬆️ ↗️ ➡️ ↘️ ⬇️ ↙️ ⬅️ ↖️ ↕️ ↔️ ↩️ ↪️ ⤴️ ⤵️ 🔃 🔄 🔙 🔚 🔛 🔜 🔝 🛐 ⚛️ 🕉️ ✡️ ☸️ ☯️ ✝️ ☦️ ☪️ ☮️ 🕎 🔯 ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ⛎ 🔀 🔁 🔂 ▶️ ⏩ ⏭️ ⏯️ ◀️ ⏪ ⏮️ 🔼 ⏫ 🔽 ⏬ ⏸️ ⏹️ ⏺️ ⏏️ 🎦 🔅 🔆 📶 📳 📴 ♀️ ♂️ ⚧️ ✖️ ➕ ➖ ➗ 🟰 ♾️ ‼️ ⁉️ ❓ ❔ ❕ ❗ 〰️ 💱 💲 ⚕️ ♻️ ⚜️ 🔱 📛 🔰 ⭕ ✅ ☑️ ✔️ ❌ ❎ ➰ ➿ 〽️ ✳️ ✴️ ❇️ ©️ ®️ ™️ #️⃣ *️⃣ 0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟 🔠 🔡 🔢 🔣 🔤 🅰️ 🆎 🅱️ 🆑 🆒 🆓 ℹ️ 🆔 Ⓜ️ 🆕 🆖 🅾️ 🆗 🅿️ 🆘 🆙 🆚 🈁 🈂️ 🈷️ 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 ㊗️ ㊙️ 🈺 🈵 🔴 🟠 🟡 🟢 🔵 🟣 🟤 ⚫ ⚪ 🟥 🟧 🟨 🟩 🟦 🟪 🟫 ⬛ ⬜ ◼️ ◻️ ◾ ◽ ▪️ ▫️ 🔶 🔷 🔸 🔹 🔺 🔻 💠 🔘 🔳 🔲 🏁 🚩 🎌 🏴 🏳️ 🏳️‍🌈 🏳️‍⚧️ 🏴‍☠️ 🇦🇨 🇦🇩 🇦🇪 🇦🇫 🇦🇬 🇦🇮 🇦🇱 🇦🇲 🇦🇴 🇦🇶 🇦🇷 🇦🇸 🇦🇹 🇦🇺 🇦🇼 🇦🇽 🇦🇿 🇧🇦 🇧🇧 🇧🇩 🇧🇪 🇧🇫 🇧🇬 🇧🇭 🇧🇮 🇧🇯 🇧🇱 🇧🇲 🇧🇳 🇧🇴 🇧🇶 🇧🇷 🇧🇸 🇧🇹 🇧🇻 🇧🇼 🇧🇾 🇧🇿 🇨🇦 🇨🇨 🇨🇩 🇨🇫 🇨🇬 🇨🇭 🇨🇮 🇨🇰 🇨🇱 🇨🇲 🇨🇳 🇨🇴 🇨🇵 🇨🇷 🇨🇺 🇨🇻 🇨🇼 🇨🇽 🇨🇾 🇨🇿 🇩🇪 🇩🇬 🇩🇯 🇩🇰 🇩🇲 🇩🇴 🇩🇿 🇪🇦 🇪🇨 🇪🇪 🇪🇬 🇪🇭 🇪🇷 🇪🇸 🇪🇹 🇪🇺 🇫🇮 🇫🇯 🇫🇰 🇫🇲 🇫🇴 🇫🇷 🇬🇦 🇬🇧 🇬🇩 🇬🇪 🇬🇫 🇬🇬 🇬🇭 🇬🇮 🇬🇱 🇬🇲 🇬🇳 🇬🇵 🇬🇶 🇬🇷 🇬🇸 🇬🇹 🇬🇺 🇬🇼 🇬🇾 🇭🇰 🇭🇲 🇭🇳 🇭🇷 🇭🇹 🇭🇺 🇮🇨 🇮🇩 🇮🇪 🇮🇱 🇮🇲 🇮🇳 🇮🇴 🇮🇶 🇮🇷 🇮🇸 🇮🇹 🇯🇪 🇯🇲 🇯🇴 🇯🇵 🇰🇪 🇰🇬 🇰🇭 🇰🇮 🇰🇲 🇰🇳 🇰🇵 🇰🇷 🇰🇼 🇰🇾 🇰🇿 🇱🇦 🇱🇧 🇱🇨 🇱🇮 🇱🇰 🇱🇷 🇱🇸 🇱🇹 🇱🇺 🇱🇻 🇱🇾 🇲🇦 🇲🇨 🇲🇩 🇲🇪 🇲🇫 🇲🇬 🇲🇭 🇲🇰 🇲🇱 🇲🇲 🇲🇳 🇲🇴 🇲🇵 🇲🇶 🇲🇷 🇲🇸 🇲🇹 🇲🇺 🇲🇻 🇲🇼 🇲🇽 🇲🇾 🇲🇿 🇳🇦 🇳🇨 🇳🇪 🇳🇫 🇳🇬 🇳🇮 🇳🇱 🇳🇴 🇳🇵 🇳🇷 🇳🇺 🇳🇿 🇴🇲 🇵🇦 🇵🇪 🇵🇫 🇵🇬 🇵🇭 🇵🇰 🇵🇱 🇵🇲 🇵🇳 🇵🇷 🇵🇸 🇵🇹 🇵🇼 🇵🇾 🇶🇦 🇷🇪 🇷🇴 🇷🇸 🇷🇺 🇷🇼 🇸🇦 🇸🇧 🇸🇨 🇸🇩 🇸🇪 🇸🇬 🇸🇭 🇸🇮 🇸🇯 🇸🇰 🇸🇱 🇸🇲 🇸🇳 🇸🇴 🇸🇷 🇸🇸 🇸🇹 🇸🇻 🇸🇽 🇸🇾 🇸🇿 🇹🇦 🇹🇨 🇹🇩 🇹🇫 🇹🇬 🇹🇭 🇹🇯 🇹🇰 🇹🇱 🇹🇲 🇹🇳 🇹🇴 🇹🇷 🇹🇹 🇹🇻 🇹🇼 🇹🇿 🇺🇦 🇺🇬 🇺🇲 🇺🇳 🇺🇸 🇺🇾 🇺🇿 🇻🇦 🇻🇨 🇻🇪 🇻🇬 🇻🇮 🇻🇳 🇻🇺 🇼🇫 🇼🇸 🇽🇰 🇾🇪 🇾🇹 🇿🇦 🇿🇲 🇿🇼");
+});
+
+document.getElementById("btn-block21").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "ꁲ ꃳ ꏳ ꀷ ꑀ ꊯ ꁅ ꁝ ꒐ ꒑ ꈵ ꒒ ꂵ ꃔ ꊿ ꉣ ꋠ ꌅ ꈜ ꋖ ꌈ ꒦ ꅐ ꉤ ꐔ ꑒ ꍏ ꌃ ꏳ ꀷ ꏂ ꎇ ꁅ ꀍ ꀤ ꒻ ꀘ ꒒ ꎭ ꈤ ꂦ ᖘ ꆰ ꋪ ꌚ ꓄ ꀎ ꒦ ꅐ ꉧ ꌩ ꁴ ꋫ ꃲ ꉓ ꃸ ꑾ ꄘ ꁅ ꃄ ꒐ ꒑ ꀗ ꒒ ꂵ ꁹ ꄱ ꉣ ꋟ ꋪ ꇘ ꓅ ꌇ ꒦ ꅏ ꋋ ꌥ ꒗ Ꮧ Ᏸ Ꮄ Ꮛ ጀ Ꮆ Ꮒ Ꭵ Ꮰ Ꮶ Ꮭ Ꮇ Ꮑ Ꭷ Ꭾ Ꭴ Ꮢ Ꮥ Ꮦ Ꮼ Ꮙ Ꮗ ፈ Ꭹ ፚ");
+});
+
+}
+
+function renderAllDefault() {
+  const firstKey = Object.keys(unicodeBlocks)[0];
+  renderBlockByKey(firstKey);
+  blockSelect.value = firstKey;
+}
+
+window.addEventListener("DOMContentLoaded", init);
+
+document.addEventListener("click", function (e) {
+  if (!notesTextarea.contains(e.target)) {
+    notesTextarea.blur(); // hilangkan fokus dari textarea = keyboard menghilang
+  }
+});
+
+
+
+
+function scrollToEnd(el, duration = 1000) {
+  const start = el.scrollLeft;
+  const end = el.scrollWidth - el.clientWidth;
+  const distance = end - start;
+  const startTime = performance.now();
+
+  // Fase pertama: scroll perlahan menuju ujung kanan
+  function step1(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    el.scrollLeft = start + distance * progress;
+
+    if (progress < 1) {
+      requestAnimationFrame(step1);
+    } else {
+      // Fase kedua: scroll cepat kembali ke kiri
+      el.scrollLeft = end;
+      setTimeout(() => {
+        scrollToStart(el, 500);  // Gerakan cepat kembali ke kiri
+      }, 100);  // Tunggu sejenak sebelum kembali
+    }
+  }
+
+  requestAnimationFrame(step1);
+}
+
+// Fungsi untuk scroll cepat ke kiri
+function scrollToStart(el, duration = 500) {
+  const start = el.scrollLeft;
+  const end = 0;
+  const distance = start - end;
+  const startTime = performance.now();
+
+  function step2(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    el.scrollLeft = start - distance * progress;
+
+    if (progress < 1) {
+      requestAnimationFrame(step2);
+    } else {
+      el.scrollLeft = end;  // Pastikan scroll sampai ujung kiri
+    }
+  }
+
+  requestAnimationFrame(step2);
+}
+
+window.addEventListener("load", () => {
+  const bar = document.getElementById("symbol-bar");
+  if (bar) {
+    setTimeout(() => {
+      bar.scrollLeft = 0;  // Mulai dari kiri
+      scrollToEnd(bar, 1000);  // Mulai scroll perlahan ke kanan
+    }, 100); // Penundaan agar elemen siap
+  }
+});
+
+const symbolBar = document.getElementById("symbol-bar");
+const buttons = symbolBar.querySelectorAll("button");
+
+function getCenterButton() {
+  const barRect = symbolBar.getBoundingClientRect();
+  const centerX = barRect.left + barRect.width / 2;
+
+  let closestBtn = null;
+  let closestDist = Infinity;
+
+  buttons.forEach(btn => {
+    const btnRect = btn.getBoundingClientRect();
+    const btnCenter = btnRect.left + btnRect.width / 2;
+    const dist = Math.abs(centerX - btnCenter);
+
+    if (dist < closestDist) {
+      closestDist = dist;
+      closestBtn = btn;
+    }
+  });
+
+  return closestBtn;
+}
+
+let lastActiveButton = null;
+
+symbolBar.addEventListener("scroll", () => {
+  clearTimeout(symbolBar._scrollTimer);
+  symbolBar._scrollTimer = setTimeout(() => {
+    const activeBtn = getCenterButton();
+    if (activeBtn && activeBtn !== lastActiveButton) {
+      lastActiveButton = activeBtn;
+      activeBtn.click();  // Simulasikan klik untuk ganti konten
+    }
+  }, 800); // Delay agar tidak terlalu sering berganti saat geser
+});
+
+document.getElementById("block-select").addEventListener("change", (e) => {
+  const targetId = e.target.value;
+  if (targetId) {
+    document.getElementById(targetId).click();
+  }
+});
+
+</script>
 
 <script>
   const textarea = document.getElementById('notes');
@@ -962,7 +1251,6 @@
 
 
 </script>
-
 
 <script>
 const notes = document.getElementById("notes");
@@ -1078,432 +1366,6 @@ function updateCounter() {
 }
 </script>
 
-<script>
-const unicodeBlocks = {
-  "1F600-1F64F": [0x1F600, 0x1F64F],
-  "1F680-1F6FF": [0x1F680, 0x1F6FF],
-  "1F900-1F9FF": [0x1F900, 0x1F9FF],
-  "1FA70-1FAFF": [0x1FA70, 0x1FAFF],
-  "1F300-1F5FF": [0x1F300, 0x1F5FF],
-    "2300-23FF": [0x2300, 0x23FF],
-  "2600-26FF": [0x2600, 0x26FF],
-    "2700-27BF": [0x2700, 0x27BF],
-  "20D0-20FF": [0x20D0, 0x20FF],
-  "2460-24FF": [0x2460, 0x24FF],
-  "2500-257F": [0x2500, 0x257F],
-  "2580-259F": [0x2580, 0x259F],
-  "25A0-25FF": [0x25A0, 0x25FF],
-  "27C0-27EF": [0x27C0, 0x27EF],
-  "27F0-27FF": [0x27F0, 0x27FF],
-  "2800-28FF": [0x2800, 0x28FF],
-  "2200-22FF": [0x2200, 0x22FF],
-  "2400-243F": [0x2400, 0x243F],
-  "1F0A0-1F0FF": [0x1F0A0, 0x1F0FF],
-  "2190-21FF": [0x2190, 0x21FF],
-  "2440-245F": [0x2440, 0x245F],
-  "2900-297F": [0x2900, 0x297F],
-  "2980-29FF": [0x2980, 0x29FF],
-  "2A00-2AFF": [0x2A00, 0x2AFF],
-  "2B00-2BFF": [0x2B00, 0x2BFF],
-  "1F000-1F02F": [0x1F000, 0x1F02F],
-  "1F700-1F77F": [0x1F700, 0x1F77F],
-  "FF00-FFEF": [0xFF00, 0xFFEF],
-  "0000-007F": [0x0000, 0x007F],
-  "0080-00FF": [0x0080, 0x00FF],
-  "0100-017F": [0x0100, 0x017F],
-  "0180-024F": [0x0180, 0x024F],
-  "0250-02AF": [0x0250, 0x02AF],
-  "02B0-02FF": [0x02B0, 0x02FF],
-  "0300-036F": [0x0300, 0x036F],
-  "0370-03FF": [0x0370, 0x03FF],
-  "2100-214F": [0x2100, 0x214F],
-  "2150-218F": [0x2150, 0x218F],
-  "0400-04FF": [0x0400, 0x04FF],
-  "0500-052F": [0x0500, 0x052F],
-  "0530-058F": [0x0530, 0x058F],
-  "0590-05FF": [0x0590, 0x05FF],
-  "0600-06FF": [0x0600, 0x06FF],
-  "0700-074F": [0x0700, 0x074F],
-  "0750-077F": [0x0750, 0x077F],
-  "0780-07BF": [0x0780, 0x07BF],
-  "07C0-07FF": [0x07C0, 0x07FF],
-  "0800-083F": [0x0800, 0x083F],
-  "0840-085F": [0x0840, 0x085F],
-  "0860-086F": [0x0860, 0x086F],
-  "08A0-08FF": [0x08A0, 0x08FF],
-  "0900-097F": [0x0900, 0x097F],
-  "0980-09FF": [0x0980, 0x09FF],
-  "0A00-0A7F": [0x0A00, 0x0A7F],
-  "0A80-0AFF": [0x0A80, 0x0AFF],
-  "0B00-0B7F": [0x0B00, 0x0B7F],
-  "0B80-0BFF": [0x0B80, 0x0BFF],
-  "0C00-0C7F": [0x0C00, 0x0C7F],
-  "0C80-0CFF": [0x0C80, 0x0CFF],
-  "0D00-0D7F": [0x0D00, 0x0D7F],
-  "0D80-0DFF": [0x0D80, 0x0DFF],
-  "0E00-0E7F": [0x0E00, 0x0E7F],
-  "0E80-0EFF": [0x0E80, 0x0EFF],
-  "0F00-0FFF": [0x0F00, 0x0FFF],
-  "1000-109F": [0x1000, 0x109F],
-  "10A0-10FF": [0x10A0, 0x10FF],
-  "1100-11FF": [0x1100, 0x11FF],
-  "1200-137F": [0x1200, 0x137F],
-  "1380-139F": [0x1380, 0x139F],
-  "13A0-13FF": [0x13A0, 0x13FF],
-  "1400-167F": [0x1400, 0x167F],
-  "1680-169F": [0x1680, 0x169F],
-  "16A0-16FF": [0x16A0, 0x16FF],
-  "1700-171F": [0x1700, 0x171F],
-  "1720-173F": [0x1720, 0x173F],
-  "1740-175F": [0x1740, 0x175F],
-  "1760-177F": [0x1760, 0x177F],
-  "1780-17FF": [0x1780, 0x17FF],
-  "1800-18AF": [0x1800, 0x18AF],
-  "18B0-18FF": [0x18B0, 0x18FF],
-  "1900-194F": [0x1900, 0x194F],
-  "1950-197F": [0x1950, 0x197F],
-  "1980-19DF": [0x1980, 0x19DF],
-  "19E0-19FF": [0x19E0, 0x19FF],
-  "1A00-1A1F": [0x1A00, 0x1A1F],
-  "1A20-1AAF": [0x1A20, 0x1AAF],
-  "1AB0-1AFF": [0x1AB0, 0x1AFF],
-  "1B00-1B7F": [0x1B00, 0x1B7F],
-  "1B80-1BBF": [0x1B80, 0x1BBF],
-  "1BC0-1BFF": [0x1BC0, 0x1BFF],
-  "1C00-1C4F": [0x1C00, 0x1C4F],
-  "1C50-1C7F": [0x1C50, 0x1C7F],
-  "1C80-1C8F": [0x1C80, 0x1C8F],
-  "1C90-1CBF": [0x1C90, 0x1CBF],
-  "1CC0-1CCF": [0x1CC0, 0x1CCF],
-  "1CD0-1CFF": [0x1CD0, 0x1CFF],
-  "1D00-1D7F": [0x1D00, 0x1D7F],
-  "1D80-1DBF": [0x1D80, 0x1DBF],
-  "1DC0-1DFF": [0x1DC0, 0x1DFF],
-  "1E00-1EFF": [0x1E00, 0x1EFF],
-  "1F00-1FFF": [0x1F00, 0x1FFF],
-  "2000-206F": [0x2000, 0x206F],
-  "2070-209F": [0x2070, 0x209F],
-  "20A0-20CF": [0x20A0, 0x20CF],
-  "2C00-2C5F": [0x2C00, 0x2C5F],
-  "2C60-2C7F": [0x2C60, 0x2C7F],
-  "2C80-2CFF": [0x2C80, 0x2CFF],
-  "2D00-2D2F": [0x2D00, 0x2D2F],
-  "2D30-2D7F": [0x2D30, 0x2D7F],
-  "2D80-2DDF": [0x2D80, 0x2DDF],
-  "2DE0-2DFF": [0x2DE0, 0x2DFF],
-  "2E00-2E7F": [0x2E00, 0x2E7F],
-  "2E80-2EFF": [0x2E80, 0x2EFF],
-  "2F00-2FDF": [0x2F00, 0x2FDF],
-  "2FF0-2FFF": [0x2FF0, 0x2FFF],
-  "3000-303F": [0x3000, 0x303F],
-  "3040-309F": [0x3040, 0x309F],
-  "30A0-30FF": [0x30A0, 0x30FF],
-  "3100-312F": [0x3100, 0x312F],
-  "3130-318F": [0x3130, 0x318F],
-  "3190-319F": [0x3190, 0x319F],
-  "31A0-31BF": [0x31A0, 0x31BF],
-  "31C0-31EF": [0x31C0, 0x31EF],
-  "31F0-31FF": [0x31F0, 0x31FF],
-  "3200-32FF": [0x3200, 0x32FF],
-  "3300-33FF": [0x3300, 0x33FF],
-  "4DC0-4DFF": [0x4DC0, 0x4DFF],
-  "A000-A48F": [0xA000, 0xA48F],
-  "A490-A4CF": [0xA490, 0xA4CF],
-  "A4D0-A4FF": [0xA4D0, 0xA4FF],
-  "A500-A63F": [0xA500, 0xA63F],
-  "A640-A69F": [0xA640, 0xA69F],
-  "A6A0-A6FF": [0xA6A0, 0xA6FF],
-  "A700-A71F": [0xA700, 0xA71F],
-  "A720-A7FF": [0xA720, 0xA7FF],
-  "A800-A82F": [0xA800, 0xA82F],
-  "A830-A83F": [0xA830, 0xA83F],
-  "A840-A87F": [0xA840, 0xA87F],
-  "A880-A8DF": [0xA880, 0xA8DF],
-  "A8E0-A8FF": [0xA8E0, 0xA8FF],
-  "A900-A92F": [0xA900, 0xA92F],
-  "A930-A95F": [0xA930, 0xA95F],
-  "A960-A97F": [0xA960, 0xA97F],
-  "A980-A9DF": [0xA980, 0xA9DF],
-  "A9E0-A9FF": [0xA9E0, 0xA9FF],
-  "AA00-AA5F": [0xAA00, 0xAA5F],
-  "AA60-AA7F": [0xAA60, 0xAA7F],
-  "AAE0-AAFF": [0xAAE0, 0xAAFF],
-  "AB00-AB2F": [0xAB00, 0xAB2F],
-  "AB30-AB6F": [0xAB30, 0xAB6F],
-  "AB70-ABBF": [0xAB70, 0xABBF],
-  "ABC0-ABFF": [0xABC0, 0xABFF],
-  "FB00-FB4F": [0xFB00, 0xFB4F],
-  "FB50-FDFF": [0xFB50, 0xFDFF],
-  "FE00-FE0F": [0xFE00, 0xFE0F],
-  "FE10-FE1F": [0xFE10, 0xFE1F],
-  "FE20-FE2F": [0xFE20, 0xFE2F],
-  "FE30-FE4F": [0xFE30, 0xFE4F],
-  "FE50-FE6F": [0xFE50, 0xFE6F],
-  "FE70-FEFF": [0xFE70, 0xFEFF],
-  "FF00-FFEF": [0xFF00, 0xFFEF],
-  "FFF0-FFFF": [0xFFF0, 0xFFFF]
-    };
-
-const container = document.getElementById("container");
-const notesTextarea = document.getElementById("notes");
-const copyBtn = document.getElementById("copy-btn");
-const clearBtn = document.getElementById("clear-btn");
-const copyMsg = document.getElementById("copy-message");
-const blockSelect = document.getElementById("block-select");
-const charCount = document.getElementById("char-count");
-const lineCount = document.getElementById("line-count");
-const loadingOverlay = document.getElementById("loading-overlay");
-
-function updateCounter() {
-  const text = notesTextarea.value;
-  const charLength = [...text].length; // Akurat, termasuk emoji
-  const lineLength = (text.match(/\n/g) || []).length + 1;
-  charCount.textContent = `${charLength} Karakter`;
-  lineCount.textContent = `${lineLength} Paragraf`;
-}
-
-function insertCharAtCaret(char) {
-  const textarea = notesTextarea;
-  const start = textarea.selectionStart;
-  const end = textarea.selectionEnd;
-
-  const chars = Array.from(textarea.value);
-  const before = chars.slice(0, [...Array.from(textarea.value.slice(0, start))].length);
-  const after = chars.slice([...Array.from(textarea.value.slice(0, end))].length);
-
-  const newChars = [...before, char, ...after];
-  const newValue = newChars.join('');
-  textarea.value = newValue;
-
-  const newPos = before.length + 1;
-  textarea.setSelectionRange(
-    [...newValue].slice(0, newPos).join('').length,
-    [...newValue].slice(0, newPos).join('').length
-  );
-
-  textarea.focus();
-  updateCounter();
-}
-
-
-function renderCharsFromString(label, chars) {
-  container.innerHTML = "";
-  const blockLabel = document.createElement("div");
-  blockLabel.textContent = `Blok: ${label}`;
-  blockLabel.className = "block-label";
-  container.appendChild(blockLabel);
-
-  for (const char of chars.split(" ")) {
-    const span = document.createElement("span");
-    span.className = "char key native-text";
-    span.textContent = char;
-    span.title = char;
-    span.addEventListener("click", (e) => {
-      e.preventDefault();
-      insertCharAtCaret(char);
-    });
-    container.appendChild(span);
-  }
-}
-
-function renderBlockByKey(blockKey) {
-  const [start, end] = unicodeBlocks[blockKey] || [];
-  if (start == null || end == null) return;
-
-  container.innerHTML = "";
-  const blockLabel = document.createElement("div");
-  blockLabel.textContent = `Blok: ${blockKey}`;
-  blockLabel.className = "block-label";
-  container.appendChild(blockLabel);
-
-  for (let code = start; code <= end; code++) {
-    if (code === 0xFEFF) continue;
-    const char = String.fromCodePoint(code);
-    const span = document.createElement("span");
-    span.className = "char";
-    span.textContent = char;
-    span.title = "U+" + code.toString(16).toUpperCase().padStart(4, '0');
-    span.addEventListener("click", (e) => {
-      e.preventDefault();
-      insertCharAtCaret(char);
-    });
-    container.appendChild(span);
-  }
-}
-
-blockSelect.addEventListener("change", () => {
-  const blockKey = blockSelect.value;
-  renderBlockByKey(blockKey);
-});
-
-copyBtn.addEventListener("click", () => {
-  if (!notesTextarea.value) return;
-  navigator.clipboard.writeText(notesTextarea.value)
-    .then(() => {
-      copyMsg.classList.remove("show");
-      void copyMsg.offsetWidth;
-      copyMsg.classList.add("show");
-      copyMsg.style.opacity = "1";
-      setTimeout(() => {
-        copyMsg.classList.remove("show");
-        copyMsg.style.opacity = "0";
-      }, 2000);
-    })
-    .catch(err => console.error("Copy gagal:", err));
-});
-
-clearBtn.addEventListener("click", () => {
-  notesTextarea.value = "";
-  updateCounter();
-});
-
-notesTextarea.addEventListener("input", updateCounter);
-
-async function init() {
-  loadingOverlay.style.display = "flex";
-  await new Promise(resolve => requestAnimationFrame(resolve));
-  await new Promise(resolve => setTimeout(resolve, 10));
-  renderAllDefault();
-  updateCounter();
-  loadingOverlay.style.display = "none";
-
-
-document.getElementById("btn-block25").addEventListener("click", () => {
-  renderCharsFromString("Simbol 25", "♻ ♲ ♼ ♽ ☢ ☮ ☯ ♾ ⚆ ⚇ ⚈ ⚉ ⍟ ✪ ✇ ⚙ ⛾ ⛿ ✆ ℗ ⌷ ⌸ ⌹ ⌺ ⌻ ⌼ ⌽ ⌾ ◘ ◦ ⦾ ⍉ ⦿ ☉ ☹ ❍ ☺ ☻ ☿ 〠 ㋡ ⛒ 유 ㋛ ℡ ℠ ™ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ® © ⛀ ⛁ ⛂ ⛃ ⦰ ⦱ ⦲ ⦳ ⦴ ⦵ ⦶ ⦷ ⦸ ⦹ ⦺ ⦻ ⦼ ⦽ ⦾ ⦿ ⧀ ⧁ ⧂ ⧃ ⨀ ⨁ ⨂ ⨶ ⨷ ⨸ ⨭ ⨮ 🜀 🜁 🜂 🜃 🜄 🜅 🜆 🜇 🜈 🜉 🜊 🜋 🜌 🜍 🜎 🜏 🜐 🜑 🜒 🜓 🜔 🜕 🜖 🜗 🜘 🜙 🜚 🜛 🜜 🜝 🜞 🜟 🜠 🜡 🜢 🜣 🜤 🜥 🜦 🜧 🜨 🜩 🜪 🜫 🜬 🜭 🜮 🜯 🜰 🜱 🜲 🜳 🜴 🜵 🜶 🜷 🜸 🜹 🜺 🜻 🜼 🜽 🜾 🜿 🝀 🝁 🝂 🝃 🝄 🝅 🝆 🝇 🝈 🝉 🝊 🝋 🝌 🝍 🝎 🝏 🝐 🝑 🝒 🝓 🝔 🝕 🝖 🝗 🝘 🝙 🝚 🝛 🝜 🝝 🝞 🝟 🝠 🝡 🝢 🝣 🝤 🝥 🝦 🝧 🝨 🝩 🝪 🝫 🝬 🝭 🝮 🝯 🝰 🝱 🝲")
-})
-
-
-document.getElementById("btn-block26").addEventListener("click", () => {
-  renderCharsFromString("Simbol 26", "㈀ ㈁ ㈂ ㈃ ㈄ ㈅ ㈆ ㈇ ㈈ ㈉ ㈊ ㈋ ㈌ ㈍ ㈎ ㈏ ㈐ ㈑ ㈒ ㈓ ㈔ ㈕ ㈖ ㈗ ㈘ ㈙ ㈚ ㈛ ㈜ ㈝ ㈞ ㈪ ㈫ ㈬ ㈭ ㈮ ㈯ ㈰ ㈱ ㈲ ㈳ ㈴ ㈵ ㈶ ㈷ ㈸ ㈹ ㈺ ㈻ ㈼ ㈽ ㈾ ㈿ ㉀ ㉁ ㉂ ㉃ ㉄ ㉅ ㉆ ㉇ ㉈ ㉉ ㉊ ㉋ ㉌ ㉍ ㉎ ㉏ ㉐ ㉠ ㉡ ㉢ ㉣ ㉤ ㉥ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭ ㉮ ㉯ ㉰ ㉱ ㉲ ㉳ ㉴ ㉵ ㉶ ㉷ ㉸ ㉹ ㉺ ㉻ ㉼ ㉽ ㉾ ㉿ ㊊ ㊋ ㊌ ㊍ ㊎ ㊏ ㊐ ㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊙ ㊚ ㊛ ㊜ ㊝ ㊞ ㊟ ㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯ ㊰ ㋀ ㋁ ㋂ ㋃ ㋄ ㋅ ㋆ ㋇ ㋈ ㋉ ㋊ ㋋ ㋌ ㋍ ㋎ ㋏ ㋐ ㋑ ㋒ ㋓ ㋔ ㋕ ㋖ ㋗ ㋘ ㋙ ㋚ ㋛ ㋜ ㋝ ㋞ ㋟ ㋠ ㋡ ㋢ ㋣ ㋤ ㋥ ㋦ ㋧ ㋨ ㋩ ㋪ ㋫ ㋬ ㋭ ㋮ ㋯ ㋰ ㋱ ㋲ ㋳ ㋴ ㋵ ㋶ ㋷ ㋸ ㋹ ㋺ ㋻ ㋼ ㋽ ㋾ ㌀ ㌁ ㌂ ㌃ ㌄ ㌅ ㌆ ㌇ ㌈ ㌉ ㌊ ㌋ ㌌ ㌍ ㌎ ㌏ ㌐ ㌑ ㌒ ㌓ ㌔ ㌕ ㌖ ㌗ ㌘ ㌙ ㌚ ㌛ ㌜ ㌝ ㌞ ㌟ ㌠ ㌡ ㌢ ㌣ ㌤ ㌥ ㌦ ㌧ ㌨ ㌩ ㌪ ㌫ ㌬ ㌭ ㌮ ㌯ ㌰ ㌱ ㌲ ㌳ ㌴ ㌵ ㌶ ㌷ ㌸ ㌹ ㌺ ㌻ ㌼ ㌽ ㌾ ㌿ ㍀ ㍁ ㍂ ㍃ ㍄ ㍅ ㍆ ㍇ ㍈ ㍉ ㍊ ㍋ ㍌ ㍍ ㍎ ㍏ ㍐ ㍑ ㍒ ㍓ ㍔ ㍕ ㍖ ㍗ ㍘ ㍙ ㍚ ㍛ ㍜ ㍝ ㍞ ㍟ ㍠ ㍡ ㍢ ㍣ ㍤ ㍥ ㍦ ㍧ ㍨ ㍩ ㍪ ㍫ ㍬ ㍭ ㍮ ㍯ ㍰ ㍱ ㍲ ㍳ ㍴ ㍵ ㍶ ㍷ ㍸ ㍹ ㍺ ㍻ ㍼ ㍽ ㍾ ㍿ ㎀ ㎁ ㎂ ㎃ ㎄ ㎅ ㎆ ㎇ ㎈ ㎉ ㎊ ㎋ ㎌ ㎍ ㎎ ㎏ ㎐ ㎑ ㎒ ㎓ ㎔ ㎕ ㎖ ㎗ ㎘ ㎙ ㎚ ㎛ ㎜ ㎝ ㎞ ㎟ ㎠ ㎡ ㎢ ㎣ ㎤ ㎥ ㎦ ㎧ ㎨ ㎩ ㎪ ㎫ ㎬ ㎭ ㎮ ㎯ ㎰ ㎱ ㎲ ㎳ ㎴ ㎵ ㎶ ㎷ ㎸ ㎹ ㎺ ㎻ ㎼ ㎽ ㎾ ㎿ ㏀ ㏁ ㏂ ㏃ ㏄ ㏅ ㏆ ㏇ ㏈ ㏉ ㏊ ㏋ ㏌ ㏍ ㏎ ㏏ ㏐ ㏑ ㏒ ㏓ ㏔ ㏕ ㏖ ㏗ ㏘ ㏙ ㏚ ㏛ ㏜ ㏝ ㏞ ㏟ ㏠ ㏡ ㏢ ㏣ ㏤ ㏥ ㏦ ㏧ ㏨ ㏩ ㏪ ㏫ ㏬ ㏭ ㏮ ㏯ ㏰ ㏱ ㏲ ㏳ ㏴ ㏵ ㏶ ㏷ ㏸ ㏹ ㏺ ㏻ ㏼ ㏽ ㏾ ㏿ ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻ 〄 〒 〓 〠 〶 〷 〾 〿 🈀 🈁 🈂 🈐 🈑 🈒 🈓 🈔 🈕 🈖 🈗 🈘 🈙 🈚 🈛 🈜 🈝 🈞 🈟 🈠 🈡 🈢 🈣 🈤 🈥 🈦 🈧 🈨 🈩 🈪 🈫 🈬 🈭 🈮 🈯 🈰 🈱 🈲 🈳 🈴 🈵 🈶 🈷 🈸 🈹 🈺 🉀 🉁 🉂 🉃 🉄 🉅 🉆 🉇 🉈 🉐 🉑 🄪 🄫 🄬 🄭 🄮 🅊 🅋 🅌 🅍 🅎 🅏 🆊 🆋 🆌 🆍 🆎 🆏 🆐 🆑 🆒 🆓 🆔 🆕 🆖 🆗 🆘 🆙")
-})
-
-document.getElementById("btn-block27").addEventListener("click", () => {
-  renderCharsFromString("Simbol 27", "✼ ✠ ☆ ★ ✡ ✴ ✺ ☼ ☸ ❋ ✽ ✻ ❆ ۞ ☀ ❃ ❂ ✿ ❀ ❁ ✲ ⋆ ⛤ ⛥ ⛦ ⛧ ❄ ❅ ❇ ❖ ✫ ✪ ✬ ✮ ✭ ✯ ✰ 𖤓 ❉ ✤ ✧ ✥ ✱ ✩ ✳ ✵ ✶ ✷ ✸ ✹ ✾ ❈ ❊ ♦ ♤ ♣ ♢ ♠ ◊ ♧ ♡ ♙ ♟ ♘ ♞ ♗ ♝ ♖ ♜ ♕ ♛ ♔ ♚ ⚀ ⚁ ⚂ ⚃ ⚄ ⚅ ♭ ♫ ♬ ♪ ♩ ✦ 𝄪 𝄆 𝄇 𝄈 𝄐 𝄑 𝄒 𝆒 𝆓 𝄫 𝄞 𝄢 𝄡 ⇆ ◁ ❚ ▷ ↻ ▶ ☰ ≡ Ξ ㊂ ≣ ⁝ ⋮ ︙ ⦙ ⁞ ⋯ … ∷ ▲ ▼ △ ▽ ⌃ ⌄ 𓃑 𓏧 ⸬ ⇍ ⇎ ⇏ ⇐ ⇑ ⇒ ⇓ ⇔ ⇕ ⇖ ⇗ ⇘ ⇙ ⇦ ⇧ ⇪ ⇫ ➔ ➙ ➘ ➚ « » ⇨ ⇚ ⇶ ⇵ ⇴ ⇳ ⇰ ⇯ ⇮ ⇭ ⇬ ⇩ ↨ ↧ ↦ ↥ ↤ ↣ ↢ ↡ ↠ ↟ ↞ ↝ ↜ ↛ ↚ ↙ ↘ ↗ ↖ ↕ ↮ ⇤ ⇥ ⇲ ⇞ ⇟ ↩ ↱ ↫ ↬ ⇝ ↰ ↲ ↳ ↴ ↵ ↯ ↷ ↺ ⇜ ↶ ↼ ↽ ↾ ↿ ⇀ ⇁ ⇂ ⇃ ⇄ ⇅ ⇇ ⇈ ⇉ ⇊ ➛ ➜ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ➶ ➵ ➳ ➴ ➲ ➱ ➯ ➾ ➽ ➭ ➬ ➼ ➻ ➫ ➪ ➺ ➹ ➩ ➨ ➸ ➷ ➧ ⃕ ⪡ ⨣ ◀ ▬ ☠ ✙ ✛ ✜ ✝ ✞ ✟ ✖ ✘ ✕ ✁ ✃ ✄ ✂ 웃 ‡ ﾒ ♀ ♂ ✚ ♱ ♰ ☩ ☨ ☦ ✟ † ☣ ¤ € £ Ұ ₴ $ ₰ ₪ ₤ ¥ ₳ ₲ ₵ 元 ₣ ₱ ฿ ₡ ₮ ₭ ₩ 円 ₢ ₥ ₫ ₦ zł ﷼ ₠ ₧ ₯ ₨ Kč र ƒ ₹ ✍ ☚ ☜ ☟ ☛ ☞ ☝ ✌ ¶ § ‰ ✒ ✑ ✐ ✏ ✎ x ✈ ✇ ⌨ ☏ ☎ ☊ ⅍ ℆ № ℅ ☂ ☃ ☽ ☾ ♁ ♨ ☇ ☈ ☄ ° ℃ ℉ ϟ ☐ ☑ ☒ ✓ ✔ ✗ ☓ ∨ √ • ‣ ⁃ ❞ ❝ ∛ ∜ ✅ ❎ 〥 ⍢ 〲 〴 ϡ ⍥ ⅟ ½ ⅓ ⅕ ⅙ ⅛ ⅔ ⅖ ⅚ ⅜ ¾ ⅗ ⅝ ⅞ ⅘ % ‱ 💕 ⌀ ⌂ ⌅ ⌆ ⌇ ⌈ ⌉ ⌊ ⌋ ⌌ ⌍ ⌎ ⌏ ⌐ ⌑ ⌒ ⌓ ⌔ ⌕ ⌖ ⌗ ⌘ ⌙ ⌚ ⌛ ⌜ ⌝ ⌞ ⌟ ⌠ ⌢ ⌣ ⌤ ⌥ ⌦ ⌧ ⌫ ⌬ ⌭ ⌮ ⌳ ⌯ ⌰ ⌱ ⌲ ⌴ ⌵ ⌶ ⌿ ⍀ ⍁ ⍂ ⍃ ⍄ ⍅ ⍆ ⍇ ⍈ ⍊ ⍋ ⍌ ⍍ ⍎ ⍏ ⍐ ⍑ ⍒ ⍓ ⍔ ⍕ ⍖ ⍗ ⍘ ⍙ ⍚ ⍛ ⍜ ⍝ ⍞ ⍠ ⍡ ⍢ ⍣ ⍤ ⍦ ⍧ ⍨ ⍩ 〶 ⛅ ☔ ⛄ ⚰ ☡ ⚠ ☤ ☥ ☧ ☪ ☫ ☬ ☭ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ♃ ♄ ♅ ♇ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ♮ ♯ ♿ ⚊ ⚋ ⚌ ⚍ ⚎ ⚏ ⚐ ⚑ ⚒ ⚓ ⚔ ⚕ ⚖ ⚗ ⚘ ⚚ ⚛ ⚜ ⚝ ⚞ ⚟ ⚡ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚪ ⚬ ⚭ ⚮ ⚯ ⚱ ⚲ ⚳ ⚴ ⚵ ⚶ ⚷ ⚸ ⚹ ⚺ ⚻ ⚼ ⚽ ⚾ ⚿ ⛇ ⛈ ⛆ ⛉ ⛊ ⛋ ⛌ ⛍ ⛎ ⛏ ⛐ ⛑ ⛓ ⛔ ⛕ ⛖ ⛗ ⛘ ⛙ ⛚ ⛛ ⛜ ⛝ ⛞ ⛟ ⛠ ⛡ ⛢ ⛣ ⛨ ⛩ ⛪ ⛫ ⛬ ⛭ ⛮ ⛯ ⛰ ⛱ ⛲ ⛳ ⛴ ⛵ ⛶ ⛷ ⛸ ⛹ ⛺ ⛻ ⛼ ⛽ ✉ ✊ ✋ ✌ ✎ ✨ ❌ ❏ ❐ ❑ ❒ ❓ ❔ ❕ ❗ ❘ ❙ ❛ ❜ ❟ ❠ ❡ ❢ ❣ ❤ ➕ ➖ ➗ ➘ ➝ ➞ ➟ ➮ ➰ ➿ ⟀ ⟁ ⟂ ⟃ ⟄ ⟅ ⟆ ⟇ ⟈ ⟉ ⟊ ⟋ ⟌ ⟍ ⟎ ⟏ ⟐ ⟑ ⟒ ⟓ ⟔ ⟕ ⟖ ⟗ ⟘ ⟙ ⟚ ⟛ ⟜ ⟝ ⟞ ⟟ ⟠ ⟡ ⟢ ⟣ ⟤ ⟥")
-})
-
-document.getElementById("btn-block13").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "䷀ ䷁ ䷂ ䷃ ䷄ ䷅ ䷆ ䷇ ䷈ ䷉ ䷊ ䷋ ䷌ ䷍ ䷎ ䷏ ䷐ ䷑ ䷒ ䷓ ䷔ ䷕ ䷖ ䷗ ䷘ ䷙ ䷚ ䷛ ䷜ ䷝ ䷞ ䷟ ䷠ ䷡ ䷢ ䷣ ䷤ ䷥ ䷦ ䷧ ䷨ ䷩ ䷪ ䷫ ䷬ ䷭ ䷮ ䷯ ䷰ ䷱ ䷲ ䷳ ䷴ ䷵ ䷶ ䷷ ䷸ ䷹ ䷺ ䷻ ䷼ ䷽ ䷾ ䷿ 𝌀 𝌁 𝌂 𝌃 𝌄 𝌅 𝌆 𝌇 𝌈 𝌉 𝌊 𝌋 𝌌 𝌍 𝌎 𝌏 𝌐 𝌑 𝌒 𝌓 𝌔 𝌕 𝌖 𝌗 𝌘 𝌙 𝌚 𝌛 𝌜 𝌝 𝌞 𝌟 𝌠 𝌡 𝌢 𝌣 𝌤 𝌥 𝌦 𝌧 𝌨 𝌩 𝌪 𝌫 𝌬 𝌭 𝌮 𝌯 𝌰 𝌱 𝌲 𝌳 𝌴 𝌵 𝌶 𝌷 𝌸 𝌹 𝌺 𝌻 𝌼 𝌽 𝌾 𝌿 𝍀 𝍁 𝍂 𝍃 𝍄 𝍅 𝍆 𝍇 𝍈 𝍉 𝍊 𝍋 𝍌 𝍍 𝍎 𝍏 𝍐 𝍑 𝍒 𝍓 𝍔 𝍖");
-});
-document.getElementById("btn-block24").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "▁ ▂ ▃ ▄ ▅ ▆ ▇ ▉ ▊ ▋ ▌ ▐ ▍ ▎ ▏ ▕ ░ ▒ ▓ ▔ ▀ █ ▖ ▗ ▘ ▙ ▚ ▛ ▜ ▝ ▞ ▟ ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏ ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟ ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯ ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿ ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╍ ╎ ╏ ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟ ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ ╭ ╮ ╯ ╰ ╱ ╲ ╳ ╴ ╵ ╶ ╷ ╸ ╹ ╺ ╻ ╼ ╽ ╾ ╿ ▬ ❘ ❙ ❚ ❒ ❑ ❐ ❏ ⍰ ◆ ◇ ◈ 〓 ⊡ ⊠ ⊟ ⊞ □ ■ ∎ ◫ ◪ ◩ ◧ ▢ ▣ ▤ ▥ ▦ ▧ ▨ ▩ ▪ ▫ ▭ ▮ ▯ ☰ ☲ ☳ ▰ ▱ ◄ ► ▲ ▼ ◀ ▶ ◣ ◥ ◤ ◢ ◂ ▸ ▾ ▴ ◁ ▷ △ ▽ ∆ ∇ ⊲ ⊳ ⊴ ⊵ ◅ ▻ ▵ ▿ ◃ ▹ ◭ ◮ ⫷ ⫸ ⋖ ⋗ ⋪ ⋫ ⋬ ⋭ ⊿ ◬ ≜ ⑅ ◿ ◸ ◹ ◺ ◻ ◼ ◽ ◾ ◿ ○ ◌ ◍ ◎ ● ◐ ◑ ◒ ◓ ◔ ◕ ◖ ◗ ◘ ◙ ◚ ◛ ◜ ◝ ◞ ◟ ◠ ◡ ◦ ◨ ◫ ◬ ◭ ◮ ◯ ◰ ◱ ◲ ◳ ◴ ◵ ◶ 〒 ⊢ ⊣ ⊤ ⊥ ╭ ╮ ╯ ╰ ⊦ ⊧ ⊨ ⊩ ⊪ ⊫ ⊬ ⊭ ⊮ ⊯ ⊺ 〦 〧 〨 ˦ ˧ ˨ ⑁ ⑂ ∟ ⑃ ﹉ ⑇ ﹊ ﹎ ︲ ⑆ ⑇ ⑈ ⑉ ⑊ ⑄ ⑀ ︴ ﹏ ﹌ ﹋ │ ┃ ╽ ╿ ╏ ║ ╎ ┇ ︱ ┊ ︳ ┋ ┆ ╵ 〡 〢 ╹ ╍ ╷ 〣 ━ ─ ╍ ┅ ┉ ┄ ┈ ╌ ╴ ╶ ╸ ╺ ╼ ╾ ◷");
-});
-document.getElementById("btn-block20").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "🀀 🀁 🀂 🀃 🀄 🀅 🀆 🀇 🀈 🀉 🀊 🀋 🀌 🀍 🀎 🀏 🀐 🀑 🀒 🀓 🀔 🀕 🀖 🀗 🀘 🀙 🀚 🀛 🀜 🀝 🀞 🀟 🀠 🀡 🀢 🀣 🀤 🀥 🀦 🀧 🀨 🀩 🀪 🀫 🀰 🀱 🀲 🀳 🀴 🀵 🀶 🀷 🀸 🀹 🀺 🀻 🀼 🀽 🀾 🀿 🁀 🁁 🁂 🁃 🁄 🁅 🁆 🁇 🁈 🁉 🁊 🁋 🁌 🁍 🁎 🁏 🁐 🁑 🁒 🁓 🁔 🁕 🁖 🁗 🁘 🁙 🁚 🁛 🁜 🁝 🁞 🁟 🁠 🁡 🁢 🁣 🁤 🁥 🁦 🁧 🁨 🁩 🁪 🁫 🁬 🁭 🁮 🁯 🁰 🁱 🁲 🁳 🁴 🁵 🁶 🁷 🁸 🁹 🁺 🁻 🁼 🁽 🁾 🁿 🂀 🂁 🂂 🂃 🂄 🂅 🂆 🂇 🂈 🂉 🂊 🂋 🂌 🂍 🂎 🂏 🂐 🂑 🂒 🂓 🂠 🂡 🂢 🂣 🂤 🂥 🂦 🂧 🂨 🂩 🂪 🂫 🂬 🂭 🂮 🂱 🂲 🂳 🂴 🂵 🂶 🂷 🂸 🂹 🂺 🂻 🂼 🂽 🂾 🃁 🃂 🃃 🃄 🃅 🃆 🃇 🃈 🃉 🃊 🃋 🃌 🃍 🃎 🃑 🃒 🃓 🃔 🃕 🃖 🃗 🃘 🃙 🃚 🃛");
-});
-document.getElementById("btn-block6").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "☰ ≡ Ξ ㊂ ≣ ⁝ 𓃑 ⇶ ☚ ☜ ☟ ☛ ☞ ✒ ✑ ✐ ✏ ✎ x ✈ ✇ ⌨ ☏ ☎ ☊ ⅍ ℆ № ℅ ☂ ☃ ☽ ☾ ♁ ♨ ☇ ☈ ☄ ° ℃ ℉ ϟ ☐ ☑ ☒ ✓ ✔ ✗ ☓ ∨ √ ⌂ ⌒ ⌓ ⌔ ⌕ ⌖ ⌦ ⌧ ⌫ ⌬ ⌭ ⌮ ⌳ ⌯ ⌰ ⌱ ⌲ ⌴ ⌵ ⌶ ⌿ ⍀ ⍁ ⍞ ⍠ ⍡ ⍢ ⍣ ⍤ ⍦ ⍧ ⍨ ⍩ 〶 ⚰ ☡ ⚠ ☤ ☥ ☧ ☪ ☫ ☬ ☭ ♃ ♄ ♅ ♇ ♮ ♯ ♿ ⚐ ⚑ ⚒ ⚘ ⚝ ⚞ ⚟ ⚡ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚬ ⚭ ⚮ ⚯ ⚱ ⚲ ⚳ ⚴ ⚵ ⚶ ⚷ ⚸ ⚹ ⚿ ⛇ ⛈ ⛆ ⛉ ⛊ ⛋ ⛌ ⛍ ⛐ ⛑ ⛓ ⛕ ⛖ ⛗ ⛘ ⛙ ⛚ ⛛ ⛜ ⛝ ⛞ ⛟ ⛠ ⛡ ⛢ ⛣ ⛨ ⛩ ⛪ ⛫ ⛬ ⛭ ⛮ ⛯ ⛰ ⛱ ⛻ ⛼ ✉ ➮ ⟀ ⟁ ⟂ ⟃ ⟄ ⟅ ⟆ ⟇ ⟈ ⟉ ⟊ ⟋ ⟌ ⟍ ⟎ ⟏ ⟐ ⟑ ⟒ ⟓ ⟔ ⟕ ⟖ ⟗ ⟘ ⟙ ⟚ ⟛ ⟜ ⟝ ⟞ ⟟ ⟠ ⟡ ⟢ ⟣ ⟤ ⟥ ⍂ ⍃ ⍄ ⍅ ⍆ ⍇ ⍈ ⍊ ⍋ ⍌ ⍍ ⍎ ⍏ ⍐ ⍑ ⍒ ⍓ ⍔ ⍕ ⍖ ⍗ ⍘ ⍙ ⍚ ⍛ ⍜ ⍝ ⛾ ⛿ ✆ ℗ ⌷ ⌸ ⌹ ⌺ ⌻ ⌼");
-});
-document.getElementById("btn-block9").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "⠀ ⠁ ⠂ ⠃ ⠄ ⠅ ⠆ ⠇ ⠈ ⠉ ⠊ ⠋ ⠌ ⠍ ⠎ ⠏ ⠐ ⠑ ⠒ ⠓ ⠔ ⠕ ⠖ ⠗ ⠘ ⠙ ⠚ ⠛ ⠜ ⠝ ⠞ ⠟ ⠠ ⠡ ⠢ ⠣ ⠤ ⠥ ⠦ ⠧ ⠨ ⠩ ⠪ ⠫ ⠬ ⠭ ⠮ ⠯ ⠰ ⠱ ⠲ ⠳ ⠴ ⠵ ⠶ ⠷ ⠸ ⠹ ⠺ ⠻ ⠼ ⠽ ⠾ ⠿ ⡀ ⡁ ⡂ ⡃ ⡄ ⡅ ⡆ ⡇ ⡈ ⡉ ⡊ ⡋ ⡌ ⡍ ⡎ ⡏ ⡐ ⡑ ⡒ ⡓ ⡔ ⡕ ⡖ ⡗ ⡘ ⡙ ⡚ ⡛ ⡜ ⡝ ⡞ ⡟ ⡠ ⡡ ⡢ ⡣ ⡤ ⡥ ⡦ ⡧ ⡨ ⡩ ⡪ ⡫ ⡬ ⡭ ⡮ ⡯ ⡰ ⡱ ⡲ ⡳ ⡴ ⡵ ⡶ ⡷ ⡸ ⡹ ⡺ ⡻ ⡼ ⡽ ⡾ ⡿ ⢀ ⢁ ⢂ ⢃ ⢄ ⢅ ⢆ ⢇ ⢈ ⢉ ⢊ ⢋ ⢌ ⢍ ⢎ ⢏ ⢐ ⢑ ⢒ ⢓ ⢔ ⢕ ⢖ ⢗ ⢘ ⢙ ⢚ ⢛ ⢜ ⢝ ⢞ ⢟ ⢠ ⢡ ⢢ ⢣ ⢤ ⢥ ⢦ ⢧ ⢨ ⢩ ⢪ ⢫ ⢬ ⢭ ⢮ ⢯ ⢰ ⢱ ⢲ ⢳ ⢴ ⢵ ⢶ ⢷ ⢸ ⢹ ⢺ ⢻ ⢼ ⢽ ⢾ ⢿ ⣀ ⣁ ⣂ ⣃ ⣄ ⣅ ⣆ ⣇ ⣈ ⣉ ⣊ ⣋ ⣌ ⣍ ⣎ ⣏ ⣐ ⣑ ⣒ ⣓ ⣔ ⣕ ⣖ ⣗ ⣘ ⣙ ⣚ ⣛ ⣜ ⣝ ⣞ ⣟ ⣠ ⣡ ⣢ ⣣ ⣤ ⣥ ⣦ ⣧ ⣨ ⣩ ⣪ ⣫ ⣬ ⣭ ⣮ ⣯ ⣰ ⣱ ⣲ ⣳ ⣴ ⣵ ⣶ ⣷ ⣸ ⣹ ⣺ ⣻ ⣼ ⣽ ⣾ ⣿");
-});
-
-document.getElementById("btn-block119").addEventListener("click", () => {
-  renderCharsFromString("Simbol", `A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i k j l m n o p q r s t u v w x y z 1 2 3 4 5 6 7 8 9 0 @ # $ _ & - + ( ) / * " ' : ; ! ? ~ \` | • √ π ÷ × ¶ ∆ £ ¢ € ¥ ^ ° = { } \\ % © ® ™ ✓ [ ]`);
-});
-
-document.getElementById("btn-block16").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝀀 𝀁 𝀂 𝀃 𝀄 𝀅 𝀆 𝀇 𝀈 𝀉 𝀊 𝀋 𝀌 𝀍 𝀎 𝀏 𝀐 𝀑 𝀒 𝀓 𝀔 𝀕 𝀖 𝀗 𝀘 𝀙 𝀚 𝀛 𝀜 𝀝 𝀞 𝀟 𝀠 𝀡 𝀢 𝀣 𝀤 𝀥 𝀦 𝀧 𝀨 𝀩 𝀪 𝀫 𝀬 𝀭 𝀮 𝀯 𝀰 𝀱 𝀲 𝀳 𝀴 𝀵 𝀶 𝀷 𝀸 𝀹 𝀺 𝀻 𝀼 𝀽 𝀾 𝀿 𝁀 𝁁 𝁂 𝁃 𝁄 𝁅 𝁆 𝁇 𝁈 𝁉 𝁊 𝁋 𝁌 𝁍 𝁎 𝁏 𝁐 𝁑 𝁒 𝁓 𝁔 𝁕 𝁖 𝁗 𝁘 𝁙 𝁚 𝁛 𝁜 𝁝 𝁞 𝁟 𝁠 𝁡 𝁢 𝁣 𝁤 𝁥 𝁦 𝁧 𝁨 𝁩 𝁪 𝁫 𝁬 𝁭 𝁮 𝁯 𝁰 𝁱 𝁲 𝁳 𝁴 𝁵 𝁶 𝁷 𝁸 𝁹 𝁺 𝁻 𝁼 𝁽 𝁾 𝁿 𝂀 𝂁 𝂂 𝂃 𝂄 𝂅 𝂆 𝂇 𝂈 𝂉 𝂊 𝂋 𝂌 𝂍 𝂎 𝂏 𝂐 𝂑 𝂒 𝂓 𝂔 𝂕 𝂖 𝂗 𝂘 𝂙 𝂚 𝂛 𝂜 𝂝 𝂞 𝂟 𝂠 𝂡 𝂢 𝂣 𝂤 𝂥 𝂦 𝂧 𝂨 𝂩 𝂪 𝂫 𝂬 𝂭 𝂮 𝂯 𝂰 𝂱 𝂲 𝂳 𝂴 𝂵 𝂶 𝂷 𝂸 𝂹 𝂺 𝂻 𝂼 𝂽 𝂾 𝂿 𝃀 𝃁 𝃂 𝃃 𝃄 𝃅 𝃆 𝃇 𝃈 𝃉 𝃊 𝃋 𝃌 𝃍 𝃎 𝃏 𝃐 𝃑 𝃒 𝃓 𝃔 𝃕 𝃖 𝃗 𝃘 𝃙 𝃚 𝃛 𝃜 𝃝 𝃞 𝃟 𝃠 𝃡 𝃢 𝃣 𝃤 𝃥 𝃦 𝃧 𝃨 𝃩 𝃪 𝃫 𝃬 𝃭 𝃮 𝃯 𝃰 𝃱 𝃲 𝃳 𝃴 𝃵 𝄀 𝄁 𝄂 𝄃 𝄄 𝄅 𝄆 𝄇 𝄈 𝄉 𝄊 𝄋 𝄌 𝄍 𝄎 𝄏 𝄐 𝄑 𝄒 𝄓 𝄔 𝄕 𝄖 𝄗 𝄘 𝄙 𝄚 𝄛 𝄜 𝄝 𝄞 𝄟 𝄠 𝄡 𝄢 𝄣 𝄤 𝄥 𝄦 𝄩 𝄪 𝄫 𝄬 𝄭 𝄮 𝄯 𝄰 𝄱 𝄲 𝄳 𝄴 𝄵 𝄶 𝄷 𝄸 𝄹 𝄺 𝄻 𝄼 𝄽 𝄾 𝄿 𝅀 𝅁 𝅂 𝅃 𝅄 𝅅 𝅆 𝅇 𝅈 𝅉 𝅊 𝅋 𝅌 𝅍 𝅎 𝅏 𝅐 𝅑 𝅒 𝅓 𝅔 𝅕 𝅖 𝅗 𝅘 𝅙 𝅚 𝅛 𝅜 𝅝 𝅗𝅥 𝅘𝅥 𝅘𝅥𝅮 𝅘𝅥𝅯 𝅘𝅥𝅰 𝅘𝅥𝅱 𝅘𝅥𝅲 𝅥 𝅦 𝅧 𝅨 𝅩 𝅪 𝅫 𝅬 𝅭 𝅮 𝅯 𝅰 𝅱 𝅲 𝅻 𝅼 𝅽 𝅾 𝅿 𝆀 𝆁 𝆂 𝆃 𝆄 𝆅 𝆆 𝆇 𝆈 𝆉 𝆊 𝆋 𝆌 𝆍 𝆎 𝆏 𝆐 𝆑 𝆒 𝆓 𝆔 𝆕 𝆖 𝆗 𝆘 𝆙 𝆚 𝆛 𝆜 𝆝 𝆞 𝆟 𝆠 𝆡 𝆢 𝆣 𝆤 𝆥 𝆦 𝆧 𝆨 𝆩 𝆪 𝆫 𝆬 𝆭 𝆮 𝆯 𝆰 𝆱 𝆲 𝆳 𝆴 𝆵 𝆶 𝆷 𝆸 𝆹 𝆺 𝆹𝅥 𝆺𝅥 𝆹𝅥𝅮 𝆺𝅥𝅮 𝆹𝅥𝅯 𝆺𝅥𝅯 𝇁 𝇂 𝇃 𝇄 𝇅 𝇆 𝇇 𝇈 𝇉 𝇊 𝇋 𝇌 𝇍 𝇎 𝇏 𝇐 𝇑 𝇒 𝇓 𝇔 𝇕 𝇖 𝇗 𝇘 𝇙 𝇚 𝇛 𝇜 𝇝");
-});
-document.getElementById("btn-block17").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "❨ ❩ ❪ ❫ ❬ ❭ ❮ ❯ ❰ ❱ ❲ ❳ ❴ ❵ ⟦ ⟧ ⟨ ⟩ ⟪ ⟫ ⦃ ⦄ ⦅ ⦆ ⦇ ⦈ ⦉ ⦊ ⦋ ⦌ ⦍ ⦎ ⦏ ⦐ ⦑ ⦒ ⦓ ⦔ ⦕ ⦖ ⦗ ⦘ ⦙ ⦚ ⦛ ⦜ ⦝ ⥏ ⥑ ⦞ ⦟ ⦠ ⦡ ⦢ ⦣ ⦤ ⦥ ⦦ ⦧ ⦨ ⦩ ⦪ ⦫ ⦬ ⦭ ⦮ ⦯ ⦰ ⦱ ⦲ ⦳ ⦴ ⦵ ⦶ ⦷ ⦸ ⦹ ⦺ ⦻ ⦼ ⦽ ⦾ ⦿ ⧀ ⧁ ⧂ ⧃ ⧄ ⧅ ⧆ ⧇ ⧈ ⧉ ⧊ ⧋ ⧌ ⧍ ⧎ ⧏ ⧐ ⧑ ⧒ ⧓ ⧔ ⧕ ⧖ ⧗ ⧘ ⧙ ⧚ ⧛ ⧜ ⧝ ⧞ ⧟ ⧠ ⧡ ⧢ ⧣ ⧤ ⧥ ⧦ ⧧ ⧨ ⧩ ⧪ ⧫ ⧬ ⧭ ⧮ ⧯ ⧰ ⧱ ⧲ ⧳ ⧴ ⧵ ⧶ ⧷ ⧸ ⧹ ⧺ ⧻ ⧼ ⧽ ⧾ ⧿ ⨀ ⨁ ⨂ ⨃ ⨄ ⨅ ⨆ ⨇ ⨈ ⨉ ⨊ ⨋ ⨌ ⨍ ⨎ ⨏ ⨐ ⨑ ⨒ ⨓ ⨔ ⨕ ⨖ ⨗ ⨘ ⨙ ⨚ ⨛ ⨜ ⨝ ⨞ ⨟ ⨠ ⨡ ⨢ ⨣ ⨤ ⨥ ⨦ ⨧ ⨨ ⨩ ⨪ ⨫ ⨬ ⨭ ⨮ ⨯ ⨰ ⨱ ⨲ ⨳ ⨴ ⨵ ⨶ ⨷ ⨸ ⨹ ⨺ ⨻ ⨼ ⨽ ⨾ ⨿ ⩀ ⩁ ⩂ ⩃ ⩄ ⩅ ⩆ ⩇ ⩈ ⩉ ⩊ ⩋ ⩌ ⩍ ⩎ ⩏ ⩐ ⩑ ⩒ ⩓ ⩔ ⩕ ⩖ ⩗ ⩘ ⩙ ⩚ ⩛ ⩜ ⩝ ⩞ ⩟ ⩠ ⩡ ⩢ ⩣ ⩤ ⩥ ⩦ ⩧ ⩨ ⩩ ⩪ ⩫ ⩬ ⩭ ⩮ ⩯ ⩰ ⩱ ⩲ ⩳ ⩴ ⩵ ⩶ ⩷ ⩸ ⩹ ⩺ ⩻ ⩼ ⩽ ⩾ ⩿ ⪀ ⪁ ⪂ ⪃ ⪄ ⪅ ⪆ ⪇ ⪈ ⪉ ⪊ ⪋ ⪌ ⪍ ⪎ ⪏ ⪐ ⪑ ⪒ ⪓ ⪔ ⪕ ⪖ ⪗ ⪘ ⪙ ⪚ ⪛ ⪜ ⪝ ⪞ ⪟ ⪠ ⪡ ⪢ ⪣ ⪤ ⪥ ⪦ ⪧ ⪨ ⪩ ⪪ ⪫ ⪬ ⪭ ⪮ ⪯ ⪰ ⪱ ⪲ ⪳ ⪴ ⪵ ⪶ ⪷ ⪸ ⪹ ⪺ ⪻ ⪼ ⪽ ⪾ ⪿ ⫀ ⫁ ⫂ ⫃ ⫄ ⫅ ⫆ ⫇ ⫈ ⫉ ⫊ ⫋ ⫌ ⫍ ⫎ ⫏ ⫐ ⫑ ⫒ ⫓ ⫔ ⫕ ⫖ ⫗ ⫘ ⫙ ⫚ ⫛ ⫝̸ ⫝ ⫞ ⫟ ⫠ ⫡ ⫢ ⫣ ⫤ ⫥ ⫦ ⫧ ⫨ ⫩ ⫪ ⫫ ⫬ ⫭ ⫮ ⫯ ⫰ ⫱ ⫲ ⫳ ⫴ ⫵ ⫶ ⫷ ⫸ ⫹ ⫺ ⫻ ⫼ ⫽ ⫾ ⫿ ⬀ ⬁ ⬂ ⬃ ⬄ ⬅ ⬆ ⬇ ⬈ ⬉ ⬊ ⬋ ⬌ ⬍ ⬎ ⬏ ⬐ ⬑ ⬒ ⬓ ⬔ ⬕ ⬖ ⬗ ⬘ ⬙ ⬚ ⬛ ⬜ ⬝ ⬞ ⬟ ⬠ ⬡ ⬢ ⬣ ⬤ ⬥ ⬦ ⬧ ⬨ ⬩ ⬪ ⬫ ⬬ ⬭ ⬮ ⬯ ⬰ ⬱ ⬲ ⬳ ⬴ ⬵ ⬶ ⬷ ⬸ ⬹ ⬺ ⬻ ⬼ ⬽ ⬾ ⬿ ⭀ ⭁ ⭂ ⭃ ⭄ ⭅ ⭆ ⭇ ⭈ ⭉ ⭊ ⭋ ⭌ ⭐ ⭑ ⭒ ⭓ ⭔ ⭕ ⭖ ⭗ ⭘ ⭙ ⸀ ⸁ ⸂ ⸃ ⸄ ⸅ ⸆ ⸇ ⸈ ⸉ ⸊ ⸋ ⸌ ⸍ ⸎ ⸏ ⸐ ⸑ ⸒ ⸓ ⸔ ⸕ ⸖ ⸗ ⸘ ⸙ ⸚ ⸛ ⸜ ⸝ ⸞ ⸟ ⸠ ⸡ ⸢ ⸣ ⸤ ⸥ ⸦ ⸧ ⸨ ⸩ ⸪ ⸫ ⸬ ⸭ ⸮ ⸯ ⸰ ⸱ ⸲ ⸳ ⸴ ⸵ ⸶ ⸷ ⸸ ⸹ ⸺ ⸻ 〈 〉 ⤀ ⤁ ⤂ ⤃ ⤄ ⤅ ⤆ ⤇ ⤈ ⤉ ⤊ ⤋ ⤌ ⤍ ⤎ ⤏ ⤐ ⤑ ⤒ ⤓ ⤔ ⤕ ⤖ ⤗ ⤘ ⤙ ⤚ ⤛ ⤜ ⤝ ⤞ ⤟ ⤠ ⤡ ⤢ ⤣ ⤤ ⤥ ⤦ ⤧ ⤨ ⤩ ⤪ ⤫ ⤬ ⤭ ⤮ ⤯ ⤰ ⤱ ⤲ ⤳ ⤴ ⤵ ⤶ ⤷ ⤸ ⤹ ⤺ ⤻ ⤼ ⤽ ⤾ ⤿ ⥀ ⥁ ⥂ ⥃ ⥄ ⥅ ⥆ ⥇ ⥈ ⥉ ⥊ ⥋ ⥌ ⥍ ⥎ ⥏ ⥐ ⥑ ⥒ ⥓ ⥔ ⥕ ⥖ ⥗ ⥘ ⥙ ⥚ ⥛ ⥜ ⥝ ⥞ ⥟ ⥠ ⥡ ⥢ ⥣ ⥤ ⥥ ⥦ ⥧ ⥨ ⥩ ⥪ ⥫ ⥬ ⥭ ⥮ ⥯ ⥰ ⥱ ⥲ ⥳ ⥴ ⥵ ⥶ ⥷ ⥸ ⥹ ⥺ ⥻ ⥼ ⥽ ⥾ ⥿ ⦀ ⦁ ⦂");
-});
-document.getElementById("btn-block1").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "🅐 🅑 🅒 🅓 🅔 🅕 🅖 🅗 🅘 🅙 🅚 🅛 🅜 🅝 🅞 🅟 🅠 🅡 🅢 🅣 🅤 🅥 🅦 🅧 🅨 🅩 Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ");
-});
-document.getElementById("btn-block2").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "⓿ ❶ ❷ ❸ ❹ ❺ ❻ ❼ ❽ ❾ ❿ ⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓴ ⓪ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ ⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾ ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇ ０ １ ２ ３ ４ ５ ６ ７ ８ ９ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛ ↉ ½ ⅓ ¼ ⅕ ⅙ ⅐ ⅛ ⅑ ⅒ ⅔ ⅖ ¾ ⅗ ⅜ ⅘ ⅚ ⅝ ⅞ ㊊ ㊋ ㊌ ㊍ ㊎ ㊏ ㊐ ㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊜ ㊝ ㊞ ㊟ ㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯ ㊰ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ♺ ♻ ♼ ♽");
-});
-document.getElementById("btn-block3").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "🅰 🅱 🅲 🅳 🅴 🅵 🅶 🅷 🅸 🅹 🅻 🅼 🅽 🅾 🅿 🆀 🆁 🆂 🆃 🆄 🆅 🆆 🆇 🆈 🆉 🄰 🄱 🄲 🄳 🄴 🄵 🄶 🄷 🄸 🄹 🄺 🄻 🄼 🄽 🄾 🄿 🅀 🅁 🅂 🅃 🅄 🅅 🅆 🅇 🅈 🅉 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿺ ⿺ ⿻");
-});
-document.getElementById("btn-block4").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "🄐 🄑 🄒 🄓 🄔 🄕 🄖 🄗 🄘 🄙 🄚 🄛 🄜 🄝 🄞 🄟 🄠 🄡 🄢 🄣 🄤 🄥 🄦 🄧 🄨 🄩 🄪 ⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵");
-});
-document.getElementById("btn-block5").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "Ａ Ｂ Ｃ Ｄ Ｅ Ｆ Ｇ Ｈ Ｉ Ｊ Ｋ Ｌ Ｍ Ｎ Ｏ Ｐ Ｑ Ｒ Ｓ Ｔ Ｕ Ｖ Ｗ Ｘ Ｙ Ｚ ａ ｂ ｃ ｄ ｅ ｆ ｇ ｈ ｉ ｊ ｋ ｌ ｍ ｎ ｏ ｐ ｑ ｒ ｓ ｔ ｕ ｖ ｗ ｘ ｙ ｚ ＠ ＃ ＄ ％ ＆ － ⏤ ￣ ＿ ﹏ ﹋ ︵ ︶ ＼ ／ ＋ （ ） ＜ ＞ ⧹ ⧸ ［ ］ ０ １ ２ ３ ４ ５ ６ ７ ８ ９");
-});
-
-
-document.getElementById("btn-block7").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝓐 𝓑 𝓒 𝓓 𝓔 𝓕 𝓖 𝓗 𝓘 𝓙 𝓚 𝓛 𝓜 𝓝 𝓞 𝓟 𝓠 𝓡 𝓢 𝓣 𝓤 𝓥 𝓦 𝓧 𝓨 𝓩 𝓪 𝓫 𝓬 𝓭 𝓮 𝓯 𝓰 𝓱 𝓲 𝓳 𝓴 𝓵 𝓶 𝓷 𝓸 𝓹 𝓺 𝓻 𝓼 𝓽 𝓾 𝓿 𝓼 𝔀 𝔁 𝔂 𝔃 𝒜 ℬ 𝒞 𝒟 ℰ ℱ 𝒢 ℋ ℐ 𝒥 𝒦 ℒ ℳ 𝒩 𝒪 𝒫 𝒬 ℛ 𝒮 𝒯 𝒰 𝒱 𝒲 𝒳 𝒴 𝒵 𝒶 𝒷 𝒸 𝒹 ℯ 𝒻 ℊ 𝒽 𝒾 𝒿 𝓀 𝓁 𝓂 𝓃 ℴ 𝓅 𝓆 𝓇 𝓈 𝓉 𝓊 𝓋 𝓌 𝓍 𝓎 𝓏");
-});
-document.getElementById("btn-block8").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝑨 𝑩 𝑪 𝑫 𝑬 𝑭 𝑮 𝑯 𝑰 𝑱 𝑲 𝑳 𝑴 𝑵 𝑶 𝑷 𝑸 𝑹 𝑺 𝑻 𝑼 𝑽 𝑾 𝑿 𝒀 𝒁 𝒂 𝒃 𝒄 𝒅 𝒆 𝒇 𝒈 𝒉 𝒊 𝒋 𝒌 𝒍 𝒎 𝒏 𝒐 𝒑 𝒒 𝒓 𝒔 𝒕 𝒖 𝒗 𝒘 𝒙 𝒚 𝒛 𝐴 𝐵 𝐶 𝐷 𝐸 𝐹 𝐺 𝐻 𝐼 𝐽 𝐾 𝐿 𝑀 𝑁 𝑂 𝑃 𝑅 𝑆 𝑇 𝑈 𝑉 𝑊 𝑋 𝑌 𝑍 𝑎 𝑏 𝑐 𝑑 𝑒 𝑓 𝑔 ℎ 𝑖 𝑗 𝑘 𝑙 𝑚 𝑛 𝑜 𝑝 𝑞 𝑟 𝑠 𝑡 𝑢 𝑣 𝑤 𝑥 𝑦 𝑧");
-});
-document.getElementById("btn-block11").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝘼 𝘽 𝘾 𝘿 𝙀 𝙁 𝙂 𝙃 𝙄 𝙅 𝙆 𝙇 𝙈 𝙉 𝙊 𝙋 𝙌 𝙍 𝙎 𝙏 𝙐 𝙑 𝙒 𝙓 𝙔 𝙕 𝙖 𝙗 𝙘 𝙙 𝙚 𝙛 𝙜 𝙝 𝙞 𝙟 𝙠 𝙡 𝙢 𝙣 𝙤 𝙥 𝙦 𝙧 𝙨 𝙩 𝙪 𝙫 𝙬 𝙭 𝙮 𝙯 𝘈 𝘉 𝘊 𝘋 𝘌 𝘍 𝘎 𝘏 𝘐 𝘑 𝘒 𝘓 𝘔 𝘕 𝘖 𝘗 𝘘 𝘙 𝘚 𝘛 𝘜 𝘝 𝘞 𝘟 𝘠 𝘡 𝘢 𝘣 𝘤 𝘥 𝘦 𝘧 𝘨 𝘩 𝘪 𝘫 𝘬 𝘭 𝘮 𝘯 𝘰 𝘱 𝘲 𝘳 𝘴 𝘵 𝘶 𝘷 𝘸 𝘹 𝘺 𝘻");
-});
-document.getElementById("btn-block12").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝗔 𝗕 𝗖 𝗗 𝗘 𝗙 𝗚 𝗛 𝗜 𝗝 𝗞 𝗟 𝗠 𝗡 𝗢 𝗣 𝗤 𝗥 𝗦 𝗧 𝗨 𝗩 𝗪 𝗫 𝗬 𝗭 𝗮 𝗯 𝗰 𝗱 𝗲 𝗳 𝗴 𝗵 𝗶 𝗷 𝗸 𝗹 𝗺 𝗻 𝗼 𝗽 𝗾 𝗿 𝘀 𝘁 𝘂 𝘃 𝘄 𝘅 𝘆 𝘇");
-});
-document.getElementById("btn-block14").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝕬 𝖁 𝕮 𝕯 𝕰 𝕱 𝕲 𝕳 𝕴 𝕵 𝕶 𝕷 𝕸 𝕹 𝕺 𝕻 𝕼 𝕽 𝕾 𝕿 𝖀 𝖁 𝖂 𝖃 𝖄 𝖅 𝖆 𝖇 𝖈 𝖉 𝖊 𝖋 𝖌 𝖍 𝖎 𝖏 𝖐 𝖑 𝖒 𝖓 𝖔 𝖕 𝖖 𝖗 𝖘 𝖙 𝖚 𝖛 𝖜 𝖝 𝖞 𝖟 𝔄 𝔅 ℭ 𝔇 𝔈 𝔉 𝔊 ℌ ℑ 𝔍 𝔎 𝔏 𝔐 𝔑 𝔒 𝔓 𝔔 ℜ 𝔖 𝔗 𝔘 𝔙 𝔚 𝔛 𝔜 ℨ 𝔞 𝔟 𝔠 𝔡 𝔢 𝔣 𝔤 𝔥 𝔦 𝔧 𝔨 𝔩 𝔪 𝔫 𝔬 𝔭 𝔮 𝔯 𝔰 𝔱 𝔲 𝔳 𝔴 𝔵 𝔶 𝔷");
-});
-document.getElementById("btn-block10").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝐀 𝐁 𝐂 𝐃 𝐄 𝐅 𝐆 𝐇 𝐈 𝐉 𝐊 𝐋 𝐌 𝐍 𝐎 𝐏 𝐐 𝐑 𝐒 𝐓 𝐔 𝐕 𝐖 𝐗 𝐘 𝐙 𝐚 𝐛 𝐜 𝐝 𝐞 𝐟 𝐠 𝐡 𝐢 𝐣 𝐤 𝐥 𝐦 𝐧 𝐨 𝐩 𝐪 𝐫 𝐬 𝐭 𝐮 𝐯 𝐰 𝐱 𝐲 𝐳 𝔸 𝔹 ℂ 𝔻 𝔼 𝔽 𝔾 ℍ 𝕀 𝕁 𝕂 𝕃 𝕄 ℕ 𝕆 ℙ ℚ ℝ 𝕊 𝕋 𝕌 𝕍 𝕎 𝕏 𝕐 ℤ 𝕒 𝕓 𝕔 𝕕 𝕖 𝕗 𝕘 𝕙 𝕚 𝕛 𝕜 𝕝 𝕞 𝕟 𝕠 𝕡 𝕢 𝕣 𝕤 𝕥 𝕦 𝕧 𝕨 𝕩 𝕪 𝕫 ƛ Ɓ Ƈ Ɗ Є Ƒ Ɠ Ӈ Ɩ ʆ Ƙ Լ M Ɲ Ơ Ƥ Ƣ Ʀ Ƨ Ƭ Ʋ Ɣ Ɯ Ҳ Ƴ Ȥ");
-});
-document.getElementById("btn-block19").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "ᗩ ᗷ ᑕ ᗪ ᗴ ᖴ ᘜ ᕼ I ᒍ K ᒪ ᗰ ᑎ O ᑭ ᑫ ᖇ Տ T ᑌ ᐯ ᗯ ᙭ Y ᘔ 卂 丨 乃 匚 ᗪ 乇 千 ᘜ 卄 | ﾌ Ҝ ㄥ 爪 几 ㄖ 卩 Ҩ 尺 丂 ㄒ ㄩ ᐯ 山 乂 ㄚ 乙 ል ጌ ር ዕ ቿ ቻ ኗ ዘ ጎ ጋ ጕ ረ ጠ ሸ ዐ የ ዒ ዪ ነ ቿ ሁ ሀ ሠ ሸ ሃ ጊ Ꭺ Ꮯ Ꭰ Ꭼ Ꮆ Ꭵ Ꮶ Ꮮ Ꮑ Ꮎ Ꮲ Ꮢ Ꮖ Ꮙ Ꮃ Ꮍ Ꮓ");
-});
-document.getElementById("btn-block22").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "卝 ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ ㍐ ㍿ ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ を ゎ わ ゐ ゑ を ん ゔ ゕ ゖ ゚ ゛ ゜ ゝ ゞ ゟ ゠ ァ ア ィ イ ゥ ウェ エ ォ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ⺀ ⺁ ⺂ ⺃ ⺄ ⺅ ⺆ ⺇ ⺈ ⺉ ⺊ ⺋ ⺌ ⺍ ⺎ ⺏ ⺐ ⺑ ⺒ ⺓ ⺔ ⺕ ⺖ ⺗ ⺘ ⺙ ⺛ ⺜ ⺝ ⺞ ⺟ ⺠ ⺡ ⺢ ⺣ ⺤ ⺥ ⺦ ⺧ ⺨ ⺩ ⺪ ⺫ ⺬ ⺭ ⺮ ⺯ ⺰ ⺱ ⺲ ⺳ ⺴ ⺵ ⺶ ⺷ ⺸ ⺹ ⺺ ⺻ ⺼ ⺽ ⺾ ⺿ ⻀ ⻁ ⻂ ⻃ ⻄ ⻅ ⻆ ⻇ ⻈ ⻉ ⻊ ⻋ ⻌ ⻍ ⻎ ⻏ ⻐ ⻑ ⻒ ⻓ ⻔ ⻕ ⻖ ⻗ ⻘ ⻙ ⻚ ⻛ ⻜ ⻝ ⻞ ⻟ ⻠ ⻡ ⻢ ⻣ ⻤ ⻥ ⻦ ⻧ ⻨ ⻩ ⻪ ⻫ ⻬ ⻭ ⻮ ⻯ ⻰ ⻱ ⻲ ⻳ ⼀ ⼁ ⼂ ⼃ ⼄ ⼅ ⼆ ⼇ ⼈ ⼉ ⼊ ⼋ ⼌ ⼍ ⼎ ⼏ ⼐ ⼑ ⼒ ⼓ ⼔ ⼕ ⼖ ⼗ ⼘ ⼙ ⼚ ⼛ ⼜ ⼝ ⼞ ⼟ ⼠ ⼡ ⼢ ⼣ ⼤ ⼥ ⼦ ⼧ ⼨ ⼩ ⼪ ⼫ ⼬ ⼭ ⼮ ⼯ ⼰ ⼱ ⼲ ⼳ ⼴ ⼵ ⼶ ⼷ ⼸ ⼹ ⼺ ⼻ ⼼ ⼽ ⼾ ⼿ ⽀ ⽁ ⽂ ⽃ ⽄ ⽅ ⽆ ⽇ ⽈ ⽉ ⽊ ⽋ ⽌ ⽍ ⽎ ⽏ ⽐ ⽑ ⽒ ⽓ ⽔ ⽕ ⽖ ⽗ ⽘ ⽙ ⽚ ⽛ ⽜ ⽝ ⽞ ⽟ ⽠ ⽡ ⽢ ⽣ ⽤ ⽥ ⽦ ⽧ ⽨ ⽩ ⽪ ⽫ ⽬ ⽭ ⽮ ⽯ ⽰ ⽱ ⽲ ⽳ ⽴ ⽵ ⽶ ⽷ ⽸ ⽹ ⽺ ⽻ ⽼ ⽽ ⽾ ⽿ ⾀ ⾁ ⾂ ⾃ ⾄ ⾅ ⾆ ⾇ ⾈ ⾉ ⾊ ⾋ ⾌ ⾍ ⾎ ⾏ ⾐ ⾑ ⾒ ⾓ ⾔ ⾕ ⾖ ⾗ ⾘ ⾙ ⾚ ⾛ ⾜ ⾝ ⾞ ⾟ ⾠ ⾡ ⾢ ⾣ ⾤ ⾥ ⾦ ⾧ ⾨ ⾩ ⾪ ⾫ ⾬ ⾭ ⾮ ⾯ ⾰ ⾱ ⾲ ⾳ ⾴ ⾵ ⾶ ⾷ ⾸ ⾹ ⾺ ⾻ ⾼ ⾽ ⾾ ⾿ ⿀ ⿁ ⿂ ⿃ ⿄ ⿅ ⿆ ⿇ ⿈ ⿉ ⿊ ⿋ ⿌ ⿍ ⿎ ⿏ ⿐ ⿑ ⿒ ⿓ ⿔ ⿕ ゛ ゜ ㆐ ㆑ ㆖ ㆗ ㆘ ㆙ ㆚ ㆛ ㆜ ㆝ ㆞ ㆟ ㇀ ㇁ ㇂ ㇃ ㇄ ㇅ ㇆ ㇇ ㇈ ㇉ ㇊ ㇋ ㇌ ㇍ ㇎ ㇏ ㇐ ㇑ ㇒ ㇓ ㇔ ㇕ ㇖ ㇗ ㇘ ㇙ ㇚ ㇛ ㇜ ㇝ ㇞ ㇟ ㇠ ㇡ ㇢ ㇣");
-});
-document.getElementById("btn-block15").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝙰 𝙱 𝙲 𝙳 𝙴 𝙵 𝙶 𝙷 𝙸 𝙹 𝙺 𝙻 𝙼 𝙽 𝙾 𝙿 𝚀 𝚁 𝚂 𝚃 𝚄 𝚅 𝚆 𝚇 𝚈 𝚉 𝚊 𝚋 𝚌 𝚍 𝚎 𝚏 𝚐 𝚝 𝚞 𝚟 𝚠 𝚡 𝚢 𝚣 ͣ ͤ ͥ ͦ ͧ ͨ ͩ ͪ ͫ ͬ ͭ ͮ ͯ ᴀ ʙ ᴄ ᴅ ᴇ ғ ɢ ʜ ɪ ᴊ ᴋ ʟ ᴍ ɴ ᴏ ᴘ ǫ ʀ s ᴛ ᴜ ᴠ ᴡ x ʏ ᴢ ᵃ ᵇ ᶜ ᵈ ᵉ ᶠ ᵍ ʰ ⁱ ʲ ᵏ ˡ ᵐ ⁿ ᵒ ᵖ ᵠ ʳ ˢ ᵗ ᵘ ᵛ ʷ ˣ ʸ ᶻ а ә ӕ ҕ в г ґ ғ ҕ д ԁ ђ ԃ ҙ е є җ з ԅ ѕ ӡ ԇ и ҋ і ј к қ ӄ ҡ ҟ ҝ л ӆ љ ԉ м ӎ н ӊ ң ӈ ҥ њ ԋ о ө п ҧ ҁ р ҏ с ԍ у ү ұ ѹ ф ѽ ѻ ц ҵ ч ҷ ӌ ҹ ҽ ҿ џ ш щ ъ ы ь ҍ ѧ ѫ ѩ ѭ ѱ ѳ ѵ ᶏ ᶐ Ⱥ ａ Ａ ᴬ ᵃ ª ᶛ ᵆ ᵄ ᵅ ₐ ᴭ ᴁ ᴂ ᴀ Å ẚ ∆ ∀ α Λ ɐ ɑ ɒ á à ă ắ ằ ẵ ẳ â ấ ầ ẫ ẩ ǎ å ǻ ä ā ả ȁ ȃ ạ ặ ả ȁ ȃ ạ ặ ặ ậ ḁ ǽ ǣ ᶀ ᵬ ｂ Ｂ ᴮ ᵇ ᴯ ᴃ þ ß ƀ Ɓ Ƅ ɓ ɞ ɮ ʙ ҍ Ᏸ ℬ β ḃ ḅ ḇ ᶗ Ȼ ȼ ｃ Ｃ ᶜ ᵓ ᶝ ᴐ ᴒ ᴖ ᵔ ᴗ ᵕ ᴄ © ¢ € Ƈ ɕ ʗ ℂ Č ☪ ℭ ς Ç ć ĉ č ċ ç ḉ ᶑ ᶁ ᵭ ｄ Ｄ ᴰ ᵈ ᶞ ᴅ ȡ ᴆ ǳ ǲ Ǳ ǆ ǅ Ǆ ∂ ɗ ð ď ḋ ḑ ḍ ḓ ḏ ᶒ ᶓ ᶔ ᶕ ᴲ ᵊ ᵋ ᵌ ₑ ₔ ∊ ∈ ᴇ ᴈ Ξ ∃ Ə Ɛ Ǝ ε Σ Ƹ ƺ ɘ ə ξ э ҿ ཇ ℰ ℯ ﾐ € ع έ ɚ é è ĕ ê ế ề ễ ể ě ë ẽ ė ȩ ḝ ę ē ḗ ḕ ẻ ȅ ȇ ẹ ệ ḙ ḛ ᶘ ᶂ ᶋ ᵮ ｆ Ｆ ᶠ ﬂ Ƒ ƒ ℱ ʄ ḟ ᶃ ｇ Ｇ ᴳ ᵍ ᶢ Ɠ Ǥ ǥ ɠ ɡ ɢ ʛ ց Ꮆ ջ ❡ ǵ ğ ĝ ǧ ġ ģ ḡ ｈ Ｈ ʰ ʱ ᴴ ᵸ ᶣ ħ ƕ Ƕ ɦ ɧ ʜ ђ Ᏺ ℋ ℌ ｻ Ҥ Ħ ℏ ĥ ȟ ḧ ḣ ḩ ḥ ḫ ẖ ᶖ ｉ Ｉ ᶧ ᴉ ᵎ ᵎ ⁱ ϊ أ ར ¡ ɩ ĳ Ĳ ᵻ Ɨ ɨ ɪ í ì ĭ î ǐ ï ḯ ĩ į ī ỉ ȉ ȋ ị ḭ ｊ Ｊ ᴶ ʲ ᴊ ᶨ ᶡ ǰ ʝ ز ჟ ĵ ǰ ȷ Ꮰ ᶄ ｋ Ｋ ᴷ ᵏ ᴋ κ Ƙ ƙ ʞ ϗ ҡ ḱ ǩ ķ ḳ ḵ ᶅ Ƚ ｌ Ｌ ᴌ ˡ ᶩ ᶪ ᶫ ǈ ȴ ŀ Ŀ ǉ ǈ Ǉ 廴 £ Ɩ ƪ ɫ ɭ ʆ ʟ Ꮭ ℒ ℓ Ł ₤ ĺ ľ ļ ḷ ḹ ḽ ḻ ᶆ ᵯ ｍ Ｍ ᴹ ᵐ ᶬ ᶭ ᴍ м Ɯ ɱ ʍ ℳ ɷ ḿ ṁ ṃ ᶇ ᵰ ｎ Ｎ ᶰ ⁿ ᴺ ᴻ ᵑ ᶮ ᶯ ᴎ ȵ ǌ ǋ Ǌ ղ ή и η Ɲ ƞ ɲ ɳ ɴ Ϟ ℕ ϰ സ Ո ท ռ ♑ ń ǹ ň ñ ṅ ņ ṇ ṋ ṉ ｏ Ｏ ᴼ ᵒ ᶱ ᶲ ᶿ ₒ ᴏ ᴑ ᴔ ᴓ Θ ᴽ ᴕ º ° ö © ⊙ ō ◐ ◕ ✹ ✪ ☢ ❂ ❍ σ ø ѻ ◯ ó ò ŏ ô ố ồ ỗ ổ ö ȫ ő õ ṍ ṏ ȭ ȯ ȱ ǫ ȍ ȏ ơ ớ ờ ỡ ở ợ ọ ộ ǿ ᶈ ᵽ ᵱ ｐ Ｐ ᴾ ᵖ ᴘ ¶ ρ φ Þ þ Ƥ ƥ ƿ բ ք ℙ ₱ ℘ ṕ ṗ Ꭾ ʠ Ｑ ᵠ Ǫ ǫ ʠ ϥ ℚ ҩ Ҩ ᶉ ᵲ ᵳ ｒ ʶ ᴿ ʳ ᴚ ® Ʀ ɼ ɽ ℝ ℞ я Ř ŕ ř ṙ ŗ ȑ ȓ ṛ ṝ ṟ ᶊ ᵴ ȿ ｓ Ｓ ˢ ᶳ § ẛ ﬆ ﬅ ₷ § ∫ Ƨ ƨ ʂ ʃ ʅ ϛ ֆ ى Ꭶ ʂ Ş $ ی ś ṥ ŝ š ṧ ṡ ş ṣ ṩ ș ᵵ ᵺ ᵼ Ⱦ ｔ Ｔ ᵀ ᵗ ᶵ ᴛ ȶ ح Շ π ŧ Ŧ ƫ Ƭ ƭ Ʈ ǂ ʇ ʈ τ Ϯ ϯ ｨ է ɬ ł ♈ ζ ե Ť ť ẗ ṫ ţ ṭ ț ṱ ṯ ᶙ ᵾ ᵤ ｕ Ｕ ᵁ ᵘ ᵤ ᶶ ᶷ ᶸ ᶹ ᴜ ᴝ ᵙ ᴞ ᵫ ʮ ʯ ʉ ʊ ʋ ŭ ϋ և ú ù ŭ û ǔ ǖ ű ũ ṹ ų ū ṻ ủ ȕ ȗ ư ứ ừ ữ ử ự ụ ṳ ṷ ṵ ๖ ۣ ۜ V ᶌ ｖ Ｖ ᵛ ᵥ ᶺ ᴠ ϑ Ʋ ʋ ν Ѵ ѵ ҩ Ҩ ℣ ✓ Ѷ ṽ ṿ ｗ Ｗ ᵂ ʷ ᵚ ᴟ ᴡ ψ ω ϖ Ɯ ʍ Ѡ ѡ ཡ Ꮚ Ꮤ Ϣ ẃ ẁ ŵ ẘ ẅ ẇ ẉ ᶍ ｘ Ｘ ᵡ ɤ × ˣ ₓ Ҳ ɤ χ ℵ 乂 ✘ メ ẍ ẋ ｙ Ｙ ʸ ˠ ϒ Ÿ Ƴ ƴ γ ʎ ʏ ¥ უ ყ ý ỳ ŷ ẙ ÿ ๖ ۣ ۜ Z ẏ ȳ ᵶ ỵ ᶚ ᶎ ᵶ ᶻ ᶼ ᶽ ᶾ ɀ ｚ Ｚ ᴢ ᴣ ᴤ ŉ ζ ☡ Ƶ ƶ Ȥ ȥ ʐ ʑ Հ ℤ ʓ ح ź ẑ Ⓐ ɐ q ɔ p ǝ ɟ ƃ ɥ ᴉ ɾ ʞ l ɯ u o d b ɹ s ʇ n ʌ ʍ x ʎ z");
-});
-document.getElementById("btn-block18").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "ɑ ҍ ϲ ժ ҽ ƒ ց հ í յ Ƙ Ӏ ʍ ղ օ Թ զ ɾ Տ Ե ւ ѵ ա × վ Հค ๒ ς ๔ є Ŧ ﻮ ђ เ ן к l ๓ ภ ๏ ק ợ г ร t ย ש ฬ ץ א z ᗅ ᙘ ᑤ ᗫ ᙍ ᖴ ᘜ ᕼ ᓿ ᒙ ᖽ ᐸ ᒪ ᙢ ᘉ ᓎ ᕿ ᕴ ᖇ S ᖶ ᑗ ᐻ ᙎ ᙭ ᖻ ᙣ å β ç ď £ ƒ ğ ȟ ȋ j ķ Ƚ ɱ ñ ¤ ק ǭ ȑ § ț ɥ √ Ψ × ÿ ž ά в ς ȡ έ ғ ģ ħ ί ј ķ Ļ м ή ό ρ q ŕ ş ţ ù ν ώ x ч ž Λ Ϧ ㄈ Ð Ɛ F Ɠ н ɪ ﾌ Қ Ł ௱ Л Ø þ Ҩ 尺 ら Ť Ц Ɣ Ɯ χ Ϥ Ẕ ᗩ ᗷ ᑢ ᕲ ᘿ ᖴ ᘜ ᕼ ᓰ ᒚ ᖽ ᐸ ᒪ ᘻ ᘉ ᓍ ᕵ ᕴ ᖇ S ᖶ ᑘ ᐺ ᘺ ᙭ ᖻ ᗱ Թ Յ Շ Ժ ȝ Բ Գ ɧ ɿ ʝ ƙ ʅ ʍ Ռ Ծ ρ φ Ր Տ Ե Մ ע ա Ճ Վ Հ ą ც ƈ ɖ ɛ ʄ ɠ ɧ ı ʝ ƙ Ɩ ɱ ŋ ɔ ℘ զ ཞ ʂ ɬ ų ۷ ῳ ҳ ყ ʑ");
-});
-
-document.getElementById("btn-block118").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "😀 😃 😄 😁 😆 😅 🤣 😂 🙂 🙃 🫠 😉 😊 😇 🥰 😍 🤩 😘 😗 ☺️ 😚 😙 🥲 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🫢 🫣 🤫 🤔 🫡 🤐 🤨 😐 😑 😶 🫥 😶‍🌫️ 😏 😒 🙄 😬 😮‍💨 🤥 😌 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 🥵 🥶 🥴 😵 😵‍💫 🤯 🤠 🥳 🥸 😎 🤓 🧐 😕 🫤 😟 🙁 ☹️ 😮 😯 😲 😳 🥺 🥹 😦 😧 😨 😰 😥 😢 😭 😱 😖 😣 😞 😓 😩 😫 🥱 😡 😡 😠 🤬 😈 👿 💀 ☠️ 💩 🤡 👹 👺 👻 👽 👾 🤖 😺 😸 😹 😻 😼 😽 🙀 😾 😿 🙈 🙉 🙊 💋 💌 💘 💝 💖 💗 💓 💞 💕 💟 ❣️ 💔 ❤️‍🔥 ❤️‍🩹 ❤️ 🧡 💛 💚 💙 💜 🤎 🖤 🤍 💯 💢 💥 💫 💦 💨 🕳️ 💣 💬 👁️‍🗨️ 🗨️ 🗯️ 💭 💤 🐵 🐒 🦍 🦧 🐶 🐕 🦮 🐕‍🦺 🐩 🐺 🦊 🦝 🐱 🐈 🐈‍⬛ 🦁 🐯 🐅 🐆 🐴 🐎 🦄 🦓 🦌 🦬 🐮 🐂 🐃 🐄 🐷 🐖 🐗 🐽 🐏 🐑 🐐 🐪 🐫 🦙 🦒 🐘 🦣 🦏 🦛 🐭 🐁 🐀 🐹 🐰 🐇 🐿️ 🦫 🦔 🦇 🐻 🐻‍❄️ 🐨 🐼 🦥 🦦 🦨 🦘 🦡 🐾 🦃 🐔 🐓 🐣 🐤 🐥 🐦 🐧 🕊️ 🦅 🦆 🦢 🦉 🦤 🪶 🦩 🦚 🦜 🐸 🐊 🐢 🦎 🐍 🐲 🐉 🦕 🦖 🐳 🐋 🐬 🦭 🐟 🐠 🐡 🦈 🐙 🐚 🪸 🐌 🦋 🐛 🐜 🐝 🪲 🐞 🦗 🪳 🕷️ 🕸️ 🦂 🦟 🪰 🪱 🦠 💐 🌸 💮 🪷 🏵️ 🌹 🥀 🌺 🌻 🌼 🌷 🌱 🪴 🌲 🌳 🌴 🌵 🌾 🌿 ☘️ 🍀 🍁 🍂 🍃 🪹 🪺 👋 🤚 🖐️ ✋ 🖖 🫱 🫲 🫳 🫴 👌 🤌 🤏 ✌️ 🤞 🫰 🤟 🤘 🤙 👈 👉 👆 🖕 👇 ☝️ 🫵 👍 👎 ✊ 👊 🤛 🤜 👏 🙌 🫶 👐 🤲 🤝 🙏 ✍️ 💅 🤳 💪 🦾 🦿 🦵 🦶 👂 🦻 👃 🧠 🫀 🫁 🦷 🦴 👀 👁️ 👅 👄 🫦 👶 🧒 👦 👧 🧑 👱 👨 🧔 🧔‍♂️ 🧔‍♀️ 👨‍🦰 👨‍🦱 👨‍🦳 👨‍🦲 👩 👩‍🦰 🧑‍🦰 👩‍🦱 🧑‍🦱 👩‍🦳 🧑‍🦳 👩‍🦲 🧑‍🦲 👱‍♀️ 👱‍♂️ 🧓 👴 👵 🙍 🙍‍♂️ 🙍‍♀️ 🙎 🙎‍♂️ 🙎‍♀️ 🙅 🙅‍♂️ 🙅‍♀️ 🙆 🙆‍♂️ 🙆‍♀️ 💁 💁‍♂️ 💁‍♀️ 🙋 🙋‍♂️ 🙋‍♀️ 🧏 🧏‍♂️ 🧏‍♀️ 🙇 🙇‍♂️ 🙇‍♀️ 🤦 🤦‍♂️ 🤦‍♀️ 🤷 🤷‍♂️ 🤷‍♀️ 🧑‍⚕️ 👨‍⚕️ 👩‍⚕️ 🧑‍🎓 👨‍🎓 👩‍🎓 🧑‍🏫 👨‍🏫 👩‍🏫 🧑‍⚖️ 👨‍⚖️ 👩‍⚖️ 🧑‍🌾 👨‍🌾 👩‍🌾 🧑‍🍳 👨‍🍳 👩‍🍳 🧑‍🔧 👨‍🔧 👩‍🔧 🧑‍🏭 👨‍🏭 👩‍🏭 🧑‍💼 👨‍💼 👩‍💼 🧑‍🔬 👨‍🔬 👩‍🔬 🧑‍💻 👨‍💻 👩‍💻 🧑‍🎤 👨‍🎤 👩‍🎤 🧑‍🎨 👨‍🎨 👩‍🎨 🧑‍✈️ 👨‍✈️ 👩‍✈️ 🧑‍🚀 👨‍🚀 👩‍🚀 🧑‍🚒 👨‍🚒 👩‍🚒 👮 👮‍♂️ 👮‍♀️ 🕵️ 🕵️‍♂️ 🕵️‍♀️ 💂 💂‍♂️ 💂‍♀️ 🥷 👷 👷‍♂️ 👷‍♀️ 🫅 🤴 👸 👳 👳‍♂️ 👳‍♀️ 👲 🧕 🤵 🤵‍♂️ 🤵‍♀️ 👰 👰‍♂️ 👰‍♀️ 🤰 🫃 🫄 🤱 👩‍🍼 👨‍🍼 🧑‍🍼 👼 🎅 🤶 🧑‍🎄 🦸 🦸‍♂️ 🦸‍♀️ 🦹 🦹‍♂️ 🦹‍♀️ 🧙 🧙‍♂️ 🧙‍♀️ 🧚 🧚‍♂️ 🧚‍♀️ 🧛 🧛‍♂️ 🧛‍♀️ 🧜 🧜‍♂️ 🧜‍♀️ 🧝 🧝‍♂️ 🧝‍♀️ 🧞 🧞‍♂️ 🧞‍♀️ 🧟 🧟‍♂️ 🧟‍♀️ 🧌 💆 💆‍♂️ 💆‍♀️ 💇 💇‍♂️ 💇‍♀️ 🚶 🚶‍♂️ 🚶‍♀️ 🧍 🧍‍♂️ 🧍‍♀️ 🧎 🧎‍♂️ 🧎‍♀️ 🧑‍🦯 👨‍🦯 👩‍🦯 🧑‍🦼 👨‍🦼 👩‍🦼 🧑‍🦽 👨‍🦽 👩‍🦽 🏃 🏃‍♂️ 🏃‍♀️ 💃 🕺 🕴️ 👯 👯‍♂️ 👯‍♀️ 🧖 🧖‍♂️ 🧖‍♀️ 🧗 🧗‍♂️ 🧗‍♀️ 🤺 🏇 ⛷️ 🏂 🏌️ 🏌️‍♂️ 🏌️‍♀️ 🏄 🏄‍♂️ 🏄‍♀️ 🚣 🚣‍♂️ 🚣‍♀️ 🏊 🏊‍♂️ 🏊‍♀️ ⛹️ ⛹️‍♂️ ⛹️‍♀️ 🏋️ 🏋️‍♂️ 🏋️‍♀️ 🚴 🚴‍♂️ 🚴‍♀️ 🚵 🚵‍♂️ 🚵‍♀️ 🤸 🤸‍♂️ 🤸‍♀️ 🤼 🤼‍♂️ 🤼‍♀️ 🤽 🤽‍♂️ 🤽‍♀️ 🤾 🤾‍♂️ 🤾‍♀️ 🤹 🤹‍♂️ 🤹‍♀️ 🧘 🧘‍♂️ 🧘‍♀️ 🛀 🛌 🧑‍🤝‍🧑 👭 👫 👬 💏 👩‍❤️‍💋‍👨 👨‍❤️‍💋‍👨 👩‍❤️‍💋‍👩 💑 👩‍❤️‍👨 👨‍❤️‍👨 👩‍❤️‍👩 👪 👨‍👩‍👦 👨‍👩‍👧 👨‍👩‍👧‍👦 👨‍👩‍👦‍👦 👨‍👩‍👧‍👧 👨‍👨‍👦 👨‍👨‍👧 👨‍👨‍👧‍👦 👨‍👨‍👦‍👦 👨‍👨‍👧‍👧 👩‍👩‍👦 👩‍👩‍👧 👩‍👩‍👧‍👦 👩‍👩‍👦‍👦 👩‍👩‍👧‍👧 👨‍👦 👨‍👦‍👦 👨‍👧 👨‍👧‍👦 👨‍👧‍👧 👩‍👦 👩‍👦‍👦 👩‍👧 👩‍👧‍👦 👩‍👧‍👧 🗣️ 👤 👥 🫂 👣 🦰 🦱 🦳 🦲 🍇 🍈 🍉 🍊 🍋 🍌 🍍 🥭 🍎 🍏 🍐 🍑 🍒 🍓 🫐 🥝 🍅 🫒 🥥 🥑 🍆 🥔 🥕 🌽 🌶️ 🫑 🥒 🥬 🥦 🧄 🧅 🍄 🥜 🫘 🌰 🍞 🥐 🥖 🫓 🥨 🥯 🥞 🧇 🧀 🍖 🍗 🥩 🥓 🍔 🍟 🍕 🌭 🥪 🌮 🌯 🫔 🥙 🧆 🥚 🍳 🥘 🍲 🫕 🥣 🥗 🍿 🧈 🧂 🥫 🍱 🍘 🍙 🍚 🍛 🍜 🍝 🍠 🍢 🍣 🍤 🍥 🥮 🍡 🥟 🥠 🥡 🦀 🦞 🦐 🦑 🦪 🍦 🍧 🍨 🍩 🍪 🎂 🍰 🧁 🥧 🍫 🍬 🍭 🍮 🍯 🍼 🥛 ☕ 🫖 🍵 🍶 🍾 🍷 🍸 🍹 🍺 🍻 🥂 🥃 🫗 🥤 🧋 🧃 🧉 🧊 🥢 🍽️ 🍴 🥄 🔪 🫙 🏺 🌍 🌎 🌏 🌐 🗺️ 🗾 🧭 🏔️ ⛰️ 🌋 🗻 🏕️ 🏖️ 🏜️ 🏝️ 🏞️ 🏟️ 🏛️ 🏗️ 🧱 🪨 🪵 🛖 🏘️ 🏚️ 🏠 🏡 🏢 🏣 🏤 🏥 🏦 🏨 🏩 🏪 🏫 🏬 🏭 🏯 🏰 💒 🗼 🗽 ⛪ 🕌 🛕 🕍 ⛩️ 🕋 ⛲ ⛺ 🌁 🌃 🏙️ 🌄 🌅 🌆 🌇 🌉 ♨️ 🎠 🛝 🎡 🎢 💈 🎪 🚂 🚃 🚄 🚅 🚆 🚇 🚈 🚉 🚊 🚝 🚞 🚋 🚌 🚍 🚎 🚐 🚑 🚒 🚓 🚔 🚕 🚖 🚗 🚘 🚙 🛻 🚚 🚛 🚜 🏎️ 🏍️ 🛵 🦽 🦼 🛺 🚲 🛴 🛹 🛼 🚏 🛣️ 🛤️ 🛢️ ⛽ 🛞 🚨 🚥 🚦 🛑 🚧 ⚓ 🛟 ⛵ 🛶 🚤 🛳️ ⛴️ 🛥️ 🚢 ✈️ 🛩️ 🛫 🛬 🪂 💺 🚁 🚟 🚠 🚡 🛰️ 🚀 🛸 🛎️ 🧳 ⌛ ⏳ ⌚ ⏰ ⏱️ ⏲️ 🕰️ 🕛 🕧 🕐 🕑 🕜 🕝 🕒 🕞 🕓 🕟 🕔 🕠 🕕 🕡 🕖 🕢 🕗 🕣 🕘 🕤 🕙 🕥 🕚 🕦 🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌙 🌚 🌛 🌜 🌡️ ☀️ 🌝 🌞 🪐 ⭐ 🌟 🌠 🌌 ☁️ ⛅ ⛈️ 🌤️ 🌥️ 🌦️ 🌧️ 🌨️ 🌩️ 🌪️ 🌫️ 🌬️ 🌀 🌈 🌂 ☂️ ☔ ⛱️ ⚡ ❄️ ☃️ ⛄ ☄️ 🔥 💧 🌊 🎃 🎄 🎆 🎇 🧨 ✨ 🎈 🎉 🎊 🎋 🎍 🎎 🎏 🎐 🎑 🧧 🎀 🎁 🎗️ 🎟️ 🎫 🎖️ 🏆 🏅 🥇 🥈 🥉 ⚽ ⚾ 🥎 🏀 🏐 🏈 🏉 🎾 🥏 🎳 🏏 🏑 🏒 🥍 🏓 🏸 🥊 🥋 🥅 ⛳ ⛸️ 🎣 🤿 🎽 🎿 🛷 🥌 🎯 🪀 🪁 🎱 🔮 🪄 🧿 🪬 🎮 🕹️ 🎰 🎲 🧩 🧸 🪅 🪩 🪆 ♠️ ♥️ ♦️ ♣️ ♟️ 🃏 🀄 🎴 🎭 🖼️ 🎨 🧵 🪡 🧶 🪢 👓 🕶️ 🥽 🥼 🦺 👔 👕 👖 🧣 🧤 🧥 🧦 👗 👘 🥻 🩱 🩲 🩳 👙 👚 👛 👜 👝 🛍️ 🎒 🩴 👞 👟 🥾 🥿 👠 👡 🩰 👢 👑 👒 🎩 🎓 🧢 🪖 ⛑️ 📿 💄 💍 💎 🔇 🔈 🔉 🔊 📢 📣 📯 🔔 🔕 🎼 🎵 🎶 🎙️ 🎚️ 🎛️ 🎤 🎧 📻 🎷 🪗 🎸 🎹 🎺 🎻 🪕 🥁 🪘 📱 📲 ☎️ 📞 📟 📠 🔋 🪫 🔌 💻 🖥️ 🖨️ ⌨️ 🖱️ 🖲️ 💽 💾 💿 📀 🧮 🎥 🎞️ 📽️ 🎬 📺 📷 📸 📹 📼 🔍 🔎 🕯️ 💡 🔦 🏮 🪔 📔 📕 📖 📗 📘 📙 📚 📓 📒 📃 📜 📄 📰 🗞️ 📑 🔖 🏷️ 💰 🪙 💴 💵 💶 💷 💸 💳 🧾 💹 ✉️ 📧 📨 📩 📤 📥 📦 📫 📪 📬 📭 📮 🗳️ ✏️ ✒️ 🖋️ 🖊️ 🖌️ 🖍️ 📝 💼 📁 📂 🗂️ 📅 📆 🗒️ 🗓️ 📇 📉 📈 📊 📋 📌 📍 📎 🖇️ 📏 📐 ✂️ 🗃️ 🗄️ 🗑️ 🔒 🔓 🔏 🔐 🔑 🗝️ 🔨 🪓 ⛏️ ⚒️ 🛠️ 🗡️ ⚔️ 🔫 🪃 🏹 🛡️ 🪚 🔧 🪛 🔩 ⚙️ 🗜️ ⚖️ 🦯 🔗 ⛓️ 🪝 🧰 🧲 🪜 ⚗️ 🧪 🧫 🧬 🔬 🔭 📡 💉 🩸 💊 🩹 🩼 🩺 🩻 🚪 🛗 🪞 🪟 🛏️ 🛋️ 🪑 🚽 🪠 🚿 🛁 🪤 🪒 🧴 🧷 🧹 🧺 🧻 🪣 🧼 🫧 🪥 🧽 🧯 🛒 🚬 ⚰️ 🪦 ⚱️ 🗿 🪧 🪪 🏧 🚮 🚰 ♿ 🚹 🚺 🚻 🚼 🚾 🛂 🛃 🛄 🛅 ⚠️ 🚸 ⛔ 🚫 🚳 🚭 🚯 🚱 🚷 📵 🔞 ☢️ ☣️ ⬆️ ↗️ ➡️ ↘️ ⬇️ ↙️ ⬅️ ↖️ ↕️ ↔️ ↩️ ↪️ ⤴️ ⤵️ 🔃 🔄 🔙 🔚 🔛 🔜 🔝 🛐 ⚛️ 🕉️ ✡️ ☸️ ☯️ ✝️ ☦️ ☪️ ☮️ 🕎 🔯 ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ⛎ 🔀 🔁 🔂 ▶️ ⏩ ⏭️ ⏯️ ◀️ ⏪ ⏮️ 🔼 ⏫ 🔽 ⏬ ⏸️ ⏹️ ⏺️ ⏏️ 🎦 🔅 🔆 📶 📳 📴 ♀️ ♂️ ⚧️ ✖️ ➕ ➖ ➗ 🟰 ♾️ ‼️ ⁉️ ❓ ❔ ❕ ❗ 〰️ 💱 💲 ⚕️ ♻️ ⚜️ 🔱 📛 🔰 ⭕ ✅ ☑️ ✔️ ❌ ❎ ➰ ➿ 〽️ ✳️ ✴️ ❇️ ©️ ®️ ™️ #️⃣ *️⃣ 0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟 🔠 🔡 🔢 🔣 🔤 🅰️ 🆎 🅱️ 🆑 🆒 🆓 ℹ️ 🆔 Ⓜ️ 🆕 🆖 🅾️ 🆗 🅿️ 🆘 🆙 🆚 🈁 🈂️ 🈷️ 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 ㊗️ ㊙️ 🈺 🈵 🔴 🟠 🟡 🟢 🔵 🟣 🟤 ⚫ ⚪ 🟥 🟧 🟨 🟩 🟦 🟪 🟫 ⬛ ⬜ ◼️ ◻️ ◾ ◽ ▪️ ▫️ 🔶 🔷 🔸 🔹 🔺 🔻 💠 🔘 🔳 🔲 🏁 🚩 🎌 🏴 🏳️ 🏳️‍🌈 🏳️‍⚧️ 🏴‍☠️ 🇦🇨 🇦🇩 🇦🇪 🇦🇫 🇦🇬 🇦🇮 🇦🇱 🇦🇲 🇦🇴 🇦🇶 🇦🇷 🇦🇸 🇦🇹 🇦🇺 🇦🇼 🇦🇽 🇦🇿 🇧🇦 🇧🇧 🇧🇩 🇧🇪 🇧🇫 🇧🇬 🇧🇭 🇧🇮 🇧🇯 🇧🇱 🇧🇲 🇧🇳 🇧🇴 🇧🇶 🇧🇷 🇧🇸 🇧🇹 🇧🇻 🇧🇼 🇧🇾 🇧🇿 🇨🇦 🇨🇨 🇨🇩 🇨🇫 🇨🇬 🇨🇭 🇨🇮 🇨🇰 🇨🇱 🇨🇲 🇨🇳 🇨🇴 🇨🇵 🇨🇷 🇨🇺 🇨🇻 🇨🇼 🇨🇽 🇨🇾 🇨🇿 🇩🇪 🇩🇬 🇩🇯 🇩🇰 🇩🇲 🇩🇴 🇩🇿 🇪🇦 🇪🇨 🇪🇪 🇪🇬 🇪🇭 🇪🇷 🇪🇸 🇪🇹 🇪🇺 🇫🇮 🇫🇯 🇫🇰 🇫🇲 🇫🇴 🇫🇷 🇬🇦 🇬🇧 🇬🇩 🇬🇪 🇬🇫 🇬🇬 🇬🇭 🇬🇮 🇬🇱 🇬🇲 🇬🇳 🇬🇵 🇬🇶 🇬🇷 🇬🇸 🇬🇹 🇬🇺 🇬🇼 🇬🇾 🇭🇰 🇭🇲 🇭🇳 🇭🇷 🇭🇹 🇭🇺 🇮🇨 🇮🇩 🇮🇪 🇮🇱 🇮🇲 🇮🇳 🇮🇴 🇮🇶 🇮🇷 🇮🇸 🇮🇹 🇯🇪 🇯🇲 🇯🇴 🇯🇵 🇰🇪 🇰🇬 🇰🇭 🇰🇮 🇰🇲 🇰🇳 🇰🇵 🇰🇷 🇰🇼 🇰🇾 🇰🇿 🇱🇦 🇱🇧 🇱🇨 🇱🇮 🇱🇰 🇱🇷 🇱🇸 🇱🇹 🇱🇺 🇱🇻 🇱🇾 🇲🇦 🇲🇨 🇲🇩 🇲🇪 🇲🇫 🇲🇬 🇲🇭 🇲🇰 🇲🇱 🇲🇲 🇲🇳 🇲🇴 🇲🇵 🇲🇶 🇲🇷 🇲🇸 🇲🇹 🇲🇺 🇲🇻 🇲🇼 🇲🇽 🇲🇾 🇲🇿 🇳🇦 🇳🇨 🇳🇪 🇳🇫 🇳🇬 🇳🇮 🇳🇱 🇳🇴 🇳🇵 🇳🇷 🇳🇺 🇳🇿 🇴🇲 🇵🇦 🇵🇪 🇵🇫 🇵🇬 🇵🇭 🇵🇰 🇵🇱 🇵🇲 🇵🇳 🇵🇷 🇵🇸 🇵🇹 🇵🇼 🇵🇾 🇶🇦 🇷🇪 🇷🇴 🇷🇸 🇷🇺 🇷🇼 🇸🇦 🇸🇧 🇸🇨 🇸🇩 🇸🇪 🇸🇬 🇸🇭 🇸🇮 🇸🇯 🇸🇰 🇸🇱 🇸🇲 🇸🇳 🇸🇴 🇸🇷 🇸🇸 🇸🇹 🇸🇻 🇸🇽 🇸🇾 🇸🇿 🇹🇦 🇹🇨 🇹🇩 🇹🇫 🇹🇬 🇹🇭 🇹🇯 🇹🇰 🇹🇱 🇹🇲 🇹🇳 🇹🇴 🇹🇷 🇹🇹 🇹🇻 🇹🇼 🇹🇿 🇺🇦 🇺🇬 🇺🇲 🇺🇳 🇺🇸 🇺🇾 🇺🇿 🇻🇦 🇻🇨 🇻🇪 🇻🇬 🇻🇮 🇻🇳 🇻🇺 🇼🇫 🇼🇸 🇽🇰 🇾🇪 🇾🇹 🇿🇦 🇿🇲 🇿🇼");
-});
-
-document.getElementById("btn-block21").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "ꁲ ꃳ ꏳ ꀷ ꑀ ꊯ ꁅ ꁝ ꒐ ꒑ ꈵ ꒒ ꂵ ꃔ ꊿ ꉣ ꋠ ꌅ ꈜ ꋖ ꌈ ꒦ ꅐ ꉤ ꐔ ꑒ ꍏ ꌃ ꏳ ꀷ ꏂ ꎇ ꁅ ꀍ ꀤ ꒻ ꀘ ꒒ ꎭ ꈤ ꂦ ᖘ ꆰ ꋪ ꌚ ꓄ ꀎ ꒦ ꅐ ꉧ ꌩ ꁴ ꋫ ꃲ ꉓ ꃸ ꑾ ꄘ ꁅ ꃄ ꒐ ꒑ ꀗ ꒒ ꂵ ꁹ ꄱ ꉣ ꋟ ꋪ ꇘ ꓅ ꌇ ꒦ ꅏ ꋋ ꌥ ꒗ Ꮧ Ᏸ Ꮄ Ꮛ ጀ Ꮆ Ꮒ Ꭵ Ꮰ Ꮶ Ꮭ Ꮇ Ꮑ Ꭷ Ꭾ Ꭴ Ꮢ Ꮥ Ꮦ Ꮼ Ꮙ Ꮗ ፈ Ꭹ ፚ");
-});
-
-}
-
-function renderAllDefault() {
-  const firstKey = Object.keys(unicodeBlocks)[0];
-  renderBlockByKey(firstKey);
-  blockSelect.value = firstKey;
-}
-
-window.addEventListener("DOMContentLoaded", init);
-
-document.addEventListener("click", function (e) {
-  if (!notesTextarea.contains(e.target)) {
-    notesTextarea.blur(); // hilangkan fokus dari textarea = keyboard menghilang
-  }
-});
-
-</script>
-<script>
-  const toggleBtn = document.getElementById('darkModeToggle');
-  toggleBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
-  });
-</script>
-<script>
-  // Tahan loader selama 36 detik (3.6 putaran), lalu blur hilang 2 detik
-  window.addEventListener("DOMContentLoaded", () => {
-    requestAnimationFrame(() => {
-      setTimeout(() => {
-        const overlay = document.getElementById("loading-overlay");
-        overlay.style.transition = "opacity 2s ease";
-        overlay.style.opacity = 0;
-        setTimeout(() => {
-          overlay.style.display = "none";
-          document.getElementById("main-container").style.display = "block";
-        }, 300); // Fade-out selesai
-      }, 300); // 10 detik x 3.6 putaran
-    });
-  });
-  
-  
-</script>
 
 </body>
 </html>
