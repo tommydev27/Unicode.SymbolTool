@@ -22,7 +22,7 @@
     font-family: Questrial, sans-serif;
       margin: 10px;
       display: flex;
-      background-color:#f6f7f8; 
+    background:rgba(24,119,242,0.114);
       flex-direction: column;
       align-items: center;
       -webkit-tap-highlight-color: transparent;
@@ -41,32 +41,32 @@
         width: 100%;
       }
 
-  #notes-container {
-    width: 100%;
-    font-size: 15px;
-    margin-bottom: 15px;
-    
-  }
-
-  select {
-    padding: 5px;
-    font-size: 14px;
-    width: 100%;
-    margin-bottom: 0; /* ubah dari sebelumnya */
-  }
-
-  #notes {
-    width: 100%;
-  font-family: 'Questrial', sans-serif;
-    height: 160px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin-bottom: -20px;
-    font-size: 18px;
-    resize: none; /* kunci agar tidak bisa di-resize */
-    padding: 5px;
-    box-sizing: border-box;
-  }
+    #notes-container {
+      width: 100%;
+      font-size: 15px;
+      margin-bottom: 15px;
+      
+    }
+  
+    select {
+      padding: 5px;
+      font-size: 14px;
+      width: 100%;
+      margin-bottom: 0; /* ubah dari sebelumnya */
+    }
+  
+    #notes {
+      width: 100%;
+      font-family: 'Questrial', sans-serif;
+      height: 160px;
+      border: 0.1px solid rgba(29,124,247,0.305);
+      border-radius: 10px;
+      margin-bottom: -20px;
+      font-size: 18px;
+      resize: none; /* kunci agar tidak bisa di-resize */
+      padding: 5px;
+      box-sizing: border-box;
+    }
 
     #notes {
       user-select: auto !important;
@@ -86,73 +86,80 @@
 
     #counter-info {
       display: flex;
-      gap: 8px; /* jarak antar kotak */
+      gap: 8px;
       margin-left: auto;
       white-space: nowrap;
+      position: absolute; /* kalau mau top & right bekerja */
+      top: 10px;
+      right: 5px;
     }
     
     .counter-box {
       font-size: 12px;
-      color: #c60606;
-      padding: 5px 5px;
-      border-radius: 6px 0px 6px 0px;
-      font-weight: bold;
-      background: #fff;
+      color: black;
+      padding: 5px 10px;
+      font-family: normal;
+      border-radius: 6px;
+      background: white;
       border: 1px solid #ccc;
-        
+      max-width: 56px;  
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;  
     }
-
-#counter-info {
-  top: 10px;
-  right: 5px;
-}
-.counter-box {
-  max-width: 56px;  
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;  
-}
-
-
-
-/* Semua tombol menggunakan gaya yang sama */
-
-.control-row {
-   box-shadow: 2px 2px 2px #dad7d7,
-        -3px -2px 1px white;
-    border-radius: 6px 0px 6px 0px;
-    display: flex;
-    align-items: center;
-    gap: 0px;
-  }
-
-  .control-row > * {
-    flex: 1;
-  }
+    
+    .dark-mode .counter-box {
+      color: #25fe42;
+      background: black;
+      }
+      
+    .control-row {
+      display: flex;
+      align-items: center;
+      gap: 0px;
+    }
+  
+    .control-row > * {
+      flex: 1;
+    }
 
     button#copy-btn,
     button#clear-btn,
     button.key-btn, #block-select {
-      padding: 4px 1px;
-      font-size: 15px;
+      padding: 0px 1px;
+      font-size: 18px;
+      background:#fff;
+    border: 0.1px solid rgba(29,124,247,0.305);
+        box-shadow: 2px 2px 3px #c6c4c4,
+      -3px -3px 4px #ffffff;   
+      border-radius:4px;
       font-weight: bold;
-      border-radius: 6px 0px 6px 0px;
       cursor: pointer;
-      background: #555;
-    box-shadow: 2px 2px 2px #b7b7b7,
-    -3px -2px 1px white;
       white-space: nowrap;
       margin: 2px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       min-width: 35px;
-      color: #fff;
-      height: 28px;
+      color: #333;
+      height: 25.5px;
       user-select: none;
       transition: background 0.2s, transform 0.1s;
    }
-
+   
+    .dark-mode .tambahan-container button {
+      background: #333;
+      color: #42e008;
+    }
+    
+    .dark-mode button#copy-btn,
+    .dark-mode button#clear-btn,
+    .dark-mode button.key-btn,
+    .dark-mode #block-select {
+      background: #333;
+      color: #ffab41;
+    }
+      
     #notes {
       position: relative; 
     }
@@ -178,7 +185,6 @@
       margin-left: 5px; /* beri jarak sedikit dari teks */
     }
     
-    
     #copy-message {
       position: absolute;
       bottom: 50px;
@@ -187,7 +193,6 @@
       opacity: 0;
       transition: opacity 0.3s ease;
     }
-    
     
     .checkmark {
       width: 16px;
@@ -237,17 +242,14 @@
     
     #container {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(40px, 1fr));
-      gap: 3px;
-      margin-top: 10px;
-      height: 282px;
+      grid-template-columns: repeat(auto-fill, minmax(40px, auto));
+      align-content: start;
+      gap: 5px;
+      margin-top: 1px;
+      max-height: 245px; /* batas atas */
       overflow-y: auto;
-      background:#eff7ff;
-      box-shadow: 2px 2px 3px #b7b7b7,
-      -3px -2px 1px white;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-      padding: 5px;
+      padding: 3px;
+      height: auto; /* sesuaikan jika isi sedikit */
     }
     
     .dark-mode #container {
@@ -260,65 +262,65 @@
       justify-content: center;
       height: 40px;
       margin: 0px;
-      border-radius: 4px;
-      color: #fff;
-      font-size: 25px;
-      box-shadow: 2px 2px 5px #9f9e9e,
-      -1px -1px 2px white;
-
-        background: #444;
+      border-radius: 5px;
+      color: #333;
+      font-size: 19px;
+      background:#fff;
+      box-shadow: 0px 2px 1px #c6c4c4,
+      -0px -1px 1px #ffffff;
       cursor: pointer;
       transition: background 0.2s;
       user-select: none;
     }
   
-  
     #clear-btn:hover,
     #copy-btn:hover,
-    .key-btn:hover, .char:hover,     .tambahan-container button:hover {
-      background: #333;
+    .key-btn:hover, .char:hover, .key1:hover, .tambahan-container button:hover {
+    background:#555;
       color: #fff;
       animation: flashRedThenBlack 0.1s ease-in-out;
-  }
+    }
   
   @keyframes flashRedThenBlack {
-    0% {
+    80% {
       background: #ab0101;
       transform: scale(1.1);
     }
-    50% {
-      background: #267fdd;
+    100% {
+      background: #8898ff;
+      color:#fff;
       transform: scale(1.1);
     }
-    100% {
-      background: #333;
+    150% {
+
       transform: scale(1.1);
     }
   }
 
     .block-label {
       grid-column: 1 / -1;
-      background: green;
       padding: 1px 6px;
       font-size: 10px;
-      color: #fff;
+      color: #333;
       font-family: 'Questrial', sans-serif;
       font-weight: bold;
-      border: 1px solid #ccc;
       border-radius: 5px;
       margin: 1px 0;
       user-select: none;
       pointer-events: none; 
     }
           
-    .dark-mode .char {
-      background: black !important;
-      border: solid 1px green ;
+      .dark-mode .block-label
+           {
+      
+      color: #33f933 ;
     }
     
-    .dark-mode .control-row {
-      border: 1px solid #7c7c7c;
+    .dark-mode .char {
+      background: black;
+      color: #08f42e;
     }
+
     #darkModeToggle {
       position: fixed;
       display: flex;
@@ -326,15 +328,18 @@
       border-radius: 30px;
       height: 10px;
       border: none;
-      background: #788;
+      box-shadow: 2px 1px 3px #9f9e9e,
+      -1px -1px 2px white;
+      background: #fff;
       align-items: center;
       justify-content: start;
     }
+    
     #darkModeToggle::before {
       content: '';
       width: 8px;
       height: 8px;
-      background: red;
+      background: #555;
       border-radius: 50%;
       margin-left: -5px;
     }
@@ -362,7 +367,6 @@
       background: white;
     }
     
-    /* Loader full screen */
     #loading-overlay {
       position: fixed;
       top: 0;
@@ -374,14 +378,13 @@
       justify-content: center;
       align-items: center;
       z-index: 9999;
-      transition: opacity 1s ease; /* Biar memudar saat hilang */
+      transition: opacity 1s ease; 
     }
 
-  /* Style default (louder awal) */
     .spinner {
       width: 10px;
       height: 10px;
-      border: 4px solid #ccc;
+      border: 1px solid #ccc;
       border-top-color: #8e8484;
       border-radius: 50%;
       animation: spin 1s linear infinite;
@@ -405,126 +408,134 @@
     
       .styled-slider {
         width: 100%;
-        height: 9px;
+        height: 12px;
         -webkit-appearance: none;
         background: transparent;
       }
     
-    .styled-slider::-webkit-slider-runnable-track {
-      height: 10px;
-      border-radius: 34px;
-      background: #8f0000;
-      border: 1px solid #ccc;
-      box-shadow: 2px 2px 3px #b7b7b7,
-                  -3px -2px 1px white;
-    }
-    
-    .dark-mode .styled-slider::-webkit-slider-runnable-track {
-      box-shadow: none !important;
-    }
-
-   .styled-slider::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 14px;
-      height: 14px;
-      background: #fff;
-      border-radius: 50%;
-      margin-left: 0px;
-      margin-top: -3.5px;
-      border: 3px solid #003e57;
-    }
+      .styled-slider::-webkit-slider-runnable-track {
+        height: 5px;
+        border-radius: 34px;
+        background: #56defb;
+        border: 1px solid #ccc;
+        box-shadow: 2px 2px 3px #c6c4c4,
+        -3px -3px 4px #ffffff;
+      }
+      
+      .dark-mode .styled-slider::-webkit-slider-runnable-track {
+        box-shadow: none !important;
+      }
   
-    .line {
-      flex-grow: 1;
-      height: 1px;
-      background-color: #ccc;
-      margin: 0 6px;
-    }
+     .styled-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 14px;
+        height: 14px;
+        background: #fff;
+        border-radius: 50%;
+        margin-left: -2px;
+        margin-top: -4.5px;
+        border: 3px solid #003e57;
+      }
     
-    #percent-value,
-     #strike-value {
-      text-align: left;
-        font-size: 11px;
-        user-select: none;
-        pointer-events: none; 
-        padding: 0px 5px;
-        color: #333;
+      .line {
+        flex-grow: 1;
+        height: 1px;
+        background-color: #ccc;
+        margin: 0 6px;
       }
       
+      #percent-value,
+       #strike-value {
+        text-align: left;
+          font-size: 11px;
+          user-select: none;
+          pointer-events: none; 
+          padding: 5px 5px;
+          color: #333;
+        }
+        
+       .dark-mode #percent-value,
+       .dark-mode #strike-value {
+            color: #00ff00;
+        }
+       .dark-mode .toggle-btn {
+         background: #333;
+         color: #00ff00;
+       }
+         
+       .keyboard-extra {
+          display: flex;
+          width: 100%;
+          padding: 0px;
+          justify-content: center;
+          margin-top: 5px;
+          gap: 6px;
+       }
       
-     .dark-mode #percent-value,
-     .dark-mode #strike-value {
-          color: #00ff00;
-      }
-
-     .keyboard-extra {
+      .tambahan-container {
         display: flex;
-        width: 100%;
-        padding: 0px;
-        justify-content: center;
-        margin-top: 5px;
+        overflow-x: auto;
         gap: 6px;
-     }
-    
-    .tambahan-container {
-      display: flex;
-      overflow-x: auto;
-      gap: 6px;
-      padding: 2px;
-      border-radius: 6px 0px 6px 0px;
-      margin: 5px 0;
-      scroll-behavior: smooth;
-    box-shadow: 2px 2px 3px #b7b7b7,
-    -3px -2px 1px white;
-      direction: ltr;
+        padding: 2px;
+        margin: 5px 0;
+        scroll-behavior: smooth;
+        direction: ltr;
+        
+      }
       
-    }
-    
-    .tambahan-container button {
-      flex: 0 0 auto;
-      width: 80px;
-      color: #fff;
-      background: #555;
-      font-family: normal;
-      height: 25px;
-      scroll-behavior: smooth;
-    box-shadow: 2px 2px 3px #b7b7b7,
-    -3px -2px 1px white;
-      border-radius: 6px 0px 6px 0px;
+      .toggle-btn,
+     .tambahan-container button {
+        flex: 0 0 auto;
+        color: #333;
+        padding:20px 20px;
+        background: #fff;
+        font-family: Questrial;
+        height: 30px;
+            border: 0.1px solid rgba(29,124,247,0.305);
+        border-radius:4px;
+          box-shadow: 2px 8px 8px #c6c4c4,
+        -0px -3px 4px #ffffff;   
+        scroll-behavior: smooth;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.2s;
+      }
+      .toggle-btn{
+                background-color:
+                #a1ccfe;
+       border-radius:4px;
+          box-shadow: 2px 2px 4px #c6c4c4,
+        -0px -3px 4px #ffffff;  
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
-      transition: background-color 0.2s;
-    }
-    
-    .tambahan-container button:hover {
-      background-color: #444;
-      color: #fff;
-    }
-    
-    .tambahan-container button span {
-      line-height: 1;
-      font-size: 16px;
-    }
-    
-    .button, a {
-      -webkit-tap-highlight-color: transparent;
-      -webkit-touch-callout: none;
-      outline: none;
-      touch-action: manipulation;
-    }
-    
-    .key, span, button {
-      user-select: none !important;
-      -webkit-user-select: none !important;
-      -webkit-touch-callout: none !important;
-      pointer-events: auto !important;
-      z-index: 10 !important;
-      position: relative !important;
-    }
-    
+      }
+      .toggle-btn:hover,
+      .tambahan-container button:hover {
+          background-color: #469bfe;
+          color: white;
+      }
+      
+      .tambahan-container button span {
+        font-size: 20px;
+      }
+      
+      .button, a {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+        outline: none;
+        touch-action: manipulation;
+      }
+      
+      .key, span, button {
+        user-select: none !important;
+        -webkit-user-select: none !important;
+        -webkit-touch-callout: none !important;
+        pointer-events: auto !important;
+        z-index: 10 !important;
+        position: relative !important;
+      }
+      
      body * {
        position: relative !important;
      }
@@ -542,33 +553,253 @@
         margin: 0 0px;
       }
 
-#content-container {
-  overflow-x: auto;
-  white-space: nowrap;
+      #content-container {
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      
+      .scroll-wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 8px;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 8px;
+        scroll-behavior: smooth;
+      }
+      
+      #container {
+        overflow-x: auto;
+        scroll-behavior: smooth;
+      }
+      
+      .control-row1 {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      
+      .control-row1 {
+        display: flex;
+        gap: 0px;
+        padding: 8px 0px;
+        justify-content: center;
+        flex-wrap: nowrap; 
+      }
+      
+      
+      .key-btn span.native-text,
+      .key-btn span.backspace-icon,
+      .key-btn span.enter-icon {
+        display: inline-block;
+        pointer-events: none;
+      }
+      
+      .key-btn[onclick*="insertText(' ')"] {
+        flex: 2 1 auto; 
+      }
+
+
+      .key-btn[onclick*="insertText('\\n')"],
+      .key-btn[onclick*="backspace()"] {
+        flex: 1.5 1 auto;
+      }
+
+      @media (min-width: 1024px) {
+        .key-btn {
+          flex: 1 1 auto;
+        }
+      .key-btn[onclick*="insertText(' ')"] {
+        flex: 2 1 auto;
+      }
+    }
+
+    .keyboard {
+      max-width: 100%;
+      width: 100%;
+      box-sizing: border-box;
+      padding: 0px;
+      
+    }
+
+    .row {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+      overflow-x: auto;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 5px;
+    }
+
+    .key1 {
+      flex: 1 0 auto;
+      white-space: nowrap;
+      padding: 0px;
+      text-align: center;
+      background:#fff;
+      border: 0.1px solid rgba(29,124,247,0.305);
+      box-shadow: 0px 1px 1px #9f9e9e,
+      -1px -1px 1px #ffffff;
+      color: #333;
+      border-radius: 6px;
+      margin: 2px;
+      cursor: pointer;
+      font-size: 22px;
+      line-height: 0px;
+      width: 30px;
+      height: 45px;
+    }
+
+    .dark-mode  .key1 {
+      background: black;
+      color: #08f42e;
+    }
+    
+   .dark-mode  .key2 {
+      background: #333;
+      color: #08f42e;
+    }
+    
+    .key1.space {
+      width: 80px;
+    }
+
+    .key1.wide {
+      padding: 8px;
+      width: 40px;
+      height: 45px;
+    }
+    
+    .key2 {
+      flex: 0 0 auto;
+      padding: 8px 12px;
+      margin: 0;
+      font-size: 14px;
+      background:#fff;
+      border: 0.1px solid rgba(29,124,247,0.305);
+       box-shadow: 0px 1px 1px #9f9e9e,
+      -1px -1px 1px #ffffff;
+      border-radius: 6px;
+      cursor: pointer;
+      white-space: nowrap;
+      user-select: none;
+      transition: background 0.2s;
+    }
+
+    .key2:hover {
+      background: #ddd;
+    }
+    
+    .key2:active {
+      background: #bbb;
+    }
+
+    .number-row {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 8px;
+      
+    }
+    
+    .fixed-button button {
+      font-size: 21px;
+      padding: 0px 4px; 
+      color: #333;
+      padding: 10px 8px;
+      margin: 0;
+      font-size: 14px;
+background-color: #99c5f7;
+      border: 0.1px solid rgba(29,124,247,0.305);
+       box-shadow: 0px 1px 1px #9f9e9e,
+      -1px -1px 1px #ffffff;
+      border-radius: 6px;
+      outline: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    
+   .dark-mode  .fixed-button button {
+      background: #333;
+      color: #ffb358;
+    }
+.fixed-button button:hover,
+.fixed-button button:active {
+  animation: blink-scale 0.1s ease-in-out;
 }
 
-.scroll-wrapper {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 8px;
-  overflow-x: auto;
-  white-space: nowrap;
-  padding: 8px;
-  scroll-behavior: smooth;
-}
-
-#container {
-  overflow-x: auto;
-  scroll-behavior: smooth;
+.blink {
+  animation: blink-scale 0.1s ease-in-out;
 }
 
 
-     </style>
+@keyframes blink-scale {
+  0%, 100% { 
+    background-color: #777; 
+    color: #f70b1d; 
+    border-radius: 10px;
+    transform: scale(0.8); 
+  }
+  50% { 
+    background-color: ; 
+    transform: scale(0.80); 
+  }
+}
+
+.fixed-button button:active {
+  animation: blink-scale 1.1s ease-in-out 1;
+}
+
+
+
+
+
+    
+    .scroll-buttons {
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: space-between; 
+      gap: 3px;
+      flex: 1;
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    .scroll-buttons button {
+      flex: 1 1 0;   
+      min-width: 0; 
+      margin: 0;
+      font-weight: 600;
+      padding: 5px 0px;
+      font-size: 20px;
+      background:#fff;
+      border: 0.1px solid rgba(29,124,247,0.305);
+       box-shadow: 0px 1px 1px #9f9e9e,
+      -1px -1px 1px #ffffff;
+      border-radius: 6px;
+      margin-top: 5px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+    
+   .dark-mode  .scroll-buttons button {
+      background: #333;
+      color: #08f42e;
+    }
+
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.loading::before {
+  content: "⏳";
+  display: inline-block;
+  animation: spin 1s linear infinite;
+}
+
+ </style>
     
 </head>
 <body>
 
-    <div id="loading-overlay">
+  <div id="loading-overlay">
         <div class="spinner"></div>
     </div>
 
@@ -585,14 +816,17 @@
             <button id="darkModeToggle" title="Toggle Mode Gelap"></button>
             <div style="font-size: 10px; color: gray; margin-top: 0px;">mode●</div>
           </div>
-          
       </h3>
-       <h2 style="color: #2298ff; padding: 0px; margin-top: -12px; font-size: 11px !important; font-weight: bold;">Tommy website app v0.1.0
-       
+      
+       <h2 style="color: #2298ff; padding: 0px; margin-top: -18px; font-size: 14px !important; font-weight: bold;">Tommy website <svg xmlns="http://www.w3.org/2000/svg" fill="#4790fb" width="18" height="18" viewBox="0 0 30 30" style="transform: translateY(5px);">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.201 1.122a1 1 0 0 1 1.332.357l1.307 2.138 2.506.063a1 1 0 0 1 .974.975l.063 2.505 2.139 1.307a1 1 0 0 1 .356 1.332L21.68 12l1.198 2.201a1 1 0 0 1-.357 1.332l-2.138 1.307-.063 2.506a1 1 0 0 1-.974.974l-2.506.063-1.307 2.139a1 1 0 0 1-1.332.356L12 21.68l-2.201 1.198a1 1 0 0 1-1.332-.357L7.16 20.383l-2.506-.063a1 1 0 0 1-.974-.974l-.063-2.506-2.138-1.307a1 1 0 0 1-.357-1.332L2.32 12 1.122 9.799a1 1 0 0 1 .357-1.332L3.617 7.16l.063-2.505a1 1 0 0 1 .974-.975l2.506-.063L8.467 1.48A1 1 0 0 1 9.8 1.122L12 2.32l2.201-1.198zm2.44 9.146a1 1 0 1 0-1.281-1.536l-.067.055a43.003 43.003 0 0 0-4.852 4.74l-1.734-1.734a1 1 0 0 0-1.414 1.414l2.5 2.5a1 1 0 0 0 1.475-.067l.056-.067a41 41 0 0 1 5.25-5.25l.066-.055z"></path>
+          </svg>
+
     </h2>
        
 <div id="notes-wrapper">
   <textarea id="notes" placeholder="Tulis ..."></textarea>
+  
   <span id="copy-message">
     Berhasil disalin!
     <svg viewBox="0 0 52 52" class="checkmark">
@@ -602,150 +836,99 @@
   </span>
 </div>
 
- <div class="control-row">
-    <button id="copy-btn">⧉</button>
-    <button id="clear-btn">🄫</button>
-
-   <button class="key-btn" id="btn-block119">
-   <span class="native-text">Aa</span>
-   </button>
-   <button class="key-btn" id="btn-block118">
-     <span class="native-text">😃</span>
-   </button>
-  <button class="key-btn" onclick="insertText(' ')">⎵</button>
-  <button class="key-btn" onclick="backspace()">
-  <span class="backspace-icon">⌫</span>
-  </button>
-  <button class="key-btn" onclick="insertText('\n')">
-    <span class="enter-icon">↲</span>
-  </button>
-</div>
-
-    
-
 <div class="control-row">
-  <select id="block-select" style="font-size: 11px; height: 22px;">
+  <button id="copy-btn">⧉</button>
+  <button id="clear-btn" style="font-size:10px;">CLEAR</button>
+
+  <button class="key-btn" onclick="undo()">↺</button>
+  <button class="key-btn" onclick="redo()">↷</button>
+
+  <select id="block-select" style="font-size: 11px; height: 25.5px;">
     
-
-    <option value="btn-block5">Simbol</option>
-    
-
-  <option value="btn-block27">☆ ★ ✡</option>
-  <option value="btn-block25">♼ ♽ ♾</option>
-  <option value="btn-block26">㉿ ㊊ ㊋</option>
-  <option value="btn-block13">䷇䷨䷔</option>
-  <option value="btn-block24">▄ ▅ ▆</option>
-  <option value="btn-block20">🂱 🂲 🂳</option>
-  <option value="btn-block6">⌨ ☑ ⎙</option>
-  <option value="btn-block9">⣼⣇⡇</option>
-  <option value="btn-block16">𝇜𝅘𝅥𝅘𝅥𝅮</option>
-  <option value="btn-block17">⟫ ⟩ ❱ ❭</option>
-  <option value="btn-block1">🅐🅑🅒</option>
-  <option value="btn-block2">⓵⓶⓷</option>
-  <option value="btn-block3">🅰🅱🅲</option>
-  <option value="btn-block4">🄐🄑🄒</option>
-  <option value="btn-block5">ＡＢＣ</option>
-  <option value="btn-block7">𝒜ℬ𝒞</option>
-  <option value="btn-block8">𝑨𝑩𝑪</option>
-  <option value="btn-block11">𝘼𝘽𝘾</option>
-  <option value="btn-block12">𝗔𝗕𝗖</option>
-  <option value="btn-block14">𝔄𝔅ℭ</option>
-  <option value="btn-block10">𝐀 ƛ 𝕒</option>
-  <option value="btn-block19">Ꭺ ᗩ 卂</option>
-  <option value="btn-block22">ムるど</option>
-  <option value="btn-block15">𝙰ᴀᵃ</option>
-  <option value="btn-block18">ᗅΛԺ</option>
-  <option value="btn-block21">ᕱꀷꋫ</option>
-
         <option value="1F600-1F64F">UNICODE</option>
-
-      </select>
+        </select>
      </div>
         
 
+<div id="top-bar" style="display:flex; gap:5px; align-items:center;">
+<button id="toggle-btn" style="font-size:15px;" class="toggle-btn" onclick="toggleKeyboardLayout()">Ganti Mode</button>
 
 
-    <div id="symbol-bar" class="tambahan-container">
-       <button id="btn-block27"><span class="native-text">☆ ★ ✡</span></button>
-        <button id="btn-block25">
-          <span>♼ ♽ ♾</span>
+  <div id="symbol-bar" class="tambahan-container" style="display:flex; gap:5px;">
+    <button id="btn-block25">
+      <span style="font-weight:bold;">Symbols</span>
+      <span style="font-weight:bold; font-size:22px;">&nbsp;㉿</span>
         </button>
-        <button id="btn-block26">
-          <span>㉿ ㊊ ㊋</span>
-        </button>
-        <button id="btn-block13">
-          <span>䷇䷨䷔</span>
-        </button>
-         <button id="btn-block24">
-            <span>▄ ▅ ▆</span>
-          </button>
-          <button id="btn-block20">
-            <span>🂱 🂲 🂳</span>
-           </button>
-          <button id="btn-block6">
-            <span>⌨ ☑ ⎙</span>
-          </button>
-            <button id="btn-block9">
-            <span>⣼⣇⡇</span>
-          </button>
-          <button id="btn-block16">
-            <span>𝇜𝅘𝅥𝅘𝅥𝅮</span>
-          </button>
-          <button id="btn-block17">
-            <span>⟫ ⟩ ❱ ❭</span>
-          </button>
+          <button id="btn-block114"><span>Greek Alphabet</span></button>
+          <button id="btn-block111"><span>Arabic</span></button>
+          <button id="btn-block22">
+          <span>Japanese</span></button>
+          <button id="btn-block112"><span>Upside-Down Ɐ </span></button>
+          <button id="btn-block113"><span>Decorated Alphabets</span></button>
+          <button id="btn-block15">
+          <span>𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎+ UN</span>
+                </button>
+          <button id="btn-block115"><span>Cyrillic Russian</span></button>
+          <button id="btn-block116"><span>Ethiopic ጸ
+          </span></button>
+          <button id="btn-block117"><span>Devanagari अ</span></button>
+          <button id="btn-block118"><span>Bengali অ
+          </span></button>
+          <button id="btn-block119"><span>Tamil அ
+          </span></button>
+          <button id="btn-block120"><span>Tibetan ࿓ </span></button>
+          <button id="btn-block121"><span>Hieroglyph 𓂀
+          </span></button>
+          <button id="btn-block122"><span>Shavian 𐑕
+          </span></button>
+          <button id="btn-block123"><span>Linear 𐂂
+          </span></button>
           <button id="btn-block1">
-            <span>🅐🅑🅒</span>
+            <span>🅢🅠🅤🅐🅡🅔🅓</span>
           </button>
           <button id="btn-block2">
             <span>⓵⓶⓷</span>
           </button>
           <button id="btn-block3">
-            <span>🅰🅱🅲</span>
+            <span>🅱🅻🅰🅲🅺 🆂🆀</span>
           </button>
           <button id="btn-block4">
-            <span>🄐🄑🄒</span>
+            <span>⒠⒩⒞⒧⒪⒮⒠</span>
           </button>
           <button id="btn-block5">
-            <span>ＡＢＣ</span>
+            <span>Ｆｕｌｌｗｉｄｔｈ</span>
           </button>
           <button id="btn-block7">
-            <span>𝒜ℬ𝒞</span>
+            <span>𝓢𝓬𝓻𝓲𝓹𝓽 𝓑𝓸𝓵𝓭</span>
           </button>
           <button id="btn-block8">
-            <span>𝑨𝑩𝑪</span>
+            <span>𝑩𝒐𝒍𝒅 𝑰𝒕𝒂𝒍𝒊𝒄</span>
           </button>
           <button id="btn-block11">
-            <span>𝘼𝘽𝘾</span>
+            <span>𝘽𝙤𝙡𝙙 𝙢𝙤𝙣𝙤𝙨𝙥𝙖𝙘𝙚</span>
           </button>
           <button id="btn-block12">
-            <span>𝗔𝗕𝗖</span>
+            <span>𝐁𝐨𝐥𝐝</span>
           </button>
           <button id="btn-block14">
-            <span>𝔄𝔅ℭ</span>
+            <span>𝕱𝖗𝖆𝖐𝖙𝖚𝖗 𝕭𝖔𝖑𝖉</span>
           </button>
           <button id="btn-block10">
-            <span>𝐀 ƛ 𝕒</span>
+            <span>𝔾𝕣𝕒𝕗𝕥𝕜𝕦𝕣</span>
           </button>
            <button id="btn-block19">
             <span>Ꭺ ᗩ 卂</span>
           </button>
-          <button id="btn-block22">
-            <span>ムるど</span>
-          </button>
-          <button id="btn-block15">
-            <span>𝙰ᴀᵃ</span>
-          </button>
-        
-          <button id="btn-block18">
-            <span>ᗅΛԺ</span>
-          </button>
-          <button id="btn-block21">
-            <span>ᕱꀷꋫ</span>
-          </button>
-        </div>
+<button id="btn-block124"><span>Nama</span></button>
+<button id="btn-block125"><span>Nama</span></button>
+<button id="btn-block126"><span>Nama</span></button>
+<button id="btn-block127"><span>Nama</span></button>
+<button id="btn-block128"><span>Nama</span></button>
+<button id="btn-block129"><span>Nama</span></button>
+<button id="btn-block130"><span>Nama</span></button>
+  </div>
 
-  
+</div>
   <div class="keyboard-extra">
     <div class="slider-container">
       <input type="range" id="caret-slider" class="styled-slider" min="0" max="100" value="0"
@@ -758,12 +941,675 @@
       oninput="updateStrikethroughPercentage()">
     <div id="strike-value">Tengah: 0%</div>
   </div>
+</div>
+
+<!-- Keyboard Virtual -->
+<div id="keyboard-layout-1">
+  
+  <div class="keyboard">
+<div style="display:flex;align-items:center;position:relative;width:100%;">
+  <div class="row1" style="display:flex;flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;width:100%;box-sizing:border-box;gap:4px;padding:5px 0;scroll-behavior:smooth;">
+ 
+ 
+
+      <button class="key2" onclick="characterSymbols1()">𝒮𝒸𝓇𝒾𝓅𝓉</button>
+      <button class="key2" onclick="characterSymbols2()">𝓢𝓬𝓻𝓲𝓹𝓽 𝓑𝓸𝓵𝓭</button>
+      <button class="key2" onclick="characterSymbols3()">𝐼𝑡𝑎𝑙𝑖𝑐</button>
+      <button class="key2" onclick="characterSymbols4()">𝑩𝒐𝒍𝒅 𝑰𝒕𝒂𝒍𝒊𝒄</button>
+      <button class="key2" onclick="characterSymbols5()">𝐁𝐨𝐥𝐝</button>
+      <button class="key2" onclick="characterSymbols6()">𝔾𝕣𝕒𝕗𝕥𝕜𝕦𝕣</button>
+      <button class="key2" onclick="characterSymbols7()">𝔉𝔯𝔞𝔨𝔱𝔲𝔯</button>
+      <button class="key2" onclick="characterSymbols8()">𝕱𝖗𝖆𝖐𝖙𝖚𝖗 𝕭𝖔𝖑𝖉</button>
+      <button class="key2" onclick="characterSymbols9()">𝙼𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎</button>
+      <button class="key2" onclick="characterSymbols10()">ⒺⓃⒸⓁⓄⓈⒺⒹ</button>
+      <button class="key2" onclick="characterSymbols11()">🅢🅠🅤🅐🅡🅔🅓</button>
+      <button class="key2" onclick="characterSymbols12()">🅂🅀🅄🄰🅁🄴🄳</button>
+      <button class="key2" onclick="characterSymbols13()">🅱🅻🅰🅲🅺 🆂🆀</button>
+      <button class="key2" onclick="characterSymbols14()">🇷 🇪 🇬 🇮 🇴 🇳 🇦 🇱 </button>
+      <button class="key2" onclick="characterSymbols15()">𝖡𝗈𝗅𝖽 𝖨𝗍𝖺𝗅𝗂𝖼</button>
+      <button class="key2" onclick="characterSymbols16()">𝗕𝗼𝗹𝗱 𝗜𝘁𝗮𝗹𝗶𝗰 𝗦𝗰𝗿𝗶𝗽𝘁</button>
+      <button class="key2" onclick="characterSymbols17()">𝘐𝘵𝘢𝘭𝘪𝘤</button>
+      <button class="key2" onclick="characterSymbols18()">𝘽𝙤𝙡𝙙 𝙢𝙤𝙣𝙤𝙨𝙥𝙖𝙘𝙚</button>
+      <button class="key2" onclick="characterSymbols19()">Ｆｕｌｌｗｉｄｔｈ</button>
+      <button class="key2" onclick="characterSymbols20()">⒠⒩⒞⒧⒪⒮⒠</button>
+</div>
+
+<script>
+function animateScroll(el, from, to, duration, callback) {
+  const distance = to - from;
+  const startTime = performance.now();
+
+  function step(now) {
+    const progress = Math.min((now - startTime) / duration, 1);
+    el.scrollLeft = from + distance * progress;
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      el.scrollLeft = to;
+      if (callback) callback();
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
+window.addEventListener("load", () => {
+  const firstButton = document.querySelector('.key2');
+  if (firstButton && firstButton.parentElement) {
+    const container = firstButton.parentElement;
+    animateScroll(container, 0, container.scrollWidth - container.clientWidth, 2000, () => {
+      setTimeout(() => {
+        animateScroll(container, container.scrollWidth - container.clientWidth, 0, 200);
+      }, 150); // scroll balik sekali
+    });
+  }
+});
+</script>
+
+
+<div class="fixed-button" style="flex-shrink:0;position:sticky;right:0;padding-left:10px; ">
+    <button onclick="replaceWithCircledNumbers()">Ganti angka</button>
+</div>
+</div>
+<div class="row1">
+
+  <div class="number-row">
+    <div id="number-buttons" class="scroll-buttons">
+      <button onclick="insertChar('1')">1</button>
+      <button onclick="insertChar('2')">2</button>
+      <button onclick="insertChar('3')">3</button>
+      <button onclick="insertChar('4')">4</button>
+      <button onclick="insertChar('5')">5</button>
+      <button onclick="insertChar('6')">6</button>
+      <button onclick="insertChar('7')">7</button>
+      <button onclick="insertChar('8')">8</button>
+      <button onclick="insertChar('9')">9</button>
+      <button onclick="insertChar('0')">0</button>
+    </div>
 
 </div>
 
-<div id="container"></div>
+
+ </div>
+    <div class="row" id="row-qwerty"></div>
+    <div class="row" id="row-asdf"></div>
+    <div class="row">
+      <button class="key1 wide" style="font-size:15px; font-weight:bold;" onclick="toggleShift()">A/a</button>
+      <div class="row" id="row-zxcv"></div>
+      <button class="key1 wide" onclick="backspace()">⌫</button>
+    </div>
+    
+      <div class="row">
+      <button class="key1" style="font-size:15px; font-weight:bold;" onclick="setNormal()">N⎀</button>
+      <button class="key1" style="font-size:18px; font-weight:bold;" onclick="toggleSymbols()">@</button>
+      <button class="key1" onclick="appendChar(',')">,</button>
+      <button class="key1" onclick="toggleEmoji()">☹</button>
+      <button class="key1 space" onclick="appendChar(' ')">⎵</button>
+      <button class="key1" onclick="appendChar('.')">.</button>
+      <button class="key1" onclick="appendChar('\n')">↲</button>
+    </div>
+  </div>
+</div> <!-- ✅ DITAMBAHKAN penutup keyboard-layout-1 -->
+
+<!-- Keyboard Layout 2 -->
+<div id="keyboard-layout-2" style="display: none;">
+  <div id="container"></div>
+  <div class="control-row1">
+    <button class="key-btn" id="btn-block1019"><span class="native-text">Aa</span></button>
+    <button class="key-btn" id="btn-block1018"><span class="native-text">😃</span></button>
+    <button class="key-btn" onclick="insertText(' ')">⎵</button>
+    <button class="key-btn" onclick="backspace()"><span class="backspace-icon">⌫</span></button>
+    <button class="key-btn" onclick="insertText('\n')"><span class="enter-icon">↲</span></button>
+  </div>
+</div>
 
 <script>
+  let isLayoutOne = true;
+
+function toggleKeyboardLayout() {
+  const layout1 = document.getElementById('keyboard-layout-1');
+  const layout2 = document.getElementById('keyboard-layout-2');
+  const toggleBtn = document.getElementById('toggle-btn');
+
+  toggleBtn.style.transition = 'transform 0.2s ease';
+  toggleBtn.style.transform = 'scale(0.9)';
+  toggleBtn.textContent = '⏳ Memuat...';
+  toggleBtn.disabled = true;
+
+  // jeda lebih lama agar teks terlihat
+  setTimeout(() => {
+    toggleBtn.style.transform = 'scale(1)';
+
+    if (isLayoutOne) {
+      layout1.style.display = 'none';
+      layout2.style.display = 'block';
+      toggleBtn.textContent = ' Keyboard';
+    } else {
+      layout1.style.display = 'block';
+      layout2.style.display = 'none';
+      toggleBtn.textContent = 'Ganti Mode';
+    }
+
+    isLayoutOne = !isLayoutOne;
+    toggleBtn.disabled = false;
+  }, 800); // ganti dari 300 ke 800
+}
+
+
+  function insertText(char) {
+    const textarea = document.getElementById('notes');
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const text = textarea.value;
+    textarea.value = text.substring(0, start) + char + text.substring(end);
+    textarea.selectionStart = textarea.selectionEnd = start + char.length;
+    textarea.focus();
+  }
+
+  // ✅ Tambahan: Semua tombol di symbol-bar akan langsung aktifkan layout 2
+  document.addEventListener('DOMContentLoaded', () => {
+    const layout1 = document.getElementById('keyboard-layout-1');
+    const layout2 = document.getElementById('keyboard-layout-2');
+    const toggleBtn = document.getElementById('toggle-btn');
+
+    const symbolBar = document.getElementById('symbol-bar');
+    if (symbolBar) {
+      const buttons = symbolBar.querySelectorAll('button');
+
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Langsung pindah ke layout 2
+          layout1.style.display = 'none';
+          layout2.style.display = 'block';
+          isLayoutOne = false;
+
+          if (toggleBtn) {
+            toggleBtn.textContent = 'Keyboard';
+          }
+        });
+      });
+    }
+  });
+  
+document.querySelectorAll('.fixed-button button').forEach(fixedBtn => {
+  fixedBtn.addEventListener('click', () => {
+    // reset + animasi tombol fixed sendiri
+    fixedBtn.classList.remove('blink');
+    void fixedBtn.offsetWidth;
+    fixedBtn.classList.add('blink');
+
+    // animasi semua tombol number
+    document.querySelectorAll('#number-buttons button').forEach(btn => {
+      btn.classList.remove('blink');
+      void btn.offsetWidth;
+      btn.classList.add('blink');
+    });
+  });
+});
+
+
+</script>
+
+
+<script>
+const qwertyKeys = ['q','w','e','r','t','y','u','i','o','p'];
+const asdfKeys = ['a','s','d','f','g','h','j','k','l'];
+const zxcvKeys = ['z','x','c','v','b','n','m'];
+
+const symbolKeys_qwerty = ['!','@','#','$','%','^','&','*','(',')']; // 10
+const symbolKeys_asdf = ['~','`','|','\\','_','+','{','}','"'];      // 9
+const symbolKeys_zxcv = ['<','>','?','/','[',']','='];               // 7
+
+const symbolKeys_qwerty_alt = ['±','§','¶','•','¢','£','¤','¥','€','©']; // 10
+const symbolKeys_asdf_alt = ['™','®','†','‡','÷','×','µ','‰','✓'];       // 9
+const symbolKeys_zxcv_alt = ['¿','¡','≠','≈','∞','◊','≡'];               // 7
+
+
+const emojiKeys_qwerty = ['♳','♴','♵','♶','♷','♸','♹','♺','℡','℠'];
+const emojiKeys_asdf   = ['™','⛾','✆','℗','♻','♲','♼','♽','☻'];
+const emojiKeys_zxcv   = ['☹','☺','🝎','☛','☞','☚','☜'];
+
+
+
+    // Fullwidth style
+const styledChars1_qwerty = ['𝓆','𝓌','ℯ','𝓇','𝓉','𝓎','𝓊','𝒾','ℴ','𝓅'];
+const styledChars1_asdf   = ['𝒶','𝓈','𝒹','𝒻','ℊ','𝒽','𝒿','𝓀','𝓁'];
+const styledChars1_zxcv   = ['𝓏','𝓍','𝒸','𝓋','𝒷','𝓃','𝓂'];
+const styledChars1Upper_qwerty = ['𝒬','𝒲','ℰ','ℛ','𝒯','𝒴','𝒰','ℐ','𝒪','𝒫'];
+const styledChars1Upper_asdf   = ['𝒜','𝒮','𝒟','ℱ','𝒢','ℋ','𝒥','𝒦','ℒ'];
+const styledChars1Upper_zxcv   = ['𝒵','𝒳','𝒞','𝒱','ℬ','𝒩','ℳ'];
+const styledChars2_qwerty = ['𝓺','𝓌','𝓮','𝓻','𝓽','𝓎','𝓾','𝓲','𝓸','𝓹'];
+const styledChars2_asdf = ['𝓪','𝓼','𝓭','𝓯','𝓰','𝓱','𝓳','𝓴','𝓵'];
+const styledChars2_zxcv = ['𝓏','𝓍','𝓬','𝓿','𝓫','𝓷','𝓶'];
+const styledChars2Upper_qwerty = ['𝓠','𝓦','𝓔','𝓡','𝓣','𝓨','𝓤','𝓘','𝓞','𝓟'];
+const styledChars2Upper_asdf = ['𝓐','𝓢','𝓓','𝓕','𝓖','𝓗','𝓙','𝓚','𝓛'];
+const styledChars2Upper_zxcv = ['𝓩','𝓧','𝓒','𝓥','𝓑','𝓝','𝓜'];
+const styledChars3_qwerty = ['𝑞','𝑤','𝑒','𝑟','𝑡','𝑦','𝑢','𝑖','𝑜','𝑝'];
+const styledChars3_asdf = ['𝑎','𝑠','𝑑','𝑓','𝑔','ℎ','𝑗','𝑘','𝑙'];
+const styledChars3_zxcv = ['𝑧','𝑥','𝑐','𝑣','𝑏','𝑛','𝑚'];
+const styledChars3Upper_qwerty = ['𝑄','𝑊','𝐸','𝑅','𝑇','𝑌','𝑈','𝐼','𝑂','𝑃'];
+const styledChars3Upper_asdf = ['𝐴','𝑆','𝐷','𝐹','𝐺','𝐻','𝐽','𝐾','𝐿'];
+const styledChars3Upper_zxcv = ['𝑍','𝑋','𝐶','𝑉','𝐵','𝑁','𝑀'];
+const styledChars4_qwerty = ['𝒒','𝒘','𝒆','𝒓','𝒕','𝒚','𝒖','𝒊','𝒐','𝒑'];
+const styledChars4_asdf = ['𝒂','𝒔','𝒅','𝒇','𝒈','𝒉','𝒋','𝒌','𝒍'];
+const styledChars4_zxcv = ['𝒛','𝒙','𝒄','𝒗','𝒃','𝒏','𝒎'];
+const styledChars4Upper_qwerty = ['𝑸','𝑾','𝑬','𝑹','𝑻','𝒀','𝑼','𝑰','𝑶','𝑷'];
+const styledChars4Upper_asdf = ['𝑨','𝑺','𝑫','𝑭','𝑮','𝑯','𝑱','𝑲','𝑳'];
+const styledChars4Upper_zxcv = ['𝒁','𝑿','𝑪','𝑽','𝑩','𝑵','𝑴'];
+const styledChars5_qwerty = ['𝐪','𝐰','𝐞','𝐫','𝐭','𝐲','𝐮','𝐢','𝐨','𝐩'];
+const styledChars5_asdf = ['𝐚','𝐬','𝐝','𝐟','𝐠','𝐡','𝐣','𝐤','𝐥'];
+const styledChars5_zxcv = ['𝐳','𝐱','𝐜','𝐯','𝐛','𝐧','𝐦'];
+// Style 5 huruf besar (bold)
+const styledChars5Upper_qwerty = ['𝐐','𝐖','𝐄','𝐑','𝐓','𝐘','𝐔','𝐈','𝐎','𝐏'];
+const styledChars5Upper_asdf = ['𝐀','𝐒','𝐃','𝐅','𝐆','𝐇','𝐉','𝐊','𝐋'];
+const styledChars5Upper_zxcv = ['𝐙','𝐗','𝐂','𝐕','𝐁','𝐍','𝐌'];
+const styledChars6_qwerty = ['𝕢','𝕨','𝕖','𝕣','𝕥','𝕪','𝕦','𝕚','𝕠','𝕡'];
+const styledChars6_asdf = ['𝕒','𝕤','𝕕','𝕗','𝕘','𝕙','𝕛','𝕜','𝕝'];
+const styledChars6_zxcv = ['𝕫','𝕩','𝕔','𝕧','𝕓','𝕟','𝕞'];
+const styledChars6Upper_qwerty = ['ℚ','𝕎','𝔼','ℝ','𝕋','𝕐','𝕌','𝕀','𝕆','𝕡'];
+const styledChars6Upper_asdf = ['𝔸','𝕊','𝔻','𝔽','𝔾','ℍ','𝕁','𝕂','𝕃'];
+const styledChars6Upper_zxcv = ['ℤ','𝕏','ℂ','𝕍','𝔹','ℕ','𝕄'];
+const styledChars7_qwerty = ['𝔮','𝔴','𝔢','𝔯','𝔱','𝔶','𝔲','𝔦','𝔬','𝔭'];
+const styledChars7_asdf = ['𝔞','𝔰','𝔡','𝔣','𝔤','𝔥','𝔧','𝔨','𝔩'];
+const styledChars7_zxcv = ['𝔷','𝔵','𝔠','𝔳','𝔟','𝔫','𝔪'];
+const styledChars7Upper_qwerty = ['𝔔','𝔚','𝔈','ℜ','𝔗','𝔜','𝔘','ℑ','𝔒','𝔓'];
+const styledChars7Upper_asdf = ['𝔄','𝔖','𝔇','𝔉','𝔊','ℌ','𝔍','𝔎','𝔏'];
+const styledChars7Upper_zxcv = ['ℨ','𝔛','ℭ','𝔙','𝔅','𝔑','𝔐'];
+const styledChars8_qwerty = ['𝖖','𝖜','𝖊','𝖗','𝖙','𝖞','𝖚','𝖎','𝖔','𝖕'];
+const styledChars8_asdf = ['𝖆','𝖘','𝖉','𝖋','𝖌','𝖍','𝖏','𝖐','𝖑'];
+const styledChars8_zxcv = ['𝖟','𝖝','𝖈','𝖛','𝖇','𝖓','𝖒'];
+const styledChars8Upper_qwerty = ['𝕼','𝖂','𝕰','𝕽','𝕿','𝖄','𝖀','𝕴','𝕺','𝕻'];
+const styledChars8Upper_asdf = ['𝕬','𝕾','𝕯','𝕱','𝕲','𝕳','𝕵','𝕶','𝕷'];
+const styledChars8Upper_zxcv = ['𝖅','𝖃','𝕮','𝖁','𝕭','𝕹','𝕸'];
+const styledChars9_qwerty = ['𝚚','𝚠','𝚎','𝚛','𝚝','𝚢','𝚞','𝚒','𝚘','𝚙'];
+const styledChars9_asdf = ['𝚊','𝚜','𝚍','𝚏','𝚐','𝚑','𝚓','𝚔','𝚕'];
+const styledChars9_zxcv = ['𝚣','𝚡','𝚌','𝚟','𝚋','𝚗','𝚖'];
+const styledChars9Upper_qwerty = ['𝚀','𝚆','𝙴','𝚁','𝚃','𝚈','𝚄','𝙸','𝙾','𝙿'];
+const styledChars9Upper_asdf = ['𝙰','𝚂','𝙳','𝙵','𝙶','𝙷','𝙹','𝙺','𝙻'];
+const styledChars9Upper_zxcv = ['𝚉','𝚇','𝙲','𝚅','𝙱','𝙽','𝙼'];
+const styledChars10_qwerty = ['ⓠ','ⓦ','ⓔ','ⓡ','ⓣ','ⓨ','ⓤ','ⓘ','ⓞ','ⓟ'];
+const styledChars10_asdf = ['ⓐ','ⓢ','ⓓ','ⓕ','ⓖ','ⓗ','ⓙ','ⓚ','ⓛ'];
+const styledChars10_zxcv = ['ⓩ','ⓧ','ⓒ','ⓥ','ⓑ','ⓝ','ⓜ'];
+const styledChars10Upper_qwerty = ['Ⓠ','Ⓦ','Ⓔ','Ⓡ','Ⓣ','Ⓨ','Ⓤ','ⓘ','Ⓞ','Ⓟ'];
+const styledChars10Upper_asdf = ['Ⓐ','Ⓢ','Ⓓ','Ⓕ','Ⓖ','Ⓗ','Ⓙ','Ⓚ','Ⓛ'];
+const styledChars10Upper_zxcv = ['Ⓩ','Ⓧ','Ⓒ','Ⓥ','Ⓑ','Ⓝ','Ⓜ'];
+const styledChars11_qwerty = ['🅠','🅦','🅔','🅡','🅣','🅨','🅤','🅘','🅞','🅟'];
+const styledChars11_asdf = ['🅐','🅢','🅓','🅕','🅖','🅗','🅙','🅚','🅛'];
+const styledChars11_zxcv = ['🅩','🅧','🅒','🅥','🅑','🅝','🅜'];
+
+
+const styledChars12_qwerty = ['🅀','🅆','🄴','🅁','🅃','🅈','🅄','🅈','🄾','🄿'];
+const styledChars12_asdf = ['🄰','🅂','🄳','🄵','🄶','🄷','🄹','🄺','🄻'];
+const styledChars12_zxcv = ['🅉','🅇','🄲','🅅','🄱','🄽','🄼'];
+const styledChars12Upper_qwerty = styledChars12_qwerty;
+const styledChars12Upper_asdf = styledChars12_asdf;
+const styledChars12Upper_zxcv = styledChars12_zxcv;
+
+const styledChars13_qwerty = ['🆀','🆆','🅴','🆁','🆃','🆈','🆄','🅸','🅾','🅿'];
+const styledChars13_asdf = ['🅰','🆂','🅳','🅵','🅶','🅷','🅹','🅺','🅻'];
+const styledChars13_zxcv = ['🆉','🆇','🅲','🆅','🅱','🅽','🅼'];
+const styledChars15_qwerty = ['𝗊','𝗐','𝖾','𝗋','𝗍','𝗒','𝗎','𝗂','𝗈','𝗉'];
+const styledChars15_asdf = ['𝖺','𝗌','𝖽','𝖿','𝗀','𝗁','𝗂','𝗄','𝗅'];
+const styledChars15_zxcv = ['𝗓','𝗑','𝖼','𝗏','𝖻','𝗇','𝗆'];
+const styledChars15Upper_qwerty = ['𝖰','𝖶','𝖤','𝖱','𝖳','𝖸','𝖴','𝖨','𝖮','𝖯'];
+const styledChars15Upper_asdf = ['𝖠','𝖲','𝖣','𝖥','𝖦','𝖧','𝖩','𝖪','𝖫'];
+const styledChars15Upper_zxcv = ['𝖹','𝖷','𝖢','𝖵','𝖡','𝖭','𝖬'];
+const styledChars16_qwerty = ['𝗾','𝘄','𝗲','𝗿','𝘁','𝘆','𝘂','𝗶','𝗼','𝗽'];
+const styledChars16_asdf = ['𝗮','𝘀','𝗱','𝗳','𝗴','𝗵','𝗷','𝗸','𝗹'];
+const styledChars16_zxcv = ['𝘇','𝘅','𝗰','𝘃','𝗯','𝗻','𝗺'];
+const styledChars16Upper_qwerty = ['𝗤','𝗪','𝗘','𝗥','𝗧','𝗬','𝗨','𝗜','𝗢','𝗣'];
+const styledChars16Upper_asdf = ['𝗔','𝗦','𝗗','𝗙','𝗚','𝗛','𝗝','𝗞','𝗟'];
+const styledChars16Upper_zxcv = ['𝗭','𝗫','𝗖','𝗩','𝗕','𝗡','𝗠'];
+const styledChars17_qwerty = ['𝘲','𝘸','𝘦','𝘳','𝘵','𝘺','𝘶','𝘪','𝘰','𝘱'];
+const styledChars17_asdf = ['𝘢','𝘴','𝘥','𝘧','𝘨','𝘩','𝘫','𝘬','𝘭'];
+const styledChars17_zxcv = ['𝘻','𝘹','𝘤','𝘷','𝘣','𝘯','𝘮'];
+const styledChars17Upper_qwerty = ['𝘘','𝘞','𝘌','𝘙','𝘛','𝘠','𝘜','𝘐','𝘖','𝘗'];
+const styledChars17Upper_asdf = ['𝘈','𝘚','𝘋','𝘍','𝘎','𝘏','𝘑','𝘒','𝘓'];
+const styledChars17Upper_zxcv = ['𝘡','𝘟','𝘊','𝘝','𝘉','𝘕','𝘔'];
+
+const styledChars18_qwerty = ['𝙦','𝙬','𝙚','𝙧','𝙩','𝙮','𝙪','𝙞','𝙤','𝙥'];
+const styledChars18_asdf = ['𝙖','𝙨','𝙙','𝙛','𝙜','𝙝','𝙟','𝙠','𝙡'];
+const styledChars18_zxcv = ['𝙯','𝙭','𝙘','𝙫','𝙗','𝙣','𝙢'];
+const styledChars18Upper_qwerty = ['𝙌','𝙒','𝙀','𝙍','𝙏','𝙔','𝙐','𝙄','𝙊','𝙋'];
+const styledChars18Upper_asdf = ['𝘼','𝙎','𝘿','𝙁','𝙂','𝙃','𝙅','𝙆','𝙇'];
+const styledChars18Upper_zxcv = ['𝙕','𝙓','𝘾','𝙑','𝘽','𝙉','𝙈'];
+const styledChars19_qwerty = ['ｑ', 'ｗ', 'ｅ', 'ｒ', 'ｔ', 'ｙ', 'ｕ', 'ｉ', 'ｏ', 'ｐ'];
+const styledChars19_asdf   = ['ａ', 'ｓ', 'ｄ', 'ｆ', 'ｇ', 'ｈ', 'ｊ', 'ｋ', 'ｌ'];
+const styledChars19_zxcv   = ['ｚ', 'ｘ', 'ｃ', 'ｖ', 'ｂ', 'ｎ', 'ｍ'];
+const styledChars19Upper_qwerty = ['Ｑ', 'Ｗ', 'Ｅ', 'Ｒ', 'Ｔ', 'Ｙ', 'Ｕ', 'Ｉ', 'Ｏ', 'Ｐ'];
+const styledChars19Upper_asdf   = ['Ａ', 'Ｓ', 'Ｄ', 'Ｆ', 'Ｇ', 'Ｈ', 'Ｊ', 'Ｋ', 'Ｌ'];
+const styledChars19Upper_zxcv   = ['Ｚ', 'Ｘ', 'Ｃ', 'Ｖ', 'Ｂ', 'Ｎ', 'Ｍ'];
+const styledChars20_qwerty = ['⒬','⒲','⒠','⒭','⒯','⒴','⒰','⒤','⒪','⒫'];
+const styledChars20_asdf   = ['⒜','⒮','⒟','⒡','⒢','⒣','⒥','⒦','⒧'];
+const styledChars20_zxcv   = ['⒵','⒳','⒞','⒱','⒝','⒩','⒨'];
+const styledChars20Upper_qwerty = ['🄠','🄦','🄔','🄡','🄣','🄨','🄤','🄘','🄞','🄟'];
+const styledChars20Upper_asdf   = ['🄐','🄢','🄓','🄕','🄖','🄗','🄙','🄚','🄛'];
+const styledChars20Upper_zxcv   = ['🄩','🄧','🄒','🄥','🄑','🄝','🄜'];
+const styledChars13Upper_qwerty = styledChars13_qwerty;
+const styledChars13Upper_asdf = styledChars13_asdf;
+const styledChars13Upper_zxcv = styledChars13_zxcv;
+
+const styledChars14_qwerty = ['🇶','🇼','🇪','🇷','🇹','🇾','🇺','🇮','🇴','🇵'];
+const styledChars14_asdf = ['🇦','🇸','🇩','🇫','🇬','🇭','🇯','🇰','🇱'];
+const styledChars14_zxcv = ['🇿','🇽','🇨','🇻','🇧','🇳','🇲'];
+const styledChars14Upper_qwerty = styledChars14_qwerty;
+const styledChars14Upper_asdf = styledChars14_asdf;
+const styledChars14Upper_zxcv = styledChars14_zxcv;
+
+
+// Tambahan 20 gaya karakter
+let isCharacter1 = false;
+let isCharacter2 = false;
+let isCharacter3 = false;
+let isCharacter4 = false;
+let isCharacter5 = false;
+let isCharacter6 = false;
+let isCharacter7 = false;
+let isCharacter8 = false;
+let isCharacter9 = false;
+let isCharacter10 = false;
+let isCharacter11 = false;
+let isCharacter12 = false;
+let isCharacter13 = false;
+let isCharacter14 = false;
+let isCharacter15 = false;
+let isCharacter16 = false;
+let isCharacter17 = false;
+let isCharacter18 = false;
+let isCharacter19 = false;
+let isCharacter20 = false;
+
+let isShift = false;
+let isSymbol = false;
+let isSymbolAlt = false;
+let isEmoji = false;
+let isFullwidth = false;
+let isScript = false;
+
+// 20 gaya karakter
+let activeCharacter = 0;
+
+function resetModes() {
+  isSymbol = false;
+  isSymbolAlt = false;
+  isEmoji = false;
+  isFullwidth = false;
+  isScript = false;
+  activeCharacter = 0;
+}
+
+function selectCharacter(n) {
+  resetModes();
+  activeCharacter = n;
+  updateKeyboard();
+  updateCounter(); // ← tambahkan ini
+}
+
+function setNormal() {
+  resetModes();
+  updateKeyboard();
+  updateCounter(); // ← tambahkan ini
+}
+
+  
+
+function characterSymbols1() { selectCharacter(1); }
+function characterSymbols2() { selectCharacter(2); }
+function characterSymbols3() { selectCharacter(3); }
+function characterSymbols4() { selectCharacter(4); }
+function characterSymbols5() { selectCharacter(5); }
+function characterSymbols6() { selectCharacter(6); }
+function characterSymbols7() { selectCharacter(7); }
+function characterSymbols8() { selectCharacter(8); }
+function characterSymbols9() { selectCharacter(9); }
+function characterSymbols10() { selectCharacter(10); }
+function characterSymbols11() { selectCharacter(11); }
+function characterSymbols12() { selectCharacter(12); }
+function characterSymbols13() { selectCharacter(13); }
+function characterSymbols14() { selectCharacter(14); }
+function characterSymbols15() { selectCharacter(15); }
+function characterSymbols16() { selectCharacter(16); }
+function characterSymbols17() { selectCharacter(17); }
+function characterSymbols18() { selectCharacter(18); }
+function characterSymbols19() { selectCharacter(19); }
+function characterSymbols20() { selectCharacter(20); }
+
+const output = document.getElementById('notes');
+
+function renderKeys(rowId, keys) {
+  const row = document.getElementById(rowId);
+  row.innerHTML = '';
+  keys.forEach(key => {
+    const btn = document.createElement('button');
+    btn.className = 'key1'; // pastikan css key2 sudah ada
+    btn.textContent = key;
+    btn.addEventListener('click', () => appendChar(key));
+    row.appendChild(btn);
+  });
+}
+
+// Update keyboard berdasarkan activeCharacter
+
+
+function renderKeyboard() {
+  if (isEmoji) {
+    renderKeys('row-qwerty', emojiKeys_qwerty);
+    renderKeys('row-asdf', emojiKeys_asdf);
+    renderKeys('row-zxcv', emojiKeys_zxcv);
+  
+
+        
+        
+} else if (isSymbol) {
+  if (isSymbolAlt) {
+    renderKeys('row-qwerty', symbolKeys_qwerty_alt);
+    renderKeys('row-asdf', symbolKeys_asdf_alt);
+    renderKeys('row-zxcv', symbolKeys_zxcv_alt);
+  } else {
+    renderKeys('row-qwerty', symbolKeys_qwerty);
+    renderKeys('row-asdf', symbolKeys_asdf);
+    renderKeys('row-zxcv', symbolKeys_zxcv);
+  }
+
+
+  
+
+} else if (isFullwidth) {
+  renderKeys('row-qwerty', isShift ? styledChars15Upper_qwerty : styledChars15_qwerty);
+  renderKeys('row-asdf',   isShift ? styledChars15Upper_asdf   : styledChars15_asdf);
+  renderKeys('row-zxcv',   isShift ? styledChars15Upper_zxcv   : styledChars15_zxcv);
+} else if (isScript) {
+  renderKeys('row-qwerty', isShift ? styledChars16Upper_qwerty : styledChars16_qwerty);
+  renderKeys('row-asdf',   isShift ? styledChars16Upper_asdf   : styledChars16_asdf);
+  renderKeys('row-zxcv',   isShift ? styledChars16Upper_zxcv   : styledChars16_zxcv);
+} else {
+  renderKeys('row-qwerty', isShift ? qwertyKeys.map(k => k.toUpperCase()) : qwertyKeys);
+  renderKeys('row-asdf',   isShift ? asdfKeys.map(k => k.toUpperCase())   : asdfKeys);
+  renderKeys('row-zxcv',   isShift ? zxcvKeys.map(k => k.toUpperCase())   : zxcvKeys);
+}
+}
+function updateKeyboard() {
+  switch(activeCharacter) {
+    case 1:
+      renderKeys('row-qwerty', isShift ? styledChars1Upper_qwerty : styledChars1_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars1Upper_asdf   : styledChars1_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars1Upper_zxcv   : styledChars1_zxcv);
+      break;
+    case 2:
+      renderKeys('row-qwerty', isShift ? styledChars2Upper_qwerty : styledChars2_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars2Upper_asdf   : styledChars2_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars2Upper_zxcv   : styledChars2_zxcv);
+      break;
+    case 3:
+      renderKeys('row-qwerty', isShift ? styledChars3Upper_qwerty : styledChars3_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars3Upper_asdf   : styledChars3_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars3Upper_zxcv   : styledChars3_zxcv);
+      break;
+    case 4:
+      renderKeys('row-qwerty', isShift ? styledChars4Upper_qwerty : styledChars4_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars4Upper_asdf   : styledChars4_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars4Upper_zxcv   : styledChars4_zxcv);
+      break;
+    case 5:
+      renderKeys('row-qwerty', isShift ? styledChars5Upper_qwerty : styledChars5_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars5Upper_asdf   : styledChars5_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars5Upper_zxcv   : styledChars5_zxcv);
+      break;
+    case 6:
+      renderKeys('row-qwerty', isShift ? styledChars6Upper_qwerty : styledChars6_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars6Upper_asdf   : styledChars6_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars6Upper_zxcv   : styledChars6_zxcv);
+      break;
+    case 7:
+      renderKeys('row-qwerty', isShift ? styledChars7Upper_qwerty : styledChars7_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars7Upper_asdf   : styledChars7_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars7Upper_zxcv   : styledChars7_zxcv);
+      break;
+    case 8:
+      renderKeys('row-qwerty', isShift ? styledChars8Upper_qwerty : styledChars8_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars8Upper_asdf   : styledChars8_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars8Upper_zxcv   : styledChars8_zxcv);
+      break;
+    case 9:
+      renderKeys('row-qwerty', isShift ? styledChars9Upper_qwerty : styledChars9_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars9Upper_asdf   : styledChars9_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars9Upper_zxcv   : styledChars9_zxcv);
+      break;
+    case 10:
+      renderKeys('row-qwerty', isShift ? styledChars10Upper_qwerty : styledChars10_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars10Upper_asdf   : styledChars10_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars10Upper_zxcv   : styledChars10_zxcv);
+      break;
+    case 11:
+      renderKeys('row-qwerty', isShift ? styledChars11Upper_qwerty : styledChars11_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars11Upper_asdf   : styledChars11_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars11Upper_zxcv   : styledChars11_zxcv);
+      break;
+    case 12:
+      renderKeys('row-qwerty', isShift ? styledChars12Upper_qwerty : styledChars12_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars12Upper_asdf   : styledChars12_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars12Upper_zxcv   : styledChars12_zxcv);
+      break;
+    case 13:
+      renderKeys('row-qwerty', isShift ? styledChars13Upper_qwerty : styledChars13_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars13Upper_asdf   : styledChars13_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars13Upper_zxcv   : styledChars13_zxcv);
+      break;
+    case 14:
+      renderKeys('row-qwerty', isShift ? styledChars14Upper_qwerty : styledChars14_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars14Upper_asdf   : styledChars14_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars14Upper_zxcv   : styledChars14_zxcv);
+      break;
+    case 15:
+      renderKeys('row-qwerty', isShift ? styledChars15Upper_qwerty : styledChars15_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars15Upper_asdf   : styledChars15_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars15Upper_zxcv   : styledChars15_zxcv);
+      break;
+    case 16:
+      renderKeys('row-qwerty', isShift ? styledChars16Upper_qwerty : styledChars16_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars16Upper_asdf   : styledChars16_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars16Upper_zxcv   : styledChars16_zxcv);
+      break;
+    case 17:
+      renderKeys('row-qwerty', isShift ? styledChars17Upper_qwerty : styledChars17_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars17Upper_asdf   : styledChars17_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars17Upper_zxcv   : styledChars17_zxcv);
+      break;
+    case 18:
+      renderKeys('row-qwerty', isShift ? styledChars18Upper_qwerty : styledChars18_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars18Upper_asdf   : styledChars18_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars18Upper_zxcv   : styledChars18_zxcv);
+      break;
+    case 19:
+      renderKeys('row-qwerty', isShift ? styledChars19Upper_qwerty : styledChars19_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars19Upper_asdf   : styledChars19_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars19Upper_zxcv   : styledChars19_zxcv);
+      break;
+    case 20:
+      renderKeys('row-qwerty', isShift ? styledChars20Upper_qwerty : styledChars20_qwerty);
+      renderKeys('row-asdf',   isShift ? styledChars20Upper_asdf   : styledChars20_asdf);
+      renderKeys('row-zxcv',   isShift ? styledChars20Upper_zxcv   : styledChars20_zxcv);
+      break;
+    default:
+      renderKeys('row-qwerty', isShift ? qwertyKeys.map(k => k.toUpperCase()) : qwertyKeys);
+      renderKeys('row-asdf', isShift ? asdfKeys.map(k => k.toUpperCase()) : asdfKeys);
+      renderKeys('row-zxcv', isShift ? zxcvKeys.map(k => k.toUpperCase()) : zxcvKeys);
+  }
+}
+
+
+
+
+
+    function appendChar(char) {
+      const start = output.selectionStart;
+      const end = output.selectionEnd;
+      const text = output.value;
+      output.value = text.substring(0, start) + char + text.substring(end);
+      output.selectionStart = output.selectionEnd = start + char.length;
+      output.focus();
+    }
+
+
+
+function toggleShift() {
+  isShift = !isShift;
+  updateKeyboard();
+}
+
+
+function toggleSymbols() {
+  if (isSymbol) {
+    isSymbolAlt = !isSymbolAlt; // Toggle konten simbol utama ↔ alternatif
+  } else {
+    isSymbol = true;
+    isSymbolAlt = false;
+    isEmoji = isFullwidth = isScript = false;
+    isShift = false;
+  }
+  renderKeyboard();
+}
+
+
+function insertChar(char) {
+  if (!output) return;
+  const start = output.selectionStart;
+  const end = output.selectionEnd;
+  const text = output.value;
+  output.value = text.slice(0, start) + char + text.slice(end);
+  output.selectionStart = output.selectionEnd = start + char.length;
+  output.focus();
+}
+
+
+
+    function toggleEmoji() {
+      isEmoji = !isEmoji;
+      isSymbol = false;
+      isFullwidth = false;
+      isScript = false;
+      isShift = false;
+      renderKeyboard();
+    }
+
+    function toggleFullwidth() {
+      isFullwidth = !isFullwidth;
+      isScript = false;
+      isSymbol = false;
+      isEmoji = false;
+      renderKeyboard();
+    }
+
+    function toggleScript() {
+      isScript = !isScript;
+      isFullwidth = false;
+      isSymbol = false;
+      isEmoji = false;
+      renderKeyboard();
+    }
+
+    renderKeyboard();
+  
 const unicodeBlocks = {
   "1F600-1F64F": [0x1F600, 0x1F64F],
     };
@@ -796,24 +1642,21 @@ function insertCharAtCaret(char) {
   const end = textarea.selectionEnd;
 
   const chars = Array.from(textarea.value);
-  const before = chars.slice(0, [...Array.from(textarea.value.slice(0, start))].length);
-  const after = chars.slice([...Array.from(textarea.value.slice(0, end))].length);
-
-
+  const before = chars.slice(0, start);
+  const after = chars.slice(end);
 
   const newChars = [...before, char, ...after];
   const newValue = newChars.join('');
   textarea.value = newValue;
 
   const newPos = before.length + 1;
-  textarea.setSelectionRange(
-    [...newValue].slice(0, newPos).join('').length,
-    [...newValue].slice(0, newPos).join('').length
-  );
-
+  textarea.setSelectionRange(newPos, newPos);
   textarea.focus();
-  updateCounter();
+
+  updateCounter(); // ← wajib ada di sini
 }
+document.addEventListener('click', () => updateCounter());
+
 
 
 function renderCharsFromString(label, chars) {
@@ -836,7 +1679,65 @@ function renderCharsFromString(label, chars) {
   }
 }
 
-// Sinkronisasi scroll konten
+
+// ----------------- UNDO / REDO -----------------
+let undoStack = [];
+let redoStack = [];
+
+// Simpan state
+function saveState() {
+  undoStack.push(notesTextarea.value);
+  redoStack = [];
+}
+
+// Undo
+function undo() {
+  if (undoStack.length > 0) {
+    redoStack.push(notesTextarea.value);
+    notesTextarea.value = undoStack.pop();
+    updateCounter();
+  }
+}
+
+// Redo
+function redo() {
+  if (redoStack.length > 0) {
+    undoStack.push(notesTextarea.value);
+    notesTextarea.value = redoStack.pop();
+    updateCounter();
+  }
+}
+
+// Simpan state saat input manual
+notesTextarea.addEventListener("input", saveState);
+
+// Simpan state awal
+saveState();
+
+// ----------------- MODIFY FUNCTIONS -----------------
+function insertCharAtCaret(char) {
+  saveState(); // simpan sebelum insert
+  const start = notesTextarea.selectionStart;
+  const end = notesTextarea.selectionEnd;
+
+  const before = notesTextarea.value.slice(0, start);
+  const after = notesTextarea.value.slice(end);
+
+  notesTextarea.value = before + char + after;
+  const newPos = start + char.length;
+  notesTextarea.setSelectionRange(newPos, newPos);
+  notesTextarea.focus();
+  updateCounter();
+}
+
+
+
+function clearNotes() {
+  saveState(); // simpan sebelum clear
+  notesTextarea.value = "";
+  updateCounter();
+}
+
 container.addEventListener("scroll", () => {
   const scrollWrapper = container.querySelector(".scroll-wrapper");
   if (scrollWrapper) scrollWrapper.scrollLeft = container.scrollLeft;
@@ -912,94 +1813,32 @@ async function init() {
   updateCounter();
   loadingOverlay.style.display = "none";
 
-// Sinkronisasi dua arah antara isi konten dan wrapper
-function syncScroll() {
-  const scrollWrapper = container.querySelector(".scroll-wrapper");
-  if (!scrollWrapper) return;
-
-  let isSyncingContainer = false;
-  let isSyncingWrapper = false;
-
-  // Scroll container → scroll wrapper
-  container.addEventListener("scroll", () => {
-    if (!isSyncingWrapper) {
-      isSyncingContainer = true;
-      scrollWrapper.scrollLeft = container.scrollLeft;
-    }
-    isSyncingWrapper = false;
-  });
-
-  // Scroll wrapper → scroll container
-  scrollWrapper.addEventListener("scroll", () => {
-    if (!isSyncingContainer) {
-      isSyncingWrapper = true;
-      container.scrollLeft = scrollWrapper.scrollLeft;
-    }
-    isSyncingContainer = false;
-  });
-}
-
-// Jalankan sinkronisasi setiap kali render konten baru
-const originalRender = renderCharsFromString;
-renderCharsFromString = function(label, chars) {
-  originalRender(label, chars);
-  syncScroll();
-};
 
 
-document.getElementById("btn-block25").addEventListener("click", () => {
-  renderCharsFromString("Simbol 25", "♻ ♲ ♼ ♽ ☢ ☮ ☯ ♾ ⚆ ⚇ ⚈ ⚉ ⍟ ✪ ✇ ⚙ ⛾ ⛿ ✆ ℗ ⌷ ⌸ ⌹ ⌺ ⌻ ⌼ ⌽ ⌾ ◘ ◦ ⦾ ⍉ ⦿ ☉ ☹ ❍ ☺ ☻ ☿ 〠 ㋡ ⛒ 유 ㋛ ℡ ℠ ™ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ® © ⛀ ⛁ ⛂ ⛃ ⦰ ⦱ ⦲ ⦳ ⦴ ⦵ ⦶ ⦷ ⦸ ⦹ ⦺ ⦻ ⦼ ⦽ ⦾ ⦿ ⧀ ⧁ ⧂ ⧃ ⨀ ⨁ ⨂ ⨶ ⨷ ⨸ ⨭ ⨮ 🜀 🜁 🜂 🜃 🜄 🜅 🜆 🜇 🜈 🜉 🜊 🜋 🜌 🜍 🜎 🜏 🜐 🜑 🜒 🜓 🜔 🜕 🜖 🜗 🜘 🜙 🜚 🜛 🜜 🜝 🜞 🜟 🜠 🜡 🜢 🜣 🜤 🜥 🜦 🜧 🜨 🜩 🜪 🜫 🜬 🜭 🜮 🜯 🜰 🜱 🜲 🜳 🜴 🜵 🜶 🜷 🜸 🜹 🜺 🜻 🜼 🜽 🜾 🜿 🝀 🝁 🝂 🝃 🝄 🝅 🝆 🝇 🝈 🝉 🝊 🝋 🝌 🝍 🝎 🝏 🝐 🝑 🝒 🝓 🝔 🝕 🝖 🝗 🝘 🝙 🝚 🝛 🝜 🝝 🝞 🝟 🝠 🝡 🝢 🝣 🝤 🝥 🝦 🝧 🝨 🝩 🝪 🝫 🝬 🝭 🝮 🝯 🝰 🝱 🝲")
-})
+document.getElementById("btn-block25").addEventListener("click", () => 
+{
+  renderCharsFromString("Simbol 25", "╭ ╮ ┌ ┐ ┍ ┑ ┎ ┒ ┏ ┓ ╰ ╯ └ ┘ ┕ ┙ ┖ ┚ ┗ ┛ ╒ ╕ ╓ ╖ ╔ ╗ ┟ ┧ ┢ ┪ ╘ ╛ ╙ ╜ ╚ ╝ ┞ ┦ ┡ ┩ ▛ ▜ ▞ ▚ ◢ ◣ ◤ ◥ ▬ ▭ ▙ ▟ ◿ ◺ ◸ ◹ ▮ ▯ ┈ ┄ ╌ ┉ ┅ ╍ ⎯ ￣ ─ ━ ═ ╴ ╺ ┊ ┆ ╎ │ ┋ ┇ ╏ ┃ ╵ ╷ ░ ▒ ▓ ▕ ║ ▏ ▎ ▍ ▌ ▋ ▊ ▐ ▉ █ ▇ ▆ ▅ ▄ ▃ ▂ ▁ ▔ ▀ ■ ▝ ▘ ▗ ▖ ╱ ╲ ╳ ╶ ╸ ╹ ╻ ╼ ╾ ╿ ╽ ◧ ◨ ◩ ◪ ◘ ◙ ◚ ◛ ◖ ◗ ▪ ▫ ▰ ▱ ◭ ◮ ▲ △ ▼ ▽ ▶ ▷ ◀ ◁ ► ▻ ◄ ◅ ▴ ▵ ▸ ▹ ▾ ▿ ◂ ◃ ◆ ◇ ● ◐ ◑ ◒ ◓ ◔ ◕ ├ ┤ ┝ ┥ ╞ ╪ ╡ ╟ ╫ ╢ ┼ ╈ ╁ ┽ ╊ ╉ ┠ ┨ ╠ ╣ ┿ ╇ ╀ ┾ ╂ ╋ ┣ ┫ ╬ ╦ ┬ ┰ ┲ ┱ ┮ ┭ ┯ ┳ ╥ ╤ ┴ ┸ ┺ ┹ ┶ ┵ ┷ ┻ ╨ ╧ ╩ ♻ ♲ ♼ ♽ ☢ ☮ ☯ ♾ ⚆ ⚇ ⚈ ⚉ ⍟ ✪ ✇ ⚙ ⛾ ⛿ ✆ ℗ ⌷ ⌸ ⌹ ⌺ ⌻ ⌼ ⌽ ⌾ ◦ ⦾ ⍉ ⦿ ☉ ☹ ❍ ☺ ☻ ☿ 〠 ㋡ ⛒ 유 ㋛ ℡ ℠ ™ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ® © ⛀ ⛁ ⛂ ⛃ ⦰ ⦱ ⦲ ⦳ ⦴ ⦵ ⦶ ⦷ ⦸ ⦹ ⦺ ⦻ ⦼ ⦽ ⧀ ⧁ ⧂ ⧃ ⨀ ⨁ ⨂ ⨶ ⨷ ⨸ ⨭ ⨮ 🜀 🜁 🜂 🜃 🜄 🜅 🜆 🜇 🜈 🜉 🜊 🜋 🜌 🜍 🜎 🜏 🜐 🜑 🜒 🜓 🜔 🜕 🜖 🜗 🜘 🜙 🜚 🜛 🜜 🜝 🜞 🜟 🜠 🜡 🜢 🜣 🜤 🜥 🜦 🜧 🜨 🜩 🜪 🜫 🜬 🜭 🜮 🜯 🜰 🜱 🜲 🜳 🜴 🜵 🜶 🜷 🜸 🜹 🜺 🜻 🜼 🜽 🜾 🜿 🝀 🝁 🝂 🝃 🝄 🝅 🝆 🝇 🝈 🝉 🝊 🝋 🝌 🝍 🝎 🝏 🝐 🝑 🝒 🝓 🝔 🝕 🝖 🝗 🝘 🝙 🝚 🝛 🝜 🝝 🝞 🝟 🝠 🝡 🝢 🝣 🝤 🝥 🝦 🝧 🝨 🝩 🝪 🝫 🝬 🝭 🝮 🝯 🝰 🝱 🝲 ✼ ✠ ☆ ★ ✡ ✴ ✺ ☼ ☸ ❋ ✽ ✻ ❆ ۞ ☀ ❃ ❂ ✿ ❀ ❁ ✲ ⋆ ⛤ ⛥ ⛦ ⛧ ❄ ❅ ❇ ❖ ✫ ✬ ✮ ✭ ✯ ✰ 𖤓 ❉ ✤ ✧ ✥ ✱ ✩ ✳ ✵ ✶ ✷ ✸ ✹ ✾ ❈ ❊ ♦ ♤ ♣ ♢ ♠ ◊ ♧ ♡ ♙ ♟ ♘ ♞ ♗ ♝ ♖ ♜ ♕ ♛ ♔ ♚ ⚀ ⚁ ⚂ ⚃ ⚄ ⚅ ♭ ♫ ♬ ♪ ♩ ✦ 𝄪 𝄆 𝄇 𝄈 𝄐 𝄑 𝄒 𝆒 𝆓 𝄫 𝄞 𝄢 𝄡 ⇆ ❚ ↻ ☰ ≡ Ξ ㊂ ≣ ⁝ ⋮ ︙ ⦙ ⁞ ⋯ … ∷ ⌃ ⌄ 𓃑 𓏧 ⸬ ⇍ ⇎ ⇏ ⇐ ⇑ ⇒ ⇓ ⇔ ⇕ ⇖ ⇗ ⇘ ⇙ ⇦ ⇧ ⇪ ⇫ ➔ ➙ ➘ ➚ « » ⇨ ⇚ ⇶ ⇵ ⇴ ⇳ ⇰ ⇯ ⇮ ⇭ ⇬ ⇩ ↨ ↧ ↦ ↥ ↤ ↣ ↢ ↡ ↠ ↟ ↞ ↝ ↜ ↛ ↚ ↙ ↘ ↗ ↖ ↕ ↮ ⇤ ⇥ ⇲ ⇞ ⇟ ↩ ↱ ↫ ↬ ⇝ ↰ ↲ ↳ ↴ ↵ ↯   ⇜ ↼ ↽ ↾ ↿ ⇀ ⇁ ⇂ ⇃ ⇄ ⇅ ⇇ ⇈ ⇉ ⇊ ➛ ➜ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ➶ ➵ ➳ ➴ ➲ ➱ ➯ ➾ ➽ ➭ ➬ ➼ ➻ ➫ ➪ ➺ ➹ ➩ ➨ ➸ ➷ ➧ ⃕ ⪡ ⨣ ☠ ✙ ✛ ✜ ✝ ✞ ✟ ✖ ✘ ✕ ✁ ✃ ✄ ✂ 웃 ‡ ﾒ ♀ ♂ ✚ ♱ ♰ ☩ ☨ ☦ † ☣ ¤ € £ Ұ ₴ $ ₰ ₪ ₤ ¥ ₳ ₲ ₵ 元 ₣ ₱ ฿ ₡ ₮ ₭ ₩ 円 ₢ ₥ ₫ ₦ z ł ﷼ ₠ ₧ ₯ ₨ K č र ƒ ₹ ✍ ☚ ☜ ☟ ☛ ☞ ☝ ✌ ¶ § ‰ ✒ ✑ ✐ ✏ ✎ x ✈ ⌨ ☏ ☎ ☊ ⅍ ℆ № ℅ ☂ ☃ ☽ ☾ ♁ ♨ ☇ ☈ ☄ ° ℃ ℉ ϟ ☐ ☑ ☒ ✓ ✔ ✗ ☓ ∨ √ • ‣ ⁃ ❞ ❝ ∛ ∜ ✅ ❎ 〥 ⍢ 〲 〴 ϡ ⍥ ⅟ ½ ⅓ ⅕ ⅙ ⅛ ⅔ ⅖ ⅚ ⅜ ¾ ⅗ ⅝ ⅞ ⅘ % ‱ 💕 ⌀ ⌂ ⌅ ⌆ ⌇ ⌈ ⌉ ⌊ ⌋ ⌌ ⌍ ⌎ ⌏ ⌐ ⌑ ⌒ ⌓ ⌔ ⌕ ⌖ ⌗ ⌘ ⌙ ⌚ ⌛ ⌜ ⌝ ⌞ ⌟ ⌠ ⌢ ⌣ ⌤ ⌥ ⌦ ⌧ ⌫ ⌬ ⌭ ⌮ ⌳ ⌯ ⌰ ⌱ ⌲ ⌴ ⌵ ⌶ ⌿ ⍀ ⍁ ⍂ ⍃ ⍄ ⍅ ⍆ ⍇ ⍈ ⍊ ⍋ ⍌ ⍍ ⍎ ⍏ ⍐ ⍑ ⍒ ⍓ ⍔ ⍕ ⍖ ⍗ ⍘ ⍙ ⍚ ⍛ ⍜ ⍝ ⍞ ⍠ ⍡ ⍣ ⍤ ⍦ ⍧ ⍨ ⍩ 〶 ⛅ ☔ ⛄ ⚰ ☡ ⚠ ☤ ☥ ☧ ☪ ☫ ☬ ☭ ♃ ♄ ♅ ♇ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ♮ ♯ ♿ ☷ ⚐ ⚑ ⚒ ⚓ ⚔ ⚕ ⚖ ⚗ ⚘ ⚚ ⚛ ⚜ ⚝ ⚞ ⚟ ⚡ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚪ ⚬ ⚭ ⚮ ⚯ ⚱ ⚲ ⚳ ⚴ ⚵ ⚶ ⚷ ⚸ ⚹ ⚺ ⚻ ⚼ ⚽ ⚾ ⚿ ⛇ ⛈ ⛆ ⛉ ⛊ ⛋ ⛌ ⛍ ⛎ ⛏ ⛐ ⛑ ⛓ ⛔ ⛕ ⛖ ⛗ ⛘ ⛙ ⛚ ⛛ ⛜ ⛝ ⛞ ⛟ ⛠ ⛡ ⛢ ⛣ ⛨ ⛩ ⛪ ⛫ ⛬ ⛭ ⛮ ⛯ ⛰ ⛱ ⛲ ⛳ ⛴ ⛵ ⛶ ⛷ ⛸ ⛹ ⛺ ⛻ ⛼ ⛽ ✉ ✊ ✋ ✨ ❌ ❏ ❐ ❑ ❒ ❓ ❔ ❕ ❗ ❘ ❙ ❛ ❜ ❟ ❠ ❡ ❢ ❣ ❤ ➕ ➖ ➗ ➝ ➮ ➰ ➿ ⟀ ⟁ ⟂ ⟃ ⟄ ⟅ ⟆ ⟇ ⟈ ⟉ ⟊ ⟋ ⟌ ⟍ ⟎ ⟏ ⟐ ⟑ ⟒ ⟓ ⟔ ⟕ ⟖ ⟗ ⟘ ⟙ ⟚ ⟛ ⟜ ⟝ ⟞ ⟟ ⟠ ⟡ ⟢ ⟣ ⟤ ⟥ ⧄ ⧅ ⧆ ⧇ ⧈ ⧉ ⊞ ⊟ ⊠ ⊡ ⍯ ⍰ 〾 ⎅ ⎕ ⏍ ⧠ ⎖ ⎗ ⎘ ⎙ ⎚ ⎌ ⎎ ⏀ ⏁ ⏂ ⎉ ⎊ ⎋ ⨴ ⨵ 〄 ㉿ ⨹ ⨺ ⨻ ⎄ ⩌ ⩍ ⩐ ⎆ ⎇ ⎈ ⎓ ⎔ ⍾ ⍿ ⎀ ⎁ ⎂ ⎃ ⏎ ≗ ≘ ≙ ≚ ≛ ≜ ≝ ≞ ≟ 〷 〿 ❨ ❩ ❪ ❫ ❬ ❭ ❮ ❯ ❰ ❱ ❲ ❳ ❴ ❵ ⟦ ⟧ ⟨ ⟩ ⟪ ⟫ ⁅ ⁆ ⧼ ⧽ ⦃ ⦄ ⦅ ⦆ ⦇ ⦈ ⦉ ⦊ ⦋ ⦌ ⦍ ⦎ ⦏ ⦐ ⦑ ⦒ ⦓ ⦔ ⦕ ⦖ ⦗ ⦘ 〈 〉 《 》 「 」 『 』 【 】 〔 〕 〖 〗 〘 〙 〚 〛 ﴾ ﴿ ⊏ ⊐ ⫍ ⫎ ⊑ ⊒ ⋤ ⋥ ⊓ ⊔ ⊂ ⊃ ⊆ ⊇ ⊊ ⊋ ⪽ ⪾ ⪿ ⫀ ⫁ ⫂ ⋐ ⋑ ⋒ ⋓ ⫏ ⫐ ⫑ ⫒ ⫓ ⫔ ⫕ ⫖ ⫗ ⫘ ⊌ ⊍ ⊎ ∩ ∪ ⋂ ⋃ ⨃ ⨄ ⩀ ⩁ ⩂ ⩃ ⩄ ⩅ ⩆ ⩈ ⩇ ⩉ ⎍ ⨿ ⨅ ⨆ ⩎ ⩏ ⏉ ⏊ ⎿ ⏋ ⏌ ⎾ ∟ ⎴ ⎵ ⍽ ⨼ ⨽ ⎶ ⫞ ⫟ ⫠ ⫡ ⊢ ⊣ ⊤ ⊥ ⊦ ⫢ ⊪ ⧦ ⊫ ⊧ ⊨ ⊩ ⫦ ⫣ ⫤ ⫥ ⫧ ⫨ 〒 ⫩ ⫪ ⫫ ∧ ⋀ ⋁ ⧊ ⧋ ⧌ ⧍ ⩑ ⩒ ⩓ ⩔ ⩕ ⩖ ⋈ ⋉ ⋊ ⨝ ⋋ ⋌ ⧨ ⧩ ⧪ ⧬ ⧭ ⧮ ⧯ ⧰ ⧱ ⧲ ⧳ ⧑ ⧒ ⧓ ⧔ ⧕ ⧖ ⧗ ⧎ ⧏ ⧐ ⦚ ⧘ ⧙ ⧚ ⧛ ⥼ ⥽ ⥾ ⥿ ⦀ ⦁ ⦂ ⦛ ⦜ ⦝ ⦞ ⦟ ⦠ ⦡ ⦢ ⦣ ⦤ ⦥ ⦨ ⦩ ⦪ ⦫ ⦬ ⦭ ⦮ ⦯ ⦦ ⦧ ↔ ♆ ⊕ ⊖ ⊗ ⊘ ⊝ ⊙ ⊚ ⊛ ⊜ ← → ↑ ↓ ⟰ ⟱ ↶ ↷ ↺ ⟲ ⟳ ⟴ ↪ ↭ ↸ ↹ ⇋ ⇌ ⇛ ⇠ ⇡ ⇢ ⇣ ⇱ ⇷ ⇸ ⇹ ⇺ ⇻ ⇼ ⇽ ⇾ ⇿ ⟵ ⟶ ⟷ ⟸ ⟹ ⟺ ⟻ ⟼ ⟽ ⟾ ⟿ ⤀ ⤁ ⤂ ⤃ ⤄ ⤅ ⤆ ⤇ ⤈ ⤉ ⤊ ⤋ ⤌ ⤍ ⤎ ⤏ ⤐ ⤑ ⤒ ⤓ ⤔ ⤕ ⤖ ⤗ ⤘ ⤙ ⤚ ⤛ ⤜ ⤝ ⤞ ⤟ ⤠ ⤡ ⤢ ⤣ ⤤ ⤥ ⤦ ⤧ ⤨ ⤩ ⤪ ⤫ ⤬ ⤭ ⤮ ⤯ ⤰ ⤱ ⤲ ⤳ ⤴ ⤵ ⤶ ⤷ ⤸ ⤹ ⤺ ⤻ ⤼ ⤽ ⤾ ⤿ ⥀ ⥁ ⥂ ⥃ ⥄ ⥅ ⥆ ⥇ ⥈ ⥉ ⥊ ⥋ ⥌ ⥍ ⥎ ⥏ ⥐ ⥑ ⥒ ⥓ ⥔ ⥕ ⥖ ⥗ ⥘ ⥙ ⥚ ⥛ ⥜ ⥝ ⥞ ⥟ ⥠ ⥡ ⥢ ⥣ ⥤ ⥥ ⥦ ⥧ ⥨ ⥩ ⥪ ⥫ ⥬ ⥭ ⥮ ⥯ ⥰ ⥱ ⥲ ⥳ ⥴ ⥵ ⥶ ⥷ ⥸ ⥹ ⥺ ⥻ ⫾ ⫿ 𝀀 𝀁 𝀂 𝀃 𝀄 𝀅 𝀆 𝀇 𝀈 𝀉 𝀊 𝀋 𝀌 𝀍 𝀎 𝀏 𝀐 𝀑 𝀒 𝀓 𝀔 𝀕 𝀖 𝀗 𝀘 𝀙 𝀚 𝀛 𝀜 𝀝 𝀞 𝀟 𝀠 𝀡 𝀢 𝀣 𝀤 𝀥 𝀦 𝀧 𝀨 𝀩 𝀪 𝀫 𝀬 𝀭 𝀮 𝀯 𝀰 𝀱 𝀲 𝀳 𝀴 𝀵 𝀶 𝀷 𝀸 𝀹 𝀺 𝀻 𝀼 𝀽 𝀾 𝀿 𝁀 𝁁 𝁂 𝁃 𝁄 𝁅 𝁆 𝁇 𝁈 𝁉 𝁊 𝁋 𝁌 𝁍 𝁎 𝁏 𝁐 𝁑 𝁒 𝁓 𝁔 𝁕 𝁖 𝁗 𝁘 𝁙 𝁚 𝁛 𝁜 𝁝 𝁞 𝁟 𝁠 𝁡 𝁢 𝁣 𝁤 𝁥 𝁦 𝁧 𝁨 𝁩 𝁪 𝁫 𝁬 𝁭 𝁮 𝁯 𝁰 𝁱 𝁲 𝁳 𝁴 𝁵 𝁶 𝁷 𝁸 𝁹 𝁺 𝁻 𝁼 𝁽 𝁾 𝁿 𝂀 𝂁 𝂂 𝂃 𝂄 𝂅 𝂆 𝂇 𝂈 𝂉 𝂊 𝂋 𝂌 𝂍 𝂎 𝂏 𝂐 𝂑 𝂒 𝂓 𝂔 𝂕 𝂖 𝂗 𝂘 𝂙 𝂚 𝂛 𝂜 𝂝 𝂞 𝂟 𝂠 𝂡 𝂢 𝂣 𝂤 𝂥 𝂦 𝂧 𝂨 𝂩 𝂪 𝂫 𝂬 𝂭 𝂮 𝂯 𝂰 𝂱 𝂲 𝂳 𝂴 𝂵 𝂶 𝂷 𝂸 𝂹 𝂺 𝂻 𝂼 𝂽 𝂾 𝂿 𝃀 𝃁 𝃂 𝃃 𝃄 𝃅 𝃆 𝃇 𝃈 𝃉 𝃊 𝃋 𝃌 𝃍 𝃎 𝃏 𝃐 𝃑 𝃒 𝃓 𝃔 𝃕 𝃖 𝃗 𝃘 𝃙 𝃚 𝃛 𝃜 𝃝 𝃞 𝃟 𝃠 𝃡 𝃢 𝃣 𝃤 𝃥 𝃦 𝃧 𝃨 𝃩 𝃪 𝃫 𝃬 𝃭 𝃮 𝃯 𝃰 𝃱 𝃲 𝃳 𝃴 𝃵 𝄀 𝄁 𝄂 𝄃 𝄄 𝄅 𝄉 𝄊 𝄋 𝄌 𝄍 𝄎 𝄏 𝄓 𝄔 𝄕 𝄖 𝄗 𝄘 𝄙 𝄚 𝄛 𝄜 𝄝 𝄟 𝄠 𝄣 𝄤 𝄥 𝄦 𝄬 𝄭 𝄮 𝄯 𝄰 𝄱 𝄲 𝄳 𝄴 𝄵 𝄶 𝄷 𝄸 𝄹 𝄺 𝄻 𝄼 𝄽 𝄾 𝄿 𝅀 𝅁 𝅂 𝅃 𝅄 𝅅 𝅆 𝅇 𝅈 𝅉 𝅊 𝅋 𝅌 𝅍 𝅎 𝅏 𝅐 𝅑 𝅒 𝅓 𝅔 𝅕 𝅖 𝅗 𝅘 𝅙 𝅚 𝅛 𝅜 𝅝 𝅪 𝅫 𝅬 𝆃 𝆄 𝆌 𝆍 𝆎 𝆏 𝆐 𝆑 𝆔 𝆕 𝆖 𝆗 𝆘 𝆙 𝆚 𝆛 𝆜 𝆝 𝆞 𝆟 𝆠 𝆡 𝆢 𝆣 𝆤 𝆥 𝆦 𝆧 𝆨 𝆩 𝆮 𝆯 𝆰 𝆱 𝆲 𝆳 𝆴 𝆵 𝆶 𝆷 𝆸 𝆹 𝆺 𝇁 𝇂 𝇃 𝇄 𝇅 𝇆 𝇇 𝇈 𝇉 𝇊 𝇋 𝇌 𝇍 𝇎 𝇏 𝇐 𝇑 𝇒 𝇓 𝇔 𝇕 𝇖 𝇗 𝇘 𝇙 𝇚 𝇛 𝇜 𝇝 ✢ ✣ ♥ ᜵ ᜶ ჻ ‘ ’ ‚ ‛ ‹ › “ ” „ ‟ 〝 〞 〟 ⁋ ⁎ ⁑ ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻ 〓 🈀 🈁 🈂 🈐 🈑 🈒 🈓 🈔 🈕 🈖 🈗 🈘 🈙 🈚 🈛 🈜 🈝 🈞 🈟 🈠 🈡 🈢 🈣 🈤 🈥 🈦 🈧 🈨 🈩 🈪 🈫 🈬 🈭 🈮 🈯 🈰 🈱 🈲 🈳 🈴 🈵 🈶 🈷 🈸 🈹 🈺 🉀 🉁 🉂 🉃 🉄 🉅 🉆 🉇 🉈 🉐 🉑 🄪 🄫 🄬 🄭 🄮 🅊 🅋 🅌 🅍 🅎 🅏 🆊 🆋 🆌 🆍 🆎 🆏 🆐 🆑 🆒 🆓 🆔 🆕 🆖 🆗 🆘 🆙 ╃ ╄ ╅ ╆ ◈ □ ◫ ▢ ▣ ▤ ▥ ▦ ▧ ▨ ▩ ⊲ ⊳ ⊴ ⊵ ⫷ ⫸ ⋖ ⋗ ⋪ ⋫ ⋬ ⋭ ⊿ ◬ ⑅ ◻ ◼ ◽ ◾ ○ ◌ ◍ ◎ ◜ ◝ ◞ ◟ ◠ ◡ ◯ ◰ ◱ ◲ ◳ ◴ ◵ ◶ ⊬ ⊭ ⊮ ⊯ ⊺ 〦 〧 〨 ˦ ˧ ˨ ⑁ ⑂ ⑃ ﹉ ⑇ ﹊ ﹎ ︲ ⑆ ⑈ ⑉ ⑊ ⑄ ⑀ ︴ ﹏ ﹌ ﹋ ︱ ︳ 〡 〢 〣 ◷ 🃍 🃎 𝄩 𝅗𝅥 𝅘𝅥 𝅘𝅥𝅮 𝅘𝅥𝅯 𝅘𝅥𝅰 𝅘𝅥𝅱 𝅘𝅥𝅲 𝅥 𝅦 𝅧 𝅨 𝅩 𝅭 𝅮 𝅯 𝅰 𝅱 𝅲 𝅻 𝅼 𝅽 𝅾 𝅿 𝆀 𝆁 𝆂 𝆅 𝆆 𝆇 𝆈 𝆉 𝆊 𝆋 𝆪 𝆫 𝆬 𝆭 𝆹𝅥 𝆺𝅥 𝆹𝅥𝅮 𝆺𝅥𝅮 𝆹𝅥𝅯 𝆺𝅥𝅯 ⧜ ⧝ ⧞ ⧟ ⧡ ⧢ ⧣ ⧤ ⧥ ⧧ ⧫ ⧴ ⧵ ⧶ ⧷ ⧸ ⧹ ⧺ ⧻ ⧾ ⧿ ⨇ ⨈ ⨉ ⨊ ⨋ ⨌ ⨍ ⨎ ⨏ ⨐ ⨑ ⨒ ⨓ ⨔ ⨕ ⨖ ⨗ ⨘ ⨙ ⨚ ⨛ ⨜ ⨞ ⨟ ⨠ ⨡ ⨢ ⨤ ⨥ ⨦ ⨧ ⨨ ⨩ ⨪ ⨫ ⨬ ⨯ ⨰ ⨱ ⨲ ⨳ ⨾ ⩊ ⩋ ⩗ ⩘ ⩙ ⩚ ⩛ ⩜ ⩝ ⩞ ⩟ ⩠ ⩡ ⩢ ⩣ ⩤ ⩥ ⩦ ⩧ ⩨ ⩩ ⩪ ⩫ ⩬ ⩭ ⩮ ⩯ ⩰ ⩱ ⩲ ⩳ ⩴ ⩵ ⩶ ⩷ ⩸ ⩹ ⩺ ⩻ ⩼ ⩽ ⩾ ⩿ ⪀ ⪁ ⪂ ⪃ ⪄ ⪅ ⪆ ⪇ ⪈ ⪉ ⪊ ⪋ ⪌ ⪍ ⪎ ⪏ ⪐ ⪑ ⪒ ⪓ ⪔ ⪕ ⪖ ⪗ ⪘ ⪙ ⪚ ⪛ ⪜ ⪝ ⪞ ⪟ ⪠ ⪢ ⪣ ⪤ ⪥ ⪦ ⪧ ⪨ ⪩ ⪪ ⪫ ⪬ ⪭ ⪮ ⪯ ⪰ ⪱ ⪲ ⪳ ⪴ ⪵ ⪶ ⪷ ⪸ ⪹ ⪺ ⪻ ⪼ ⫃ ⫄ ⫅ ⫆ ⫇ ⫈ ⫉ ⫊ ⫋ ⫌ ⫙ ⫚ ⫛ ⫝̸ ⫝ ⫬ ⫭ ⫮ ⫯ ⫰ ⫱ ⫲ ⫳ ⫴ ⫵ ⫶ ⫹ ⫺ ⫻ ⫼ ⫽ ⬀ ⬁ ⬂ ⬃ ⬄ ⬅ ⬆ ⬇ ⬈ ⬉ ⬊ ⬋ ⬌ ⬍ ⬎ ⬏ ⬐ ⬑ ⬒ ⬓ ⬔ ⬕ ⬖ ⬗ ⬘ ⬙ ⬚ ⬛ ⬜ ⬝ ⬞ ⬟ ⬠ ⬡ ⬢ ⬣ ⬤ ⬥ ⬦ ⬧ ⬨ ⬩ ⬪ ⬫ ⬬ ⬭ ⬮ ⬯ ⬰ ⬱ ⬲ ⬳ ⬴ ⬵ ⬶ ⬷ ⬸ ⬹ ⬺ ⬻ ⬼ ⬽ ⬾ ⬿ ⭀ ⭁ ⭂ ⭃ ⭄ ⭅ ⭆ ⭇ ⭈ ⭉ ⭊ ⭋ ⭌ ⭐ ⭑ ⭒ ⭓ ⭔ ⭕ ⭖ ⭗ ⭘ ⭙ ⸀ ⸁ ⸂ ⸃ ⸄ ⸅ ⸆ ⸇ ⸈ ⸉ ⸊ ⸋ ⸌ ⸍ ⸎ ⸏ ⸐ ⸑ ⸒ ⸓ ⸔ ⸕ ⸖ ⸗ ⸘ ⸙ ⸚ ⸛ ⸜ ⸝ ⸞ ⸟ ⸠ ⸡ ⸢ ⸣ ⸤ ⸥ ⸦ ⸧ ⸨ ⸩ ⸪ ⸫ ⸭ ⸮ ⸯ ⸰ ⸱ ⸲ ⸳ ⸴ ⸵ ⸶ ⸷ ⸸ ⸹ ⸺ ⸻ 🀀 🀁 🀂 🀃 🀄 🀅 🀆 🀇 🀈 🀉 🀊 🀋 🀌 🀍 🀎 🀏 🀐 🀑 🀒 🀓 🀔 🀕 🀖 🀗 🀘 🀙 🀚 🀛 🀜 🀝 🀞 🀟 🀠 🀡 🀢 🀣 🀤 🀥 🀦 🀧 🀨 🀩 🀪 🀫 🀰 🀱 🀲 🀳 🀴 🀵 🀶 🀷 🀸 🀹 🀺 🀻 🀼 🀽 🀾 🀿 🁀 🁁 🁂 🁃 🁄 🁅 🁆 🁇 🁈 🁉 🁊 🁋 🁌 🁍 🁎 🁏 🁐 🁑 🁒 🁓 🁔 🁕 🁖 🁗 🁘 🁙 🁚 🁛 🁜 🁝 🁞 🁟 🁠 🁡 🁢 🁣 🁤 🁥 🁦 🁧 🁨 🁩 🁪 🁫 🁬 🁭 🁮 🁯 🁰 🁱 🁲 🁳 🁴 🁵 🁶 🁷 🁸 🁹 🁺 🁻 🁼 🁽 🁾 🁿 🂀 🂁 🂂 🂃 🂄 🂅 🂆 🂇 🂈 🂉 🂊 🂋 🂌 🂍 🂎 🂏 🂐 🂑 🂒 🂓 🂠 🂡 🂢 🂣 🂤 🂥 🂦 🂧 🂨 🂩 🂪 🂫 🂬 🂭 🂮 🂱 🂲 🂳 🂴 🂵 🂶 🂷 🂸 🂹 🂺 🂻 🂼 🂽 🂾 🃁 🃂 🃃 🃄 🃅 🃆 🃇 🃈 🃉 🃊 🃋 🃌 🃑 🃒 🃓 🃔 🃕 🃖 🃗 🃘 🃙 🃚 🃛 ䷀ ䷁ ䷂ ䷃ ䷄ ䷅ ䷆ ䷇ ䷈ ䷉ ䷊ ䷋ ䷌ ䷍ ䷎ ䷏ ䷐ ䷑ ䷒ ䷓ ䷔ ䷕ ䷖ ䷗ ䷘ ䷙ ䷚ ䷛ ䷜ ䷝ ䷞ ䷟ ䷠ ䷡ ䷢ ䷣ ䷤ ䷥ ䷦ ䷧ ䷨ ䷩ ䷪ ䷫ ䷬ ䷭ ䷮ ䷯ ䷰ ䷱ ䷲ ䷳ ䷴ ䷵ ䷶ ䷷ ䷸ ䷹ ䷺ ䷻ ䷼ ䷽ ䷾ ䷿ ⚊ ⚋ ⚌ ⚍ ⚎ ⚏ 𝌀 𝌁 𝌂 𝌃 𝌄 𝌅 ☱ ☲ ☳ ☴ ☵ ☶ 𝌆 𝌇 𝌈 𝌉 𝌊 𝌋 𝌌 𝌍 𝌎 𝌏 𝌐 𝌑 𝌒 𝌓 𝌔 𝌕 𝌖 𝌗 𝌘 𝌙 𝌚 𝌛 𝌜 𝌝 𝌞 𝌟 𝌠 𝌡 𝌢 𝌣 𝌤 𝌥 𝌦 𝌧 𝌨 𝌩 𝌪 𝌫 𝌬 𝌭 𝌮 𝌯 𝌰 𝌱 𝌲 𝌳 𝌴 𝌵 𝌶 𝌷 𝌸 𝌹 𝌺 𝌻 𝌼 𝌽 𝌾 𝌿 𝍀 𝍁 𝍂 𝍃 𝍄 𝍅 𝍆 𝍇 𝍈 𝍉 𝍊 𝍋 𝍌 𝍍 𝍎 𝍏 𝍐 𝍑 𝍒 𝍓 𝍔 𝍖 ⠀ ⠁ ⠂ ⠃ ⠄ ⠅ ⠆ ⠇ ⠈ ⠉ ⠊ ⠋ ⠌ ⠍ ⠎ ⠏ ⠐ ⠑ ⠒ ⠓ ⠔ ⠕ ⠖ ⠗ ⠘ ⠙ ⠚ ⠛ ⠜ ⠝ ⠞ ⠟ ⠠ ⠡ ⠢ ⠣ ⠤ ⠥ ⠦ ⠧ ⠨ ⠩ ⠪ ⠫ ⠬ ⠭ ⠮ ⠯ ⠰ ⠱ ⠲ ⠳ ⠴ ⠵ ⠶ ⠷ ⠸ ⠹ ⠺ ⠻ ⠼ ⠽ ⠾ ⠿ ⡀ ⡁ ⡂ ⡃ ⡄ ⡅ ⡆ ⡇ ⡈ ⡉ ⡊ ⡋ ⡌ ⡍ ⡎ ⡏ ⡐ ⡑ ⡒ ⡓ ⡔ ⡕ ⡖ ⡗ ⡘ ⡙ ⡚ ⡛ ⡜ ⡝ ⡞ ⡟ ⡠ ⡡ ⡢ ⡣ ⡤ ⡥ ⡦ ⡧ ⡨ ⡩ ⡪ ⡫ ⡬ ⡭ ⡮ ⡯ ⡰ ⡱ ⡲ ⡳ ⡴ ⡵ ⡶ ⡷ ⡸ ⡹ ⡺ ⡻ ⡼ ⡽ ⡾ ⡿ ⢀ ⢁ ⢂ ⢃ ⢄ ⢅ ⢆ ⢇ ⢈ ⢉ ⢊ ⢋ ⢌ ⢍ ⢎ ⢏ ⢐ ⢑ ⢒ ⢓ ⢔ ⢕ ⢖ ⢗ ⢘ ⢙ ⢚ ⢛ ⢜ ⢝ ⢞ ⢟ ⢠ ⢡ ⢢ ⢣ ⢤ ⢥ ⢦ ⢧ ⢨ ⢩ ⢪ ⢫ ⢬ ⢭ ⢮ ⢯ ⢰ ⢱ ⢲ ⢳ ⢴ ⢵ ⢶ ⢷ ⢸ ⢹ ⢺ ⢻ ⢼ ⢽ ⢾ ⢿ ⣀ ⣁ ⣂ ⣃ ⣄ ⣅ ⣆ ⣇ ⣈ ⣉ ⣊ ⣋ ⣌ ⣍ ⣎ ⣏ ⣐ ⣑ ⣒ ⣓ ⣔ ⣕ ⣖ ⣗ ⣘ ⣙ ⣚ ⣛ ⣜ ⣝ ⣞ ⣟ ⣠ ⣡ ⣢ ⣣ ⣤ ⣥ ⣦ ⣧ ⣨ ⣩ ⣪ ⣫ ⣬ ⣭ ⣮ ⣯ ⣰ ⣱ ⣲ ⣳ ⣴ ⣵ ⣶ ⣷ ⣸ ⣹ ⣺ ⣻ ⣼ ⣽ ⣾ ⣿ 𔐀 𔐁 𔐂 𔐃 𔐄 𔐅 𔐆 𔐇 𔐈 𔐉 𔐊 𔐋 𔐌 𔐍 𔐎 𔐏 𔐐 𔐑 𔐒 𔐓 𔐔 𔐕 𔐖 𔐗 𔐘 𔐙 𔐚 𔐛 𔐜 𔐝 𔐞 𔐟 𔐠 𔐡 𔐢 𔐣 𔐤 𔐥 𔐦 𔐧 𔐨 𔐩 𔐪 𔐫 𔐬 𔐭 𔐮 𔐯 𔐰 𔐱 𔐲 𔐳 𔐴 𔐵 𔐶 𔐷 𔐸 𔐹 𔐺 𔐻 𔐼 𔐽 𔐾 𔐿 𔑀 𔑁 𔑂 𔑃 𔑄 𔑅 𔑆 𔑇 𔑈 𔑉 𔑊 𔑋 𔑌 𔑍 𔑎 𔑏 𔑐 𔑑 𔑒 𔑓 𔑔 𔑕 𔑖 𔑗 𔑘 𔑙 𔑚 𔑛 𔑜 𔑝 𔑞 𔑟 𔑠 𔑡 𔑢 𔑣 𔑤 𔑥 𔑦 𔑧 𔑨 𔑩 𔑪 𔑫 𔑬 𔑭 𔑮 𔑯 𔑰 𔑱 𔑲 𔑳 𔑴 𔑵 𔑶 𔑷 𔑸 𔑹 𔑺 𔑻 𔑼 𔑽 𔑾 𔑿 𔒀 𔒁 𔒂 𔒃 𔒄 𔒅 𔒆 𔒇 𔒈 𔒉 𔒊 𔒋 𔒌 𔒍 𔒎 𔒏 𔒐 𔒑 𔒒 𔒓 𔒔 𔒕 𔒖 𔒗 𔒘 𔒙 𔒚 𔒛 𔒜 𔒝 𔒞 𔒟 𔒠 𔒡 𔒢 𔒣 𔒤 𔒥 𔒦 𔒧 𔒨 𔒩 𔒪 𔒫 𔒬 𔒭 𔒮 𔒯 𔒰 𔒱 𔒲 𔒳 𔒴 𔒵 𔒶 𔒷 𔒸 𔒹 𔒺 𔒻 𔒼 𔒽 𔒾 𔒿 𔓀 𔓁 𔓂 𔓃 𔓄 𔓅 𔓆 𔓇 𔓈 𔓉 𔓊 𔓋 𔓌 𔓍 𔓎 𔓏 𔓐 𔓑 𔓒 𔓓 𔓔 𔓕 𔓖 𔓗 𔓘 𔓙 𔓚 𔓛 𔓜 𔓝 𔓞 𔓟 𔓠 𔓡 𔓢 𔓣 𔓤 𔓥 𔓦 𔓧 𔓨 𔓩 𔓪 𔓫 𔓬 𔓭 𔓮 𔓯 𔓰 𔓱 𔓲 𔓳 𔓴 𔓵 𔓶 𔓷 𔓸 𔓹 𔓺 𔓻 𔓼 𔓽 𔓾 𔓿 𔔀 𔔁 𔔂 𔔃 𔔄 𔔅 𔔆 𔔇 𔔈 𔔉 𔔊 𔔋 𔔌 𔔍 𔔎 𔔏 𔔐 𔔑 𔔒 𔔓 𔔔 𔔕 𔔖 𔔗 𔔘 𔔙 𔔚 𔔛 𔔜 𔔝 𔔞 𔔟 𔔠 𔔡 𔔢 𔔣 𔔤 𔔥 𔔦 𔔧 𔔨 𔔩 𔔪 𔔫 𔔬 𔔭 𔔮 𔔯 𔔰 𔔱 𔔲 𔔳 𔔴 𔔵 𔔶 𔔷 𔔸 𔔹 𔔺 𔔻 𔔼 𔔽 𔔾 𔔿 𔕀 𔕁 𔕂 𔕃 𔕄 𔕅 𔕆 𔕇 𔕈 𔕉 𔕊 𔕋 𔕌 𔕍 𔕎 𔕏 𔕐 𔕑 𔕒 𔕓 𔕔 𔕕 𔕖 𔕗 𔕘 𔕙 𔕚 𔕛 𔕜 𔕝 𔕞 𔕟 𔕠 𔕡 𔕢 𔕣 𔕤 𔕥 𔕦 𔕧 𔕨 𔕩 𔕪 𔕫 𔕬 𔕭 𔕮 𔕯 𔕰 𔕱 𔕲 𔕳 𔕴 𔕵 𔕶 𔕷 𔕸 𔕹 𔕺 𔕻 𔕼 𔕽 𔕾 𔕿 𔖀 𔖁 𔖂 𔖃 𔖄 𔖅 𔖆 𔖇 𔖈 𔖉 𔖊 𔖋 𔖌 𔖍 𔖎 𔖏 𔖐 𔖑 𔖒 𔖓 𔖔 𔖕 𔖖 𔖗 𔖘 𔖙 𔖚 𔖛 𔖜 𔖝 𔖞 𔖟 𔖠 𔖡 𔖢 𔖣 𔖤 𔖥 𔖦 𔖧 𔖨 𔖩 𔖪 𔖫 𔖬 𔖭 𔖮 𔖯 𔖰 𔖱 𔖲 𔖳 𔖴 𔖵 𔖶 𔖷 𔖸 𔖹 𔖺 𔖻 𔖼 𔖽 𔖾 𔖿 𔗀 𔗁 𔗂 𔗃 𔗄 𔗅 𔗆 𔗇 𔗈 𔗉 𔗊 𔗋 𔗌 𔗍 𔗎 𔗏 𔗐 𔗑 𔗒 𔗓 𔗔 𔗕 𔗖 𔗗 𔗘 𔗙 𔗚 𔗛 𔗜 𔗝 𔗞 𔗟 𔗠 𔗡 𔗢 𔗣 𔗤 𔗥 𔗦 𔗧 𔗨 𔗩 𔗪 𔗫 𔗬 𔗭 𔗮 𔗯 𔗰 𔗱 𔗲 𔗳 𔗴 𔗵 𔗶 𔗷 𔗸 𔗹 𔗺 𔗻 𔗼 𔗽 𔗾 𔗿 𔘀 𔘁 𔘂 𔘃 𔘄 𔘅 𔘆 𔘇 𔘈 𔘉 𔘊 𔘋 𔘌 𔘍 𔘎 𔘏 𔘐 𔘑 𔘒 𔘓 𔘔 𔘕 𔘖 𔘗 𔘘 𔘙 𔘚 𔘛 𔘜 𔘝 𔘞 𔘟 𔘠 𔘡 𔘢 𔘣 𔘤 𔘥 𔘦 𔘧 𔘨 𔘩 𔘪 𔘫 𔘬 𔘭 𔘮 𔘯 𔘰 𔘱 𔘲 𔘳 𔘴 𔘵 𔘶 𔘷 𔘸 𔘹 𔘺 𔘻 𔘼 𔘽 𔘾 𔘿 𔙀 𔙁 𔙂 𔙃 𔙄 𔙅 𔙆 卝 ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ を ゎ わ ゐ ゑ ん ゔ ゕ ゖ ゚ ゛ ゜ ゝ ゞ ゟ ゠ ァ ア ィ イ ゥ ウ ェ エ ォ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ⺀ ⺁ ⺂ ⺃ ⺄ ⺅ ⺆ ⺇ ⺈ ⺉ ⺊ ⺋ ⺌ ⺍ ⺎ ⺏ ⺐ ⺑ ⺒ ⺓ ⺔ ⺕ ⺖ ⺗ ⺘ ⺙ ⺛ ⺜ ⺝ ⺞ ⺟ ⺠ ⺡ ⺢ ⺣ ⺤ ⺥ ⺦ ⺧ ⺨ ⺩ ⺪ ⺫ ⺬ ⺭ ⺮ ⺯ ⺰ ⺱ ⺲ ⺳ ⺴ ⺵ ⺶ ⺷ ⺸ ⺹ ⺺ ⺻ ⺼ ⺽ ⺾ ⺿ ⻀ ⻁ ⻂ ⻃ ⻄ ⻅ ⻆ ⻇ ⻈ ⻉ ⻊ ⻋ ⻌ ⻍ ⻎ ⻏ ⻐ ⻑ ⻒ ⻓ ⻔ ⻕ ⻖ ⻗ ⻘ ⻙ ⻚ ⻛ ⻜ ⻝ ⻞ ⻟ ⻠ ⻡ ⻢ ⻣ ⻤ ⻥ ⻦ ⻧ ⻨ ⻩ ⻪ ⻫ ⻬ ⻭ ⻮ ⻯ ⻰ ⻱ ⻲ ⻳ ⼀ ⼁ ⼂ ⼃ ⼄ ⼅ ⼆ ⼇ ⼈ ⼉ ⼊ ⼋ ⼌ ⼍ ⼎ ⼏ ⼐ ⼑ ⼒ ⼓ ⼔ ⼕ ⼖ ⼗ ⼘ ⼙ ⼚ ⼛ ⼜ ⼝ ⼞ ⼟ ⼠ ⼡ ⼢ ⼣ ⼤ ⼥ ⼦ ⼧ ⼨ ⼩ ⼪ ⼫ ⼬ ⼭ ⼮ ⼯ ⼰ ⼱ ⼲ ⼳ ⼴ ⼵ ⼶ ⼷ ⼸ ⼹ ⼺ ⼻ ⼼ ⼽ ⼾ ⼿ ⽀ ⽁ ⽂ ⽃ ⽄ ⽅ ⽆ ⽇ ⽈ ⽉ ⽊ ⽋ ⽌ ⽍ ⽎ ⽏ ⽐ ⽑ ⽒ ⽓ ⽔ ⽕ ⽖ ⽗ ⽘ ⽙ ⽚ ⽛ ⽜ ⽝ ⽞ ⽟ ⽠ ⽡ ⽢ ⽣ ⽤ ⽥ ⽦ ⽧ ⽨ ⽩ ⽪ ⽫ ⽬ ⽭ ⽮ ⽯ ⽰ ⽱ ⽲ ⽳ ⽴ ⽵ ⽶ ⽷ ⽸ ⽹ ⽺ ⽻ ⽼ ⽽ ⽾ ⽿ ⾀ ⾁ ⾂ ⾃ ⾄ ⾅ ⾆ ⾇ ⾈ ⾉ ⾊ ⾋ ⾌ ⾍ ⾎ ⾏ ⾐ ⾑ ⾒ ⾓ ⾔ ⾕ ⾖ ⾗ ⾘ ⾙ ⾚ ⾛ ⾜ ⾝ ⾞ ⾟ ⾠ ⾡ ⾢ ⾣ ⾤ ⾥ ⾦ ⾧ ⾨ ⾩ ⾪ ⾫ ⾬ ⾭ ⾮ ⾯ ⾰ ⾱ ⾲ ⾳ ⾴ ⾵ ⾶ ⾷ ⾸ ⾹ ⾺ ⾻ ⾼ ⾽ ⾾ ⾿ ⿀ ⿁ ⿂ ⿃ ⿄ ⿅ ⿆ ⿇ ⿈ ⿉ ⿊ ⿋ ⿌ ⿍ ⿎ ⿏ ⿐ ⿑ ⿒ ⿓ ⿔ ⿕ ㆐ ㆑ ㆖ ㆗ ㆘ ㆙ ㆚ ㆛ ㆜ ㆝ ㆞ ㆟ ㇀ ㇁ ㇂ ㇃ ㇄ ㇅ ㇆ ㇇ ㇈ ㇉ ㇊ ㇋ ㇌ ㇍ ㇎ ㇏ ㇐ ㇑ ㇒ ㇓ ㇔ ㇕ ㇖ ㇗ ㇘ ㇙ ㇚ ㇛ ㇜ ㇝ ㇞ ㇟ ㇠ ㇡ ㇢ ㇣ ᗩ ᗷ ᑕ ᗪ ᗴ ᖴ ᘜ ᕼ I ᒍ ᒪ ᗰ ᑎ O ᑭ ᑫ ᖇ Տ T ᑌ ᐯ ᗯ ᙭ Y ᘔ 卂 丨 乃 匚 乇 千 卄 | ﾌ Ҝ ㄥ 爪 几 ㄖ 卩 Ҩ 尺 丂 ㄒ ㄩ 山 乂 ㄚ 乙 Ⅎ ℺ ⅁ ⅂ ⅃ ⅄ ⅊ ∀ ∁ ∂ ∃ ∅ ∆ ∇ ∈ ∊ ∋ ∍ ∎ ∏ ∐ ∑ ± ÷ × ¬ ¦ ‖ − ∓ ∔ ∕ ∖ ∗ ∘ ∙ ㌀ ㌁ ㌂ ㌃ ㌄ ㌅ ㌆ ㌇ ㌈ ㌉ ㌊ ㌋ ㌌ ㌍ ㌎ ㌏ ㌐ ㌑ ㌒ ㌓ ㌔ ㌕ ㌖ ㌗ ㌘ ㌙ ㌚ ㌛ ㌜ ㌝ ㌞ ㌟ ㌠ ㌡ ㌢ ㌣ ㌤ ㌥ ㌦ ㌧ ㌨ ㌩ ㌪ ㌫ ㌬ ㌭ ㌮ ㌯ ㌰ ㌱ ㌲ ㌳ ㌴ ㌵ ㌶ ㌷ ㌸ ㌹ ㌺ ㌻ ㌼ ㌽ ㌾ ㌿ ㍀ ㍁ ㍂ ㍃ ㍄ ㍅ ㍆ ㍇ ㍈ ㍉ ㍊ ㍋ ㍌ ㍍ ㍎ ㍏ ㍐ ㍑ ㍒ ㍓ ㍔ ㍕ ㍖ ㍗ ㍱ ㍲ ㍳ ㍴ ㍵ ㍶ ㍷ ㍸ ㍹ ㍺ ㍻ ㍼ ㍽ ㍾ ㍿ ㎀ ㎁ ㎂ ㎃ ㎄ ㎅ ㎆ ㎇ ㎈ ㎉ ㎊ ㎋ ㎌ ㎍ ㎎ ㎏ ㎐ ㎑ ㎒ ㎓ ㎔ ㎕ ㎖ ㎗ ㎘ ㎙ ㎚ ㎛ ㎜ ㎝ ㎞ ㎟ ㎠ ㎡ ㎢ ㎣ ㎤ ㎥ ㎦ ㎧ ㎨ ㎩ ㎪ ㎫ ㎬ ㎭ ㎮ ㎯ ㎰ ㎱ ㎲ ㎳ ㎴ ㎵ ㎶ ㎷ ㎸ ㎹ ㎺ ㎻ ㎼ ㎽ ㎾ ㎿ ㏀ ㏁ ㏂ ㏃ ㏄ ㏅ ㏆ ㏇ ㏈ ㏉ ㏊ ㏋ ㏌ ㏍ ㏎ ㏏ ㏐ ㏑ ㏒ ㏓ ㏔ ㏕ ㏖ ㏗ ㏘ ㏙ ㏚ ㏛ ㏜ ㏝ ㏞ ㏟ ㏿ ል ጌ ር ዕ ቿ ቻ ኗ ዘ ጎ ጋ ጕ ረ ጠ ሸ ዐ የ ዒ ዪ ነ ሁ ሀ ሠ ሃ ጊ Ꭺ Ꮯ Ꭰ Ꭼ Ꮆ Ꭵ Ꮶ Ꮮ Ꮑ Ꮎ Ꮲ Ꮢ Ꮖ Ꮙ Ꮃ Ꮍ Ꮓ ɑ ҍ ϲ ժ ҽ ց հ í յ Ƙ Ӏ ʍ ղ օ Թ զ ɾ Ե ւ ѵ ա վ Հ ค ๒ ς ๔ є Ŧ ﻮ ђ เ ן к l ๓ ภ ๏ ק ợ г ร t ย ש ฬ ץ א ᗅ ᙘ ᑤ ᗫ ᙍ ᓿ ᒙ ᖽ ᐸ ᙢ ᘉ ᓎ ᕿ ᕴ S ᖶ ᑗ ᐻ ᙎ ᖻ ᙣ å β ç ď ğ ȟ ȋ j ķ Ƚ ɱ ñ ǭ ȑ ț ɥ Ψ ÿ ž ά в ȡ έ ғ ģ ħ ί ј Ļ м ή ό ρ q ŕ ş ţ ù ν ώ ч Λ Ϧ ㄈ Ð Ɛ F Ɠ н ɪ Қ Ł ௱ Л Ø þ Ť Ц Ɣ Ɯ χ Ϥ Ẕ ᑢ ᕲ ᘿ ᓰ ᒚ ᘻ ᓍ ᕵ ᑘ ᐺ ᘺ ᗱ Յ Շ Ժ ȝ Բ Գ ɧ ɿ ʝ ƙ ʅ Ռ Ծ φ Ր Մ ע Ճ Վ ą ც ƈ ɖ ɛ ʄ ɠ ı Ɩ ŋ ɔ ℘ ཞ ʂ ɬ ų ۷ ῳ ҳ ყ ʑ ꁲ ꃳ ꏳ ꀷ ꑀ ꊯ ꁅ ꁝ ꒐ ꒑ ꈵ ꒒ ꂵ ꃔ ꊿ ꉣ ꋠ ꌅ ꈜ ꋖ ꌈ ꒦ ꅐ ꉤ ꐔ ꑒ ꍏ ꌃ ꏂ ꎇ ꀍ ꀤ ꒻ ꀘ ꎭ ꈤ ꂦ ᖘ ꆰ ꋪ ꌚ ꓄ ꀎ ꉧ ꌩ ꁴ ꋫ ꃲ ꉓ ꃸ ꑾ ꄘ ꃄ ꀗ ꁹ ꄱ ꋟ ꇘ ꓅ ꌇ ꅏ ꋋ ꌥ ꒗ Ꮧ Ᏸ Ꮄ Ꮛ ጀ Ꮒ Ꮰ Ꮭ Ꮇ Ꭷ Ꭾ Ꭴ Ꮥ Ꮦ Ꮼ Ꮗ ፈ Ꭹ ፚ")});
 
-
-document.getElementById("btn-block26").addEventListener("click", () => {
-  renderCharsFromString("Simbol 26", "㈀ ㈁ ㈂ ㈃ ㈄ ㈅ ㈆ ㈇ ㈈ ㈉ ㈊ ㈋ ㈌ ㈍ ㈎ ㈏ ㈐ ㈑ ㈒ ㈓ ㈔ ㈕ ㈖ ㈗ ㈘ ㈙ ㈚ ㈛ ㈜ ㈝ ㈞ ㈪ ㈫ ㈬ ㈭ ㈮ ㈯ ㈰ ㈱ ㈲ ㈳ ㈴ ㈵ ㈶ ㈷ ㈸ ㈹ ㈺ ㈻ ㈼ ㈽ ㈾ ㈿ ㉀ ㉁ ㉂ ㉃ ㉄ ㉅ ㉆ ㉇ ㉈ ㉉ ㉊ ㉋ ㉌ ㉍ ㉎ ㉏ ㉐ ㉠ ㉡ ㉢ ㉣ ㉤ ㉥ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭ ㉮ ㉯ ㉰ ㉱ ㉲ ㉳ ㉴ ㉵ ㉶ ㉷ ㉸ ㉹ ㉺ ㉻ ㉼ ㉽ ㉾ ㉿ ㊊ ㊋ ㊌ ㊍ ㊎ ㊏ ㊐ ㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊙ ㊚ ㊛ ㊜ ㊝ ㊞ ㊟ ㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯ ㊰ ㋀ ㋁ ㋂ ㋃ ㋄ ㋅ ㋆ ㋇ ㋈ ㋉ ㋊ ㋋ ㋌ ㋍ ㋎ ㋏ ㋐ ㋑ ㋒ ㋓ ㋔ ㋕ ㋖ ㋗ ㋘ ㋙ ㋚ ㋛ ㋜ ㋝ ㋞ ㋟ ㋠ ㋡ ㋢ ㋣ ㋤ ㋥ ㋦ ㋧ ㋨ ㋩ ㋪ ㋫ ㋬ ㋭ ㋮ ㋯ ㋰ ㋱ ㋲ ㋳ ㋴ ㋵ ㋶ ㋷ ㋸ ㋹ ㋺ ㋻ ㋼ ㋽ ㋾ ㌀ ㌁ ㌂ ㌃ ㌄ ㌅ ㌆ ㌇ ㌈ ㌉ ㌊ ㌋ ㌌ ㌍ ㌎ ㌏ ㌐ ㌑ ㌒ ㌓ ㌔ ㌕ ㌖ ㌗ ㌘ ㌙ ㌚ ㌛ ㌜ ㌝ ㌞ ㌟ ㌠ ㌡ ㌢ ㌣ ㌤ ㌥ ㌦ ㌧ ㌨ ㌩ ㌪ ㌫ ㌬ ㌭ ㌮ ㌯ ㌰ ㌱ ㌲ ㌳ ㌴ ㌵ ㌶ ㌷ ㌸ ㌹ ㌺ ㌻ ㌼ ㌽ ㌾ ㌿ ㍀ ㍁ ㍂ ㍃ ㍄ ㍅ ㍆ ㍇ ㍈ ㍉ ㍊ ㍋ ㍌ ㍍ ㍎ ㍏ ㍐ ㍑ ㍒ ㍓ ㍔ ㍕ ㍖ ㍗ ㍘ ㍙ ㍚ ㍛ ㍜ ㍝ ㍞ ㍟ ㍠ ㍡ ㍢ ㍣ ㍤ ㍥ ㍦ ㍧ ㍨ ㍩ ㍪ ㍫ ㍬ ㍭ ㍮ ㍯ ㍰ ㍱ ㍲ ㍳ ㍴ ㍵ ㍶ ㍷ ㍸ ㍹ ㍺ ㍻ ㍼ ㍽ ㍾ ㍿ ㎀ ㎁ ㎂ ㎃ ㎄ ㎅ ㎆ ㎇ ㎈ ㎉ ㎊ ㎋ ㎌ ㎍ ㎎ ㎏ ㎐ ㎑ ㎒ ㎓ ㎔ ㎕ ㎖ ㎗ ㎘ ㎙ ㎚ ㎛ ㎜ ㎝ ㎞ ㎟ ㎠ ㎡ ㎢ ㎣ ㎤ ㎥ ㎦ ㎧ ㎨ ㎩ ㎪ ㎫ ㎬ ㎭ ㎮ ㎯ ㎰ ㎱ ㎲ ㎳ ㎴ ㎵ ㎶ ㎷ ㎸ ㎹ ㎺ ㎻ ㎼ ㎽ ㎾ ㎿ ㏀ ㏁ ㏂ ㏃ ㏄ ㏅ ㏆ ㏇ ㏈ ㏉ ㏊ ㏋ ㏌ ㏍ ㏎ ㏏ ㏐ ㏑ ㏒ ㏓ ㏔ ㏕ ㏖ ㏗ ㏘ ㏙ ㏚ ㏛ ㏜ ㏝ ㏞ ㏟ ㏠ ㏡ ㏢ ㏣ ㏤ ㏥ ㏦ ㏧ ㏨ ㏩ ㏪ ㏫ ㏬ ㏭ ㏮ ㏯ ㏰ ㏱ ㏲ ㏳ ㏴ ㏵ ㏶ ㏷ ㏸ ㏹ ㏺ ㏻ ㏼ ㏽ ㏾ ㏿ ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿹ ⿺ ⿻ 〄 〒 〓 〠 〶 〷 〾 〿 🈀 🈁 🈂 🈐 🈑 🈒 🈓 🈔 🈕 🈖 🈗 🈘 🈙 🈚 🈛 🈜 🈝 🈞 🈟 🈠 🈡 🈢 🈣 🈤 🈥 🈦 🈧 🈨 🈩 🈪 🈫 🈬 🈭 🈮 🈯 🈰 🈱 🈲 🈳 🈴 🈵 🈶 🈷 🈸 🈹 🈺 🉀 🉁 🉂 🉃 🉄 🉅 🉆 🉇 🉈 🉐 🉑 🄪 🄫 🄬 🄭 🄮 🅊 🅋 🅌 🅍 🅎 🅏 🆊 🆋 🆌 🆍 🆎 🆏 🆐 🆑 🆒 🆓 🆔 🆕 🆖 🆗 🆘 🆙")
-})
-
-document.getElementById("btn-block27").addEventListener("click", () => {
-  renderCharsFromString("Simbol 27", "✼ ✠ ☆ ★ ✡ ✴ ✺ ☼ ☸ ❋ ✽ ✻ ❆ ۞ ☀ ❃ ❂ ✿ ❀ ❁ ✲ ⋆ ⛤ ⛥ ⛦ ⛧ ❄ ❅ ❇ ❖ ✫ ✪ ✬ ✮ ✭ ✯ ✰ 𖤓 ❉ ✤ ✧ ✥ ✱ ✩ ✳ ✵ ✶ ✷ ✸ ✹ ✾ ❈ ❊ ♦ ♤ ♣ ♢ ♠ ◊ ♧ ♡ ♙ ♟ ♘ ♞ ♗ ♝ ♖ ♜ ♕ ♛ ♔ ♚ ⚀ ⚁ ⚂ ⚃ ⚄ ⚅ ♭ ♫ ♬ ♪ ♩ ✦ 𝄪 𝄆 𝄇 𝄈 𝄐 𝄑 𝄒 𝆒 𝆓 𝄫 𝄞 𝄢 𝄡 ⇆ ◁ ❚ ▷ ↻ ▶ ☰ ≡ Ξ ㊂ ≣ ⁝ ⋮ ︙ ⦙ ⁞ ⋯ … ∷ ▲ ▼ △ ▽ ⌃ ⌄ 𓃑 𓏧 ⸬ ⇍ ⇎ ⇏ ⇐ ⇑ ⇒ ⇓ ⇔ ⇕ ⇖ ⇗ ⇘ ⇙ ⇦ ⇧ ⇪ ⇫ ➔ ➙ ➘ ➚ « » ⇨ ⇚ ⇶ ⇵ ⇴ ⇳ ⇰ ⇯ ⇮ ⇭ ⇬ ⇩ ↨ ↧ ↦ ↥ ↤ ↣ ↢ ↡ ↠ ↟ ↞ ↝ ↜ ↛ ↚ ↙ ↘ ↗ ↖ ↕ ↮ ⇤ ⇥ ⇲ ⇞ ⇟ ↩ ↱ ↫ ↬ ⇝ ↰ ↲ ↳ ↴ ↵ ↯ ↷ ↺ ⇜ ↶ ↼ ↽ ↾ ↿ ⇀ ⇁ ⇂ ⇃ ⇄ ⇅ ⇇ ⇈ ⇉ ⇊ ➛ ➜ ➞ ➟ ➠ ➡ ➢ ➣ ➤ ➥ ➦ ➶ ➵ ➳ ➴ ➲ ➱ ➯ ➾ ➽ ➭ ➬ ➼ ➻ ➫ ➪ ➺ ➹ ➩ ➨ ➸ ➷ ➧ ⃕ ⪡ ⨣ ◀ ▬ ☠ ✙ ✛ ✜ ✝ ✞ ✟ ✖ ✘ ✕ ✁ ✃ ✄ ✂ 웃 ‡ ﾒ ♀ ♂ ✚ ♱ ♰ ☩ ☨ ☦ ✟ † ☣ ¤ € £ Ұ ₴ $ ₰ ₪ ₤ ¥ ₳ ₲ ₵ 元 ₣ ₱ ฿ ₡ ₮ ₭ ₩ 円 ₢ ₥ ₫ ₦ zł ﷼ ₠ ₧ ₯ ₨ Kč र ƒ ₹ ✍ ☚ ☜ ☟ ☛ ☞ ☝ ✌ ¶ § ‰ ✒ ✑ ✐ ✏ ✎ x ✈ ✇ ⌨ ☏ ☎ ☊ ⅍ ℆ № ℅ ☂ ☃ ☽ ☾ ♁ ♨ ☇ ☈ ☄ ° ℃ ℉ ϟ ☐ ☑ ☒ ✓ ✔ ✗ ☓ ∨ √ • ‣ ⁃ ❞ ❝ ∛ ∜ ✅ ❎ 〥 ⍢ 〲 〴 ϡ ⍥ ⅟ ½ ⅓ ⅕ ⅙ ⅛ ⅔ ⅖ ⅚ ⅜ ¾ ⅗ ⅝ ⅞ ⅘ % ‱ 💕 ⌀ ⌂ ⌅ ⌆ ⌇ ⌈ ⌉ ⌊ ⌋ ⌌ ⌍ ⌎ ⌏ ⌐ ⌑ ⌒ ⌓ ⌔ ⌕ ⌖ ⌗ ⌘ ⌙ ⌚ ⌛ ⌜ ⌝ ⌞ ⌟ ⌠ ⌢ ⌣ ⌤ ⌥ ⌦ ⌧ ⌫ ⌬ ⌭ ⌮ ⌳ ⌯ ⌰ ⌱ ⌲ ⌴ ⌵ ⌶ ⌿ ⍀ ⍁ ⍂ ⍃ ⍄ ⍅ ⍆ ⍇ ⍈ ⍊ ⍋ ⍌ ⍍ ⍎ ⍏ ⍐ ⍑ ⍒ ⍓ ⍔ ⍕ ⍖ ⍗ ⍘ ⍙ ⍚ ⍛ ⍜ ⍝ ⍞ ⍠ ⍡ ⍢ ⍣ ⍤ ⍦ ⍧ ⍨ ⍩ 〶 ⛅ ☔ ⛄ ⚰ ☡ ⚠ ☤ ☥ ☧ ☪ ☫ ☬ ☭ ☱ ☲ ☳ ☴ ☵ ☶ ☷ ♃ ♄ ♅ ♇ ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ♮ ♯ ♿ ⚊ ⚋ ⚌ ⚍ ⚎ ⚏ ⚐ ⚑ ⚒ ⚓ ⚔ ⚕ ⚖ ⚗ ⚘ ⚚ ⚛ ⚜ ⚝ ⚞ ⚟ ⚡ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚪ ⚬ ⚭ ⚮ ⚯ ⚱ ⚲ ⚳ ⚴ ⚵ ⚶ ⚷ ⚸ ⚹ ⚺ ⚻ ⚼ ⚽ ⚾ ⚿ ⛇ ⛈ ⛆ ⛉ ⛊ ⛋ ⛌ ⛍ ⛎ ⛏ ⛐ ⛑ ⛓ ⛔ ⛕ ⛖ ⛗ ⛘ ⛙ ⛚ ⛛ ⛜ ⛝ ⛞ ⛟ ⛠ ⛡ ⛢ ⛣ ⛨ ⛩ ⛪ ⛫ ⛬ ⛭ ⛮ ⛯ ⛰ ⛱ ⛲ ⛳ ⛴ ⛵ ⛶ ⛷ ⛸ ⛹ ⛺ ⛻ ⛼ ⛽ ✉ ✊ ✋ ✌ ✎ ✨ ❌ ❏ ❐ ❑ ❒ ❓ ❔ ❕ ❗ ❘ ❙ ❛ ❜ ❟ ❠ ❡ ❢ ❣ ❤ ➕ ➖ ➗ ➘ ➝ ➞ ➟ ➮ ➰ ➿ ⟀ ⟁ ⟂ ⟃ ⟄ ⟅ ⟆ ⟇ ⟈ ⟉ ⟊ ⟋ ⟌ ⟍ ⟎ ⟏ ⟐ ⟑ ⟒ ⟓ ⟔ ⟕ ⟖ ⟗ ⟘ ⟙ ⟚ ⟛ ⟜ ⟝ ⟞ ⟟ ⟠ ⟡ ⟢ ⟣ ⟤ ⟥")
-})
-
-document.getElementById("btn-block13").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "䷀ ䷁ ䷂ ䷃ ䷄ ䷅ ䷆ ䷇ ䷈ ䷉ ䷊ ䷋ ䷌ ䷍ ䷎ ䷏ ䷐ ䷑ ䷒ ䷓ ䷔ ䷕ ䷖ ䷗ ䷘ ䷙ ䷚ ䷛ ䷜ ䷝ ䷞ ䷟ ䷠ ䷡ ䷢ ䷣ ䷤ ䷥ ䷦ ䷧ ䷨ ䷩ ䷪ ䷫ ䷬ ䷭ ䷮ ䷯ ䷰ ䷱ ䷲ ䷳ ䷴ ䷵ ䷶ ䷷ ䷸ ䷹ ䷺ ䷻ ䷼ ䷽ ䷾ ䷿ 𝌀 𝌁 𝌂 𝌃 𝌄 𝌅 𝌆 𝌇 𝌈 𝌉 𝌊 𝌋 𝌌 𝌍 𝌎 𝌏 𝌐 𝌑 𝌒 𝌓 𝌔 𝌕 𝌖 𝌗 𝌘 𝌙 𝌚 𝌛 𝌜 𝌝 𝌞 𝌟 𝌠 𝌡 𝌢 𝌣 𝌤 𝌥 𝌦 𝌧 𝌨 𝌩 𝌪 𝌫 𝌬 𝌭 𝌮 𝌯 𝌰 𝌱 𝌲 𝌳 𝌴 𝌵 𝌶 𝌷 𝌸 𝌹 𝌺 𝌻 𝌼 𝌽 𝌾 𝌿 𝍀 𝍁 𝍂 𝍃 𝍄 𝍅 𝍆 𝍇 𝍈 𝍉 𝍊 𝍋 𝍌 𝍍 𝍎 𝍏 𝍐 𝍑 𝍒 𝍓 𝍔 𝍖");
-});
-document.getElementById("btn-block24").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "▁ ▂ ▃ ▄ ▅ ▆ ▇ ▉ ▊ ▋ ▌ ▐ ▍ ▎ ▏ ▕ ░ ▒ ▓ ▔ ▀ █ ▖ ▗ ▘ ▙ ▚ ▛ ▜ ▝ ▞ ▟ ─ ━ │ ┃ ┄ ┅ ┆ ┇ ┈ ┉ ┊ ┋ ┌ ┍ ┎ ┏ ┐ ┑ ┒ ┓ └ ┕ ┖ ┗ ┘ ┙ ┚ ┛ ├ ┝ ┞ ┟ ┠ ┡ ┢ ┣ ┤ ┥ ┦ ┧ ┨ ┩ ┪ ┫ ┬ ┭ ┮ ┯ ┰ ┱ ┲ ┳ ┴ ┵ ┶ ┷ ┸ ┹ ┺ ┻ ┼ ┽ ┾ ┿ ╀ ╁ ╂ ╃ ╄ ╅ ╆ ╇ ╈ ╉ ╊ ╋ ╍ ╎ ╏ ═ ║ ╒ ╓ ╔ ╕ ╖ ╗ ╘ ╙ ╚ ╛ ╜ ╝ ╞ ╟ ╠ ╡ ╢ ╣ ╤ ╥ ╦ ╧ ╨ ╩ ╪ ╫ ╬ ╭ ╮ ╯ ╰ ╱ ╲ ╳ ╴ ╵ ╶ ╷ ╸ ╹ ╺ ╻ ╼ ╽ ╾ ╿ ▬ ❘ ❙ ❚ ❒ ❑ ❐ ❏ ⍰ ◆ ◇ ◈ 〓 ⊡ ⊠ ⊟ ⊞ □ ■ ∎ ◫ ◪ ◩ ◧ ▢ ▣ ▤ ▥ ▦ ▧ ▨ ▩ ▪ ▫ ▭ ▮ ▯ ☰ ☲ ☳ ▰ ▱ ◄ ► ▲ ▼ ◀ ▶ ◣ ◥ ◤ ◢ ◂ ▸ ▾ ▴ ◁ ▷ △ ▽ ∆ ∇ ⊲ ⊳ ⊴ ⊵ ◅ ▻ ▵ ▿ ◃ ▹ ◭ ◮ ⫷ ⫸ ⋖ ⋗ ⋪ ⋫ ⋬ ⋭ ⊿ ◬ ≜ ⑅ ◿ ◸ ◹ ◺ ◻ ◼ ◽ ◾ ◿ ○ ◌ ◍ ◎ ● ◐ ◑ ◒ ◓ ◔ ◕ ◖ ◗ ◘ ◙ ◚ ◛ ◜ ◝ ◞ ◟ ◠ ◡ ◦ ◨ ◫ ◬ ◭ ◮ ◯ ◰ ◱ ◲ ◳ ◴ ◵ ◶ 〒 ⊢ ⊣ ⊤ ⊥ ╭ ╮ ╯ ╰ ⊦ ⊧ ⊨ ⊩ ⊪ ⊫ ⊬ ⊭ ⊮ ⊯ ⊺ 〦 〧 〨 ˦ ˧ ˨ ⑁ ⑂ ∟ ⑃ ﹉ ⑇ ﹊ ﹎ ︲ ⑆ ⑇ ⑈ ⑉ ⑊ ⑄ ⑀ ︴ ﹏ ﹌ ﹋ │ ┃ ╽ ╿ ╏ ║ ╎ ┇ ︱ ┊ ︳ ┋ ┆ ╵ 〡 〢 ╹ ╍ ╷ 〣 ━ ─ ╍ ┅ ┉ ┄ ┈ ╌ ╴ ╶ ╸ ╺ ╼ ╾ ◷");
-});
-document.getElementById("btn-block20").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "🀀 🀁 🀂 🀃 🀄 🀅 🀆 🀇 🀈 🀉 🀊 🀋 🀌 🀍 🀎 🀏 🀐 🀑 🀒 🀓 🀔 🀕 🀖 🀗 🀘 🀙 🀚 🀛 🀜 🀝 🀞 🀟 🀠 🀡 🀢 🀣 🀤 🀥 🀦 🀧 🀨 🀩 🀪 🀫 🀰 🀱 🀲 🀳 🀴 🀵 🀶 🀷 🀸 🀹 🀺 🀻 🀼 🀽 🀾 🀿 🁀 🁁 🁂 🁃 🁄 🁅 🁆 🁇 🁈 🁉 🁊 🁋 🁌 🁍 🁎 🁏 🁐 🁑 🁒 🁓 🁔 🁕 🁖 🁗 🁘 🁙 🁚 🁛 🁜 🁝 🁞 🁟 🁠 🁡 🁢 🁣 🁤 🁥 🁦 🁧 🁨 🁩 🁪 🁫 🁬 🁭 🁮 🁯 🁰 🁱 🁲 🁳 🁴 🁵 🁶 🁷 🁸 🁹 🁺 🁻 🁼 🁽 🁾 🁿 🂀 🂁 🂂 🂃 🂄 🂅 🂆 🂇 🂈 🂉 🂊 🂋 🂌 🂍 🂎 🂏 🂐 🂑 🂒 🂓 🂠 🂡 🂢 🂣 🂤 🂥 🂦 🂧 🂨 🂩 🂪 🂫 🂬 🂭 🂮 🂱 🂲 🂳 🂴 🂵 🂶 🂷 🂸 🂹 🂺 🂻 🂼 🂽 🂾 🃁 🃂 🃃 🃄 🃅 🃆 🃇 🃈 🃉 🃊 🃋 🃌 🃍 🃎 🃑 🃒 🃓 🃔 🃕 🃖 🃗 🃘 🃙 🃚 🃛");
-});
-document.getElementById("btn-block6").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "☰ ≡ Ξ ㊂ ≣ ⁝ 𓃑 ⇶ ☚ ☜ ☟ ☛ ☞ ✒ ✑ ✐ ✏ ✎ x ✈ ✇ ⌨ ☏ ☎ ☊ ⅍ ℆ № ℅ ☂ ☃ ☽ ☾ ♁ ♨ ☇ ☈ ☄ ° ℃ ℉ ϟ ☐ ☑ ☒ ✓ ✔ ✗ ☓ ∨ √ ⌂ ⌒ ⌓ ⌔ ⌕ ⌖ ⌦ ⌧ ⌫ ⌬ ⌭ ⌮ ⌳ ⌯ ⌰ ⌱ ⌲ ⌴ ⌵ ⌶ ⌿ ⍀ ⍁ ⍞ ⍠ ⍡ ⍢ ⍣ ⍤ ⍦ ⍧ ⍨ ⍩ 〶 ⚰ ☡ ⚠ ☤ ☥ ☧ ☪ ☫ ☬ ☭ ♃ ♄ ♅ ♇ ♮ ♯ ♿ ⚐ ⚑ ⚒ ⚘ ⚝ ⚞ ⚟ ⚡ ⚢ ⚣ ⚤ ⚥ ⚦ ⚧ ⚨ ⚩ ⚬ ⚭ ⚮ ⚯ ⚱ ⚲ ⚳ ⚴ ⚵ ⚶ ⚷ ⚸ ⚹ ⚿ ⛇ ⛈ ⛆ ⛉ ⛊ ⛋ ⛌ ⛍ ⛐ ⛑ ⛓ ⛕ ⛖ ⛗ ⛘ ⛙ ⛚ ⛛ ⛜ ⛝ ⛞ ⛟ ⛠ ⛡ ⛢ ⛣ ⛨ ⛩ ⛪ ⛫ ⛬ ⛭ ⛮ ⛯ ⛰ ⛱ ⛻ ⛼ ✉ ➮ ⟀ ⟁ ⟂ ⟃ ⟄ ⟅ ⟆ ⟇ ⟈ ⟉ ⟊ ⟋ ⟌ ⟍ ⟎ ⟏ ⟐ ⟑ ⟒ ⟓ ⟔ ⟕ ⟖ ⟗ ⟘ ⟙ ⟚ ⟛ ⟜ ⟝ ⟞ ⟟ ⟠ ⟡ ⟢ ⟣ ⟤ ⟥ ⍂ ⍃ ⍄ ⍅ ⍆ ⍇ ⍈ ⍊ ⍋ ⍌ ⍍ ⍎ ⍏ ⍐ ⍑ ⍒ ⍓ ⍔ ⍕ ⍖ ⍗ ⍘ ⍙ ⍚ ⍛ ⍜ ⍝ ⛾ ⛿ ✆ ℗ ⌷ ⌸ ⌹ ⌺ ⌻ ⌼");
-});
-document.getElementById("btn-block9").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "⠀ ⠁ ⠂ ⠃ ⠄ ⠅ ⠆ ⠇ ⠈ ⠉ ⠊ ⠋ ⠌ ⠍ ⠎ ⠏ ⠐ ⠑ ⠒ ⠓ ⠔ ⠕ ⠖ ⠗ ⠘ ⠙ ⠚ ⠛ ⠜ ⠝ ⠞ ⠟ ⠠ ⠡ ⠢ ⠣ ⠤ ⠥ ⠦ ⠧ ⠨ ⠩ ⠪ ⠫ ⠬ ⠭ ⠮ ⠯ ⠰ ⠱ ⠲ ⠳ ⠴ ⠵ ⠶ ⠷ ⠸ ⠹ ⠺ ⠻ ⠼ ⠽ ⠾ ⠿ ⡀ ⡁ ⡂ ⡃ ⡄ ⡅ ⡆ ⡇ ⡈ ⡉ ⡊ ⡋ ⡌ ⡍ ⡎ ⡏ ⡐ ⡑ ⡒ ⡓ ⡔ ⡕ ⡖ ⡗ ⡘ ⡙ ⡚ ⡛ ⡜ ⡝ ⡞ ⡟ ⡠ ⡡ ⡢ ⡣ ⡤ ⡥ ⡦ ⡧ ⡨ ⡩ ⡪ ⡫ ⡬ ⡭ ⡮ ⡯ ⡰ ⡱ ⡲ ⡳ ⡴ ⡵ ⡶ ⡷ ⡸ ⡹ ⡺ ⡻ ⡼ ⡽ ⡾ ⡿ ⢀ ⢁ ⢂ ⢃ ⢄ ⢅ ⢆ ⢇ ⢈ ⢉ ⢊ ⢋ ⢌ ⢍ ⢎ ⢏ ⢐ ⢑ ⢒ ⢓ ⢔ ⢕ ⢖ ⢗ ⢘ ⢙ ⢚ ⢛ ⢜ ⢝ ⢞ ⢟ ⢠ ⢡ ⢢ ⢣ ⢤ ⢥ ⢦ ⢧ ⢨ ⢩ ⢪ ⢫ ⢬ ⢭ ⢮ ⢯ ⢰ ⢱ ⢲ ⢳ ⢴ ⢵ ⢶ ⢷ ⢸ ⢹ ⢺ ⢻ ⢼ ⢽ ⢾ ⢿ ⣀ ⣁ ⣂ ⣃ ⣄ ⣅ ⣆ ⣇ ⣈ ⣉ ⣊ ⣋ ⣌ ⣍ ⣎ ⣏ ⣐ ⣑ ⣒ ⣓ ⣔ ⣕ ⣖ ⣗ ⣘ ⣙ ⣚ ⣛ ⣜ ⣝ ⣞ ⣟ ⣠ ⣡ ⣢ ⣣ ⣤ ⣥ ⣦ ⣧ ⣨ ⣩ ⣪ ⣫ ⣬ ⣭ ⣮ ⣯ ⣰ ⣱ ⣲ ⣳ ⣴ ⣵ ⣶ ⣷ ⣸ ⣹ ⣺ ⣻ ⣼ ⣽ ⣾ ⣿");
-});
-
-document.getElementById("btn-block119").addEventListener("click", () => {
+document.getElementById("btn-block1019").addEventListener("click", () => {
   renderCharsFromString("Simbol", `A B C D E F G H I J K L M N O P Q R S T U V W X Y Z a b c d e f g h i k j l m n o p q r s t u v w x y z 1 2 3 4 5 6 7 8 9 0 @ # $ _ & - + ( ) / * " ' : ; ! ? ~ \` | • √ π ÷ × ¶ ∆ £ ¢ € ¥ ^ ° = { } \\ % © ® ™ ✓ [ ]`);
 });
 
-document.getElementById("btn-block16").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝀀 𝀁 𝀂 𝀃 𝀄 𝀅 𝀆 𝀇 𝀈 𝀉 𝀊 𝀋 𝀌 𝀍 𝀎 𝀏 𝀐 𝀑 𝀒 𝀓 𝀔 𝀕 𝀖 𝀗 𝀘 𝀙 𝀚 𝀛 𝀜 𝀝 𝀞 𝀟 𝀠 𝀡 𝀢 𝀣 𝀤 𝀥 𝀦 𝀧 𝀨 𝀩 𝀪 𝀫 𝀬 𝀭 𝀮 𝀯 𝀰 𝀱 𝀲 𝀳 𝀴 𝀵 𝀶 𝀷 𝀸 𝀹 𝀺 𝀻 𝀼 𝀽 𝀾 𝀿 𝁀 𝁁 𝁂 𝁃 𝁄 𝁅 𝁆 𝁇 𝁈 𝁉 𝁊 𝁋 𝁌 𝁍 𝁎 𝁏 𝁐 𝁑 𝁒 𝁓 𝁔 𝁕 𝁖 𝁗 𝁘 𝁙 𝁚 𝁛 𝁜 𝁝 𝁞 𝁟 𝁠 𝁡 𝁢 𝁣 𝁤 𝁥 𝁦 𝁧 𝁨 𝁩 𝁪 𝁫 𝁬 𝁭 𝁮 𝁯 𝁰 𝁱 𝁲 𝁳 𝁴 𝁵 𝁶 𝁷 𝁸 𝁹 𝁺 𝁻 𝁼 𝁽 𝁾 𝁿 𝂀 𝂁 𝂂 𝂃 𝂄 𝂅 𝂆 𝂇 𝂈 𝂉 𝂊 𝂋 𝂌 𝂍 𝂎 𝂏 𝂐 𝂑 𝂒 𝂓 𝂔 𝂕 𝂖 𝂗 𝂘 𝂙 𝂚 𝂛 𝂜 𝂝 𝂞 𝂟 𝂠 𝂡 𝂢 𝂣 𝂤 𝂥 𝂦 𝂧 𝂨 𝂩 𝂪 𝂫 𝂬 𝂭 𝂮 𝂯 𝂰 𝂱 𝂲 𝂳 𝂴 𝂵 𝂶 𝂷 𝂸 𝂹 𝂺 𝂻 𝂼 𝂽 𝂾 𝂿 𝃀 𝃁 𝃂 𝃃 𝃄 𝃅 𝃆 𝃇 𝃈 𝃉 𝃊 𝃋 𝃌 𝃍 𝃎 𝃏 𝃐 𝃑 𝃒 𝃓 𝃔 𝃕 𝃖 𝃗 𝃘 𝃙 𝃚 𝃛 𝃜 𝃝 𝃞 𝃟 𝃠 𝃡 𝃢 𝃣 𝃤 𝃥 𝃦 𝃧 𝃨 𝃩 𝃪 𝃫 𝃬 𝃭 𝃮 𝃯 𝃰 𝃱 𝃲 𝃳 𝃴 𝃵 𝄀 𝄁 𝄂 𝄃 𝄄 𝄅 𝄆 𝄇 𝄈 𝄉 𝄊 𝄋 𝄌 𝄍 𝄎 𝄏 𝄐 𝄑 𝄒 𝄓 𝄔 𝄕 𝄖 𝄗 𝄘 𝄙 𝄚 𝄛 𝄜 𝄝 𝄞 𝄟 𝄠 𝄡 𝄢 𝄣 𝄤 𝄥 𝄦 𝄩 𝄪 𝄫 𝄬 𝄭 𝄮 𝄯 𝄰 𝄱 𝄲 𝄳 𝄴 𝄵 𝄶 𝄷 𝄸 𝄹 𝄺 𝄻 𝄼 𝄽 𝄾 𝄿 𝅀 𝅁 𝅂 𝅃 𝅄 𝅅 𝅆 𝅇 𝅈 𝅉 𝅊 𝅋 𝅌 𝅍 𝅎 𝅏 𝅐 𝅑 𝅒 𝅓 𝅔 𝅕 𝅖 𝅗 𝅘 𝅙 𝅚 𝅛 𝅜 𝅝 𝅗𝅥 𝅘𝅥 𝅘𝅥𝅮 𝅘𝅥𝅯 𝅘𝅥𝅰 𝅘𝅥𝅱 𝅘𝅥𝅲 𝅥 𝅦 𝅧 𝅨 𝅩 𝅪 𝅫 𝅬 𝅭 𝅮 𝅯 𝅰 𝅱 𝅲 𝅻 𝅼 𝅽 𝅾 𝅿 𝆀 𝆁 𝆂 𝆃 𝆄 𝆅 𝆆 𝆇 𝆈 𝆉 𝆊 𝆋 𝆌 𝆍 𝆎 𝆏 𝆐 𝆑 𝆒 𝆓 𝆔 𝆕 𝆖 𝆗 𝆘 𝆙 𝆚 𝆛 𝆜 𝆝 𝆞 𝆟 𝆠 𝆡 𝆢 𝆣 𝆤 𝆥 𝆦 𝆧 𝆨 𝆩 𝆪 𝆫 𝆬 𝆭 𝆮 𝆯 𝆰 𝆱 𝆲 𝆳 𝆴 𝆵 𝆶 𝆷 𝆸 𝆹 𝆺 𝆹𝅥 𝆺𝅥 𝆹𝅥𝅮 𝆺𝅥𝅮 𝆹𝅥𝅯 𝆺𝅥𝅯 𝇁 𝇂 𝇃 𝇄 𝇅 𝇆 𝇇 𝇈 𝇉 𝇊 𝇋 𝇌 𝇍 𝇎 𝇏 𝇐 𝇑 𝇒 𝇓 𝇔 𝇕 𝇖 𝇗 𝇘 𝇙 𝇚 𝇛 𝇜 𝇝");
-});
-document.getElementById("btn-block17").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "❨ ❩ ❪ ❫ ❬ ❭ ❮ ❯ ❰ ❱ ❲ ❳ ❴ ❵ ⟦ ⟧ ⟨ ⟩ ⟪ ⟫ ⦃ ⦄ ⦅ ⦆ ⦇ ⦈ ⦉ ⦊ ⦋ ⦌ ⦍ ⦎ ⦏ ⦐ ⦑ ⦒ ⦓ ⦔ ⦕ ⦖ ⦗ ⦘ ⦙ ⦚ ⦛ ⦜ ⦝ ⥏ ⥑ ⦞ ⦟ ⦠ ⦡ ⦢ ⦣ ⦤ ⦥ ⦦ ⦧ ⦨ ⦩ ⦪ ⦫ ⦬ ⦭ ⦮ ⦯ ⦰ ⦱ ⦲ ⦳ ⦴ ⦵ ⦶ ⦷ ⦸ ⦹ ⦺ ⦻ ⦼ ⦽ ⦾ ⦿ ⧀ ⧁ ⧂ ⧃ ⧄ ⧅ ⧆ ⧇ ⧈ ⧉ ⧊ ⧋ ⧌ ⧍ ⧎ ⧏ ⧐ ⧑ ⧒ ⧓ ⧔ ⧕ ⧖ ⧗ ⧘ ⧙ ⧚ ⧛ ⧜ ⧝ ⧞ ⧟ ⧠ ⧡ ⧢ ⧣ ⧤ ⧥ ⧦ ⧧ ⧨ ⧩ ⧪ ⧫ ⧬ ⧭ ⧮ ⧯ ⧰ ⧱ ⧲ ⧳ ⧴ ⧵ ⧶ ⧷ ⧸ ⧹ ⧺ ⧻ ⧼ ⧽ ⧾ ⧿ ⨀ ⨁ ⨂ ⨃ ⨄ ⨅ ⨆ ⨇ ⨈ ⨉ ⨊ ⨋ ⨌ ⨍ ⨎ ⨏ ⨐ ⨑ ⨒ ⨓ ⨔ ⨕ ⨖ ⨗ ⨘ ⨙ ⨚ ⨛ ⨜ ⨝ ⨞ ⨟ ⨠ ⨡ ⨢ ⨣ ⨤ ⨥ ⨦ ⨧ ⨨ ⨩ ⨪ ⨫ ⨬ ⨭ ⨮ ⨯ ⨰ ⨱ ⨲ ⨳ ⨴ ⨵ ⨶ ⨷ ⨸ ⨹ ⨺ ⨻ ⨼ ⨽ ⨾ ⨿ ⩀ ⩁ ⩂ ⩃ ⩄ ⩅ ⩆ ⩇ ⩈ ⩉ ⩊ ⩋ ⩌ ⩍ ⩎ ⩏ ⩐ ⩑ ⩒ ⩓ ⩔ ⩕ ⩖ ⩗ ⩘ ⩙ ⩚ ⩛ ⩜ ⩝ ⩞ ⩟ ⩠ ⩡ ⩢ ⩣ ⩤ ⩥ ⩦ ⩧ ⩨ ⩩ ⩪ ⩫ ⩬ ⩭ ⩮ ⩯ ⩰ ⩱ ⩲ ⩳ ⩴ ⩵ ⩶ ⩷ ⩸ ⩹ ⩺ ⩻ ⩼ ⩽ ⩾ ⩿ ⪀ ⪁ ⪂ ⪃ ⪄ ⪅ ⪆ ⪇ ⪈ ⪉ ⪊ ⪋ ⪌ ⪍ ⪎ ⪏ ⪐ ⪑ ⪒ ⪓ ⪔ ⪕ ⪖ ⪗ ⪘ ⪙ ⪚ ⪛ ⪜ ⪝ ⪞ ⪟ ⪠ ⪡ ⪢ ⪣ ⪤ ⪥ ⪦ ⪧ ⪨ ⪩ ⪪ ⪫ ⪬ ⪭ ⪮ ⪯ ⪰ ⪱ ⪲ ⪳ ⪴ ⪵ ⪶ ⪷ ⪸ ⪹ ⪺ ⪻ ⪼ ⪽ ⪾ ⪿ ⫀ ⫁ ⫂ ⫃ ⫄ ⫅ ⫆ ⫇ ⫈ ⫉ ⫊ ⫋ ⫌ ⫍ ⫎ ⫏ ⫐ ⫑ ⫒ ⫓ ⫔ ⫕ ⫖ ⫗ ⫘ ⫙ ⫚ ⫛ ⫝̸ ⫝ ⫞ ⫟ ⫠ ⫡ ⫢ ⫣ ⫤ ⫥ ⫦ ⫧ ⫨ ⫩ ⫪ ⫫ ⫬ ⫭ ⫮ ⫯ ⫰ ⫱ ⫲ ⫳ ⫴ ⫵ ⫶ ⫷ ⫸ ⫹ ⫺ ⫻ ⫼ ⫽ ⫾ ⫿ ⬀ ⬁ ⬂ ⬃ ⬄ ⬅ ⬆ ⬇ ⬈ ⬉ ⬊ ⬋ ⬌ ⬍ ⬎ ⬏ ⬐ ⬑ ⬒ ⬓ ⬔ ⬕ ⬖ ⬗ ⬘ ⬙ ⬚ ⬛ ⬜ ⬝ ⬞ ⬟ ⬠ ⬡ ⬢ ⬣ ⬤ ⬥ ⬦ ⬧ ⬨ ⬩ ⬪ ⬫ ⬬ ⬭ ⬮ ⬯ ⬰ ⬱ ⬲ ⬳ ⬴ ⬵ ⬶ ⬷ ⬸ ⬹ ⬺ ⬻ ⬼ ⬽ ⬾ ⬿ ⭀ ⭁ ⭂ ⭃ ⭄ ⭅ ⭆ ⭇ ⭈ ⭉ ⭊ ⭋ ⭌ ⭐ ⭑ ⭒ ⭓ ⭔ ⭕ ⭖ ⭗ ⭘ ⭙ ⸀ ⸁ ⸂ ⸃ ⸄ ⸅ ⸆ ⸇ ⸈ ⸉ ⸊ ⸋ ⸌ ⸍ ⸎ ⸏ ⸐ ⸑ ⸒ ⸓ ⸔ ⸕ ⸖ ⸗ ⸘ ⸙ ⸚ ⸛ ⸜ ⸝ ⸞ ⸟ ⸠ ⸡ ⸢ ⸣ ⸤ ⸥ ⸦ ⸧ ⸨ ⸩ ⸪ ⸫ ⸬ ⸭ ⸮ ⸯ ⸰ ⸱ ⸲ ⸳ ⸴ ⸵ ⸶ ⸷ ⸸ ⸹ ⸺ ⸻ 〈 〉 ⤀ ⤁ ⤂ ⤃ ⤄ ⤅ ⤆ ⤇ ⤈ ⤉ ⤊ ⤋ ⤌ ⤍ ⤎ ⤏ ⤐ ⤑ ⤒ ⤓ ⤔ ⤕ ⤖ ⤗ ⤘ ⤙ ⤚ ⤛ ⤜ ⤝ ⤞ ⤟ ⤠ ⤡ ⤢ ⤣ ⤤ ⤥ ⤦ ⤧ ⤨ ⤩ ⤪ ⤫ ⤬ ⤭ ⤮ ⤯ ⤰ ⤱ ⤲ ⤳ ⤴ ⤵ ⤶ ⤷ ⤸ ⤹ ⤺ ⤻ ⤼ ⤽ ⤾ ⤿ ⥀ ⥁ ⥂ ⥃ ⥄ ⥅ ⥆ ⥇ ⥈ ⥉ ⥊ ⥋ ⥌ ⥍ ⥎ ⥏ ⥐ ⥑ ⥒ ⥓ ⥔ ⥕ ⥖ ⥗ ⥘ ⥙ ⥚ ⥛ ⥜ ⥝ ⥞ ⥟ ⥠ ⥡ ⥢ ⥣ ⥤ ⥥ ⥦ ⥧ ⥨ ⥩ ⥪ ⥫ ⥬ ⥭ ⥮ ⥯ ⥰ ⥱ ⥲ ⥳ ⥴ ⥵ ⥶ ⥷ ⥸ ⥹ ⥺ ⥻ ⥼ ⥽ ⥾ ⥿ ⦀ ⦁ ⦂");
-});
 document.getElementById("btn-block1").addEventListener("click", () => {
   renderCharsFromString("Simbol", "🅐 🅑 🅒 🅓 🅔 🅕 🅖 🅗 🅘 🅙 🅚 🅛 🅜 🅝 🅞 🅟 🅠 🅡 🅢 🅣 🅤 🅥 🅦 🅧 🅨 🅩 Ⓐ Ⓑ Ⓒ Ⓓ Ⓔ Ⓕ Ⓖ Ⓗ Ⓘ Ⓙ Ⓚ Ⓛ Ⓜ Ⓝ Ⓞ Ⓟ Ⓠ Ⓡ Ⓢ Ⓣ Ⓤ Ⓥ Ⓦ Ⓧ Ⓨ Ⓩ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ⓘ ⓙ ⓚ ⓛ ⓜ ⓝ ⓞ ⓟ ⓠ ⓡ ⓢ ⓣ ⓤ ⓥ ⓦ ⓧ ⓨ ⓩ");
 });
+
 document.getElementById("btn-block2").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "⓿ ❶ ❷ ❸ ❹ ❺ ❻ ❼ ❽ ❾ ❿ ⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓴ ⓪ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ ⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾ ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇ ０ １ ２ ３ ４ ５ ６ ７ ８ ９ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛ ↉ ½ ⅓ ¼ ⅕ ⅙ ⅐ ⅛ ⅑ ⅒ ⅔ ⅖ ¾ ⅗ ⅜ ⅘ ⅚ ⅝ ⅞ ㊊ ㊋ ㊌ ㊍ ㊎ ㊏ ㊐ ㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊜ ㊝ ㊞ ㊟ ㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯ ㊰ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ♺ ♻ ♼ ♽");
+  renderCharsFromString("Simbol", "⓿ ❶ ❷ ❸ ❹ ❺ ❻ ❼ ❽ ❾ ❿ ⓫ ⓬ ⓭ ⓮ ⓯ ⓰ ⓱ ⓲ ⓳ ⓴ ⓪ ① ② ③ ④ ⑤ ⑥ ⑦ ⑧ ⑨ ⑩ ⑪ ⑫ ⑬ ⑭ ⑮ ⑯ ⑰ ⑱ ⑲ ⑳ ⓵ ⓶ ⓷ ⓸ ⓹ ⓺ ⓻ ⓼ ⓽ ⓾ ㉈ ㉉ ㉊ ㉋ ㉌ ㉍ ㉎ ㉏ 𝟏 𝟐 𝟑 𝟒 𝟓 𝟔 𝟕 𝟖 𝟗 𝟎 𝟘 𝟙 𝟚 𝟛 𝟜 𝟝 𝟞 𝟟 𝟠 𝟡 ０ １ ２ ３ ４ ５ ６ ７ ８ ９ ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇ ♳ ♴ ♵ ♶ ♷ ♸ ♹ ♺ ⁰ ¹ ² ³ ⁴ ⁵ ⁶ ⁷ ⁸ ⁹ ₀ ₁ ₂ ₃ ₄ ₅ ₆ ₇ ₈ ₉ ⒈ ⒉ ⒊ ⒋ ⒌ ⒍ ⒎ ⒏ ⒐ ⒑ ⒒ ⒓ ⒔ ⒕ ⒖ ⒗ ⒘ ⒙ ⒚ ⒛ √ ∛ ∜ ↉ ¼ ⅐ ⅑ ⅒ ⅟ ½ ⅓ ⅕ ⅙ ⅛ ⅔ ⅖ ⅚ ⅜ ¾ ⅗ ⅝ ⅞ ⅘ % ‱ ㈀ ㈁ ㈂ ㈃ ㈄ ㈅ ㈆ ㈇ ㈈ ㈉ ㈊ ㈋ ㈌ ㈍ ㈎ ㈏ ㈐ ㈑ ㈒ ㈓ ㈔ ㈕ ㈖ ㈗ ㈘ ㈙ ㈚ ㈛ ㈜ ㈝ ㈞ ㈪ ㈫ ㈬ ㈭ ㈮ ㈯ ㈰ ㈱ ㈲ ㈳ ㈴ ㈵ ㈶ ㈷ ㈸ ㈹ ㈺ ㈻ ㈼ ㈽ ㈾ ㈿ ㉀ ㉁ ㉂ ㉃ ㉄ ㉅ ㉆ ㉇ ㉐ ㉠ ㉡ ㉢ ㉣ ㉤ ㉥ ㉦ ㉧ ㉨ ㉩ ㉪ ㉫ ㉬ ㉭ ㉮ ㉯ ㉰ ㉱ ㉲ ㉳ ㉴ ㉵ ㉶ ㉷ ㉸ ㉹ ㉺ ㉻ ㉼ ㉽ ㉾ ㉿ ㊊ ㊋ ㊌ ㊍ ㊎ ㊏ ㊐ ㊑ ㊒ ㊓ ㊔ ㊕ ㊖ ㊗ ㊘ ㊙ ㊚ ㊛ ㊜ ㊝ ㊞ ㊟ ㊠ ㊡ ㊢ ㊣ ㊤ ㊥ ㊦ ㊧ ㊨ ㊩ ㊪ ㊫ ㊬ ㊭ ㊮ ㊯ ㊰ ㋀ ㋁ ㋂ ㋃ ㋄ ㋅ ㋆ ㋇ ㋈ ㋉ ㋊ ㋋ ㍘ ㍙ ㍚ ㍛ ㍜ ㍝ ㍞ ㍟ ㍠ ㍡ ㍢ ㍣ ㍤ ㍥ ㍦ ㍧ ㍨ ㍩ ㍪ ㍫ ㍬ ㍭ ㍮ ㍯ ㍰ ㏠ ㏡ ㏢ ㏣ ㏤ ㏥ ㏦ ㏧ ㏨ ㏩ ㏪ ㏫ ㏬ ㏭ ㏮ ㏯ ㏰ ㏱ ㏲ ㏳ ㏴ ㏵ ㏶ ㏷ ㏸ ㏹ ㏺ ㏻ ㏼ ㏽ ㏾ ㋌ ㋍ ㋎ ㋏ ㋐ ㋑ ㋒ ㋓ ㋔ ㋕ ㋖ ㋗ ㋘ ㋙ ㋚ ㋛ ㋜ ㋝ ㋞ ㋟ ㋠ ㋡ ㋢ ㋣ ㋤ ㋥ ㋦ ㋧ ㋨ ㋩ ㋪ ㋫ ㋬ ㋭ ㋮ ㋯ ㋰ ㋱ ㋲ ㋳ ㋴ ㋵ ㋶ ㋷ ㋸ ㋹ ㋺ ㋻ ㋼ ㋽ ㋾");
 });
+
 document.getElementById("btn-block3").addEventListener("click", () => {
   renderCharsFromString("Simbol", "🅰 🅱 🅲 🅳 🅴 🅵 🅶 🅷 🅸 🅹 🅻 🅼 🅽 🅾 🅿 🆀 🆁 🆂 🆃 🆄 🆅 🆆 🆇 🆈 🆉 🄰 🄱 🄲 🄳 🄴 🄵 🄶 🄷 🄸 🄹 🄺 🄻 🄼 🄽 🄾 🄿 🅀 🅁 🅂 🅃 🅄 🅅 🅆 🅇 🅈 🅉 ⿰ ⿱ ⿲ ⿳ ⿴ ⿵ ⿶ ⿷ ⿸ ⿺ ⿺ ⿻");
 });
 document.getElementById("btn-block4").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "🄐 🄑 🄒 🄓 🄔 🄕 🄖 🄗 🄘 🄙 🄚 🄛 🄜 🄝 🄞 🄟 🄠 🄡 🄢 🄣 🄤 🄥 🄦 🄧 🄨 🄩 🄪 ⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵");
+  renderCharsFromString("Simbol", "🄐 🄑 🄒 🄓 🄔 🄕 🄖 🄗 🄘 🄙 🄚 🄛 🄜 🄝 🄞 🄟 🄠 🄡 🄢 🄣 🄤 🄥 🄦 🄧 🄨 🄩 🄪 ⒜ ⒝ ⒞ ⒟ ⒠ ⒡ ⒢ ⒣ ⒤ ⒥ ⒦ ⒧ ⒨ ⒩ ⒪ ⒫ ⒬ ⒭ ⒮ ⒯ ⒰ ⒱ ⒲ ⒳ ⒴ ⒵ ⑴ ⑵ ⑶ ⑷ ⑸ ⑹ ⑺ ⑻ ⑼ ⑽ ⑾ ⑿ ⒀ ⒁ ⒂ ⒃ ⒄ ⒅ ⒆ ⒇");
 });
 document.getElementById("btn-block5").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "Ａ Ｂ Ｃ Ｄ Ｅ Ｆ Ｇ Ｈ Ｉ Ｊ Ｋ Ｌ Ｍ Ｎ Ｏ Ｐ Ｑ Ｒ Ｓ Ｔ Ｕ Ｖ Ｗ Ｘ Ｙ Ｚ ａ ｂ ｃ ｄ ｅ ｆ ｇ ｈ ｉ ｊ ｋ ｌ ｍ ｎ ｏ ｐ ｑ ｒ ｓ ｔ ｕ ｖ ｗ ｘ ｙ ｚ ＠ ＃ ＄ ％ ＆ － ⏤ ￣ ＿ ﹏ ﹋ ︵ ︶ ＼ ／ ＋ （ ） ＜ ＞ ⧹ ⧸ ［ ］ ０ １ ２ ３ ４ ５ ６ ７ ８ ９");
+  renderCharsFromString("Simbol", "０ １ ２ ３ ４ ５ ６ ７ ８ ９ Ａ Ｂ Ｃ Ｄ Ｅ Ｆ Ｇ Ｈ Ｉ Ｊ Ｋ Ｌ Ｍ Ｎ Ｏ Ｐ Ｑ Ｒ Ｓ Ｔ Ｕ Ｖ Ｗ Ｘ Ｙ Ｚ ａ ｂ ｃ ｄ ｅ ｆ ｇ ｈ ｉ ｊ ｋ ｌ ｍ ｎ ｏ ｐ ｑ ｒ ｓ ｔ ｕ ｖ ｗ ｘ ｙ ｚ ， ． ： ； ！ ？ ＂ ＇ ｀ ＾ ～ ￣ ＿ ＆ ＠ ＃ ％ ＋ － ＊ ＝ ＜ ＞ （ ） ［ ］ ｛ ｝ ｟ ｠ ｜ ￤ ／ ＼ ￢ ＄ ￡ ￠ ￦ ￥");
 });
 
 
@@ -1028,19 +1867,94 @@ document.getElementById("btn-block22").addEventListener("click", () => {
   renderCharsFromString("Simbol", "卝 ネ ノ ハ バ パ ヒ ビ ピ フ ブ プ ヘ ベ ペ ホ ボ ポ マ ミ ム メ モ ャ ヤ ュ ユ ョ ヨ ラ リ ル レ ロ ヮ ワ ヰ ヱ ヲ ン ヴ ヰ ヱ ヲ ン ヴ ヵ ヶ ヷ ヸ ヹ ヺ ・ ー ヽ ヾ ヿ ㍐ ㍿ ぁ あ ぃ い ぅ う ぇ え ぉ お か が き ぎ く ぐ け げ こ ご さ ざ し じ す ず せ ぜ そ ぞ た だ ち ぢ っ つ づ て で と ど な に ぬ ね の は ば ぱ ひ び ぴ ふ ぶ ぷ へ べ ぺ ほ ぼ ぽ ま み む め も ゃ や ゅ ゆ ょ よ ら り る れ を ゎ わ ゐ ゑ を ん ゔ ゕ ゖ ゚ ゛ ゜ ゝ ゞ ゟ ゠ ァ ア ィ イ ゥ ウェ エ ォ オ カ ガ キ ギ ク グ ケ ゲ コ ゴ サ ザ シ ジ ス ズ セ ゼ ソ ゾ タ ダ チ ヂ ッ ツ ヅ テ デ ト ド ナ ニ ヌ ⺀ ⺁ ⺂ ⺃ ⺄ ⺅ ⺆ ⺇ ⺈ ⺉ ⺊ ⺋ ⺌ ⺍ ⺎ ⺏ ⺐ ⺑ ⺒ ⺓ ⺔ ⺕ ⺖ ⺗ ⺘ ⺙ ⺛ ⺜ ⺝ ⺞ ⺟ ⺠ ⺡ ⺢ ⺣ ⺤ ⺥ ⺦ ⺧ ⺨ ⺩ ⺪ ⺫ ⺬ ⺭ ⺮ ⺯ ⺰ ⺱ ⺲ ⺳ ⺴ ⺵ ⺶ ⺷ ⺸ ⺹ ⺺ ⺻ ⺼ ⺽ ⺾ ⺿ ⻀ ⻁ ⻂ ⻃ ⻄ ⻅ ⻆ ⻇ ⻈ ⻉ ⻊ ⻋ ⻌ ⻍ ⻎ ⻏ ⻐ ⻑ ⻒ ⻓ ⻔ ⻕ ⻖ ⻗ ⻘ ⻙ ⻚ ⻛ ⻜ ⻝ ⻞ ⻟ ⻠ ⻡ ⻢ ⻣ ⻤ ⻥ ⻦ ⻧ ⻨ ⻩ ⻪ ⻫ ⻬ ⻭ ⻮ ⻯ ⻰ ⻱ ⻲ ⻳ ⼀ ⼁ ⼂ ⼃ ⼄ ⼅ ⼆ ⼇ ⼈ ⼉ ⼊ ⼋ ⼌ ⼍ ⼎ ⼏ ⼐ ⼑ ⼒ ⼓ ⼔ ⼕ ⼖ ⼗ ⼘ ⼙ ⼚ ⼛ ⼜ ⼝ ⼞ ⼟ ⼠ ⼡ ⼢ ⼣ ⼤ ⼥ ⼦ ⼧ ⼨ ⼩ ⼪ ⼫ ⼬ ⼭ ⼮ ⼯ ⼰ ⼱ ⼲ ⼳ ⼴ ⼵ ⼶ ⼷ ⼸ ⼹ ⼺ ⼻ ⼼ ⼽ ⼾ ⼿ ⽀ ⽁ ⽂ ⽃ ⽄ ⽅ ⽆ ⽇ ⽈ ⽉ ⽊ ⽋ ⽌ ⽍ ⽎ ⽏ ⽐ ⽑ ⽒ ⽓ ⽔ ⽕ ⽖ ⽗ ⽘ ⽙ ⽚ ⽛ ⽜ ⽝ ⽞ ⽟ ⽠ ⽡ ⽢ ⽣ ⽤ ⽥ ⽦ ⽧ ⽨ ⽩ ⽪ ⽫ ⽬ ⽭ ⽮ ⽯ ⽰ ⽱ ⽲ ⽳ ⽴ ⽵ ⽶ ⽷ ⽸ ⽹ ⽺ ⽻ ⽼ ⽽ ⽾ ⽿ ⾀ ⾁ ⾂ ⾃ ⾄ ⾅ ⾆ ⾇ ⾈ ⾉ ⾊ ⾋ ⾌ ⾍ ⾎ ⾏ ⾐ ⾑ ⾒ ⾓ ⾔ ⾕ ⾖ ⾗ ⾘ ⾙ ⾚ ⾛ ⾜ ⾝ ⾞ ⾟ ⾠ ⾡ ⾢ ⾣ ⾤ ⾥ ⾦ ⾧ ⾨ ⾩ ⾪ ⾫ ⾬ ⾭ ⾮ ⾯ ⾰ ⾱ ⾲ ⾳ ⾴ ⾵ ⾶ ⾷ ⾸ ⾹ ⾺ ⾻ ⾼ ⾽ ⾾ ⾿ ⿀ ⿁ ⿂ ⿃ ⿄ ⿅ ⿆ ⿇ ⿈ ⿉ ⿊ ⿋ ⿌ ⿍ ⿎ ⿏ ⿐ ⿑ ⿒ ⿓ ⿔ ⿕ ゛ ゜ ㆐ ㆑ ㆖ ㆗ ㆘ ㆙ ㆚ ㆛ ㆜ ㆝ ㆞ ㆟ ㇀ ㇁ ㇂ ㇃ ㇄ ㇅ ㇆ ㇇ ㇈ ㇉ ㇊ ㇋ ㇌ ㇍ ㇎ ㇏ ㇐ ㇑ ㇒ ㇓ ㇔ ㇕ ㇖ ㇗ ㇘ ㇙ ㇚ ㇛ ㇜ ㇝ ㇞ ㇟ ㇠ ㇡ ㇢ ㇣");
 });
 document.getElementById("btn-block15").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "𝙰 𝙱 𝙲 𝙳 𝙴 𝙵 𝙶 𝙷 𝙸 𝙹 𝙺 𝙻 𝙼 𝙽 𝙾 𝙿 𝚀 𝚁 𝚂 𝚃 𝚄 𝚅 𝚆 𝚇 𝚈 𝚉 𝚊 𝚋 𝚌 𝚍 𝚎 𝚏 𝚐 𝚝 𝚞 𝚟 𝚠 𝚡 𝚢 𝚣 ͣ ͤ ͥ ͦ ͧ ͨ ͩ ͪ ͫ ͬ ͭ ͮ ͯ ᴀ ʙ ᴄ ᴅ ᴇ ғ ɢ ʜ ɪ ᴊ ᴋ ʟ ᴍ ɴ ᴏ ᴘ ǫ ʀ s ᴛ ᴜ ᴠ ᴡ x ʏ ᴢ ᵃ ᵇ ᶜ ᵈ ᵉ ᶠ ᵍ ʰ ⁱ ʲ ᵏ ˡ ᵐ ⁿ ᵒ ᵖ ᵠ ʳ ˢ ᵗ ᵘ ᵛ ʷ ˣ ʸ ᶻ а ә ӕ ҕ в г ґ ғ ҕ д ԁ ђ ԃ ҙ е є җ з ԅ ѕ ӡ ԇ и ҋ і ј к қ ӄ ҡ ҟ ҝ л ӆ љ ԉ м ӎ н ӊ ң ӈ ҥ њ ԋ о ө п ҧ ҁ р ҏ с ԍ у ү ұ ѹ ф ѽ ѻ ц ҵ ч ҷ ӌ ҹ ҽ ҿ џ ш щ ъ ы ь ҍ ѧ ѫ ѩ ѭ ѱ ѳ ѵ ᶏ ᶐ Ⱥ ａ Ａ ᴬ ᵃ ª ᶛ ᵆ ᵄ ᵅ ₐ ᴭ ᴁ ᴂ ᴀ Å ẚ ∆ ∀ α Λ ɐ ɑ ɒ á à ă ắ ằ ẵ ẳ â ấ ầ ẫ ẩ ǎ å ǻ ä ā ả ȁ ȃ ạ ặ ả ȁ ȃ ạ ặ ặ ậ ḁ ǽ ǣ ᶀ ᵬ ｂ Ｂ ᴮ ᵇ ᴯ ᴃ þ ß ƀ Ɓ Ƅ ɓ ɞ ɮ ʙ ҍ Ᏸ ℬ β ḃ ḅ ḇ ᶗ Ȼ ȼ ｃ Ｃ ᶜ ᵓ ᶝ ᴐ ᴒ ᴖ ᵔ ᴗ ᵕ ᴄ © ¢ € Ƈ ɕ ʗ ℂ Č ☪ ℭ ς Ç ć ĉ č ċ ç ḉ ᶑ ᶁ ᵭ ｄ Ｄ ᴰ ᵈ ᶞ ᴅ ȡ ᴆ ǳ ǲ Ǳ ǆ ǅ Ǆ ∂ ɗ ð ď ḋ ḑ ḍ ḓ ḏ ᶒ ᶓ ᶔ ᶕ ᴲ ᵊ ᵋ ᵌ ₑ ₔ ∊ ∈ ᴇ ᴈ Ξ ∃ Ə Ɛ Ǝ ε Σ Ƹ ƺ ɘ ə ξ э ҿ ཇ ℰ ℯ ﾐ € ع έ ɚ é è ĕ ê ế ề ễ ể ě ë ẽ ė ȩ ḝ ę ē ḗ ḕ ẻ ȅ ȇ ẹ ệ ḙ ḛ ᶘ ᶂ ᶋ ᵮ ｆ Ｆ ᶠ ﬂ Ƒ ƒ ℱ ʄ ḟ ᶃ ｇ Ｇ ᴳ ᵍ ᶢ Ɠ Ǥ ǥ ɠ ɡ ɢ ʛ ց Ꮆ ջ ❡ ǵ ğ ĝ ǧ ġ ģ ḡ ｈ Ｈ ʰ ʱ ᴴ ᵸ ᶣ ħ ƕ Ƕ ɦ ɧ ʜ ђ Ᏺ ℋ ℌ ｻ Ҥ Ħ ℏ ĥ ȟ ḧ ḣ ḩ ḥ ḫ ẖ ᶖ ｉ Ｉ ᶧ ᴉ ᵎ ᵎ ⁱ ϊ أ ར ¡ ɩ ĳ Ĳ ᵻ Ɨ ɨ ɪ í ì ĭ î ǐ ï ḯ ĩ į ī ỉ ȉ ȋ ị ḭ ｊ Ｊ ᴶ ʲ ᴊ ᶨ ᶡ ǰ ʝ ز ჟ ĵ ǰ ȷ Ꮰ ᶄ ｋ Ｋ ᴷ ᵏ ᴋ κ Ƙ ƙ ʞ ϗ ҡ ḱ ǩ ķ ḳ ḵ ᶅ Ƚ ｌ Ｌ ᴌ ˡ ᶩ ᶪ ᶫ ǈ ȴ ŀ Ŀ ǉ ǈ Ǉ 廴 £ Ɩ ƪ ɫ ɭ ʆ ʟ Ꮭ ℒ ℓ Ł ₤ ĺ ľ ļ ḷ ḹ ḽ ḻ ᶆ ᵯ ｍ Ｍ ᴹ ᵐ ᶬ ᶭ ᴍ м Ɯ ɱ ʍ ℳ ɷ ḿ ṁ ṃ ᶇ ᵰ ｎ Ｎ ᶰ ⁿ ᴺ ᴻ ᵑ ᶮ ᶯ ᴎ ȵ ǌ ǋ Ǌ ղ ή и η Ɲ ƞ ɲ ɳ ɴ Ϟ ℕ ϰ സ Ո ท ռ ♑ ń ǹ ň ñ ṅ ņ ṇ ṋ ṉ ｏ Ｏ ᴼ ᵒ ᶱ ᶲ ᶿ ₒ ᴏ ᴑ ᴔ ᴓ Θ ᴽ ᴕ º ° ö © ⊙ ō ◐ ◕ ✹ ✪ ☢ ❂ ❍ σ ø ѻ ◯ ó ò ŏ ô ố ồ ỗ ổ ö ȫ ő õ ṍ ṏ ȭ ȯ ȱ ǫ ȍ ȏ ơ ớ ờ ỡ ở ợ ọ ộ ǿ ᶈ ᵽ ᵱ ｐ Ｐ ᴾ ᵖ ᴘ ¶ ρ φ Þ þ Ƥ ƥ ƿ բ ք ℙ ₱ ℘ ṕ ṗ Ꭾ ʠ Ｑ ᵠ Ǫ ǫ ʠ ϥ ℚ ҩ Ҩ ᶉ ᵲ ᵳ ｒ ʶ ᴿ ʳ ᴚ ® Ʀ ɼ ɽ ℝ ℞ я Ř ŕ ř ṙ ŗ ȑ ȓ ṛ ṝ ṟ ᶊ ᵴ ȿ ｓ Ｓ ˢ ᶳ § ẛ ﬆ ﬅ ₷ § ∫ Ƨ ƨ ʂ ʃ ʅ ϛ ֆ ى Ꭶ ʂ Ş $ ی ś ṥ ŝ š ṧ ṡ ş ṣ ṩ ș ᵵ ᵺ ᵼ Ⱦ ｔ Ｔ ᵀ ᵗ ᶵ ᴛ ȶ ح Շ π ŧ Ŧ ƫ Ƭ ƭ Ʈ ǂ ʇ ʈ τ Ϯ ϯ ｨ է ɬ ł ♈ ζ ե Ť ť ẗ ṫ ţ ṭ ț ṱ ṯ ᶙ ᵾ ᵤ ｕ Ｕ ᵁ ᵘ ᵤ ᶶ ᶷ ᶸ ᶹ ᴜ ᴝ ᵙ ᴞ ᵫ ʮ ʯ ʉ ʊ ʋ ŭ ϋ և ú ù ŭ û ǔ ǖ ű ũ ṹ ų ū ṻ ủ ȕ ȗ ư ứ ừ ữ ử ự ụ ṳ ṷ ṵ ๖ ۣ ۜ V ᶌ ｖ Ｖ ᵛ ᵥ ᶺ ᴠ ϑ Ʋ ʋ ν Ѵ ѵ ҩ Ҩ ℣ ✓ Ѷ ṽ ṿ ｗ Ｗ ᵂ ʷ ᵚ ᴟ ᴡ ψ ω ϖ Ɯ ʍ Ѡ ѡ ཡ Ꮚ Ꮤ Ϣ ẃ ẁ ŵ ẘ ẅ ẇ ẉ ᶍ ｘ Ｘ ᵡ ɤ × ˣ ₓ Ҳ ɤ χ ℵ 乂 ✘ メ ẍ ẋ ｙ Ｙ ʸ ˠ ϒ Ÿ Ƴ ƴ γ ʎ ʏ ¥ უ ყ ý ỳ ŷ ẙ ÿ ๖ ۣ ۜ Z ẏ ȳ ᵶ ỵ ᶚ ᶎ ᵶ ᶻ ᶼ ᶽ ᶾ ɀ ｚ Ｚ ᴢ ᴣ ᴤ ŉ ζ ☡ Ƶ ƶ Ȥ ȥ ʐ ʑ Հ ℤ ʓ ح ź ẑ Ⓐ ɐ q ɔ p ǝ ɟ ƃ ɥ ᴉ ɾ ʞ l ɯ u o d b ɹ s ʇ n ʌ ʍ x ʎ z");
-});
-document.getElementById("btn-block18").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "ɑ ҍ ϲ ժ ҽ ƒ ց հ í յ Ƙ Ӏ ʍ ղ օ Թ զ ɾ Տ Ե ւ ѵ ա × վ Հ ค ๒ ς ๔ є Ŧ ﻮ ђ เ ן к l ๓ ภ ๏ ק ợ г ร t ย ש ฬ ץ א z ᗅ ᙘ ᑤ ᗫ ᙍ ᖴ ᘜ ᕼ ᓿ ᒙ ᖽ ᐸ ᒪ ᙢ ᘉ ᓎ ᕿ ᕴ ᖇ S ᖶ ᑗ ᐻ ᙎ ᙭ ᖻ ᙣ å β ç ď £ ƒ ğ ȟ ȋ j ķ Ƚ ɱ ñ ¤ ק ǭ ȑ § ț ɥ √ Ψ × ÿ ž ά в ς ȡ έ ғ ģ ħ ί ј ķ Ļ м ή ό ρ q ŕ ş ţ ù ν ώ x ч ž Λ Ϧ ㄈ Ð Ɛ F Ɠ н ɪ ﾌ Қ Ł ௱ Л Ø þ Ҩ 尺 ら Ť Ц Ɣ Ɯ χ Ϥ Ẕ ᗩ ᗷ ᑢ ᕲ ᘿ ᖴ ᘜ ᕼ ᓰ ᒚ ᖽ ᐸ ᒪ ᘻ ᘉ ᓍ ᕵ ᕴ ᖇ S ᖶ ᑘ ᐺ ᘺ ᙭ ᖻ ᗱ Թ Յ Շ Ժ ȝ Բ Գ ɧ ɿ ʝ ƙ ʅ ʍ Ռ Ծ ρ φ Ր Տ Ե Մ ע ա Ճ Վ Հ ą ც ƈ ɖ ɛ ʄ ɠ ɧ ı ʝ ƙ Ɩ ɱ ŋ ɔ ℘ զ ཞ ʂ ɬ ų ۷ ῳ ҳ ყ ʑ");
+  renderCharsFromString("Simbol", "𝙰 𝙱 𝙲 𝙳 𝙴 𝙵 𝙶 𝙷 𝙸 𝙹 𝙺 𝙻 𝙼 𝙽 𝙾 𝙿 𝚀 𝚁 𝚂 𝚃 𝚄 𝚅 𝚆 𝚇 𝚈 𝚉 𝚊 𝚋 𝚌 𝚍 𝚎 𝚏 𝚐 𝚝 𝚞 𝚟 𝚠 𝚡 𝚢 𝚣 ͣ ͤ ͥ ͦ ͧ ͨ ͩ ͪ ͫ ͬ ͭ ͮ ͯ ᴀ ʙ ᴄ ᴅ ᴇ ғ ɢ ʜ ɪ ᴊ ᴋ ʟ ᴍ ɴ ᴏ ᴘ ǫ ʀ s ᴛ ᴜ ᴠ ᴡ x ʏ ᴢ ᵃ ᵇ ᶜ ᵈ ᵉ ᶠ ᵍ ʰ ⁱ ʲ ᵏ ˡ ᵐ ⁿ ᵒ ᵖ ᵠ ʳ ˢ ᵗ ᵘ ᵛ ʷ ˣ ʸ ᶻ а ә ӕ ҕ в г ґ ғ ҕ д ԁ ђ ԃ ҙ е є җ з ԅ ѕ ӡ ԇ и ҋ і ј к қ ӄ ҡ ҟ ҝ л ӆ љ ԉ м ӎ н ӊ ң ӈ ҥ њ ԋ о ө п ҧ ҁ р ҏ с ԍ у ү ұ ѹ ф ѽ ѻ ц ҵ ч ҷ ӌ ҹ ҽ ҿ џ ш щ ъ ы ь ҍ ѧ ѫ ѩ ѭ ѱ ѳ ѵ ᶏ ᶐ Ⱥ ａ Ａ ᴬ ᵃ ª ᶛ ᵆ ᵄ ᵅ ₐ ᴭ ᴁ ᴂ ᴀ Å ẚ ∆ ∀ α Λ ɐ ɑ ɒ á à ă ắ ằ ẵ ẳ â ấ ầ ẫ ẩ ǎ å ǻ ä ā ả ȁ ȃ ạ ặ ả ȁ ȃ ạ ặ ặ ậ ḁ ǽ ǣ ᶀ ᵬ ｂ Ｂ ᴮ ᵇ ᴯ ᴃ þ ß ƀ Ɓ Ƅ ɓ ɞ ɮ ʙ ҍ Ᏸ ℬ β ḃ ḅ ḇ ᶗ Ȼ ȼ ｃ Ｃ ᶜ ᵓ ᶝ ᴐ ᴒ ᴖ ᵔ ᴗ ᵕ ᴄ © ¢ € Ƈ ɕ ʗ ℂ Č ☪ ℭ ς Ç ć ĉ č ċ ç ḉ ᶑ ᶁ ᵭ ｄ Ｄ ᴰ ᵈ ᶞ ᴅ ȡ ᴆ ǳ ǲ Ǳ ǆ ǅ Ǆ ∂ ɗ ð ď ḋ ḑ ḍ ḓ ḏ ᶒ ᶓ ᶔ ᶕ ᴲ ᵊ ᵋ ᵌ ₑ ₔ ∊ ∈ ᴇ ᴈ Ξ ∃ Ə Ɛ Ǝ ε Σ Ƹ ƺ ɘ ə ξ э ҿ ཇ ℰ ℯ ﾐ € ع έ ɚ é è ĕ ê ế ề ễ ể ě ë ẽ ė ȩ ḝ ę ē ḗ ḕ ẻ ȅ ȇ ẹ ệ ḙ ḛ ᶘ ᶂ ᶋ ᵮ ｆ Ｆ ᶠ ﬂ Ƒ ƒ ℱ ʄ ḟ ᶃ ｇ Ｇ ᴳ ᵍ ᶢ Ɠ Ǥ ǥ ɠ ɡ ɢ ʛ ց Ꮆ ջ ❡ ǵ ğ ĝ ǧ ġ ģ ḡ ｈ Ｈ ʰ ʱ ᴴ ᵸ ᶣ ħ ƕ Ƕ ɦ ɧ ʜ ђ Ᏺ ℋ ℌ ｻ Ҥ Ħ ℏ ĥ ȟ ḧ ḣ ḩ ḥ ḫ ẖ ᶖ ｉ Ｉ ᶧ ᴉ ᵎ ᵎ ⁱ ϊ أ ར ¡ ɩ ĳ Ĳ ᵻ Ɨ ɨ ɪ í ì ĭ î ǐ ï ḯ ĩ į ī ỉ ȉ ȋ ị ḭ ｊ Ｊ ᴶ ʲ ᴊ ᶨ ᶡ ǰ ʝ ز ჟ ĵ ǰ ȷ Ꮰ ᶄ ｋ Ｋ ᴷ ᵏ ᴋ κ Ƙ ƙ ʞ ϗ ҡ ḱ ǩ ķ ḳ ḵ ᶅ Ƚ ｌ Ｌ ᴌ ˡ ᶩ ᶪ ᶫ ǈ ȴ ŀ Ŀ ǉ ǈ Ǉ 廴 £ Ɩ ƪ ɫ ɭ ʆ ʟ Ꮭ ℒ ℓ Ł ₤ ĺ ľ ļ ḷ ḹ ḽ ḻ ᶆ ᵯ ｍ Ｍ ᴹ ᵐ ᶬ ᶭ ᴍ м Ɯ ɱ ʍ ℳ ɷ ḿ ṁ ṃ ᶇ ᵰ ｎ Ｎ ᶰ ⁿ ᴺ ᴻ ᵑ ᶮ ᶯ ᴎ ȵ ǌ ǋ Ǌ ղ ή и η Ɲ ƞ ɲ ɳ ɴ Ϟ ℕ ϰ സ Ո ท ռ ♑ ń ǹ ň ñ ṅ ņ ṇ ṋ ṉ ｏ Ｏ ᴼ ᵒ ᶱ ᶲ ᶿ ₒ ᴏ ᴑ ᴔ ᴓ Θ ᴽ ᴕ º ° ö © ⊙ ō ◐ ◕ ✹ ✪ ☢ ❂ ❍ σ ø ѻ ◯ ó ò ŏ ô ố ồ ỗ ổ ö ȫ ő õ ṍ ṏ ȭ ȯ ȱ ǫ ȍ ȏ ơ ớ ờ ỡ ở ợ ọ ộ ǿ ᶈ ᵽ ᵱ ｐ Ｐ ᴾ ᵖ ᴘ ¶ ρ φ Þ þ Ƥ ƥ ƿ բ ք ℙ ₱ ℘ ṕ ṗ Ꭾ ʠ Ｑ ᵠ Ǫ ǫ ʠ ϥ ℚ ҩ Ҩ ᶉ ᵲ ᵳ ｒ ʶ ᴿ ʳ ᴚ ® Ʀ ɼ ɽ ℝ ℞ я Ř ŕ ř ṙ ŗ ȑ ȓ ṛ ṝ ṟ ᶊ ᵴ ȿ ｓ Ｓ ˢ ᶳ § ẛ ﬆ ﬅ ₷ § ∫ Ƨ ƨ ʂ ʃ ʅ ϛ ֆ ى Ꭶ ʂ Ş $ ی ś ṥ ŝ š ṧ ṡ ş ṣ ṩ ș ᵵ ᵺ ᵼ Ⱦ ｔ Ｔ ᵀ ᵗ ᶵ ᴛ ȶ ح Շ π ŧ Ŧ ƫ Ƭ ƭ Ʈ ǂ ʇ ʈ τ Ϯ ϯ ｨ է ɬ ł ♈ ζ ե Ť ť ẗ ṫ ţ ṭ ț ṱ ṯ ᶙ ᵾ ᵤ ｕ Ｕ ᵁ ᵘ ᵤ ᶶ ᶷ ᶸ ᶹ ᴜ ᴝ ᵙ ᴞ ᵫ ʮ ʯ ʉ ʊ ʋ ŭ ϋ և ú ù ŭ û ǔ ǖ ű ũ ṹ ų ū ṻ ủ ȕ ȗ ư ứ ừ ữ ử ự ụ ṳ ṷ ṵ ๖ ۣ ۜ V ᶌ ｖ Ｖ ᵛ ᵥ ᶺ ᴠ ϑ Ʋ ʋ ν Ѵ ѵ ҩ Ҩ ℣ ✓ Ѷ ṽ ṿ ｗ Ｗ ᵂ ʷ ᵚ ᴟ ᴡ ψ ω ϖ Ɯ ʍ Ѡ ѡ ཡ Ꮚ Ꮤ Ϣ ẃ ẁ ŵ ẘ ẅ ẇ ẉ ᶍ ｘ Ｘ ᵡ ɤ × ˣ ₓ Ҳ ɤ χ ℵ 乂 ✘ メ ẍ ẋ ｙ Ｙ ʸ ˠ ϒ Ÿ Ƴ ƴ γ ʎ ʏ ¥ უ ყ ý ỳ ŷ ẙ ÿ ๖ ۣ ۜ Z ẏ ȳ ᵶ ỵ ᶚ ᶎ ᵶ ᶻ ᶼ ᶽ ᶾ ɀ ｚ Ｚ ᴢ ᴣ ᴤ ŉ ζ ☡ Ƶ ƶ Ȥ ȥ ʐ ʑ Հ ℤ ʓ ح ź ẑ Ⓐ ɐ q ɔ p ǝ ɟ ƃ ɥ ᴉ ɾ ʞ l ɯ u o d b ɹ s ʇ n ʌ ʍ x ʎ z ɑ ҍ ϲ ժ ҽ ƒ ց հ í յ Ƙ Ӏ ʍ ղ օ Թ զ ɾ Տ Ե ւ ѵ ա × վ Հ ค ๒ ς ๔ є Ŧ ﻮ ђ เ ן к l ๓ ภ ๏ ק ợ г ร t ย ש ฬ ץ א z ᗅ ᙘ ᑤ ᗫ ᙍ ᖴ ᘜ ᕼ ᓿ ᒙ ᖽ ᐸ ᒪ ᙢ ᘉ ᓎ ᕿ ᕴ ᖇ S ᖶ ᑗ ᐻ ᙎ ᙭ ᖻ ᙣ å β ç ď £ ƒ ğ ȟ ȋ j ķ Ƚ ɱ ñ ¤ ק ǭ ȑ § ț ɥ √ Ψ × ÿ ž ά в ς ȡ έ ғ ģ ħ ί ј ķ Ļ м ή ό ρ q ŕ ş ţ ù ν ώ x ч ž Λ Ϧ ㄈ Ð Ɛ F Ɠ н ɪ ﾌ Қ Ł ௱ Л Ø þ Ҩ 尺 ら Ť Ц Ɣ Ɯ χ Ϥ Ẕ ᗩ ᗷ ᑢ ᕲ ᘿ ᖴ ᘜ ᕼ ᓰ ᒚ ᖽ ᐸ ᒪ ᘻ ᘉ ᓍ ᕵ ᕴ ᖇ S ᖶ ᑘ ᐺ ᘺ ᙭ ᖻ ᗱ Թ Յ Շ Ժ ȝ Բ Գ ɧ ɿ ʝ ƙ ʅ ʍ Ռ Ծ ρ φ Ր Տ Ե Մ ע ա Ճ Վ Հ ą ც ƈ ɖ ɛ ʄ ɠ ɧ ı ʝ ƙ Ɩ ɱ ŋ ɔ ℘ զ ཞ ʂ ɬ ų ۷ ῳ ҳ ყ ʑ ꁲ ꃳ ꏳ ꀷ ꑀ ꊯ ꁅ ꁝ ꒐ ꒑ ꈵ ꒒ ꂵ ꃔ ꊿ ꉣ ꋠ ꌅ ꈜ ꋖ ꌈ ꒦ ꅐ ꉤ ꐔ ꑒ ꍏ ꌃ ꏳ ꀷ ꏂ ꎇ ꁅ ꀍ ꀤ ꒻ ꀘ ꒒ ꎭ ꈤ ꂦ ᖘ ꆰ ꋪ ꌚ ꓄ ꀎ ꒦ ꅐ ꉧ ꌩ ꁴ ꋫ ꃲ ꉓ ꃸ ꑾ ꄘ ꁅ ꃄ ꒐ ꒑ ꀗ ꒒ ꂵ ꁹ ꄱ ꉣ ꋟ ꋪ ꇘ ꓅ ꌇ ꒦ ꅏ ꋋ ꌥ ꒗ Ꮧ Ᏸ Ꮄ Ꮛ ጀ Ꮆ Ꮒ Ꭵ Ꮰ Ꮶ Ꮭ Ꮇ Ꮑ Ꭷ Ꭾ Ꭴ Ꮢ Ꮥ Ꮦ Ꮼ Ꮙ Ꮗ ፈ Ꭹ ፚ");
 });
 
-document.getElementById("btn-block118").addEventListener("click", () => {
+document.getElementById("btn-block1018").addEventListener("click", () => {
   renderCharsFromString("Simbol", "😀 😃 😄 😁 😆 😅 🤣 😂 🙂 🙃 🫠 😉 😊 😇 🥰 😍 🤩 😘 😗 ☺️ 😚 😙 🥲 😋 😛 😜 🤪 😝 🤑 🤗 🤭 🫢 🫣 🤫 🤔 🫡 🤐 🤨 😐 😑 😶 🫥 😶‍🌫️ 😏 😒 🙄 😬 😮‍💨 🤥 😌 😔 😪 🤤 😴 😷 🤒 🤕 🤢 🤮 🤧 🥵 🥶 🥴 😵 😵‍💫 🤯 🤠 🥳 🥸 😎 🤓 🧐 😕 🫤 😟 🙁 ☹️ 😮 😯 😲 😳 🥺 🥹 😦 😧 😨 😰 😥 😢 😭 😱 😖 😣 😞 😓 😩 😫 🥱 😡 😡 😠 🤬 😈 👿 💀 ☠️ 💩 🤡 👹 👺 👻 👽 👾 🤖 😺 😸 😹 😻 😼 😽 🙀 😾 😿 🙈 🙉 🙊 💋 💌 💘 💝 💖 💗 💓 💞 💕 💟 ❣️ 💔 ❤️‍🔥 ❤️‍🩹 ❤️ 🧡 💛 💚 💙 💜 🤎 🖤 🤍 💯 💢 💥 💫 💦 💨 🕳️ 💣 💬 👁️‍🗨️ 🗨️ 🗯️ 💭 💤 🐵 🐒 🦍 🦧 🐶 🐕 🦮 🐕‍🦺 🐩 🐺 🦊 🦝 🐱 🐈 🐈‍⬛ 🦁 🐯 🐅 🐆 🐴 🐎 🦄 🦓 🦌 🦬 🐮 🐂 🐃 🐄 🐷 🐖 🐗 🐽 🐏 🐑 🐐 🐪 🐫 🦙 🦒 🐘 🦣 🦏 🦛 🐭 🐁 🐀 🐹 🐰 🐇 🐿️ 🦫 🦔 🦇 🐻 🐻‍❄️ 🐨 🐼 🦥 🦦 🦨 🦘 🦡 🐾 🦃 🐔 🐓 🐣 🐤 🐥 🐦 🐧 🕊️ 🦅 🦆 🦢 🦉 🦤 🪶 🦩 🦚 🦜 🐸 🐊 🐢 🦎 🐍 🐲 🐉 🦕 🦖 🐳 🐋 🐬 🦭 🐟 🐠 🐡 🦈 🐙 🐚 🪸 🐌 🦋 🐛 🐜 🐝 🪲 🐞 🦗 🪳 🕷️ 🕸️ 🦂 🦟 🪰 🪱 🦠 💐 🌸 💮 🪷 🏵️ 🌹 🥀 🌺 🌻 🌼 🌷 🌱 🪴 🌲 🌳 🌴 🌵 🌾 🌿 ☘️ 🍀 🍁 🍂 🍃 🪹 🪺 👋 🤚 🖐️ ✋ 🖖 🫱 🫲 🫳 🫴 👌 🤌 🤏 ✌️ 🤞 🫰 🤟 🤘 🤙 👈 👉 👆 🖕 👇 ☝️ 🫵 👍 👎 ✊ 👊 🤛 🤜 👏 🙌 🫶 👐 🤲 🤝 🙏 ✍️ 💅 🤳 💪 🦾 🦿 🦵 🦶 👂 🦻 👃 🧠 🫀 🫁 🦷 🦴 👀 👁️ 👅 👄 🫦 👶 🧒 👦 👧 🧑 👱 👨 🧔 🧔‍♂️ 🧔‍♀️ 👨‍🦰 👨‍🦱 👨‍🦳 👨‍🦲 👩 👩‍🦰 🧑‍🦰 👩‍🦱 🧑‍🦱 👩‍🦳 🧑‍🦳 👩‍🦲 🧑‍🦲 👱‍♀️ 👱‍♂️ 🧓 👴 👵 🙍 🙍‍♂️ 🙍‍♀️ 🙎 🙎‍♂️ 🙎‍♀️ 🙅 🙅‍♂️ 🙅‍♀️ 🙆 🙆‍♂️ 🙆‍♀️ 💁 💁‍♂️ 💁‍♀️ 🙋 🙋‍♂️ 🙋‍♀️ 🧏 🧏‍♂️ 🧏‍♀️ 🙇 🙇‍♂️ 🙇‍♀️ 🤦 🤦‍♂️ 🤦‍♀️ 🤷 🤷‍♂️ 🤷‍♀️ 🧑‍⚕️ 👨‍⚕️ 👩‍⚕️ 🧑‍🎓 👨‍🎓 👩‍🎓 🧑‍🏫 👨‍🏫 👩‍🏫 🧑‍⚖️ 👨‍⚖️ 👩‍⚖️ 🧑‍🌾 👨‍🌾 👩‍🌾 🧑‍🍳 👨‍🍳 👩‍🍳 🧑‍🔧 👨‍🔧 👩‍🔧 🧑‍🏭 👨‍🏭 👩‍🏭 🧑‍💼 👨‍💼 👩‍💼 🧑‍🔬 👨‍🔬 👩‍🔬 🧑‍💻 👨‍💻 👩‍💻 🧑‍🎤 👨‍🎤 👩‍🎤 🧑‍🎨 👨‍🎨 👩‍🎨 🧑‍✈️ 👨‍✈️ 👩‍✈️ 🧑‍🚀 👨‍🚀 👩‍🚀 🧑‍🚒 👨‍🚒 👩‍🚒 👮 👮‍♂️ 👮‍♀️ 🕵️ 🕵️‍♂️ 🕵️‍♀️ 💂 💂‍♂️ 💂‍♀️ 🥷 👷 👷‍♂️ 👷‍♀️ 🫅 🤴 👸 👳 👳‍♂️ 👳‍♀️ 👲 🧕 🤵 🤵‍♂️ 🤵‍♀️ 👰 👰‍♂️ 👰‍♀️ 🤰 🫃 🫄 🤱 👩‍🍼 👨‍🍼 🧑‍🍼 👼 🎅 🤶 🧑‍🎄 🦸 🦸‍♂️ 🦸‍♀️ 🦹 🦹‍♂️ 🦹‍♀️ 🧙 🧙‍♂️ 🧙‍♀️ 🧚 🧚‍♂️ 🧚‍♀️ 🧛 🧛‍♂️ 🧛‍♀️ 🧜 🧜‍♂️ 🧜‍♀️ 🧝 🧝‍♂️ 🧝‍♀️ 🧞 🧞‍♂️ 🧞‍♀️ 🧟 🧟‍♂️ 🧟‍♀️ 🧌 💆 💆‍♂️ 💆‍♀️ 💇 💇‍♂️ 💇‍♀️ 🚶 🚶‍♂️ 🚶‍♀️ 🧍 🧍‍♂️ 🧍‍♀️ 🧎 🧎‍♂️ 🧎‍♀️ 🧑‍🦯 👨‍🦯 👩‍🦯 🧑‍🦼 👨‍🦼 👩‍🦼 🧑‍🦽 👨‍🦽 👩‍🦽 🏃 🏃‍♂️ 🏃‍♀️ 💃 🕺 🕴️ 👯 👯‍♂️ 👯‍♀️ 🧖 🧖‍♂️ 🧖‍♀️ 🧗 🧗‍♂️ 🧗‍♀️ 🤺 🏇 ⛷️ 🏂 🏌️ 🏌️‍♂️ 🏌️‍♀️ 🏄 🏄‍♂️ 🏄‍♀️ 🚣 🚣‍♂️ 🚣‍♀️ 🏊 🏊‍♂️ 🏊‍♀️ ⛹️ ⛹️‍♂️ ⛹️‍♀️ 🏋️ 🏋️‍♂️ 🏋️‍♀️ 🚴 🚴‍♂️ 🚴‍♀️ 🚵 🚵‍♂️ 🚵‍♀️ 🤸 🤸‍♂️ 🤸‍♀️ 🤼 🤼‍♂️ 🤼‍♀️ 🤽 🤽‍♂️ 🤽‍♀️ 🤾 🤾‍♂️ 🤾‍♀️ 🤹 🤹‍♂️ 🤹‍♀️ 🧘 🧘‍♂️ 🧘‍♀️ 🛀 🛌 🧑‍🤝‍🧑 👭 👫 👬 💏 👩‍❤️‍💋‍👨 👨‍❤️‍💋‍👨 👩‍❤️‍💋‍👩 💑 👩‍❤️‍👨 👨‍❤️‍👨 👩‍❤️‍👩 👪 👨‍👩‍👦 👨‍👩‍👧 👨‍👩‍👧‍👦 👨‍👩‍👦‍👦 👨‍👩‍👧‍👧 👨‍👨‍👦 👨‍👨‍👧 👨‍👨‍👧‍👦 👨‍👨‍👦‍👦 👨‍👨‍👧‍👧 👩‍👩‍👦 👩‍👩‍👧 👩‍👩‍👧‍👦 👩‍👩‍👦‍👦 👩‍👩‍👧‍👧 👨‍👦 👨‍👦‍👦 👨‍👧 👨‍👧‍👦 👨‍👧‍👧 👩‍👦 👩‍👦‍👦 👩‍👧 👩‍👧‍👦 👩‍👧‍👧 🗣️ 👤 👥 🫂 👣 🦰 🦱 🦳 🦲 🍇 🍈 🍉 🍊 🍋 🍌 🍍 🥭 🍎 🍏 🍐 🍑 🍒 🍓 🫐 🥝 🍅 🫒 🥥 🥑 🍆 🥔 🥕 🌽 🌶️ 🫑 🥒 🥬 🥦 🧄 🧅 🍄 🥜 🫘 🌰 🍞 🥐 🥖 🫓 🥨 🥯 🥞 🧇 🧀 🍖 🍗 🥩 🥓 🍔 🍟 🍕 🌭 🥪 🌮 🌯 🫔 🥙 🧆 🥚 🍳 🥘 🍲 🫕 🥣 🥗 🍿 🧈 🧂 🥫 🍱 🍘 🍙 🍚 🍛 🍜 🍝 🍠 🍢 🍣 🍤 🍥 🥮 🍡 🥟 🥠 🥡 🦀 🦞 🦐 🦑 🦪 🍦 🍧 🍨 🍩 🍪 🎂 🍰 🧁 🥧 🍫 🍬 🍭 🍮 🍯 🍼 🥛 ☕ 🫖 🍵 🍶 🍾 🍷 🍸 🍹 🍺 🍻 🥂 🥃 🫗 🥤 🧋 🧃 🧉 🧊 🥢 🍽️ 🍴 🥄 🔪 🫙 🏺 🌍 🌎 🌏 🌐 🗺️ 🗾 🧭 🏔️ ⛰️ 🌋 🗻 🏕️ 🏖️ 🏜️ 🏝️ 🏞️ 🏟️ 🏛️ 🏗️ 🧱 🪨 🪵 🛖 🏘️ 🏚️ 🏠 🏡 🏢 🏣 🏤 🏥 🏦 🏨 🏩 🏪 🏫 🏬 🏭 🏯 🏰 💒 🗼 🗽 ⛪ 🕌 🛕 🕍 ⛩️ 🕋 ⛲ ⛺ 🌁 🌃 🏙️ 🌄 🌅 🌆 🌇 🌉 ♨️ 🎠 🛝 🎡 🎢 💈 🎪 🚂 🚃 🚄 🚅 🚆 🚇 🚈 🚉 🚊 🚝 🚞 🚋 🚌 🚍 🚎 🚐 🚑 🚒 🚓 🚔 🚕 🚖 🚗 🚘 🚙 🛻 🚚 🚛 🚜 🏎️ 🏍️ 🛵 🦽 🦼 🛺 🚲 🛴 🛹 🛼 🚏 🛣️ 🛤️ 🛢️ ⛽ 🛞 🚨 🚥 🚦 🛑 🚧 ⚓ 🛟 ⛵ 🛶 🚤 🛳️ ⛴️ 🛥️ 🚢 ✈️ 🛩️ 🛫 🛬 🪂 💺 🚁 🚟 🚠 🚡 🛰️ 🚀 🛸 🛎️ 🧳 ⌛ ⏳ ⌚ ⏰ ⏱️ ⏲️ 🕰️ 🕛 🕧 🕐 🕑 🕜 🕝 🕒 🕞 🕓 🕟 🕔 🕠 🕕 🕡 🕖 🕢 🕗 🕣 🕘 🕤 🕙 🕥 🕚 🕦 🌑 🌒 🌓 🌔 🌕 🌖 🌗 🌘 🌙 🌚 🌛 🌜 🌡️ ☀️ 🌝 🌞 🪐 ⭐ 🌟 🌠 🌌 ☁️ ⛅ ⛈️ 🌤️ 🌥️ 🌦️ 🌧️ 🌨️ 🌩️ 🌪️ 🌫️ 🌬️ 🌀 🌈 🌂 ☂️ ☔ ⛱️ ⚡ ❄️ ☃️ ⛄ ☄️ 🔥 💧 🌊 🎃 🎄 🎆 🎇 🧨 ✨ 🎈 🎉 🎊 🎋 🎍 🎎 🎏 🎐 🎑 🧧 🎀 🎁 🎗️ 🎟️ 🎫 🎖️ 🏆 🏅 🥇 🥈 🥉 ⚽ ⚾ 🥎 🏀 🏐 🏈 🏉 🎾 🥏 🎳 🏏 🏑 🏒 🥍 🏓 🏸 🥊 🥋 🥅 ⛳ ⛸️ 🎣 🤿 🎽 🎿 🛷 🥌 🎯 🪀 🪁 🎱 🔮 🪄 🧿 🪬 🎮 🕹️ 🎰 🎲 🧩 🧸 🪅 🪩 🪆 ♠️ ♥️ ♦️ ♣️ ♟️ 🃏 🀄 🎴 🎭 🖼️ 🎨 🧵 🪡 🧶 🪢 👓 🕶️ 🥽 🥼 🦺 👔 👕 👖 🧣 🧤 🧥 🧦 👗 👘 🥻 🩱 🩲 🩳 👙 👚 👛 👜 👝 🛍️ 🎒 🩴 👞 👟 🥾 🥿 👠 👡 🩰 👢 👑 👒 🎩 🎓 🧢 🪖 ⛑️ 📿 💄 💍 💎 🔇 🔈 🔉 🔊 📢 📣 📯 🔔 🔕 🎼 🎵 🎶 🎙️ 🎚️ 🎛️ 🎤 🎧 📻 🎷 🪗 🎸 🎹 🎺 🎻 🪕 🥁 🪘 📱 📲 ☎️ 📞 📟 📠 🔋 🪫 🔌 💻 🖥️ 🖨️ ⌨️ 🖱️ 🖲️ 💽 💾 💿 📀 🧮 🎥 🎞️ 📽️ 🎬 📺 📷 📸 📹 📼 🔍 🔎 🕯️ 💡 🔦 🏮 🪔 📔 📕 📖 📗 📘 📙 📚 📓 📒 📃 📜 📄 📰 🗞️ 📑 🔖 🏷️ 💰 🪙 💴 💵 💶 💷 💸 💳 🧾 💹 ✉️ 📧 📨 📩 📤 📥 📦 📫 📪 📬 📭 📮 🗳️ ✏️ ✒️ 🖋️ 🖊️ 🖌️ 🖍️ 📝 💼 📁 📂 🗂️ 📅 📆 🗒️ 🗓️ 📇 📉 📈 📊 📋 📌 📍 📎 🖇️ 📏 📐 ✂️ 🗃️ 🗄️ 🗑️ 🔒 🔓 🔏 🔐 🔑 🗝️ 🔨 🪓 ⛏️ ⚒️ 🛠️ 🗡️ ⚔️ 🔫 🪃 🏹 🛡️ 🪚 🔧 🪛 🔩 ⚙️ 🗜️ ⚖️ 🦯 🔗 ⛓️ 🪝 🧰 🧲 🪜 ⚗️ 🧪 🧫 🧬 🔬 🔭 📡 💉 🩸 💊 🩹 🩼 🩺 🩻 🚪 🛗 🪞 🪟 🛏️ 🛋️ 🪑 🚽 🪠 🚿 🛁 🪤 🪒 🧴 🧷 🧹 🧺 🧻 🪣 🧼 🫧 🪥 🧽 🧯 🛒 🚬 ⚰️ 🪦 ⚱️ 🗿 🪧 🪪 🏧 🚮 🚰 ♿ 🚹 🚺 🚻 🚼 🚾 🛂 🛃 🛄 🛅 ⚠️ 🚸 ⛔ 🚫 🚳 🚭 🚯 🚱 🚷 📵 🔞 ☢️ ☣️ ⬆️ ↗️ ➡️ ↘️ ⬇️ ↙️ ⬅️ ↖️ ↕️ ↔️ ↩️ ↪️ ⤴️ ⤵️ 🔃 🔄 🔙 🔚 🔛 🔜 🔝 🛐 ⚛️ 🕉️ ✡️ ☸️ ☯️ ✝️ ☦️ ☪️ ☮️ 🕎 🔯 ♈ ♉ ♊ ♋ ♌ ♍ ♎ ♏ ♐ ♑ ♒ ♓ ⛎ 🔀 🔁 🔂 ▶️ ⏩ ⏭️ ⏯️ ◀️ ⏪ ⏮️ 🔼 ⏫ 🔽 ⏬ ⏸️ ⏹️ ⏺️ ⏏️ 🎦 🔅 🔆 📶 📳 📴 ♀️ ♂️ ⚧️ ✖️ ➕ ➖ ➗ 🟰 ♾️ ‼️ ⁉️ ❓ ❔ ❕ ❗ 〰️ 💱 💲 ⚕️ ♻️ ⚜️ 🔱 📛 🔰 ⭕ ✅ ☑️ ✔️ ❌ ❎ ➰ ➿ 〽️ ✳️ ✴️ ❇️ ©️ ®️ ™️ #️⃣ *️⃣ 0️⃣ 1️⃣ 2️⃣ 3️⃣ 4️⃣ 5️⃣ 6️⃣ 7️⃣ 8️⃣ 9️⃣ 🔟 🔠 🔡 🔢 🔣 🔤 🅰️ 🆎 🅱️ 🆑 🆒 🆓 ℹ️ 🆔 Ⓜ️ 🆕 🆖 🅾️ 🆗 🅿️ 🆘 🆙 🆚 🈁 🈂️ 🈷️ 🈶 🈯 🉐 🈹 🈚 🈲 🉑 🈸 🈴 🈳 ㊗️ ㊙️ 🈺 🈵 🔴 🟠 🟡 🟢 🔵 🟣 🟤 ⚫ ⚪ 🟥 🟧 🟨 🟩 🟦 🟪 🟫 ⬛ ⬜ ◼️ ◻️ ◾ ◽ ▪️ ▫️ 🔶 🔷 🔸 🔹 🔺 🔻 💠 🔘 🔳 🔲 🏁 🚩 🎌 🏴 🏳️ 🏳️‍🌈 🏳️‍⚧️ 🏴‍☠️ 🇦🇨 🇦🇩 🇦🇪 🇦🇫 🇦🇬 🇦🇮 🇦🇱 🇦🇲 🇦🇴 🇦🇶 🇦🇷 🇦🇸 🇦🇹 🇦🇺 🇦🇼 🇦🇽 🇦🇿 🇧🇦 🇧🇧 🇧🇩 🇧🇪 🇧🇫 🇧🇬 🇧🇭 🇧🇮 🇧🇯 🇧🇱 🇧🇲 🇧🇳 🇧🇴 🇧🇶 🇧🇷 🇧🇸 🇧🇹 🇧🇻 🇧🇼 🇧🇾 🇧🇿 🇨🇦 🇨🇨 🇨🇩 🇨🇫 🇨🇬 🇨🇭 🇨🇮 🇨🇰 🇨🇱 🇨🇲 🇨🇳 🇨🇴 🇨🇵 🇨🇷 🇨🇺 🇨🇻 🇨🇼 🇨🇽 🇨🇾 🇨🇿 🇩🇪 🇩🇬 🇩🇯 🇩🇰 🇩🇲 🇩🇴 🇩🇿 🇪🇦 🇪🇨 🇪🇪 🇪🇬 🇪🇭 🇪🇷 🇪🇸 🇪🇹 🇪🇺 🇫🇮 🇫🇯 🇫🇰 🇫🇲 🇫🇴 🇫🇷 🇬🇦 🇬🇧 🇬🇩 🇬🇪 🇬🇫 🇬🇬 🇬🇭 🇬🇮 🇬🇱 🇬🇲 🇬🇳 🇬🇵 🇬🇶 🇬🇷 🇬🇸 🇬🇹 🇬🇺 🇬🇼 🇬🇾 🇭🇰 🇭🇲 🇭🇳 🇭🇷 🇭🇹 🇭🇺 🇮🇨 🇮🇩 🇮🇪 🇮🇱 🇮🇲 🇮🇳 🇮🇴 🇮🇶 🇮🇷 🇮🇸 🇮🇹 🇯🇪 🇯🇲 🇯🇴 🇯🇵 🇰🇪 🇰🇬 🇰🇭 🇰🇮 🇰🇲 🇰🇳 🇰🇵 🇰🇷 🇰🇼 🇰🇾 🇰🇿 🇱🇦 🇱🇧 🇱🇨 🇱🇮 🇱🇰 🇱🇷 🇱🇸 🇱🇹 🇱🇺 🇱🇻 🇱🇾 🇲🇦 🇲🇨 🇲🇩 🇲🇪 🇲🇫 🇲🇬 🇲🇭 🇲🇰 🇲🇱 🇲🇲 🇲🇳 🇲🇴 🇲🇵 🇲🇶 🇲🇷 🇲🇸 🇲🇹 🇲🇺 🇲🇻 🇲🇼 🇲🇽 🇲🇾 🇲🇿 🇳🇦 🇳🇨 🇳🇪 🇳🇫 🇳🇬 🇳🇮 🇳🇱 🇳🇴 🇳🇵 🇳🇷 🇳🇺 🇳🇿 🇴🇲 🇵🇦 🇵🇪 🇵🇫 🇵🇬 🇵🇭 🇵🇰 🇵🇱 🇵🇲 🇵🇳 🇵🇷 🇵🇸 🇵🇹 🇵🇼 🇵🇾 🇶🇦 🇷🇪 🇷🇴 🇷🇸 🇷🇺 🇷🇼 🇸🇦 🇸🇧 🇸🇨 🇸🇩 🇸🇪 🇸🇬 🇸🇭 🇸🇮 🇸🇯 🇸🇰 🇸🇱 🇸🇲 🇸🇳 🇸🇴 🇸🇷 🇸🇸 🇸🇹 🇸🇻 🇸🇽 🇸🇾 🇸🇿 🇹🇦 🇹🇨 🇹🇩 🇹🇫 🇹🇬 🇹🇭 🇹🇯 🇹🇰 🇹🇱 🇹🇲 🇹🇳 🇹🇴 🇹🇷 🇹🇹 🇹🇻 🇹🇼 🇹🇿 🇺🇦 🇺🇬 🇺🇲 🇺🇳 🇺🇸 🇺🇾 🇺🇿 🇻🇦 🇻🇨 🇻🇪 🇻🇬 🇻🇮 🇻🇳 🇻🇺 🇼🇫 🇼🇸 🇽🇰 🇾🇪 🇾🇹 🇿🇦 🇿🇲 🇿🇼");
 });
 
-document.getElementById("btn-block21").addEventListener("click", () => {
-  renderCharsFromString("Simbol", "ꁲ ꃳ ꏳ ꀷ ꑀ ꊯ ꁅ ꁝ ꒐ ꒑ ꈵ ꒒ ꂵ ꃔ ꊿ ꉣ ꋠ ꌅ ꈜ ꋖ ꌈ ꒦ ꅐ ꉤ ꐔ ꑒ ꍏ ꌃ ꏳ ꀷ ꏂ ꎇ ꁅ ꀍ ꀤ ꒻ ꀘ ꒒ ꎭ ꈤ ꂦ ᖘ ꆰ ꋪ ꌚ ꓄ ꀎ ꒦ ꅐ ꉧ ꌩ ꁴ ꋫ ꃲ ꉓ ꃸ ꑾ ꄘ ꁅ ꃄ ꒐ ꒑ ꀗ ꒒ ꂵ ꁹ ꄱ ꉣ ꋟ ꋪ ꇘ ꓅ ꌇ ꒦ ꅏ ꋋ ꌥ ꒗ Ꮧ Ᏸ Ꮄ Ꮛ ጀ Ꮆ Ꮒ Ꭵ Ꮰ Ꮶ Ꮭ Ꮇ Ꮑ Ꭷ Ꭾ Ꭴ Ꮢ Ꮥ Ꮦ Ꮼ Ꮙ Ꮗ ፈ Ꭹ ፚ");
+
+document.getElementById("btn-block111").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "ﷲ ﷻ ﷽ ﷺ ف ق ك ل م ن ه و ى ي ٮ ٯ ٰ ٱ ٲ ٳ ٴ ٵ ٶ ٷ ٸ ٹ ٺ ٻ ټ ٽ پ ٿ ڀ ځ ڂ ڃ ڄ څ چ ڇ ڈ ډ ڊ ڋ ڌ ڍ ڎ ڏ ڐ ڑ ڒ ړ ڔ ڕ ږ ڗ ژ ڙ ښ ڛ ڜ ڝ ڞ ڟ ڠ ڡ ڢ ڣ ڤ ڥ ڦ ڧ ڨ ک ڪ ګ ڬ ڭ ڮ گ ڰ ڱ ڲ ڳ ڴ ڵ ڶ ڷ ڸ ڹ ں ڻ ڼ ڽ ھ ڿ ۀ ہ ۂ ۃ ۄ ۅ ۆ ۇ ۈ ۉ ۊ ۋ ی ۍ ێ ۏ ې ۑ ے ۓ ە ۮ ۯ ۿ ݐ ݑ ݒ ݓ ݔ ݕ ݖ ݗ ݘ ݙ ݚ ݛ ݜ ݝ ݞ ݟ ݠ ݡ ݢ ݣ ݤ ݥ ݦ ݧ ݨ ݩ ݪ ݫ ݬ ݭ ݮ ݯ ݰ ݱ ݲ ݳ ݴ ݵ ݶ ݷ ݸ ݹ ݺ ݻ ݼ ݽ ݾ ۺ ۻ ۼ ؠ ء آ أ ؤ إ ئ ا ب ة ت ث ج ح خ د ذ ر ز س ش ص ض ط ظ ع غ ػ ؼ ؽ ؾ ؿ ٠ ١ ٢ ٣ ٤ ٥ ٦ ٧ ٨ ٩ ۰ ۱ ۲ ۳ ۴ ۵ ۶ ۷ ۸ ۹ ؀ ؅ , ٫ ٬ ؍ , ؆ ؇ , ٪ ؉ ؊ ۥ ۦ ۔ ، ؛ ؞ ؟ ؜ ۽ ۾ ؎ ٭ ـ ؁ ؂ ؃ ؄ ؈ ؏ ۩ ۞ ۝");
 });
+
+document.getElementById("btn-block112").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "ɐ q ɔ p ǝ ɟ ᵷ ɥ ᴉ f ʞ ꞁ ɯ u o d b ɹ s ʇ n ʌ ʍ x ʎ z Ɐ B Ɔ D Ǝ Ⅎ ⅁ H I ſ Ʞ Ꞁ Ɯ N O Ԁ Ò ᴚ S Ʇ ∩ Ʌ ʍ X ⅄ Z ɑ æ ɛ ɪ ə ᴧ ɝ ɔ ʊ ː ā ä ē ĕ ī ĭ ō ŏ ȯ ô û ü");
+});
+
+document.getElementById("btn-block113").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "Ŋ ŋ ẞ ß ſ ẛ ẜ ẝ Þ þ Ȝ ȝ ı ȷ ɟ ʄ Ɖ Ƕ Ỻ Ỽ Ƿ ɮ ɧ ᵹ ĸ ỻ ỽ ɤ ɡ ɑ ɒ ᶐ ẟ ƍ Ɣ ɣ ɸ Ɩ ɩ ᵼ ƛ ɷ Ʊ ᵿ ʊ ʡ ʢ ƾ ʔ ɂ Ɂ ʖ Ǝ ɘ ↄ ɿ ᴑ ᴝ ᴞ ᴟ ᴓ ɐ ᵷ ɥ ᴉ ɯ ɰ ɹ ɺ ɻ ʇ ʌ ʍ ʎ ʞ ʮ ʯ ǝ Ɯ Ʌ Ƅ Ƨ Ƽ ƨ ƽ ƅ Ꝕ Ꞡ Ꞣ Ꞥ Ꞧ Ꞩ ꝕ ꝗ ꝙ ꞡ ꞣ ꞥ ꞧ ꞩ ᴖ ᴗ ᴥ ƻ ƿ Ʀ ǀ ǁ ǃ ǂ ʕ ʗ ʘ ʬ ʭ ᴤ");
+});
+
+document.getElementById("btn-block114").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "Α Β Γ Δ Ε Ζ Η Θ Ι Κ Λ Μ Ν Ξ Ο Π Ρ Σ Τ Υ Φ Χ Ψ Ω α β γ δ ε ζ η θ ι κ λ μ ν ξ ο π ρ σ τ υ φ χ ψ ω 𝚨 𝚩 𝚪 𝚫 𝚬 𝚭 𝚮 𝚯 𝚰 𝚱 𝚲 𝚳 𝚴 𝚵 𝚶 𝚷 𝚸 𝚺 𝚻 𝚼 𝚽 𝚾 𝚿 𝛀 𝛂 𝛃 𝛄 𝛅 𝛆 𝛇 𝛈 𝛉 𝛊 𝛋 𝛌 𝛍 𝛎 𝛏 𝛐 𝛑 𝛒 𝛔 𝛕 𝛖 𝛗 𝛘 𝛙 𝛚 𝛢 𝛣 𝛤 𝛥 𝛦 𝛧 𝛨 𝛩 𝛪 𝛫 𝛬 𝛭 𝛮 𝛯 𝛰 𝛱 𝛲 𝛴 𝛵 𝛶 𝛷 𝛸 𝛹 𝛺 𝛼 𝛽 𝛾 𝛿 𝜀 𝜁 𝜂 𝜃 𝜄 𝜅 𝜆 𝜇 𝜈 𝜉 𝜊 𝜋 𝜌 𝜎 𝜏 𝜐 𝜑 𝜒 𝜓 𝜔 𝜜 𝜝 𝜞 𝜟 𝜠 𝜡 𝜢 𝜣 𝜤 𝜥 𝜦 𝜧 𝜨 𝜩 𝜪 𝜫 𝜬 𝜮 𝜯 𝜰 𝜱 𝜲 𝜳 𝜴 𝜶 𝜷 𝜸 𝜹 𝜺 𝜻 𝜼 𝜽 𝜾 𝜿 𝝀 𝝁 𝝂 𝝃 𝝄 𝝅 𝝆 𝝈 𝝉 𝝊 𝝋 𝝌 𝝍 𝝎 𝝖 𝝗 𝝘 𝝙 𝝚 𝝛 𝝜 𝝝 𝝞 𝝟 𝝠 𝝡 𝝢 𝝣 𝝤 𝝥 𝝦 𝝨 𝝩 𝝪 𝝫 𝝬 𝝭 𝝮 𝝰 𝝱 𝝲 𝝳 𝝴 𝝵 𝝶 𝝷 𝝸 𝝹 𝝺 𝝻 𝝼 𝝽 𝝾 𝝿 𝞀 𝞂 𝞃 𝞄 𝞅 𝞆 𝞇 𝞈 𝞐 𝞑 𝞒 𝞓 𝞔 𝞕 𝞖 𝞗 𝞘 𝞙 𝞚 𝞛 𝞜 𝞝 𝞞 𝞟 𝞠 𝞢 𝞣 𝞤 𝞥 𝞦 𝞧 𝞨 𝞪 𝞫 𝞬 𝞭 𝞮 𝞯 𝞰 𝞱 𝞲 𝞳 𝞴 𝞵 𝞶 𝞷 𝞸 𝞹 𝞺 𝞼 𝞽 𝞾 𝞿 𝟀 𝟁 𝟂");
+});
+
+document.getElementById("btn-block115").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "А а Б б В в Г г Д д Е е Ё ё Ж ж З з И и Й й К к Л л М м Н н О о П п Р р С с Т т У у Ф ф Х х Ц ц Ч ч Ш ш Щ щ Ъ ъ Ы ы Ь ь Э э Ю ю Я я А Б В Г Д Е Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я Ё а б в г д е ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я ё А а Е е Ё ё Ф ф");
+});
+
+document.getElementById("btn-block116").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "ሀ ሁ ሂ ሃ ሄ ህ ሆ ሇ ለ ሉ ሊ ላ ሌ ል ሎ ሏ ሐ ሑ ሒ ሓ ሔ ሕ ሖ ሗ መ ሙ ሚ ማ ሜ ም ሞ ሟ ሠ ሡ ሢ ሣ ሤ ሥ ሦ ሧ ረ ሩ ሪ ራ ሬ ር ሮ ሯ ሰ ሱ ሲ ሳ ሴ ስ ሶ ሷ ሸ ሹ ሺ ሻ ሼ ሽ ሾ ሿ ቀ ቁ ቂ ቃ ቄ ቅ ቆ ቇ ቈ ቊ ቋ ቌ ቍ ቐ ቑ ቒ ቓ ቔ ቕ ቖ ቘ ቚ ቛ ቜ ቝ በ ቡ ቢ ባ ቤ ብ ቦ ቧ ቨ ቩ ቪ ቫ ቬ ቭ ቮ ቯ ተ ቱ ቲ ታ ቴ ት ቶ ቷ ቸ ቹ ቺ ቻ ቼ ች ቾ ቿ ኀ ኁ ኂ ኃ ኄ ኅ ኆ ኇ ኈ ኊ ኋ ኌ ኍ ነ ኑ ኒ ና ኔ ን ኖ ኗ ኘ ኙ ኚ ኛ ኜ ኝ ኞ ኟ አ ኡ ኢ ኣ ኤ እ ኦ ኧ ከ ኩ ኪ ካ ኬ ክ ኮ ኯ ኰ ኲ ኳ ኴ ኵ ኸ ኹ ኺ ኻ ኼ ኽ ኾ ዀ ዂ ዃ ዄ ዅ ወ ዉ ዊ ዋ ዌ ው ዎ ዏ ዐ ዑ ዒ ዓ ዔ ዕ ዖ ዘ ዙ ዚ ዛ ዜ ዝ ዞ ዟ ዠ ዡ ዢ ዣ ዤ ዥ ዦ ዧ የ ዩ ዪ ያ ዬ ይ ዮ ዯ ደ ዱ ዲ ዳ ዴ ድ ዶ ዷ ዸ ዹ ዺ ዻ ዼ ዽ ዾ ዿ ጀ ጁ ጂ ጃ ጄ ጅ ጆ ጇ ገ ጉ ጊ ጋ ጌ ግ ጎ ጏ ጐ ጒ ጓ ጔ ጕ ጘ ጙ ጚ ጛ ጜ ጝ ጞ ጟ ጠ ጡ ጢ ጣ ጤ ጥ ጦ ጧ ጨ ጩ ጪ ጫ ጬ ጭ ጮ ጯ ጰ ጱ ጲ ጳ ጴ ጵ ጶ ጷ ጸ ጹ ጺ ጻ ጼ ጽ ጾ ጿ ፀ ፁ ፂ ፃ ፄ ፅ ፆ ፇ ፈ ፉ ፊ ፋ ፌ ፍ ፎ ፏ ፐ ፑ ፒ ፓ ፔ ፕ ፖ ፗ ፘ ፙ ፚ ᎀ ᎁ ᎂ ᎃ ᎄ ᎅ ᎆ ᎇ ᎈ ᎉ ᎊ ᎋ ᎌ ᎍ ᎎ ᎏ ⶀ ⶁ ⶂ ⶃ ⶄ ⶅ ⶆ ⶇ ⶈ ⶉ ⶊ ⶋ ⶌ ⶍ ⶎ ⶏ ⶐ ⶑ ⶒ ⶓ ⶔ ⶕ ⶖ ⶠ ⶡ ⶢ ⶣ ⶤ ⶥ ⶦ ⶨ ⶩ ⶪ ⶫ ⶬ ⶭ ⶮ ⶰ ⶱ ⶲ ⶳ ⶴ ⶵ ⶶ ⶸ ⶹ ⶺ ⶻ ⶼ ⶽ ⶾ ⷀ ⷁ ⷂ ⷃ ⷄ ⷅ ⷆ ⷈ ⷉ ⷊ ⷋ ⷌ ⷍ ⷎ ⷐ ⷑ ⷒ ⷓ ⷔ ⷕ ⷖ ⷘ ⷙ ⷚ ⷛ ⷜ ⷝ ⷞ ꬁ ꬂ ꬃ ꬄ ꬅ ꬆ ꬉ ꬊ ꬋ ꬌ ꬍ ꬎ ꬑ ꬒ ꬓ ꬔ ꬕ ꬖ ꬠ ꬡ ꬢ ꬣ ꬤ ꬥ ꬦ ꬨ ꬩ ꬪ ꬫ ꬬ ꬭ ꬮ ᎐ ᎑ ᎒ ᎓ ᎔ ᎕ ᎖ ᎗ ᎘ ᎙ ፠ ፡ ። ፣ ፤ ፥ ፦ ፧ ፨ ፩ ፪ ፫ ፬ ፭ ፮ ፯ ፰ ፱ ፲ ፳ ፴ ፵ ፶ ፷ ፸ ፹ ፺ ፻ ፼");
+});
+
+document.getElementById("btn-block117").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "ऄ अ आ इ ई उ ऊ ऋ ऌ ऍ ऎ ए ऐ ऑ ऒ ओ औ क ख ग घ ङ च छ ज झ ञ ट ठ ड ढ ण त थ द ध न ऩ प फ ब भ म य र ऱ ल ळ ऴ व श ष स ह क़ ख़ ग़ ज़ ड़ ढ़ फ़ य़ ॠ ॡ ॲ ॳ ॴ ॵ ॶ ॷ ॸ ॹ ॺ ॻ ॼ ॽ ॾ ॿ । ॥ ॰ ॱ ꣲ ꣳ ꣴ ꣵ ꣶ ꣷ ꣼ ऽ ꣸ ꣹ ꣺ ꣻ 🕉 ॐ ꣽ ० १ २ ३ ४ ५ ६ ७ ८ ९");
+});
+
+document.getElementById("btn-block118").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "ঀ অ আ ই ঈ উ ঊ ঋ ঌ এ ঐ ও ঔ ক খ গ ঘ ঙ চ ছ জ ঝ ঞ ট ঠ ড ঢ ণ ত থ দ ধ ন প ফ ব ভ ম য র ল শ ষ স হ ঽ ৎ ড় ঢ় য় ৠ ৡ ০ ১ ২ ৩ ৪ ৫ ৬ ৭ ৮ ৯ ৰ ৱ ৻ ৼ ৽ ৾ ৲ ৳ ৴ ৵ ৶ ৷ ৸ ৹ ঁ ং ঃ ় া ি ী ু ূ ৃ ৄ ে ৈ ো ৌ ্ ৗ ৢ ৣ ৺");
+});
+
+document.getElementById("btn-block119").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "அ ஆ இ ஈ உ ஊ எ ஏ ஐ ஒ ஓ ஔ க ங ச ஜ ஞ ட ண த ந ன ப ம ய ர ற ல ள ழ வ ஶ ஷ ஸ ஹ ௦ ௧ ௨ ௩ ௪ ௫ ௬ ௭ ௮ ௯ , ௰ ௱ ௲ ௳ ௴ ௵ ௶ l ௷ ௸ ௹ ௺ ௐ o l d 𑀵 𑀶 𑀷 ஃ ஂ ா ி ீ ு ூ ெ ே ை ொ ோ ௌ ் ௗ");
+});
+
+document.getElementById("btn-block120").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "ཀ ཁ ག གྷ ང ཅ ཆ ཇ ཉ ཊ ཋ ཌ ཌྷ ཎ ཏ ཐ ད དྷ ན པ ཕ བ བྷ མ ཙ ཚ ཛ ཛྷ ཝ ཞ ཟ འ ཡ ར ལ ཤ ཥ ས ཧ ཨ ཀྵ ཪ ཫ ཬ ༠ ༡ ༢ ༣ ༤ ༥ ༦ ༧ ༨ ༩ ༳ ༪ ༫ ༬ ༭ ༮ ༯ ༰ ༱ ༲ ༁ ༂ ༃ ༄ ༅ ༆ ༇ ༈ ༉ ༊ ་ ༌ ། ༎ ༏ ༐ ༑ ༒ ༓ ༔ ༀ ༕ ༖ ༗ ༘ ༙ ༚ ༛ ༜ ༝ ༞ ༟ ࿎ ࿏ ༾ ༿ ཾ ྾ ྿ ࿀ ࿁ ࿂ ࿃ ࿄ ࿅ ࿇ ࿈ ࿉ ࿊ ࿋ ࿌ ࿐ ࿑ ࿒ ࿓ ࿔ ࿙ ࿚ ༴ ༵ ༶ ༷ ༸ ༹ ༺ ༻ ༼ ༽ ཱ ི ཱི ུ ཱུ ྲྀ ཷ ླྀ ཹ ེ ཻ ོ ཽ ྀ ཱྀ ཿ ྂ ྃ ྆ ྇ ྈ ྉ ྊ ྋ ྌ m a r k s ྄ ྅ ྍ ྎ ྏ ྐ ྑ ྒ ྒྷ ྔ ྕ ྖ ྗ ྙ ྚ ྛ ྜ ྜྷ ྞ ྟ ྠ ྡ ྡྷ ྣ ྤ ྥ ྦ ྦྷ ྨ ྩ ྪ ྫ ྫྷ ྭ ྮ ྯ ྰ ྱ ྲ ླ ྴ ྵ ྶ ྷ ྸ ྐྵ ྺ ྻ ྼ ࿆");
+});
+
+document.getElementById("btn-block121").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𓆣 𓆤 𓆥 𓆦 𓆧 𓆨 𓆩 𓆪 𓆲 𓄿 𓅀 𓅁 𓅂 𓅃 𓅄 𓅅 𓅆 𓅇 𓅈 𓅉 𓅊 𓅋 𓅌 𓅍 𓅎 𓅏 𓅐 𓅑 𓅒 𓅓 𓅔 𓅕 𓅖 𓅗 𓅘 𓅙 𓅚 𓅛 𓅜 𓅝 𓅞 𓅟 𓅠 𓅡 𓅢 𓅣 𓅤 𓅥 𓅦 𓅧 𓅨 𓅩 𓅪 𓅫 𓅬 𓅭 𓅮 𓅯 𓅰 𓅱 𓅲 𓅳 𓅴 𓅵 𓅶 𓅷 𓅸 𓅹 𓅺 𓅻 𓅼 𓅽 𓅾 𓅿 𓆀 𓆁 𓆂 𓆃 𓆄 𓆅 𓆆 𓆇 𓆈 𓆉 𓆊 𓆋 𓆌 𓆍 𓆎 𓆏 𓆐 𓃒 𓃓 𓃔 𓃕 𓃖 𓃗 𓃘 𓃙 𓃚 𓃛 𓃜 𓃝 𓃞 𓃟 𓃠 𓃡 𓃢 𓃣 𓃤 𓃥 𓃦 𓃧 𓃨 𓃩 𓃪 𓃫 𓃬 𓃭 𓃮 𓃯 𓃰 𓃱 𓃲 𓃳 𓃴 𓃵 𓃶 𓃷 𓃸 𓃹 𓃺 𓃻 𓃼 𓃽 𓃾 𓃿 𓄀 𓄁 𓄂 𓄃 𓄄 𓄅 𓄆 𓄇 𓀀 𓀁 𓀂 𓀃 𓀄 𓀅 𓀆 𓀇 𓀈 𓀉 𓀊 𓀋 𓀌 𓀍 𓀎 𓀏 𓀐 𓀑 𓀒 𓀓 𓀔 𓀕 𓀖 𓀗 𓀘 𓀙 𓀚 𓀛 𓀜 𓀝 𓀞 𓀟 𓀠 𓀡 𓀢 𓀣 𓀤 𓀥 𓀦 𓀧 𓀨 𓀩 𓀪 𓀫 𓀬 𓀭 𓀮 𓀯 𓀰 𓀱 𓀲 𓀳 𓀴 𓀵 𓀶 𓀷 𓀸 𓀹 𓀺 𓀻 𓀼 𓀽 𓀾 𓀿 𓁀 𓁁 𓁂 𓁃 𓁄 𓁅 𓁆 𓁇 𓁈 𓁉 𓁊 𓁋 𓁌 𓁍 𓁎 𓁏 𓐍 𓐎 𓐏 𓐐 𓐑 𓐒 𓐓 𓐔 𓐕 𓐖 𓐗 𓐘 𓐙 𓐚 𓐛 𓐜 𓐝 𓐞 𓐟 𓐠 𓐡 𓐢 𓐣 𓐤 𓐥 𓐦 𓐧 𓐨 𓐩 𓐪 𓐫 𓐬 𓐭 𓐮 𓁐 𓁑 𓁒 𓁓 𓁔 𓁕 𓂑 𓂒 𓂸 𓂹 𓂺 𓁖 𓁗 𓁘 𓁙 𓁚 𓁛 𓁜 𓁝 𓁞 𓁟 𓁠 𓁡 𓁢 𓁣 𓁤 𓁥 𓁦 𓁧 𓁨 𓁩 𓁪 𓁫 𓁬 𓁭 𓁮 𓁯 𓁰 𓁱 𓁲 𓁳 𓁴 𓁵 𓁶 𓁷 𓁸 𓁹 𓁺 𓁻 𓁼 𓁽 𓁾 𓁿 𓂀 𓂁 𓂂 𓂃 𓂄 𓂅 𓂆 𓂇 𓂈 𓂉 𓂊 𓂋 𓂌 𓂍 𓂎 𓂏 𓂐 𓂓 𓂔 𓂕 𓂖 𓂗 𓂘 𓂙 𓂚 𓂛 𓂜 𓂝 𓂞 𓂟 𓂠 𓂡 𓂢 𓂣 𓂤 𓂥 𓂦 𓂧 𓂨 𓂩 𓂪 𓂫 𓂬 𓂭 𓂮 𓂯 𓂰 𓂱 𓂲 𓂳 𓂴 𓂵 𓂶 𓂷 𓂻 𓂼 𓂽 𓂾 𓂿 𓃀 𓃁 𓃂 𓃃 𓃄 𓃅 𓃆 𓃇 𓃈 𓃉 𓃊 𓃋 𓃌 𓃍 𓃎 𓃏 𓃐 𓃑 𓄈 𓄉 𓄊 𓄋 𓄌 𓄍 𓄎 𓄏 𓄐 𓄑 𓄒 𓄓 𓄔 𓄕 𓄖 𓄗 𓄘 𓄙 𓄚 𓄛 𓄜 𓄝 𓄞 𓄟 𓄠 𓄡 𓄢 𓄣 𓄤 𓄥 𓄦 𓄧 𓄨 𓄩 𓄪 𓄫 𓄬 𓄭 𓄮 𓄯 𓄰 𓄱 𓄲 𓄳 𓄴 𓄵 𓄶 𓄷 𓄸 𓄹 𓄺 𓄻 𓄼 𓄽 𓄾 𓆫 𓆬 𓆭 𓆮 𓆯 𓆰 𓆱 𓆑 𓆒 𓆓 𓆔 𓆕 𓆖 𓆗 𓆘 𓆙 𓆚 𓆛 𓆜 𓆝 𓆞 𓆟 𓆠 𓆡 𓆢 𓆳 𓆴 𓆵 𓆶 𓆷 𓆸 𓆹 𓆺 𓆻 𓆼 𓆽 𓆾 𓆿 𓇀 𓇁 𓇂 𓇃 𓇄 𓇅 𓇆 𓇇 𓇈 𓇉 𓇊 𓇋 𓇌 𓇍 𓇎 𓇏 𓇐 𓇑 𓇒 𓇓 𓇔 𓇕 𓇖 𓇗 𓇘 𓇙 𓇚 𓇛 𓇜 𓇝 𓇞 𓇟 𓇠 𓇡 𓇢 𓇣 𓇤 𓇥 𓇦 𓇧 𓇨 𓇩 𓇪 𓇫 𓇬 𓇭 𓇮 𓇯 𓇰 𓇱 𓇲 𓇳 𓇴 𓇵 𓇶 𓇷 𓇸 𓇹 𓇺 𓇻 𓇼 𓇽 𓇾 𓇿 𓈀 𓈁 𓈂 𓈃 𓈄 𓈅 𓈆 𓈇 𓈈 𓈉 𓈊 𓈋 𓈌 𓈍 𓈎 𓈏 𓈐 𓈑 𓈒 𓈓 𓈔 𓈕 𓈖 𓈗 𓈘 𓈙 𓈚 𓈛 𓈜 𓈝 𓈞 𓈟 𓈠 𓈡 𓈢 𓈣 𓈤 𓈥 𓈦 𓈧 𓈨 𓈩 𓈪 𓈫 𓈬 𓈭 𓈮 𓈯 𓈰 𓈱 𓈲 𓈳 𓈴 𓈵 𓈶 𓈷 𓈸 𓈹 𓈺 𓈻 𓈼 𓈽 𓈾 𓈿 𓉀 𓉁 𓉂 𓉃 𓉄 𓉅 𓉆 𓉇 𓉈 𓉉 𓉊 𓉋 𓉌 𓉍 𓉎 𓉏 𓉐 𓉑 𓉒 𓉓 𓉔 𓉕 𓉖 𓉗 𓉘 𓉙 𓉚 𓉛 𓉜 𓉝 𓉞 𓉟 𓉠 𓉡 𓉢 𓉣 𓉤 𓉥 𓉦 𓉧 𓉨 𓉩 𓉪 𓉫 𓉬 𓉭 𓉮 𓉯 𓉰 𓉱 𓉲 𓉳 𓉴 𓉵 𓉶 𓉷 𓉸 𓉹 𓉺 𓉻 𓉼 𓉽 𓉾 𓉿 𓊀 𓊁 𓊂 𓊃 𓊄 𓊅 𓊆 𓊇 𓊈 𓊉 𓊊 𓊋 𓊌 𓊍 𓊎 𓊏 𓊐 𓊑 𓊒 𓊓 𓊔 𓊕 𓊖 𓊗 𓊘 𓊙 𓊚 𓊛 𓊜 𓊝 𓊞 𓊟 𓊠 𓊡 𓊢 𓊣 𓊤 𓊥 𓊦 𓊧 𓊨 𓊩 𓊪 𓊫 𓊬 𓊭 𓊮 𓊯 𓊰 𓊱 𓊲 𓊳 𓊴 𓊵 𓊶 𓊷 𓊸 𓊹 𓊺 𓊻 𓊼 𓊽 𓊾 𓊿 𓋀 𓋁 𓋂 𓋃 𓋄 𓋅 𓋆 𓋇 𓋈 𓋉 𓋊 𓋋 𓋌 𓋍 𓋎 𓋏 𓋐 𓋑 𓋒 𓋓 𓋔 𓋕 𓋖 𓋗 𓋘 𓋙 𓋚 𓋛 𓋜 𓋝 𓋞 𓋟 𓋠 𓋡 𓋢 𓋣 𓋤 𓋥 𓋦 𓋧 𓋨 𓋩 𓋪 𓋫 𓋬 𓋭 𓋮 𓋯 𓋰 𓋱 𓋲 𓋳 𓋴 𓋵 𓋶 𓋷 𓋸 𓋹 𓋺 𓋻 𓋼 𓋽 𓋾 𓋿 𓌀 𓌁 𓌂 𓌃 𓌄 𓌅 𓌆 𓌇 𓌈 𓌉 𓌊 𓌋 𓌌 𓌍 𓌎 𓌏 𓌐 𓌑 𓌒 𓌓 𓌔 𓌕 𓌖 𓌗 𓌘 𓌙 𓌚 𓌛 𓌜 𓌝 𓌞 𓌟 𓌠 𓌡 𓌢 𓌣 𓌤 𓌥 𓌦 𓌧 𓌨 𓌩 𓌪 𓌫 𓌬 𓌭 𓌮 𓌯 𓌰 𓌱 𓌲 𓌳 𓌴 𓌵 𓌶 𓌷 𓌸 𓌹 𓌺 𓌻 𓌼 𓌽 𓌾 𓌿 𓍀 𓍁 𓍂 𓍃 𓍄 𓍅 𓍆 𓍇 𓍈 𓍉 𓍊 𓍋 𓍌 𓍍 𓍎 𓍏 𓍐 𓍑 𓍒 𓍓 𓍔 𓍕 𓍖 𓍗 𓍘 𓍙 𓍚 𓍛 𓍜 𓍝 𓍞 𓍟 𓍠 𓍡 𓍢 𓍣 𓍤 𓍥 𓍦 𓍧 𓍨 𓍩 𓍪 𓍫 𓍬 𓍭 𓍮 𓍯 𓍰 𓍱 𓍲 𓍳 𓍴 𓍵 𓍶 𓍷 𓍸 𓍹 𓍺 𓍻 𓍼 𓍽 𓍾 𓍿 𓎀 𓎁 𓎂 𓎃 𓎄 𓎅 𓎆 𓎇 𓎈 𓎉 𓎊 𓎋 𓎌 𓎍 𓎎 𓎏 𓎐 𓎑 𓎒 𓎓 𓎔 𓎕 𓎖 𓎗 𓎘 𓎙 𓎚 𓎛 𓎜 𓎝 𓎞 𓎟 𓎠 𓎡 𓎢 𓎣 𓎤 𓎥 𓎦 𓎧 𓎨 𓎩 𓎪 𓎫 𓎬 𓎭 𓎮 𓎯 𓎰 𓎱 𓎲 𓎳 𓎴 𓎵 𓎶 𓎷 𓎸 𓎹 𓎺 𓎻 𓎼 𓎽 𓎾 𓎿 𓏀 𓏁 𓏂 𓏃 𓏄 𓏅 𓏆 𓏇 𓏈 𓏉 𓏊 𓏋 𓏌 𓏍 𓏎 𓏏 𓏐 𓏑 𓏒 𓏓 𓏔 𓏕 𓏖 𓏗 𓏘 𓏙 𓏚 𓏛 𓏜 𓏝 𓏞 𓏟 𓏠 𓏡 𓏢 𓏣 𓏤 𓏥 𓏦 𓏧 𓏨 𓏩 𓏪 𓏫 𓏬 𓏭 𓏮 𓏯 𓏰 𓏱 𓏲 𓏳 𓏴 𓏵 𓏶 𓏷 𓏸 𓏹 𓏺 𓏻 𓏼 𓏽 𓏾 𓏿 𓐀 𓐁 𓐂 𓐃 𓐄 𓐅 𓐆 𓐇 𓐈 𓐉 𓐊 𓐋 𓐌 𒃾 𒃿 𒄀 𒄁 𒄂 𒄃 𒄄 𒄅 𒄆 𒄇 𒄈 𒄉 𒄊 𒄋 𒄌 𒄍 𒄎 𒄏 𒄐 𒄑 𒄒 𒄓 𒄔 𒄕 𒄖 𒄗 𒄘 𒄙 𒄚 𒄛 𒄜 𒄝 𒄞 𒄟 𒄠 𒄡 𒄢 𒄣 𒄤 𒄥 𒄦 𒄧 𒄨 𒄩 𒄪 𒄫 𒄬");
+});
+
+document.getElementById("btn-block122").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𐑐 𐑑 𐑒 𐑓 𐑔 𐑕 𐑖 𐑗 𐑘 𐑙 𐑚 𐑛 𐑜 𐑝 𐑞 𐑟 𐑠 𐑡 𐑢 𐑣 𐑤 𐑥 𐑦 𐑧 𐑨 𐑩 𐑪 𐑫 𐑬 𐑭 𐑮 𐑯 𐑰 𐑱 𐑲 𐑳 𐑴 𐑵 𐑶 𐑷 𐑸 𐑹 𐑺 𐑻 𐑼 𐑽 𐑾 𐑿");
+});
+
+document.getElementById("btn-block123").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "𐀀 𐀁 𐀂 𐀃 𐀄 𐀅 𐀆 𐀇 𐀈 𐀉 𐀊 𐀋 𐀍 𐀎 𐀏 𐀐 𐀑 𐀒 𐀓 𐀔 𐀕 𐀖 𐀗 𐀘 𐀙 𐀚 𐀛 𐀜 𐀝 𐀞 𐀟 𐀠 𐀡 𐀢 𐀣 𐀤 𐀥 𐀦 𐀨 𐀩 𐀪 𐀫 𐀬 𐀭 𐀮 𐀯 𐀰 𐀱 𐀲 𐀳 𐀴 𐀵 𐀶 𐀷 𐀸 𐀹 𐀺 𐀼 𐀽 𐀿 𐁀 𐁁 𐁂 𐁃 𐁄 𐁅 𐁆 𐁇 𐁈 𐁉 𐁊 𐁋 𐁌 𐁍 𐁐 𐁑 𐁒 𐁓 𐁔 𐁕 𐁖 𐁗 𐁘 𐁙 𐁚 𐁛 𐁜 𐁝 𐂀 𐂁 𐂂 𐂃 𐂄 𐂅 𐂆 𐂇 𐂈 𐂉 𐂊 𐂋 𐂌 𐂍 𐂎 𐂏 𐂐 𐂑 𐂒 𐂓 𐂔 𐂕 𐂖 𐂗 𐂘 𐂙 𐂚 𐂛 𐂜 𐂝 𐂞 𐂟 𐂠 𐂡 𐂢 𐂣 𐂤 𐂥 𐂦 𐂧 𐂨 𐂩 𐂪 𐂫 𐂬 𐂭 𐂮 𐂯 𐂰 𐂱 𐂲 𐂳 𐂴 𐂵 𐂶 𐂷 𐂸 𐂹 𐂺 𐂻 𐂼 𐂽 𐂾 𐂿 𐃀 𐃁 𐃂 𐃃 𐃄 𐃅 𐃆 𐃇 𐃈 𐃉 𐃊 𐃋 𐃌 𐃍 𐃎 𐃏 𐃐 𐃑 𐃓 𐃔 𐃕 𐃖 𐃗 𐃘 𐃙 𐃚 𐃛 𐃜 𐃝 𐃞 𐃟 𐃠 𐃡 𐃢 𐃣 𐃤 𐃥 𐃦 𐃧 𐃨 𐃩 𐃪 𐃫 𐃬 𐃭 𐃮 𐃯 𐃰 𐃱 𐃲 𐃳 𐃴 𐃵 𐃶 𐃷 𐃸 𐃹 𐃺 𐃒 𐘀 𐘁 𐘂 𐘃 𐘄 𐘅 𐘆 𐘇 𐘈 𐘉 𐘊 𐘋 𐘌 𐘍 𐘎 𐘏 𐘐 𐘑 𐘒 𐘓 𐘔 𐘕 𐘖 𐘗 𐘘 𐘙 𐘚 𐘛 𐘜 𐘝 𐘞 𐘟 𐘠 𐘡 𐘢 𐘣 𐘤 𐘥 𐘦 𐘧 𐘨 𐘩 𐘪 𐘫 𐘬 𐘭 𐘮 𐘯 𐘰 𐘱 𐘲 𐘳 𐘴 𐘵 𐘶 𐘷 𐘸 𐘹 𐘺 𐘻 𐘼 𐘽 𐘾 𐘿 𐙀 𐙁 𐙂 𐙃 𐙄 𐙅 𐙆 𐙇 𐙈 𐙉 𐙊 𐙋 𐙌 𐙍 𐙎 𐤀 𐤁 𐤂 𐤃 𐤄 𐤅 𐤆 𐤇 𐤈 𐤉 𐤊 𐤋 𐤌 𐤍 𐤎 𐤏 𐤐 𐤑 𐤒 𐤓 𐤔 𐤕 𐤖 𐤚 𐤛 𐤗 𐤘 𐤙 𐤟 ᚠ ᚡ ᚢ ᚣ ᚤ ᚥ ᚦ ᚧ ᚨ ᚩ ᚪ ᚫ ᚬ ᚭ ᚮ ᚯ ᚰ ᚱ ᚲ ᚳ ᚴ ᚵ ᚶ ᚷ ᚸ ᚹ ᚺ ᚻ ᚼ ᚽ ᚾ ᚿ ᛀ ᛁ ᛂ ᛃ ᛄ ᛅ ᛆ ᛇ ᛈ ᛉ ᛊ ᛋ ᛌ ᛍ ᛎ ᛏ ᛐ ᛑ ᛒ ᛓ ᛔ ᛕ ᛖ ᛗ ᛘ ᛙ ᛚ ᛛ ᛜ ᛝ ᛞ ᛟ ᛠ ᛡ ᛢ ᛣ ᛤ ᛥ ᛦ ᛧ ᛨ ᛩ ᛪ 𐐀 𐐁 𐐂 𐐃 𐐄 𐐅 𐐆 𐐇 𐐈 𐐉 𐐊 𐐋 𐐌 𐐍 𐐎 𐐏 𐐐 𐐑 𐐒 𐐓 𐐔 𐐕 𐐖 𐐗 𐐘 𐐙 𐐚 𐐛 𐐜 𐐝 𐐞 𐐟 𐐠 𐐡 𐐢 𐐣 𐐤 𐐥 𐐦 𐐧 𐐨 𐐩 𐐪 𐐫 𐐬 𐐭 𐐮 𐐯 𐐰 𐐱 𐐲 𐐳 𐐴 𐐵 𐐶 𐐷 𐐸 𐐹 𐐺 𐐻 𐐼 𐐽 𐐾 𐐿 𐑀 𐑁 𐑂 𐑃 𐑄 𐑅 𐑆 𐑇 𐑈 𐑉 𐑊 𐑋 𐑌 𐑍 𐑎 𐑏");
+});
+
+document.getElementById("btn-block124").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "");
+});
+
+document.getElementById("btn-block125").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "");
+});
+
+document.getElementById("btn-block126").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "");
+});
+
+document.getElementById("btn-block127").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "");
+});
+
+document.getElementById("btn-block128").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "");
+});
+
+document.getElementById("btn-block129").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "");
+});
+
+document.getElementById("btn-block130").addEventListener("click", () => {
+  renderCharsFromString("Simbol", "");
+});
+
 
 }
 
@@ -1061,62 +1975,46 @@ document.addEventListener("click", function (e) {
 
 
 
+// Scroll ke kanan, lalu kembali ke kiri
 function scrollToEnd(el, duration = 1000) {
-  const start = el.scrollLeft;
-  const end = el.scrollWidth - el.clientWidth;
-  const distance = end - start;
-  const startTime = performance.now();
-
-  // Fase pertama: scroll perlahan menuju ujung kanan
-  function step1(now) {
-    const progress = Math.min((now - startTime) / duration, 1);
-    el.scrollLeft = start + distance * progress;
-
-    if (progress < 1) {
-      requestAnimationFrame(step1);
-    } else {
-      // Fase kedua: scroll cepat kembali ke kiri
-      el.scrollLeft = end;
-      setTimeout(() => {
-        scrollToStart(el, 500);  // Gerakan cepat kembali ke kiri
-      }, 100);  // Tunggu sejenak sebelum kembali
-    }
-  }
-
-  requestAnimationFrame(step1);
+  animateScroll(el, el.scrollLeft, el.scrollWidth - el.clientWidth, duration, () => {
+    setTimeout(() => scrollToStart(el, 500), 100);
+  });
 }
 
-// Fungsi untuk scroll cepat ke kiri
 function scrollToStart(el, duration = 500) {
-  const start = el.scrollLeft;
-  const end = 0;
-  const distance = start - end;
+  animateScroll(el, el.scrollLeft, 0, duration);
+}
+
+function animateScroll(el, from, to, duration, callback) {
+  const distance = to - from;
   const startTime = performance.now();
 
-  function step2(now) {
+  function step(now) {
     const progress = Math.min((now - startTime) / duration, 1);
-    el.scrollLeft = start - distance * progress;
-
+    el.scrollLeft = from + distance * progress;
     if (progress < 1) {
-      requestAnimationFrame(step2);
+      requestAnimationFrame(step);
     } else {
-      el.scrollLeft = end;  // Pastikan scroll sampai ujung kiri
+      el.scrollLeft = to;
+      if (callback) callback();
     }
   }
 
-  requestAnimationFrame(step2);
+  requestAnimationFrame(step);
 }
 
 window.addEventListener("load", () => {
   const bar = document.getElementById("symbol-bar");
   if (bar) {
     setTimeout(() => {
-      bar.scrollLeft = 0;  // Mulai dari kiri
-      scrollToEnd(bar, 1000);  // Mulai scroll perlahan ke kanan
-    }, 100); // Penundaan agar elemen siap
+      bar.scrollLeft = 0;
+      scrollToEnd(bar);
+    }, 100);
   }
 });
 
+// Tombol tengah otomatis klik
 const symbolBar = document.getElementById("symbol-bar");
 const buttons = symbolBar.querySelectorAll("button");
 
@@ -1128,10 +2026,8 @@ function getCenterButton() {
   let closestDist = Infinity;
 
   buttons.forEach(btn => {
-    const btnRect = btn.getBoundingClientRect();
-    const btnCenter = btnRect.left + btnRect.width / 2;
+    const btnCenter = btn.getBoundingClientRect().left + btn.offsetWidth / 2;
     const dist = Math.abs(centerX - btnCenter);
-
     if (dist < closestDist) {
       closestDist = dist;
       closestBtn = btn;
@@ -1149,115 +2045,26 @@ symbolBar.addEventListener("scroll", () => {
     const activeBtn = getCenterButton();
     if (activeBtn && activeBtn !== lastActiveButton) {
       lastActiveButton = activeBtn;
-      activeBtn.click();  // Simulasikan klik untuk ganti konten
+      
     }
-  }, 800); // Delay agar tidak terlalu sering berganti saat geser
+  }, 800);
 });
 
+// Dropdown untuk klik tombol
 document.getElementById("block-select").addEventListener("change", (e) => {
   const targetId = e.target.value;
-  if (targetId) {
-    document.getElementById(targetId).click();
-  }
+  if (targetId) document.getElementById(targetId)?.click();
 });
-
-</script>
-
-<script>
-  const textarea = document.getElementById('notes');
-
-  function insertText(text) {
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const before = textarea.value.substring(0, start);
-    const after = textarea.value.substring(end);
-    textarea.value = before + text + after;
-    textarea.selectionStart = textarea.selectionEnd = start + text.length;
-    textarea.focus();
-    textarea.scrollIntoView({ block: "nearest", inline: "nearest" });
-  }
-
-  function moveCaretToStart() {
-    textarea.focus();
-    textarea.selectionStart = textarea.selectionEnd = 0;
-    textarea.scrollIntoView({ block: "nearest", inline: "nearest" });
-  }
-
-  function moveCaretToEnd() {
-    textarea.focus();
-    const end = textarea.value.length;
-    textarea.selectionStart = textarea.selectionEnd = end;
-    textarea.scrollIntoView({ block: "nearest", inline: "nearest" });
-  }
-
-  function moveCaretLeft() {
-    const pos = textarea.selectionStart;
-    const newPos = (pos > 0) ? pos - 1 : textarea.value.length;
-    textarea.focus();
-    textarea.setSelectionRange(newPos, newPos);
-    textarea.scrollIntoView({ block: "nearest", inline: "nearest" });
-  }
-
-  function moveCaretRight() {
-    const pos = textarea.selectionStart;
-    const newPos = (pos < textarea.value.length) ? pos + 1 : 0;
-    textarea.focus();
-    textarea.setSelectionRange(newPos, newPos);
-    textarea.scrollIntoView({ block: "nearest", inline: "nearest" });
-  }
-
-  function backspace() {
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const valueArray = Array.from(textarea.value);
-
-    if (start === end && start > 0) {
-      const realStart = Array.from(textarea.value.slice(0, start)).length;
-      valueArray.splice(realStart - 1, 1);
-      const newValue = valueArray.join('');
-      textarea.value = newValue;
-
-      const newCursor = [...newValue].slice(0, realStart - 1).join('').length;
-      textarea.selectionStart = textarea.selectionEnd = newCursor;
-    } else {
-      const before = Array.from(textarea.value.slice(0, start));
-      const after = Array.from(textarea.value.slice(end));
-      const newValue = before.concat(after).join('');
-      textarea.value = newValue;
-
-      const newCursor = before.join('').length;
-      textarea.selectionStart = textarea.selectionEnd = newCursor;
-    }
-
-    textarea.focus();
-    textarea.scrollIntoView({ block: "nearest", inline: "nearest" });
-  }
-
-  function updateStrikeByPercentage() {
-    const value = document.getElementById('caret-slider').value;
-    document.getElementById('percent-value').textContent = 'Digaris: ' + value + '%';
-  }
-
-  function updateStrikethroughPercentage() {
-    const value = document.getElementById('strike-slider').value;
-    document.getElementById('strike-value').textContent = 'Tengah: ' + value + '%';
-  }
-
-  window.addEventListener("load", () => {
-  setTimeout(() => {
-    textarea.focus();
-  }, 10);
-});
-
-
-</script>
-
-<script>
-const notes = document.getElementById("notes");
+// Textarea efek & kontrol
+const textarea = document.getElementById("notes");
 const caretSlider = document.getElementById("caret-slider");
-const percentLabel = document.getElementById("percent-value");
 const strikeSlider = document.getElementById("strike-slider");
+const percentLabel = document.getElementById("percent-value");
 const strikeLabel = document.getElementById("strike-value");
+
+function cleanText(text) {
+  return text.replace(/͟͞/g, '').replace(/\u0338/g, '');
+}
 
 function applyEffects() {
   const glitchPercent = parseInt(caretSlider.value, 10);
@@ -1266,106 +2073,208 @@ function applyEffects() {
   percentLabel.textContent = `Digaris: ${glitchPercent}%`;
   strikeLabel.textContent = `Tengah: ${strikePercent}%`;
 
-  // Bersihkan teks dari efek lama
-  let cleanText = notes.value.replace(/͟͞/g, '').replace(/\u0338/g, '');
-  const chars = Array.from(cleanText);
-
-
+  const chars = Array.from(cleanText(textarea.value));
   const glitchLength = Math.floor((glitchPercent / 100) * chars.length);
   const strikeLength = Math.floor((strikePercent / 100) * chars.length);
 
-  let newText = '';
-  for (let i = 0; i < chars.length; i++) {
-    let ch = chars[i];
-    if (i < glitchLength) ch += '͟͞';
-    if (i < strikeLength) ch += '\u0338';
-    newText += ch;
-  }
-
-  notes.value = newText;
-  updateCounter();
-}
-
-function updateStrikeByPercentage() {
-  applyEffects();
-}
-
-function updateStrikethroughPercentage() {
-  applyEffects();
-}
-
-function resetGlitchSlider() {
-  caretSlider.value = 0;
-  percentLabel.textContent = "Digaris: 0%";
-  applyEffects();
-}
-
-function resetStrikeSlider() {
-  strikeSlider.value = 0;
-  strikeLabel.textContent = "Tengah: 0%";
-  applyEffects();
-}
-
-function insertTextAtFakeCaret(str) {
-  const start = notes.selectionStart;
-  const end = notes.selectionEnd;
-  const before = notes.value.slice(0, start);
-  const after = notes.value.slice(end);
-  notes.value = before + str + after;
-
-  const cursorPos = start + str.length;
-  notes.setSelectionRange(cursorPos, cursorPos);
-  notes.focus();
+  textarea.value = chars.map((ch, i) => {
+    let result = ch;
+    if (i < glitchLength) result += '͟͞';
+    if (i < strikeLength) result += '\u0338';
+    return result;
+  }).join('');
 
   updateCounter();
-  resetGlitchSlider();
-  resetStrikeSlider();
 }
 
-function backspaceAtFakeCaret() {
-  const pos = notes.selectionStart;
-  if (pos === 0) return;
-
-  const before = notes.value.slice(0, pos);
-  const chars = Array.from(before);
-
-  chars.pop();
-  const newBefore = chars.join('');
-
-  const after = notes.value.slice(notes.selectionEnd);
-  notes.value = newBefore + after;
-
-  const newPos = [...newBefore].length;
-  notes.setSelectionRange(newPos, newPos);
-  notes.focus();
-
-  updateCounter();
+function resetSlider(slider, label, prefix) {
+  slider.value = 0;
+  label.textContent = `${prefix}: 0%`;
   applyEffects();
 }
 
-notes.addEventListener("keydown", function (e) {
-  if (e.key.length === 1 && !e.ctrlKey && !e.metaKey) {
-    e.preventDefault();
-    insertTextAtFakeCaret(e.key);
-  } else if (e.key === "Enter") {
-    e.preventDefault();
-    insertTextAtFakeCaret("\n");
-  } else if (e.key === "Backspace") {
-    e.preventDefault();
-    backspaceAtFakeCaret();
-  }
+function insertTextAtCaret(text) {
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  const before = textarea.value.slice(0, start);
+  const after = textarea.value.slice(end);
+  textarea.value = before + text + after;
+
+  const cursor = start + text.length;
+  textarea.setSelectionRange(cursor, cursor);
+  textarea.focus();
+
+  updateCounter();
+  resetSlider(caretSlider, percentLabel, "Digaris");
+  resetSlider(strikeSlider, strikeLabel, "Tengah");
+}
+
+caretSlider.addEventListener("input", applyEffects);
+strikeSlider.addEventListener("input", applyEffects);
+
+window.addEventListener("load", () => {
+  setTimeout(() => textarea.focus(), 10);
 });
 
-function updateCounter() {
-  const text = notes.value.replace(/͟͞/g, '').replace(/\u0338/g, '');
-  const charCount = [...text].length;
-  const paragraphCount = text.trim().split(/\n+/).filter(Boolean).length;
-
-  document.getElementById("char-count").textContent = charCount + " Karakter";
-  document.getElementById("line-count").textContent = paragraphCount + " Paragraf";
-}
 </script>
 
+<script>
+let circledMode = 0;
 
+function insertChar(char) {
+  const textarea = document.getElementById('notes');
+  if (!textarea) return;
+  const start = textarea.selectionStart;
+  const end = textarea.selectionEnd;
+  textarea.value = textarea.value.slice(0, start) + char + textarea.value.slice(end);
+  textarea.selectionStart = textarea.selectionEnd = start + char.length;
+  textarea.focus();
+}
+
+function replaceWithCircledNumbers() {
+  const container = document.getElementById("number-buttons");
+  if (!container) return;
+
+  if (circledMode === 0) {
+    const normal = ['1','2','3','4','5','6','7','8','9','0'];
+    container.innerHTML = normal.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+    circledMode = 1;
+  } else if (circledMode === 1) {
+    const circled = ['①','②','③','④','⑤','⑥','⑦','⑧','⑨','⓪'];
+    container.innerHTML = circled.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+    circledMode = 2;
+  } else if (circledMode === 2) {
+    const circledBlack = ['❶','❷','❸','❹','❺','❻','❼','❽','❾','⓿'];
+    container.innerHTML = circledBlack.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+    circledMode = 3;
+  } else if (circledMode === 3) {
+    const circledWhite = ['⓵','⓶','⓷','⓸','⓹','⓺','⓻','⓼','⓽','⓾'];
+    container.innerHTML = circledWhite.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+    circledMode = 4;
+  } else if (circledMode === 4) {
+    const bold = ['𝟏','𝟐','𝟑','𝟒','𝟓','𝟔','𝟕','𝟖','𝟗','𝟎'];
+    container.innerHTML = bold.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+    circledMode = 5;
+  } else if (circledMode === 5) {
+    const monospaced = ['𝟘','𝟙','𝟚','𝟛','𝟜','𝟝','𝟞','𝟟','𝟠','𝟡'];
+    container.innerHTML = monospaced.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+    circledMode = 6;
+  } else if (circledMode === 6) {
+    const serif = ['𝟎','𝟏','𝟐','𝟑','𝟒','𝟓','𝟔','𝟕','𝟖','𝟗'];
+    container.innerHTML = serif.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+    circledMode = 7;
+  } else if (circledMode === 7) {
+    const superscript = ['⁰','¹','²','³','⁴','⁵','⁶','⁷','⁸','⁹'];
+    container.innerHTML = superscript.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+    circledMode = 8;
+  } else if (circledMode === 8) {
+    const subscript = ['₀','₁','₂','₃','₄','₅','₆','₇','₈','₉'];
+    container.innerHTML = subscript.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+    circledMode = 9
+  } else if (circledMode === 9) {
+  const mode9 = ['♳','♴','♵','♶','♷','♸','♹','♺'];
+  container.innerHTML = mode9.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+  circledMode = 10;
+} else if (circledMode === 10) {
+  const mode10 = ['⑴','⑵','⑶','⑷','⑸','⑹','⑺','⑻','⑼','⑽'];
+  container.innerHTML = mode10.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+  circledMode = 11;
+} else if (circledMode === 11) {
+  const mode11 = ['㈀','㈁','㈂','㈃','㈄','㈅','㈆','㈇','㈈','㈉'];
+  container.innerHTML = mode11.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+  circledMode = 12;
+} else if (circledMode === 12) {
+  const mode12 = ['㉠','㉡','㉢','㉣','㉤','㉥','㉦','㉧','㉨','㉩'];
+  container.innerHTML = mode12.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+  circledMode = 13;
+} else if (circledMode === 13) {
+  const mode13 = ['㋀','㋁','㋂','㋃','㋄','㋅','㋆','㋇','㋈','㋉'];
+  container.innerHTML = mode13.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+  circledMode = 14;
+} else if (circledMode === 14) {
+  const mode14 = ['㍙','㍚','㍛','㍜','㍝','㍞','㍟','㍠','㍡','㍢'];
+  container.innerHTML = mode14.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+  circledMode = 15;
+} else if (circledMode === 15) {
+  const mode15 = ['㏠','㏡','㏢','㏣','㏤','㏥','㏦','㏧','㏨','㏩'];
+  container.innerHTML = mode15.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+  circledMode = 16;
+} else if (circledMode === 16) {
+  const mode16 = ['㋴','㋜','㋵','㋰','㋶','㋚','㋦','㋯','㋽','㋺'];
+  container.innerHTML = mode16.map(c => `<button onclick="insertChar('${c}')">${c}</button>`).join('');
+
+
+    circledMode = 0;
+  }
+}
+
+// 🔹 Tambahan biar langsung tampil saat halaman pertama dibuka
+document.addEventListener("DOMContentLoaded", replaceWithCircledNumbers);
+</script>
+<script>
+  function getGraphemes(text) {
+  if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+    try {
+      const seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+      return Array.from(seg.segment(text), s => s.segment);
+    } catch (e) {}
+  }
+  return Array.from(text);
+}
+
+function codeUnitIndexToGraphemeIndex(text, codeUnitIndex) {
+  if (codeUnitIndex <= 0) return 0;
+  if (codeUnitIndex >= text.length) return getGraphemes(text).length;
+  if (typeof Intl !== 'undefined' && Intl.Segmenter) {
+    const seg = new Intl.Segmenter(undefined, { granularity: 'grapheme' });
+    let acc = 0;
+    let i = 0;
+    for (const { segment } of seg.segment(text)) {
+      const cuLen = segment.length;
+      acc += cuLen;
+      i++;
+      if (acc >= codeUnitIndex) return i;
+    }
+    return i;
+  }
+  const cps = Array.from(text);
+  let accUnits = 0;
+  for (let i = 0; i < cps.length; i++) {
+    accUnits += cps[i].length;
+    if (accUnits >= codeUnitIndex) return i + 1;
+  }
+  return cps.length;
+}
+
+function backspace() {
+  const textarea = notesTextarea;
+  if (!textarea) return;
+  const startCU = textarea.selectionStart;
+  const endCU = textarea.selectionEnd;
+  if (startCU === 0 && endCU === 0) return;
+  const full = textarea.value;
+  const graphemes = getGraphemes(full);
+  const posStart = codeUnitIndexToGraphemeIndex(full, startCU);
+  const posEnd = codeUnitIndexToGraphemeIndex(full, endCU);
+  if (startCU === endCU) {
+    if (posStart === 0) return;
+    graphemes.splice(posStart - 1, 1);
+    textarea.value = graphemes.join('');
+    const newTextBefore = graphemes.slice(0, posStart - 1).join('');
+    const newCUPos = newTextBefore.length;
+    textarea.setSelectionRange(newCUPos, newCUPos);
+  } else {
+    const deleteCount = Math.max(0, posEnd - posStart);
+    graphemes.splice(posStart, deleteCount);
+    textarea.value = graphemes.join('');
+    const newTextBefore = graphemes.slice(0, posStart).join('');
+    const newCUPos = newTextBefore.length;
+    textarea.setSelectionRange(newCUPos, newCUPos);
+  }
+  textarea.focus();
+  updateCounter();
+}
+
+</script>
 </body>
 </html>
