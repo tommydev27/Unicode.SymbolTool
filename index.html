@@ -15,7 +15,9 @@
     <title>Tommy Website</title>
         <link rel="stylesheet" href="https://static.xx.fbcdn.net/rsrc.php/v5/y2/l/0,cross/nC2XYYUISfm.css" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css2?family=Questrial&display=swap" rel="stylesheet">
-    
+    <link href="https://static.xx.fbcdn.net/rsrc.php/v5/yT/l/0,cross/RYoQlJMNiM3.css" rel="stylesheet" crossorigin="anonymous">
+<link href="https://static.xx.fbcdn.net/rsrc.php/v5/yv/l/0,cross/VraZqV-tU8r.css" rel="stylesheet" crossorigin="anonymous" />
+
  <style>
  
   body {
@@ -55,24 +57,57 @@
       margin-bottom: 0; /* ubah dari sebelumnya */
     }
   
-    #notes {
-      width: 100%;
-      font-family: 'Questrial', sans-serif;
-      height: 160px;
-      border: 0.1px solid rgba(29,124,247,0.305);
-      border-radius: 10px;
-      margin-bottom: -20px;
-      font-size: 18px;
-      resize: none; /* kunci agar tidak bisa di-resize */
-      padding: 5px;
-      box-sizing: border-box;
-    }
+  #notes-wrapper {
+    position: relative;
+    width: 100%;
+    height: 160px; /* tinggi tetap */
+    margin: 5px auto;
+  }
 
-    #notes {
-      user-select: auto !important;
-      pointer-events: auto !important;
-      z-index: 10 !important;
-      position: relative !important;
+  #notes, .native-text {
+    position: absolute; 
+    width: 100%;
+    font-family: 'Questrial', sans-serif;
+    height: 160px;
+    border: 0.1px solid rgba(29,124,247,0.305);
+    border-radius: 10px;
+    font-size: 18px;
+    resize: none;
+    padding: 5px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: transform .3s ease, opacity .3s ease;
+  }
+
+  #notes {
+    z-index: 10;
+    position: absolute; /* ubah dari relative ke absolute */
+    top: 0;
+    left: 0;
+  }
+
+  .native-text {
+    z-index: 20;
+    margin-top: -164px;
+    background: #fff;
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+
+  .native-text.show {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  #postBtn {
+    border: none;
+    background: none;
+    color: #1763cf;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
     }
 
     #controls {
@@ -588,7 +623,7 @@
       }
       
       
-      .key-btn span.native-text,
+      .key-btn span.native,
       .key-btn span.backspace-icon,
       .key-btn span.enter-icon {
         display: inline-block;
@@ -806,7 +841,7 @@ background-color: #99c5f7;
     <div id="main-container">
        <h3 style="margin-top: 0px; margin-bottom: 10px;">
        <div style="display: flex; gap: 12px;  font-size: 20px; ">
-        <span class="native-text" style=" font-size: 17px !important; font-weight: bold;"> Seni Teks Gent</span>
+        <span class="native2" style=" font-size: 17px !important; font-weight: bold;"> Seni Teks Gent</span>
         
         <div id="counter-info">
         <span class="counter-box" id="char-count">0 Karakter</span>
@@ -824,10 +859,44 @@ background-color: #99c5f7;
 
     </h2>
        
+
+
 <div id="notes-wrapper">
   <textarea id="notes" placeholder="Tulis ..."></textarea>
+  <div class="native-text"></div>
+
+
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const btn = document.getElementById('postBtn');
+  const txt = document.getElementById('notes');
+  const target = document.querySelector('.native-text');
+  let isVisible = false;
+
+  btn.addEventListener('click', () => {
+    if (!isVisible) {
+      const text = txt.value.trim();
+      if (!text) return alert('Tulis sesuatu dulu.');
+      target.textContent = text;
+      target.classList.add('show');
+      txt.style.opacity = 0; // sembunyikan textarea
+      isVisible = true;
+      btn.textContent = 'TUTUP';
+    } else {
+      target.classList.remove('show');
+      setTimeout(() => { txt.style.opacity = 1; }, 300); 
+      isVisible = false;
+      btn.textContent = 'RUN';
+    }
+  });
+});
+</script>
+
+
   
   <span id="copy-message">
+    
     Berhasil disalin!
     <svg viewBox="0 0 52 52" class="checkmark">
       <circle class="checkmark__circle" cx="26" cy="26" r="25" />
@@ -837,6 +906,7 @@ background-color: #99c5f7;
 </div>
 
 <div class="control-row">
+    <button id="postBtn">RUN</button>
   <button id="copy-btn">⧉</button>
   <button id="clear-btn" style="font-size:10px;">CLEAR</button>
 
@@ -1055,8 +1125,8 @@ window.addEventListener("load", () => {
 <div id="keyboard-layout-2" style="display: none;">
   <div id="container"></div>
   <div class="control-row1">
-    <button class="key-btn" id="btn-block1019"><span class="native-text">Aa</span></button>
-    <button class="key-btn" id="btn-block1018"><span class="native-text">😃</span></button>
+    <button class="key-btn" id="btn-block1019"><span class="native">Aa</span></button>
+    <button class="key-btn" id="btn-block1018"><span class="native">😃</span></button>
     <button class="key-btn" onclick="insertText(' ')">⎵</button>
     <button class="key-btn" onclick="backspace()"><span class="backspace-icon">⌫</span></button>
     <button class="key-btn" onclick="insertText('\n')"><span class="enter-icon">↲</span></button>
@@ -1106,7 +1176,7 @@ function toggleKeyboardLayout() {
     textarea.focus();
   }
 
-  // ✅ Tambahan: Semua tombol di symbol-bar akan langsung aktifkan layout 2
+
   document.addEventListener('DOMContentLoaded', () => {
     const layout1 = document.getElementById('keyboard-layout-1');
     const layout2 = document.getElementById('keyboard-layout-2');
@@ -1297,7 +1367,7 @@ const styledChars14Upper_asdf = styledChars14_asdf;
 const styledChars14Upper_zxcv = styledChars14_zxcv;
 
 
-// Tambahan 20 gaya karakter
+
 let isCharacter1 = false;
 let isCharacter2 = false;
 let isCharacter3 = false;
@@ -1342,13 +1412,13 @@ function selectCharacter(n) {
   resetModes();
   activeCharacter = n;
   updateKeyboard();
-  updateCounter(); // ← tambahkan ini
+  updateCounter(); 
 }
 
 function setNormal() {
   resetModes();
   updateKeyboard();
-  updateCounter(); // ← tambahkan ini
+  updateCounter(); 
 }
 
   
@@ -1668,7 +1738,7 @@ function renderCharsFromString(label, chars) {
 
   for (const char of chars.split(" ")) {
     const span = document.createElement("span");
-    span.className = "char key native-text";
+    span.className = "char key native";
     span.textContent = char;
     span.title = char;
     span.addEventListener("click", (e) => {
@@ -2208,7 +2278,7 @@ function replaceWithCircledNumbers() {
   }
 }
 
-// 🔹 Tambahan biar langsung tampil saat halaman pertama dibuka
+
 document.addEventListener("DOMContentLoaded", replaceWithCircledNumbers);
 </script>
 <script>
